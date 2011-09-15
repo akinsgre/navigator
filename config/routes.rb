@@ -7,5 +7,7 @@ Navigator::Application.routes.draw do
 
   root :to => "groups#index"
 
+  match "incoming_message", :to => "incoming_message#index"
+
 
 end
