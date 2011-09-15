@@ -12,7 +12,11 @@
   <strong>Contact Email:</strong>
   <%= @group.contact_email %>
 </p>
-
+<ul>
+<% @contacts.each do |c| %>
+<li><%= c.name %> : <%= c.phone %> </li>
+<% end %>
+</ul>
 <p>
   <%= link_to "Edit", edit_group_path(@group) %> |
   <%= link_to "Destroy", @group, :confirm => 'Are you sure?', :method => :delete %> |

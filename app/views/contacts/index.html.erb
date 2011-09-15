@@ -1,0 +1,21 @@
+<% title "Contacts" %>
+
+<table>
+  <tr>
+    <th>Group</th>
+    <th>Name</th>
+    <th>Contact Email</th>
+  </tr>
+  <% for contact in @contacts %>
+    <tr>
+      <td><%= contact.group_id %></td>
+      <td><%= contact.name %></td>
+      <td><%= contact.phone %></td>
+      <td><%= link_to "Show", contact %></td>
+      <td><%= link_to "Edit", edit_contact_path(contact) %></td>
+      <td><%= link_to "Destroy", contact, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Contact", new_contact_path %></p>

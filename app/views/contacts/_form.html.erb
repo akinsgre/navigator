@@ -1,0 +1,16 @@
+<%= form_for @contact do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :group_id %><br />
+    <%= f.collection_select :group_id, Group.all(:order => "name"), :id, :name, :include_blank => true %>
+  </p>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :phone %><br />
+    <%= f.text_field :phone %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>

@@ -1,0 +1,9 @@
+one:
+  group_id: 1
+  name: MyString
+  phone: MyString
+
+two:
+  group_id: 1
+  name: MyString
+  phone: MyString
