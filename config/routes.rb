@@ -3,6 +3,7 @@ Navigator::Application.routes.draw do
 
   resources :groups
   resources :contacts
+  resources :users
 
   root :to => "groups#index"
 

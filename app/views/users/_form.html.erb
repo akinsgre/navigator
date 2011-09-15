@@ -1,0 +1,12 @@
+<%= form_for @user do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :email %><br />
+   <%= f.text_field :email %>
+  </p>
+  <p>
+    <%= f.label :approved? %><br />
+    <%= f.check_box :approved? %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>
