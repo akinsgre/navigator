@@ -5,11 +5,13 @@
 #
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
-puts "This is a test"
-user = User.find_by_email("angrygreg@gmail.com")
+puts "Finding an admin user, or adding one."
+user = User.find_by_email("admin@insomnia-consulting.org")
 if user.nil?
-  puts "Couldn't find the user"
+  puts "Couldn't find the user.. creating one"
+  user = User.create!(:email => "admin@insomnia-consulting.org", :password => "password1")
 end
+puts "Admin user will be " + user.email
 user.approved = true
 user.save
 puts "finished with seeding"
