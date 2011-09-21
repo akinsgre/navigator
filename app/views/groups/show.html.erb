@@ -17,6 +17,7 @@
 <li><%= c.name %> : <%= c.phone %> </li>
 <% end %>
 </ul>
+<%= link_to "New", new_contact_path %>
 <p>
   <%= link_to "Edit", edit_group_path(@group) %> |
   <%= link_to "Destroy", @group, :confirm => 'Are you sure?', :method => :delete %> |
