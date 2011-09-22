@@ -7,7 +7,7 @@ before_filter :authenticate_user!
 
   def show
     @group = Group.find(params[:id])
-     @contacts = @group.contacts.find(:all)
+    @contacts = @group.contacts.find(:all)
   end
 
   def new

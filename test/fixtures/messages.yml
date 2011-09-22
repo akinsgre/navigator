@@ -1,0 +1,24 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  message: MyString
+  address: MyString
+  group_id: 1
+
+two:
+  message: MyString
+  address: MyString
+  group_id: 1
+
+# == Schema Information
+#
+# Table name: messages
+#
+#  id         :integer         not null, primary key
+#  message    :string(255)
+#  address    :string(255)
+#  group_id   :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+

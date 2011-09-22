@@ -1,5 +1,6 @@
 <% title "Group" %>
 
+<h3><%= link_to "Send this group a message", :controller => "messages", :action => "new", :id => @group.id %></h3>
 <p>
   <strong>Parent:</strong>
   <%= @group.parent_id %>
@@ -14,10 +15,10 @@
 </p>
 <ul>
 <% @contacts.each do |c| %>
-<li><%= c.name %> : <%= c.phone %> </li>
+<li><%= link_to c.name, edit_contact_path %> : <%= c.phone %> </li>
 <% end %>
 </ul>
-<%= link_to "New", new_contact_path %>
+<%= link_to "Add a new contact", new_contact_path %>
 <p>
   <%= link_to "Edit", edit_group_path(@group) %> |
   <%= link_to "Destroy", @group, :confirm => 'Are you sure?', :method => :delete %> |

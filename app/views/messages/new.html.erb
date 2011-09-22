@@ -1,0 +1,8 @@
+<h1>Message</h1>
+<p>Group <%= params[:id] %></p>
+<%= form_for @message, :url =>  { :action => "deliver" } do |f| %>
+<%= f.label :message %>
+<%= f.text_field :message %>
+<%= f.hidden_field :group_id, :value => params[:id] %>
+<%= f.submit %>
+<% end %>

@@ -1,5 +1,7 @@
 Navigator::Application.routes.draw do
+  post "messages/deliver"
   get "home/index"
+  resources :messages
 
   devise_for :users
 
