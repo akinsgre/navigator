@@ -1,10 +1,25 @@
 class User < ActiveRecord::Base
+  has_many :subscription
+  has_many :assignments
+  has_many :role, :through => :assignments
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
-
+  
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :approved
+
+  def admin?
+    logger.info "Roles : " + self.role.flatten.to_s
+    isAdmin = false ; 
+    self.role.each { |r|
+      if r.name == 'Administrator'
+        isAdmin = true
+      end
+      
+    }
+    return isAdmin
+  end
 
   def active_for_authentication?
     super && approved?

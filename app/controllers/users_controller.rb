@@ -1,12 +1,7 @@
-class UsersController < ApplicationController
-  before_filter :authenticate_user!
+class UsersController < AdminController
+  before_filter :authenticate_user!, :authorize
   def index
-
-    if params[:approved] == "false"
-      @users = User.find_all_by_approved(false)
-    else
       @users = User.all
-    end
   end
 
   def edit
@@ -16,7 +11,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
-      redirect_to @user, :notice  => "Successfully updated group."
+      redirect_to @user, :notice  => "Successfully updated user."
     else
       render :action => 'edit'
     end

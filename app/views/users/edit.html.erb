@@ -1,8 +1,9 @@
-<% title "Edit User" %>
-
-<%= render 'form' %>
-
-<p>
-  <%= link_to "Show", @user %> |
-  <%= link_to "View All", users_path %>
-</p>
+<%= @user.id %>
+<%= form_for @user do |f| %>
+<%= f.error_messages %>
+<%= f.label :email %>
+<%= f.text_field :email %><br/>
+<%= f.label :approved %>
+<%= f.check_box :approved %>
+<%= f.submit %>
+<% end %>
