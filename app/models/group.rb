@@ -1,7 +1,8 @@
 class Group < ActiveRecord::Base
   has_many :contacts, :class_name => "Contact"
   has_many :groups, :class_name => "Group"
-  attr_accessible :parent_id, :name, :contact_email
+  belongs_to :user
+  attr_accessible :parent_id, :name, :user_id
 
 end
 

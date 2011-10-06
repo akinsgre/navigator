@@ -1,7 +1,7 @@
 <%= form_for @group do |f| %>
   <%= f.error_messages %>
   <p>
-    <%= f.label :parent_id %><br />
+   <%= f.label :parent_id %><br />
     <%= f.collection_select :parent_id, Group.all(:order => "name"), :id, :name, :include_blank => true %>
   </p>
   <p>
@@ -9,8 +9,9 @@
     <%= f.text_field :name %>
   </p>
   <p>
-    <%= f.label :contact_email %><br />
-    <%= f.text_field :contact_email %>
+Owned by: 
+    <%= current_user.email %><br />
+   <%= f.hidden_field :user_id %>
   </p>
   <p><%= f.submit %></p>
 <% end %>

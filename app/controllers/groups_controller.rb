@@ -7,14 +7,23 @@ before_filter :authenticate_user!
 
   def show
     @group = Group.find(params[:id])
-    @contacts = @group.contacts.find(:all)
+    if @group.user == current_user 
+      @contacts = @group.contacts.find(:all)
+    end
   end
 
   def new
-    @group = Group.new
+
+    if current_user.admin? || current_user.subscribed?
+      @group = Group.new
+      @group.user = current_user
+    else
+      redirect_to :root, :notice => "Only premium subscribers can create groups."
+    end
   end
 
   def create
+    logger.info params[:group]
     @group = Group.new(params[:group])
     if @group.save
       redirect_to @group, :notice => "Successfully created group."

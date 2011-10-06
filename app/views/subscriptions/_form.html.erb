@@ -1,8 +1,8 @@
+<p>Just submit this form to register as a premium user</p>
 <%= form_for @subscription do |f| %>
   <%= f.error_messages %>
   <p>
-    <%= f.label :user_id %><br />
-    <%= f.collection_select :user_id, User.all(:order => "email"), :id, :email, :selected => current_user.id, :include_blank => true %>
+   <%= f.hidden_field :user_id %>
   </p>
   <p><%= f.submit %></p>
 <% end %>

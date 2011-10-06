@@ -1,12 +1,16 @@
 class SubscriptionsController < ApplicationController
   def new
     @subscription = Subscription.new
+    @subscription.user = current_user
   end
 
   def edit
   end
 
   def show
+    if !current_user.subscribed?
+      render "home/index"
+    end
   end
 
   def destroy
