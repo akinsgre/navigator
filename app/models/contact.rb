@@ -1,7 +1,17 @@
 class Contact < ActiveRecord::Base
   has_many :groups, :class_name => "Group"
-  attr_accessible :group_id, :name, :phone
+  belongs_to :user
+  attr_accessible :group_id, :name, :phone, :user_id, :email
+  
+  def email
+    @email  
+  end
+  def email=(email)
+    @email = email
+  end
+
 end
+
 
 # == Schema Information
 #
@@ -13,5 +23,6 @@ end
 #  group_id   :integer
 #  created_at :datetime
 #  updated_at :datetime
+#  user_id    :integer
 #
 

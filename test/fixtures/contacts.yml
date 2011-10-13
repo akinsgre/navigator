@@ -8,6 +8,7 @@ two:
   name: MyString
   phone: MyString
 
+
 # == Schema Information
 #
 # Table name: contacts
@@ -18,5 +19,6 @@ two:
 #  group_id   :integer
 #  created_at :datetime
 #  updated_at :datetime
+#  user_id    :integer
 #
 

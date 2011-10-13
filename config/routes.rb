@@ -7,6 +7,7 @@ Navigator::Application.routes.draw do
 
   devise_for :users
   match "users", :to => "users#index", :via => "get"
+
   resources :users
 
   resources :groups
@@ -16,6 +17,7 @@ Navigator::Application.routes.draw do
   root :to => "home#index"
 
   match "incoming_message", :to => "incoming_message#index"
+
 
 
 end

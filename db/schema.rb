@@ -10,65 +10,65 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111006130020) do
+ActiveRecord::Schema.define(:version => 20110928005914) do
 
   create_table "assignments", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "role_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer   "user_id"
+    t.integer   "role_id"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "contacts", :force => true do |t|
-    t.string   "name"
-    t.string   "phone"
-    t.integer  "group_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string    "name"
+    t.string    "phone"
+    t.integer   "group_id"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "groups", :force => true do |t|
-    t.integer  "parent_id"
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "user_id"
+    t.integer   "parent_id"
+    t.string    "name"
+    t.string    "contact_email"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "messages", :force => true do |t|
-    t.string   "message"
-    t.string   "address"
-    t.integer  "group_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string    "message"
+    t.string    "address"
+    t.integer   "group_id"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "roles", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string    "name"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "subscriptions", :force => true do |t|
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer   "user_id"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                                 :default => "", :null => false
-    t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                         :default => 0
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean  "approved"
+    t.string    "email",                                 :default => "", :null => false
+    t.string    "encrypted_password",     :limit => 128, :default => "", :null => false
+    t.string    "reset_password_token"
+    t.timestamp "reset_password_sent_at"
+    t.timestamp "remember_created_at"
+    t.integer   "sign_in_count",                         :default => 0
+    t.timestamp "current_sign_in_at"
+    t.timestamp "last_sign_in_at"
+    t.string    "current_sign_in_ip"
+    t.string    "last_sign_in_ip"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.boolean   "approved"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

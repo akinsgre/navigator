@@ -10,6 +10,7 @@ gem 'twilio-ruby', '3.4.0'
 group :development do
   gem 'rspec-rails', '2.6.1'
   gem 'annotate', '2.4.0'
+  gem 'taps', '0.3.23'
 end
 group :test do
   gem 'rspec-rails', '2.6.1'

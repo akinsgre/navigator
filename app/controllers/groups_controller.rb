@@ -2,18 +2,27 @@
 class GroupsController < ApplicationController
 before_filter :authenticate_user!
   def index
-    @groups = Group.all
-  end
-
-  def show
-    @group = Group.find(params[:id])
-    if @group.user == current_user 
-      @contacts = @group.contacts.find(:all)
+    if current_user.admin?
+      @groups = Group.all
+    else
+      @groups = current_user.groups
     end
   end
 
-  def new
+  def show
+    if current_user.admin?
+      @group = Group.find(params[:id])
+    else
+      @group = Group.owned_by(current_user.id).find(params[:id])
+    end
+    if @group.nil?
+      redirect_to :root, :status => 401, :notice => "You do not have access to this group."
+    end
+    @contacts = @group.contacts.find(:all) unless @group.nil?
+  end
 
+  def new
+    logger.info "Current User = " + current_user.email + " who is an admin (" + current_user.admin?.to_s  + ")"
     if current_user.admin? || current_user.subscribed?
       @group = Group.new
       @group.user = current_user

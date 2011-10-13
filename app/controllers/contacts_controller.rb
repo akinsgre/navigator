@@ -10,24 +10,38 @@ before_filter :authenticate_user!
 
   def new
     @contact = Contact.new
+    @contact.group_id = params[:group_id] 
+    @contact.user_id = params[:user_id] 
   end
 
   def create
     @contact = Contact.new(params[:contact])
-    if @contact.save
+    logger.info "Email entered is " + @contact.email
+    @user = User.new
+    @user.email = @contact.email
+    @user.password = ActiveSupport::SecureRandom.base64(12)
+    
+    if @contact.save && @user.save
       redirect_to @contact, :notice => "Successfully created contact."
     else
       render :action => 'new'
     end
+
   end
 
   def edit
     @contact = Contact.find(params[:id])
   end
 
+  def deactivate
+  end
+
   def update
     @contact = Contact.find(params[:id])
-    if @contact.update_attributes(params[:contact])
+    @user = User.find_by_email(params[:email])
+    @user.email = @contact.email
+    logger.info "Updating user " + @user.email
+    if @contact.update_attributes(params[:contact]) && @user.save
       redirect_to @contact, :notice  => "Successfully updated contact."
     else
       render :action => 'edit'

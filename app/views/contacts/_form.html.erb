@@ -1,3 +1,6 @@
+<div id="addTypes" >
+<a>Add a contact manually</a>
+<div >
 <%= form_for @contact do |f| %>
   <%= f.error_messages %>
   <p>
@@ -5,12 +8,22 @@
     <%= f.collection_select :group_id, Group.all(:order => "name"), :id, :name, :include_blank => true %>
   </p>
   <p>
+    <%= f.hidden_field :user_id %><br />
+
+  </p>
+  <p>
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </p>
+<p>
+  <%= f.label :email %><br />
+  <%= f.text_field :email %>
+</p>
   <p>
     <%= f.label :phone %><br />
     <%= f.text_field :phone %>
   </p>
   <p><%= f.submit %></p>
 <% end %>
+</div>
+</div>
