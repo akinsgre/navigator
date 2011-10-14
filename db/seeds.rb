@@ -14,19 +14,15 @@ end
 user.approved = true
 
 puts "Trying to assign Administrator Role to User"
-isAdmin = false 
-Role.all.each { |r|
-  puts "Role" + r.name
-  if r.name == 'Administrator'
-    isAdmin = true
-  end
-}
 
-if isAdmin
-    role = Role.find_by_name("Administrator")
-    user.role.push(role) unless role.nil?
-    puts "#{user.email} is now an Administrator"
+
+role = Role.find_by_name("Administrator")
+if role.nil?
+  role = Role.create!({:name => "Administrator"})
+  
 end
+user.role.push(role)
+puts "#{user.email} is now an Administrator"
 user.save
 
 puts "finished with seeding"

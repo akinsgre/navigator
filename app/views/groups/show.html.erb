@@ -15,8 +15,7 @@
 </p>
 <ul>
 <% @contacts.each do |c| %>
-<li><%= link_to c.name, edit_contact_path %> : <%= c.phone %>:
-  <%= link_to "X", contacts_deactivate_path(:id => c.id), :confirm => 'Are you sure?', %> </li>
+<li><%= link_to c.name, edit_contact_path %> : <%= c.phone %>
 <% end %>
 </ul>
 <%= link_to "Add a new contact", new_contact_path( :group_id => @group.id ) %>
