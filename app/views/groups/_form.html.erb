@@ -9,9 +9,9 @@
     <%= f.text_field :name %>
   </p>
   <p>
-Owned by: 
-    <%= current_user.email %><br />
-   <%= f.hidden_field :user_id %>
+    Owned by: 
+    <%= f.collection_select :user_id, User.all(:order => "email"), :id, :email, :include_blank => true %>
+
   </p>
   <p><%= f.submit %></p>
 <% end %>

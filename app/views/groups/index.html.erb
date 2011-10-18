@@ -10,7 +10,7 @@
     <tr>
       <td><%= group.parent_id %></td>
       <td><%= group.name %></td>
-      <td><%= group.user.email %></td>
+      <td><%= group.user.email unless group.user.nil? %></td>
       <td><%= link_to "Show", group %></td>
       <td><%= link_to "Edit", edit_group_path(group) %></td>
       <td><%= link_to "Destroy", group, :confirm => 'Are you sure?', :method => :delete %></td>
