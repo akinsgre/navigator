@@ -3,7 +3,7 @@
 <h3><%= link_to "Send this group a message", :controller => "messages", :action => "new", :id => @group.id %></h3>
 <p>
   <strong>Parent:</strong>
-  <%= @group.parent_id %>
+  <%= @group.parent_id %>3
 </p>
 <p>
   <strong>Name:</strong>
@@ -13,11 +13,12 @@
   <strong>Contact Email:</strong>
   <%= @group.user.email %>
 </p>
-<ul>
-<% @contacts.each do |c| %>
-<li><%= link_to c.name, edit_contact_path %> : <%= c.phone %>
+<table>
+<% @group.contacts.each do |c| %>
+<tr><td><%= button_to "X", { :action => "remove_contact", :id => @group.id,  :contact_id => c.id }, :method => :put %></td><td><%= link_to c.name, edit_contact_path(c) %></td><td><%= c.phone %></td></tr>
 <% end %>
-</ul>
+</table>
+
 <%= link_to "Add a new contact", new_contact_path( :group_id => @group.id ) %>
 <p>
   <%= link_to "Edit", edit_group_path(@group) %> |

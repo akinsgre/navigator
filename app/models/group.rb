@@ -1,9 +1,13 @@
 class Group < ActiveRecord::Base
-  has_many :contacts, :class_name => "Contact"
-  has_many :groups, :class_name => "Group"
+  has_many :group_contacts
+  has_many :contacts, :through => :group_contacts
+
   belongs_to :user
+
   attr_accessible :parent_id, :name, :user_id
+
   scope :owned_by, ->(user_id) {where(:user_id =>user_id)}
+
 end
 
 

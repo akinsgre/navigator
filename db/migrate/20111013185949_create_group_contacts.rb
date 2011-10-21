@@ -6,6 +6,12 @@ class CreateGroupContacts < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    contacts = Contact.all
+    contacts.each do |contact| 
+      group_contact = GroupContact.create!({:group_id => contact.group_id, :contact_id => contact.id})
+    end
+
   end
 
   def self.down

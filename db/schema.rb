@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110928005914) do
+ActiveRecord::Schema.define(:version => 20111013185949) do
 
   create_table "assignments", :force => true do |t|
     t.integer   "user_id"
@@ -20,19 +20,27 @@ ActiveRecord::Schema.define(:version => 20110928005914) do
   end
 
   create_table "contacts", :force => true do |t|
-    t.string    "name"
-    t.string    "phone"
-    t.integer   "group_id"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
+    t.string   "name"
+    t.string   "phone"
+    t.integer  "group_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+  end
+
+  create_table "group_contacts", :force => true do |t|
+    t.integer  "group_id"
+    t.integer  "contact_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "groups", :force => true do |t|
     t.integer   "parent_id"
     t.string    "name"
-    t.string    "contact_email"
     t.timestamp "created_at"
     t.timestamp "updated_at"
+    t.integer   "user_id"
   end
 
   create_table "messages", :force => true do |t|

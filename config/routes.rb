@@ -1,23 +1,20 @@
 Navigator::Application.routes.draw do
 
+  match "groups/remove_contact", :to => "groups#remove_contact"
+  match "users", :to => "users#index", :via => "get"
+  match "incoming_message", :to => "incoming_message#index"
+
   post "messages/deliver"
   get "home/index"
 
-  resources :messages
-
   devise_for :users
-  match "users", :to => "users#index", :via => "get"
 
   resources :users
-
   resources :groups
   resources :subscriptions
   resources :contacts
+  resources :messages
 
   root :to => "home#index"
-
-  match "incoming_message", :to => "incoming_message#index"
-
-
 
 end

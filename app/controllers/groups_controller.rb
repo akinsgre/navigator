@@ -18,7 +18,7 @@ before_filter :authenticate_user!
     if @group.nil?
       redirect_to :root, :status => 401, :notice => "You do not have access to this group."
     end
-    @contacts = @group.contacts.find(:all) unless @group.nil?
+#    @contacts = @group.contacts.find(:all) unless @group.nil?
   end
 
   def new
@@ -47,7 +47,17 @@ before_filter :authenticate_user!
 
   def update
     @group = Group.find(params[:id])
+
     if @group.update_attributes(params[:group])
+      redirect_to @group, :notice  => "Successfully updated group."
+    else
+      render :action => 'edit'
+    end
+  end
+
+  def remove_contact
+    @group = Group.find(params[:id])
+    if :contact_id && @group.contacts.delete(Contact.find(params[:contact_id]))
       redirect_to @group, :notice  => "Successfully updated group."
     else
       render :action => 'edit'

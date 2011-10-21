@@ -1,5 +1,7 @@
 class Contact < ActiveRecord::Base
-  has_many :groups, :class_name => "Group"
+  has_many :group_contacts
+  has_many :groups, :through => :group_contacts
+
   belongs_to :user
   attr_accessible :group_id, :name, :phone, :user_id, :email
   
