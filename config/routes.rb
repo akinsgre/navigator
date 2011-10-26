@@ -1,5 +1,8 @@
 Navigator::Application.routes.draw do
 
+  get "profile/edit"
+
+
   match "groups/remove_contact", :to => "groups#remove_contact"
   match "users", :to => "users#index", :via => "get"
   match "incoming_message", :to => "incoming_message#index"
