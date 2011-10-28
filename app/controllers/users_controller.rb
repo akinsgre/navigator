@@ -9,10 +9,17 @@ class UsersController < AdminController
   end
 
   def update
+logger.debug "Trying to update user"
     @user = User.find(params[:id])
-    if @user.update_attributes(params[:user])
+    logger.debug "Params " + params.to_s
+    approved = params[:user][:approved]
+    @user.approved = approved
+    @user.email = params[:user][:email]
+    if @user.save
+      logger.info "this worked. approved = " + @user.approved.to_s
       redirect_to @user, :notice  => "Successfully updated user."
     else
+      logger.info "Sorry .. it didn't work"
       render :action => 'edit'
     end
   end

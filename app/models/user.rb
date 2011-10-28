@@ -14,7 +14,6 @@ class User < ActiveRecord::Base
   def admin?
     isAdmin = false ; 
     self.role.each { |r|
-      
       if r.name == 'Administrator'
         isAdmin = true
       end
