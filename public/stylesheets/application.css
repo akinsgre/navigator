@@ -1,7 +1,14 @@
 body  {
-  background-color: #cccccc;
+    width:1000px;
+    background-color:white;
+    background-image:url('/images/background.png');
+
+    background-repeat:repeat-x;
   font-family: Verdana, Helvetica, Arial;
   font-size: 14px;
+}
+h1 {
+    color: #999;
 }
 
 a img {

@@ -8,23 +8,29 @@
 jQuery.noConflict();
 
 jQuery(document).ready(function(){
-
- jQuery( "#emailDialog").dialog({ autoOpen: false });
- jQuery( "#emailDialog").dialog({title:"Enter Email" });
- jQuery( "#emailDialog").dialog({buttons: { "Ok": function() { jQuery(this).dialog("close");}}});
-jQuery( "#emailDialog").dialog({position : [100,100]});
-
- jQuery( "#sendEmail" ).click( function() {
-     jQuery("#emailDialog").dialog("open") ; 
-  }) ; 
-});
+    
+    jQuery( "#emailDialog").dialog({ autoOpen: false });
+    jQuery( "#emailDialog").dialog({title:"Enter Email" });
+    jQuery( "#emailDialog").dialog({buttons: { "Ok": function() { 
+	    inviteEmail = jQuery("#email").val();
+	    jQuery.post('email/create', { email : inviteEmail });
+	    jQuery(this).dialog("close");
+	  }}
+      });
+    jQuery( "#emailDialog").dialog({position : [50,260]});
+    
+    jQuery( "#sendEmail" ).click( function() {
+	jQuery("#emailDialog").dialog("open") ; 
+      }) ; 
+  });
 
 
 </script>
 <title>notifymyclub.com - Welcome</title>
 </head>
-<body style="width:800px;background-color:white;background-image:url('images/background.png');background-repeat:repeat-x">
-<div style="float:left;width:50%">
+<body >
+<div class="outerDiv" style="margin:30px;padding:20px;border: 2px solid #ccc;overflow:auto;background-color:#ffe;border-radius:20px;">
+<div style="float:left;width:50%;">
 <h1>Phone, SMS, Email... </h1>
   <h2>Let everyone know what's happening.</h2>
 <p>The simplest, fastest way to notify your organization of
@@ -36,11 +42,11 @@ cancellations, schedule changes, and upcoming events.</p>
 <div style="float:right"><img src="images/phone_email_sms.png"/></div>
 
 <div id="emailDialog" >
-  <form>
-  <input type="text" value="email@example.com" />
+  <form >
+  <input type="text" name="email" id="email" value="email@example.com" />
 
   </form>
 </div>
-
+</div> <!-- outer div -->
 </body>
 </html>
