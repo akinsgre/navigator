@@ -73,6 +73,11 @@ a {
   color: #fff;
 }
 
+.error {
+    color : red;
+}
+
+
 .error_messages p {
   margin: 8px 10px;
 }
