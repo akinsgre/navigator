@@ -1,6 +1,5 @@
 Navigator::Application.routes.draw do
 
-
    post "email/create"
 
    get "profile/edit"
@@ -12,12 +11,12 @@ Navigator::Application.routes.draw do
    devise_for :users, :controllers => { :registrations => "registrations" }
  #  devise_for :users
 
-   # resources :users
-   # resources :groups
-   # resources :subscriptions
-   # resources :contacts
-#   resources :messages
+   resources :users
+    resources :groups
+    resources :subscriptions
+    resources :contacts
+  resources :messages
 
-#   root :to => "home#index"
+   root :to => "home#index"
 
 end

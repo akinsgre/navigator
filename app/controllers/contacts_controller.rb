@@ -17,6 +17,11 @@ before_filter :authenticate_user!
   def create
     @contact = Contact.new(params[:contact])
     logger.info "Email entered is " + @contact.email
+    # Let's create a dummy account for this contact...  Why?
+    # GAK 11/1/2011: Because... originally the intent was that if a group owner adds contacts,
+    #      They should automatically create an account; they they can send the user a link,
+    #      that user can find their account and recover the password.  However, now I think it would
+    #      make more sense to create a contact and have the user find and link to it when they create their user account
     @user = User.new
     @user.email = @contact.email
     @user.password = ActiveSupport::SecureRandom.base64(12)
@@ -31,9 +36,6 @@ before_filter :authenticate_user!
 
   def edit
     @contact = Contact.find(params[:id])
-  end
-
-  def deactivate
   end
 
   def update
