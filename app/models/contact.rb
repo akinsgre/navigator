@@ -1,10 +1,16 @@
 class Contact < ActiveRecord::Base
   has_many :group_contacts
   has_many :groups, :through => :group_contacts
+  has_one :contact_types
 
   belongs_to :user
-  attr_accessible :name, :phone, :user_id, :email
+  attr_accessible :name, :phone, :user_id
   
+  #GAK 11/4/2011 
+  #  Email is a virtual attribute so it can be captured in a form_for but then assigned to the User to whom the contact belongs
+  #  rather than being saved on the Contact record (which breaks for those contacts created by group_owners and not associated 
+  #  with a user account.. Got to think about this some.
+
   def email
     @email  
   end
