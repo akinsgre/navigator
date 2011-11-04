@@ -3,10 +3,7 @@
 <div >
 <%= form_for @contact do |f| %>
   <%= f.error_messages %>
-  <p>
-    <%= f.label :group_id %><br />
-    <%= f.collection_select :group_id, Group.all(:order => "name"), :id, :name, :include_blank => true %>
-  </p>
+
   <p>
     <%= f.hidden_field :user_id %><br />
 

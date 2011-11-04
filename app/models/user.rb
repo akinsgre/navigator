@@ -25,9 +25,9 @@ class User < ActiveRecord::Base
   def subscribed?
     return !self.subscription.blank?
   end
-  def active_for_authentication?
-    super && approved?
-  end
+  #def active_for_authentication?
+  #  super && approved?
+  #end
 
   def inactive_message
     if !approved?

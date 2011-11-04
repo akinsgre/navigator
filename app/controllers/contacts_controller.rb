@@ -10,7 +10,6 @@ before_filter :authenticate_user!
 
   def new
     @contact = Contact.new
-    @contact.group_id = params[:group_id] 
     @contact.user_id = params[:user_id] 
   end
 
