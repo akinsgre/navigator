@@ -1,5 +1,6 @@
-class ContactsController < ApplicationController
+class ContactsController < AdminController
 before_filter :authenticate_user!
+before_filter :authorize, :only => [:index]
   def index
     @contacts = Contact.all
   end
@@ -11,23 +12,14 @@ before_filter :authenticate_user!
   def new
     @contact = Contact.new
     @contact.user_id = params[:user_id] 
+    @existingContacts = []
   end
 
   def create
     @contact = Contact.new(params[:contact])
-    logger.info "Email entered is " + @contact.name
-    # Let's create a dummy account for this contact...  Why?
-    # GAK 11/1/2011: Because... originally the intent was that if a group owner adds contacts,
-    #      They should automatically create an account; they they can send the user a link,
-    #      that user can find their account and recover the password.  However, now I think it would
-    #      make more sense to create a contact and have the user find and link to it when they create their user account
-    #      So I'm moving the following three lines.
-    # @user = User.new
-    # @user.email = @contact.email
-    # @user.password = ActiveSupport::SecureRandom.base64(12)
-    
+
     if @contact.save
-      redirect_to @contact, :notice => "Successfully created contact."
+      redirect_to '/contacts/select_group', :notice => "Successfully created contact."
     else
       render :action => 'new'
     end

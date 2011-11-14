@@ -1,5 +1,11 @@
 <% title "Groups" %>
 
+
+<% if @groups.empty? %>
+<p>You have no groups assigned.  
+Join Groups or become a premium member to create a group</p>
+<%= link_to("Premium") %>
+<% else %>
 <table>
   <tr>
     <th>Parent</th>
@@ -17,5 +23,7 @@
     </tr>
   <% end %>
 </table>
-
+<% end %>
+<% if current_user.admin? %>
 <p><%= link_to "New Group", new_group_path %></p>
+<% end %>

@@ -4,13 +4,14 @@ class Role < ActiveRecord::Base
   
 end
 
+
 # == Schema Information
 #
 # Table name: roles
 #
-#  id         :integer         not null, primary key
+#  id         :integer         primary key
 #  name       :string(255)
-#  created_at :datetime
-#  updated_at :datetime
+#  created_at :timestamp
+#  updated_at :timestamp
 #
 

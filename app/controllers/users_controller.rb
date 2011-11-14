@@ -1,5 +1,6 @@
 class UsersController < AdminController
-  before_filter :authenticate_user!, :authorize
+  before_filter :authenticate_user!, :authorize, :only => [:index]
+
   def index
       @users = User.all
   end
@@ -9,7 +10,7 @@ class UsersController < AdminController
   end
 
   def update
-logger.debug "Trying to update user"
+    logger.debug "Trying to update user"
     @user = User.find(params[:id])
     logger.debug "Params " + params.to_s
     approved = params[:user][:approved]
