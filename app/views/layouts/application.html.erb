@@ -15,14 +15,28 @@
 </head>
 <body>
 
-<div class="banner">
-<div style="float:left" id="title" >
+<div class="banner" >
+
+<div class="title"  >
   <h1 ><a href="/">notifyMyClub.com</a></h1>
-  <h4 >Let everyone know what's happening.</h4>
+
 </div>
-<img class="bubble" src="../images/OrangeSpeechBubble.png"/>
+<div class="logo">
+  <img style="width:100px" src="../images/OrangeSpeechBubble.png"/>
 </div>
-<div class="banner" style="clear:both">
+<div class="signupLinks">
+  <% if user_signed_in? %>  
+  <%= link_to "Groups", groups_path %>  
+  <% else %>  
+  <p>Start by <%= link_to "signing up", new_user_registration_path %>.
+  If you already have an account,   
+  <%= link_to "Sign in", new_user_session_path %>.
+  <% end %> 
+</div>
+</div>
+
+<div style="clear:both">
+    <h4 >Let everyone know what's happening.</h4>
   <p><span class="emphasis">Welcome!</span> to the fastest, simplest way ever to notify <span class="emphasis">everybody</span> in your organization, club or team of upcoming events, schedule changes, cancellations, etc...</p>
   <p>Best of all, the application is free to your members.</p>
 </div>
