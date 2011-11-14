@@ -1,6 +1,6 @@
 body  {
     width:1000px;
-    background-color:white;
+    background-color:#c4c4c4;
     background-image:url('/images/background1.png');
 
     background-repeat:repeat-x;
@@ -42,15 +42,28 @@ h4 {
     padding:20px;
     border: 2px solid #ccc;
     overflow:auto;
-    background-color:white;
+    background-color:#ffd372;
     background-image:url('/images/background2.png');
-#    background-color:#ffe;
+    background-repeat:repeat-x;
+
     border-radius:20px;
     clear:both;
 }
 .bubble {
     width:100px;
     float:right;
+}
+.fullCol {
+    float : left ; 
+    width:800px;
+
+    margin:15px;
+    padding:20px;
+    border: 2px solid #ccc;
+    overflow:auto;
+    background-color:#ffe;
+    border-radius:20px;
+
 }
 .col1 {
     float : left ; 
