@@ -43,7 +43,7 @@ h4 {
 
 .banner {
     padding-left : 30px ;
-    width:800px;
+    width:900px;
 clear:both;
 }
 .title {
@@ -58,18 +58,43 @@ clear:both;
 .signupLinks {
     float : left ; 
     margin-left: 130px;
-    width : 220px;
+    width : 260px;
 
 }
+#menu { 
+list-style: none; 
+margin: 0 30px; 
+padding: 0; 
+float: left; 
+width : 800px;
+
+}
+#menu li { 
+margin: 0 2px; 
+padding: 0; 
+float: left; 
+}
+#menu li a { 
+display: block; 
+padding: 4px 8px; 
+text-decoration: none; 
+border: solid 1px black; 
+color: black; 
+background-color: #0c93cb; 
+border-radius:5px;
+}
+#menu li a:hover { color: white; 
+background-color: #0c93cb; }
+
 .outerDiv {
     margin:30px;
     padding:20px;
+
     border: 2px solid #ccc;
     overflow:auto;
     background-color:#ffd372;
     background-image:url('/images/background2.png');
     background-repeat:repeat-x;
-
     border-radius:20px;
     clear:both;
 }
