@@ -110,6 +110,14 @@ h4 {
 
 }
 
+.footerMenu {
+float:left ; 
+
+}
+.copyright {
+float:right ; 
+}
+
 ul .footer {
     display: inline ;
     list-style: none;
