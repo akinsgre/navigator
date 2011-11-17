@@ -11,7 +11,6 @@ if user.nil?
   puts "Couldn't find the user.. creating one"
   user = User.create!(:email => "admin@insomnia-consulting.org", :password => "password1")
 end
-user.approved = true
 
 puts "Trying to assign Administrator Role to User"
 
