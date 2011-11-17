@@ -13,10 +13,10 @@
 ActiveRecord::Schema.define(:version => 20111104160242) do
 
   create_table "assignments", :force => true do |t|
-    t.integer   "user_id"
-    t.integer   "role_id"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
+    t.integer  "user_id"
+    t.integer  "role_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "contact_types", :force => true do |t|
@@ -48,31 +48,31 @@ ActiveRecord::Schema.define(:version => 20111104160242) do
   end
 
   create_table "groups", :force => true do |t|
-    t.integer   "parent_id"
-    t.string    "name"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.integer   "user_id"
+    t.integer  "parent_id"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "messages", :force => true do |t|
-    t.string    "message"
-    t.string    "address"
-    t.integer   "group_id"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
+    t.string   "message"
+    t.string   "address"
+    t.integer  "group_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "roles", :force => true do |t|
-    t.string    "name"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "subscriptions", :force => true do |t|
-    t.integer   "user_id"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|
