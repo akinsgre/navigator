@@ -1,6 +1,5 @@
 Navigator::Application.routes.draw do
 
-
   post "email/create"
 
   get "profile/edit"
@@ -11,7 +10,6 @@ Navigator::Application.routes.draw do
   get "home/index"
   #devise_for :users
   devise_for :users, :controllers => { :registrations => "registrations" }
-  match "users/sign_out", :to => "users#sign_out", :via => "get"
 
   resources :users
   resources :groups
