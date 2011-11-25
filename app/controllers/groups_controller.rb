@@ -6,6 +6,7 @@ before_filter :authenticate_user!
       @groups = Group.all
     else
       @groups = current_user.groups
+      @subscriber = Subscription.find_by_user_id(current_user.id)
     end
   end
 
