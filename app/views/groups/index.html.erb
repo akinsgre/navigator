@@ -1,10 +1,11 @@
 <% title "Groups" %>
 
-
 <% if @groups.empty? %>
+<div class="resetLayout" >
 <p>You have no groups assigned.  
 Join Groups or become a premium member to create a group</p>
 <%= link_to("Premium") %>
+</div>
 <% else %>
 <table>
   <tr>
