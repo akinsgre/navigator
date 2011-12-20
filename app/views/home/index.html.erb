@@ -7,33 +7,8 @@ jQuery.noConflict();
 
 jQuery(document).ready(function(){
 
-jQuery("#emailForm").validate({
-		rules: {
-			email: {
-				required: true,
-				email: true
-			}
-		},
-		messages: {
-			email: "Please enter a valid email address"
-		}
-	});
-    jQuery( "#emailDialog").dialog({ autoOpen: false });
-    jQuery( "#emailDialog").dialog({title:"Enter Email" });
-    jQuery( "#emailDialog").dialog({width:"500px" });
-    jQuery( "#emailDialog").dialog({ buttons : {"Ok" : function() { 
-	    jQuery("#emailForm").submit();
-	  }}});
-
-    jQuery( "#emailForm").submit(function() { 
-	    inviteEmail = jQuery("#email").val();
-	    jQuery.post('email/create', { email : inviteEmail } );
-	    jQuery("#emailDialog").dialog("close");
-      });
-    jQuery( "#emailDialog").dialog({position : [240,260]});
-    
     jQuery( "#sendEmail" ).click( function() {
-	jQuery("#emailDialog").dialog("open") ; 
+window.location = '<%= sponsors_info_path %>' ; 
       }) ; 
   });
 
@@ -43,10 +18,7 @@ jQuery("#emailForm").validate({
 </head>
 <body >
 
-
-
-
-
+<% if !user_signed_in? %>
  <div class="col1">
    <h1>Leaders</h1>
    <p>Setup lists to communicate with your members.</p>
@@ -69,17 +41,13 @@ jQuery("#emailForm").validate({
       <p>Never miss an important event again!</p>
    </div>
     <div class="col3">
-   <h1>When</h1>
-      <p>Coming Soon!</p>
-      <p>Just leave us your email address and we'll let you know when it's ready.</p>
-    <div id="sendEmail" class="button" >Keep me posted</div>
-   </div>
-<div id="emailDialog" >
-  <form name="emailForm" id="emailForm">
-   <label for="email">Email</label>
-  <input type="email" name="email" id="email" value="email@example.com" />
-  <br/>
- </form>
-</div> <!-- emailDialog -->
+   <h1>Sponsors</h1>
+      <p>Donate  funds to help your local club.</p>
+      <p>Each SMS or Phone message costs 1&cent;. Give your local club funds and we'll advertise your sponsorship with every message.</p>
+    <div id="sendEmail" class="button" >Sponsor Now</div>
+    </div>
+
+
+<% end %>
 </body>
 </html>

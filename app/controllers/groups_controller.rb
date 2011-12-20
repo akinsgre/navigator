@@ -1,25 +1,25 @@
 
 class GroupsController < ApplicationController
-before_filter :authenticate_user!
+  before_filter :authenticate_user!, :except => ['index']
+
   def index
-    if current_user.admin?
-      @groups = Group.all
-    else
-      @groups = current_user.groups
-      @subscriber = Subscription.find_by_user_id(current_user.id)
+    @myGroups = Array.new
+    if !current_user.nil? then
+    current_user.contacts.each do |c|
+      @myGroups += c.groups
     end
+    end
+    @groups = Group.search(params[:search])
+    #respond with
   end
 
   def show
-    if current_user.admin?
-      @group = Group.find(params[:id])
-    else
-      @group = Group.owned_by(current_user.id).find(params[:id])
-    end
+    @group = Group.find(params[:id])
+
     if @group.nil?
       redirect_to :root, :status => 401, :notice => "You do not have access to this group."
     end
-#    @contacts = @group.contacts.find(:all) unless @group.nil?
+    #    @contacts = @group.contacts.find(:all) unless @group.nil?
   end
 
   def new
@@ -33,7 +33,7 @@ before_filter :authenticate_user!
   end
 
   def create
-    logger.info params[:group]
+    logger.info params[:group].name
     @group = Group.new(params[:group])
     if @group.save
       redirect_to @group, :notice => "Successfully created group."
@@ -48,9 +48,14 @@ before_filter :authenticate_user!
 
   def update
     @group = Group.find(params[:id])
-
-    if @group.update_attributes(params[:group])
-      redirect_to @group, :notice  => "Successfully updated group."
+    logger.info "Contact_id is " + params[:contact].to_s
+    @contact = Contact.find(params[:contact])
+    @group.contacts.push(@contact)
+    if @group.save!
+      respond_to do |format|
+        format.html { redirect_to @group, :notice  => "Successfully updated group." }
+        format.js
+      end
     else
       render :action => 'edit'
     end
@@ -59,10 +64,26 @@ before_filter :authenticate_user!
   def remove_contact
     @group = Group.find(params[:id])
     if :contact_id && @group.contacts.delete(Contact.find(params[:contact_id]))
+      redirect_to @group, :notice  => "Successfully removed contact."
+    else
+      render :action => 'edit'
+    end
+  end
+
+  def add_contact
+    logger.info "Param id = " + params[:id].to_s
+    @group = Group.find(params[:id])
+    if :contact_id && @group.contacts.add(Contact.find(params[:contact_id]))
       redirect_to @group, :notice  => "Successfully updated group."
     else
       render :action => 'edit'
     end
+  end
+
+  def join
+    @group = Group.find(params[:id])
+    
+    render :partial => "join"
   end
 
   def destroy

@@ -1,10 +1,7 @@
 <% title "Group" %>
 
-<h3><%= link_to "Send this group a message", :controller => "messages", :action => "new", :id => @group.id %></h3>
-<p>
-  <strong>Parent:</strong>
-  <%= @group.parent_id %>3
-</p>
+<h3 class="resetLayout" ><%= link_to "Send this group a message", :controller => "messages", :action => "new", :id => @group.id %></h3>
+
 <p>
   <strong>Name:</strong>
   <%= @group.name %>
@@ -19,7 +16,11 @@
 <% end %>
 </table>
 
-<%= link_to "Add a new contact", new_contact_path( :group_id => @group.id ) %>
+<% if @group.user_id == current_user.id %>
+<%= link_to "Add a new contact", new_contact_path( :group_id =>
+@group.id ) %>
+<% end %>
+
 <p>
   <%= link_to "Edit", edit_group_path(@group) %> |
   <%= link_to "Destroy", @group, :confirm => 'Are you sure?', :method => :delete %> |

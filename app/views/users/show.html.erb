@@ -1,2 +1,42 @@
 <% title "User" %>
-<%= @user.email %>
+<%= current_user.email %>
+<ul>
+<li>Membership Level 
+<% if @subscriber.nil? %>
+Free <%= link_to "Upgrade to Premium", new_subscription_path  %>
+<% else %>
+Premium
+<% end %>
+<% unless @subscriber.nil? %>
+
+<li>Groups I Maintain
+<ul>
+<% @groups.each do |group| %>	
+<li><%=group.name %>
+<% end %>
+</ul>
+<% end %>
+<li>Groups I Follow 
+  <ul>
+    <% @following.each do |group| %>
+    <li><%= group.name %></li>
+    <% end %>
+  </ul>
+</li>
+<li>Contacts
+<ul>
+<%= render current_user.contacts%>
+</ul>
+</li>
+<li>All other Groups (Click to Join)
+<ul>
+   <% @otherGroups.each do |group| %>
+      <li><%= link_to group.name,  group_path(group) %> - <a id="addContactBtn<%=group.id%>" href="#">Join</a>
+
+      </li>
+     <% end %>
+</ul>
+</li>
+
+<div id="addContactPopup">
+</div>

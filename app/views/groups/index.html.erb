@@ -1,21 +1,35 @@
 <% title "Groups" %>
 
+<% form_tag groups_path, :method => 'get' do %>
+<p> 
+  <%= text_field_tag :search %>
+  <%= submit_tag "Search", :name => nil %>
+</p>
+
+<% end %>
 <% if @subscriber.nil? %>
 <div class="resetLayout" >
 <p>You have no groups assigned.  
-Join Groups or become a premium member to create a group</p>
-<%= link_to("Premium") %>
+Join Groups or <%= link_to "become a premium member to create a  group.", new_subscription_path %></p>
+
 </div>
-<% else %>
+<% end %>
+Groups I'm in : <%= @myGroups.length %>
 <table>
   <tr>
-    <th>Parent</th>
+    <th>&nbsp;</th>
     <th>Name</th>
     <th>Contact Email</th>
   </tr>
   <% for group in @groups %>
     <tr>
-      <td><%= group.parent_id %></td>
+      <td>
+	<% if !@myGroups.include?( group) %>
+	<%= link_to "Join Group", groups_join_path %>
+	<% else %>
+	Member
+	<% end %>
+      </td>
       <td><%= group.name %></td>
       <td><%= group.user.email unless group.user.nil? %></td>
       <td><%= link_to "Show", group %></td>
@@ -24,7 +38,9 @@ Join Groups or become a premium member to create a group</p>
     </tr>
   <% end %>
 </table>
-<% end %>
+
+
+
 <% if current_user.admin? %>
 <p><%= link_to "New Group", new_group_path %></p>
 <% end %>

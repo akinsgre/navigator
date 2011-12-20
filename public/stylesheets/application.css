@@ -10,9 +10,7 @@ body  {
 div .resetLayout {
     clear:both;
 }
-p {
-    padding-top: 10px;
-}
+
 .emphasis {
     font-family : 'Open Sans', sans-serif;
     font-weight : 700 ; 
@@ -69,7 +67,7 @@ clear:both;
 }
 #menu { 
 list-style: none; 
-margin: 0 30px; 
+margin: 0px 0 20px 0; 
 padding: 0; 
 float: left; 
 width : 800px;

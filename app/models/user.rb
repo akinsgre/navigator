@@ -22,12 +22,18 @@ class User < ActiveRecord::Base
     return isAdmin
   end
 
+  def following
+    groupIds = Array.new
+    #find group_contacts.group_id where contact_id = contact.id
+    self.contacts.each do |c|
+      groupIds += c.groups
+    end
+    return groupIds
+  end
+
   def subscribed?
     return !self.subscription.blank?
   end
-  #def active_for_authentication?
-  #  super && approved?
-  #end
 
   def inactive_message
     if !approved?

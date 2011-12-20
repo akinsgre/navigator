@@ -1,18 +1,27 @@
 Navigator::Application.routes.draw do
 
-  post "email/create"
+  get "sponsors/info"
 
+  post "email/create"
   get "profile/edit"
-  match "groups/remove_contact", :to => "groups#remove_contact"
-  
+  match  "groups/:id/join", :to => "groups#join", :via => :get
+  match "groups/remove_contact", :to => "groups#remove_contact", :via => :put
+
   match "incoming_message", :to => "incoming_message#index"
+
   post "messages/deliver"
   get "home/index"
+  get "donate/new"
+
   #devise_for :users
   devise_for :users, :controllers => { :registrations => "registrations" }
 
   resources :users
-  resources :groups
+
+  resources :groups do
+    resources :contacts 
+  end
+
   resources :subscriptions
   resources :contacts
   resources :messages

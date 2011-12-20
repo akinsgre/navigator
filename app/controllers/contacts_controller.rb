@@ -17,7 +17,6 @@ before_filter :authorize, :only => [:index]
 
   def create
     @contact = Contact.new(params[:contact])
-
     if @contact.save
       redirect_to '/contacts/select_group', :notice => "Successfully created contact."
     else

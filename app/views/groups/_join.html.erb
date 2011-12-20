@@ -1,0 +1,8 @@
+<p>Updating group <%= @group.name %></p>
+<%= form_for @group, :remote => true do |f| %>
+<%= select_tag "contact", 
+    options_for_select( 
+        current_user.contacts.collect{|c|[ c.name, c.id]}
+    ) %>
+<%= f.submit "Save"%>
+<% end %>
