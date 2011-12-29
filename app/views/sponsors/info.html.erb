@@ -2,8 +2,13 @@
 <p class="resetLayout" >Phone messages and SMS messages require a 1&cent; transaction fee.  Please help your club by contributing.</p>
 <p>Each penny you donate will pay for your business' name at the end of a message.</p>
 <p>Search for your club to donate</p>
-<%= form_tag groups_path, :method => :get do %>
-<%= text_field_tag :terms %>
-<%= submit_tag "Search" %>
-<% end %>
+
+<table id="table_id" class="display">
+<thead>
+  <tr>
+<th>Group Name</th>
+<th>Sponsor</th>
+</tr>
+</thead>
+</table>
 </div>

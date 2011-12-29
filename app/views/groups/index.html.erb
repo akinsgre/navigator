@@ -25,7 +25,7 @@ Groups I'm in : <%= @myGroups.length %>
     <tr>
       <td>
 	<% if !@myGroups.include?( group) %>
-	<%= link_to "Join Group", groups_join_path %>
+	"Join Group"
 	<% else %>
 	Member
 	<% end %>
@@ -41,6 +41,6 @@ Groups I'm in : <%= @myGroups.length %>
 
 
 
-<% if current_user.admin? %>
+<% unless @subscriber.nil? %>
 <p><%= link_to "New Group", new_group_path %></p>
 <% end %>

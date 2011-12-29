@@ -1,16 +1,23 @@
 
 class GroupsController < ApplicationController
   before_filter :authenticate_user!, :except => ['index']
+  respond_to :html, :json
 
   def index
+
     @myGroups = Array.new
     if !current_user.nil? then
-    current_user.contacts.each do |c|
+      current_user.contacts.each do |c|
       @myGroups += c.groups
+      end
     end
+    logger.info "Search parameters are " + params[:search].to_s unless params[:search].nil?
+    if params[:search].nil?
+      @groups = Group.search(params[:search])
+    else
+      @groups = Groups.all
     end
-    @groups = Group.search(params[:search])
-    #respond with
+    respond_with(@groups)
   end
 
   def show

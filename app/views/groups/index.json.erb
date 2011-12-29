@@ -1,0 +1,6 @@
+{ "aaData" : [
+<% @groups.each do |group| %>
+["<%= group.name %>", "Sponsor"]<%=',' unless group == @groups.last %>
+<% end %>
+]
+}

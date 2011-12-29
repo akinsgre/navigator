@@ -2,6 +2,10 @@
 // This file is automatically included by javascript_include_tag :defaults
 
 jQuery(function() {
+	jQuery('#table_id').dataTable({
+		"bProcessing" : true,
+		    "sAjaxSource" : '/groups.json'
+	    });
  jQuery('a[id^="addContactBtn"]').click( function() { 
 	var group_id = jQuery(this).attr('id').replace(/addContactBtn/g, "");
 
