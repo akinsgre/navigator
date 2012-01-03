@@ -22,6 +22,10 @@ Navigator::Application.routes.draw do
     resources :contacts 
   end
 
+  resources :groups do
+    resources :sponsors
+  end
+
   resources :subscriptions
   resources :contacts
   resources :messages

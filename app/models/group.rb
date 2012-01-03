@@ -1,6 +1,10 @@
 class Group < ActiveRecord::Base
   has_many :contacts, :through => :group_contacts
   has_many :group_contacts
+  has_many :contributions
+
+  has_many :sponsors, :through => :group_sponsors
+  has_many :group_sponsors
 
   belongs_to :user
 
