@@ -1,21 +1,20 @@
 <% title "User" %>
 <%= current_user.email %>
 <ul>
-<li>Membership Level 
-<% if @subscriber.nil? %>
-Free <%= link_to "Upgrade to Premium", new_subscription_path  %>
-<% else %>
-Premium
-<% end %>
-<% unless @subscriber.nil? %>
+
 
 <li>Groups I Maintain
+<ul>Add a Group</ul>
+<% if current_user.groups.empty? %>
+<p>You have no groups</p>
+<% else %>
 <ul>
 <% @groups.each do |group| %>	
 <li><%=group.name %>
 <% end %>
 </ul>
 <% end %>
+</li>
 <li>Groups I Follow 
   <ul>
     <% @following.each do |group| %>
