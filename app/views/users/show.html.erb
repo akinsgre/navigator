@@ -23,6 +23,7 @@
   </ul>
 </li>
 <li>Contacts
+<ul><%= link_to "Add a Contact", new_user_contact_path(current_user) %>
 <ul>
 <%= render current_user.contacts%>
 </ul>

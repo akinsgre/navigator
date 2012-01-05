@@ -18,7 +18,10 @@ Navigator::Application.routes.draw do
 
   resources :users do
     resources :groups 
+    resources :contacts
   end
+
+
 
   resources :groups do
     resources :contacts 
