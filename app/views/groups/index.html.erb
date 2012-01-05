@@ -7,7 +7,7 @@
 </p>
 
 <% end %>
-<% if @subscriber.nil? %>
+<% unless current_user.subscribed? %>
 <div class="resetLayout" >
 <p>You have no groups assigned.  
 Join Groups or <%= link_to "become a premium member to create a  group.", new_subscription_path %></p>

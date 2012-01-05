@@ -11,14 +11,25 @@ before_filter :authorize, :only => [:index]
 
   def new
     @contact = Contact.new
-    @contact.user_id = params[:user_id] 
-    @existingContacts = []
+    logger.info "User id will be " + params[:user_id].to_s
+
+    unless params[:user_id].nil? || params[:user_id].to_s.rstrip.empty?
+      @contact.user_id = params[:user_id] 
+    end
+    logger.info "Group id will be " + params[:group_id].to_s
+    @group = Group.find(params[:group_id])
+    @contact.groups.push(@group)
+#    @existingContacts = []
   end
 
   def create
     @contact = Contact.new(params[:contact])
+    logger.info "param Group[:id] is " + params[:group]["id"]
+    group = Group.find(params[:group]["id"])
+    logger.info "Group is " + group.name
+    @contact.groups.push(group)
     if @contact.save
-      redirect_to '/contacts/select_group', :notice => "Successfully created contact."
+      redirect_to @contact , :notice => "Successfully created contact."
     else
       render :action => 'new'
     end

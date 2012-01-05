@@ -23,6 +23,21 @@ user.role.push(role)
 puts "#{user.email} is now an Administrator"
 user.save
 
+puts "Adding ContactType Types if they don't exist"
+
+unless ContactType.exists?(1)
+  ContactType.create!({:id => 1, :name => "Email"})
+end
+
+unless ContactType.exists?(2)
+  ContactType.create!({:id => 2, :name => "Phone"})
+end
+unless ContactType.exists?(3)
+  ContactType.create!({:id => 3, :name => "SMS"})
+end
+
+
 puts "finished with seeding"
+
 
 

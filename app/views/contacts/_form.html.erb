@@ -20,26 +20,20 @@ jQuery("#new_contact").validate({
   });
 </script>
 <div id="addTypes" >
-<a>Add a contact manually</a>
 <div >
 <%= form_for @contact do |f| %>
   <%= f.error_messages %>
-
-  <p>
-    <%= f.hidden_field :user_id %><br />
-
-  </p>
+    <%= f.hidden_field :user_id %>
+    <%= fields_for @group do |field| %>
+    <%= field.hidden_field :id %>
+    <% end %>
   <p>
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </p>
 <p>
   Preferred method of contact
-<select id="contactOptions">
-  <option>Email</option>
-  <option>Phone</option>
-  <option>SMS</option>
-</select>
+  <%= f.select "contact_type_id", options_from_collection_for_select(ContactType.find(:all), "id", "name") %>
 </p>
  <p>
     <label id="phoneLabel" for="phone">Phone Number or email address</label><br />

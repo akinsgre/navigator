@@ -1,13 +1,13 @@
 <% title "Contact" %>
 
 
-<p>
+<p class="resetLayout">
   <strong>Name:</strong>
   <%= @contact.name %>
 </p>
 <p>
-  Contact Method 
-  <%= @contact.contact_type_id %>
+  Contact Method <br />
+  <%= @contact.contact_type.name %><br />
   <%= @contact.phone %>
 </p>
 <p>

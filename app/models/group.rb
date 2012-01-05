@@ -5,6 +5,7 @@ class Group < ActiveRecord::Base
 
   has_many :sponsors, :through => :group_sponsors
   has_many :group_sponsors
+  has_many :messages
 
   belongs_to :user
 

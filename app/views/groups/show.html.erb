@@ -17,8 +17,7 @@
 </table>
 
 <% if @group.user_id == current_user.id %>
-<%= link_to "Add a new contact", new_contact_path( :group_id =>
-@group.id ) %>
+<%= link_to "Add a new contact", new_group_contact_path(@group ) %>
 <% end %>
 
 <p>

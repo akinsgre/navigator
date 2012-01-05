@@ -4,7 +4,7 @@ class GroupsController < ApplicationController
   respond_to :html, :json
 
   def index
-
+    logger.info "Current User " + current_user.email.to_s + " is subscribed (" + current_user.subscribed?.to_s + ")."
     @myGroups = Array.new
     if !current_user.nil? then
       current_user.contacts.each do |c|
