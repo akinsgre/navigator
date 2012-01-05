@@ -30,17 +30,13 @@ class GroupsController < ApplicationController
   end
 
   def new
-    logger.info "Current User = " + current_user.email + " who is an admin (" + current_user.admin?.to_s  + ")"
-    if current_user.admin? || current_user.subscribed?
-      @group = Group.new
-      @group.user = current_user
-    else
-      redirect_to :root, :notice => "Only premium subscribers can create groups."
-    end
+    logger.info "Current User = " + current_user.email
+    @group = Group.new
+    @group.user = current_user
   end
 
   def create
-    logger.info params[:group].name
+    logger.info "Creating a group with these parameters " + params[:group].to_s
     @group = Group.new(params[:group])
     if @group.save
       redirect_to @group, :notice => "Successfully created group."
