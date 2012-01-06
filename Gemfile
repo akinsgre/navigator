@@ -5,7 +5,7 @@ gem 'sqlite3', '1.3.4'
 gem 'nifty-generators', '0.4.6'
 gem 'devise', '1.4.5'
 gem 'twilio-ruby', '3.4.0'
-
+gem 'client_side_validations', '3.1.4'
 
 group :development do
   gem 'rspec-rails', '2.6.1'

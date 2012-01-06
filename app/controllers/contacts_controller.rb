@@ -17,17 +17,22 @@ before_filter :authorize, :only => [:index]
       @contact.user_id = params[:user_id] 
     end
     logger.info "Group id will be " + params[:group_id].to_s
-    @group = Group.find(params[:group_id])
-    @contact.groups.push(@group)
-#    @existingContacts = []
+
+    if !params[:group_id].nil? && Group.exists?(params[:group_id]) 
+      @group = Group.find(params[:group_id]) 
+    end
+    @contact.groups.push(@group) unless @group.nil?
+
   end
 
   def create
     @contact = Contact.new(params[:contact])
-    logger.info "param Group[:id] is " + params[:group]["id"]
-    group = Group.find(params[:group]["id"])
-    logger.info "Group is " + group.name
-    @contact.groups.push(group)
+    unless params[:group].nil?
+      logger.info "param Group[:id] is " + params[:group]["id"]
+      group = Group.find(params[:group]["id"])
+      logger.info "Group is " + group.name
+      @contact.groups.push(group)
+    end
     if @contact.save
       redirect_to @contact , :notice => "Successfully created contact."
     else

@@ -6,6 +6,12 @@ class Contact < ActiveRecord::Base
   belongs_to :user
   attr_accessible :name, :phone, :user_id, :contact_type_id
   
+  validates_presence_of :phone
+  validates_format_of :phone,
+  :with => /^([^\s]+)((?:[-a-z0-9]\.)[a-z]{2,})$/i, :if => :is_email?
+  validates_format_of :phone,
+  :with => /^([^\s]+)((?:[-a-z0-9]\.)[a-z]{2,})$/i, :if => :is_phone?
+  
   #GAK 11/4/2011 
   #  Email is a virtual attribute so it can be captured in a form_for but then assigned to the User to whom the contact belongs
   #  rather than being saved on the Contact record (which breaks for those contacts created by group_owners and not associated 

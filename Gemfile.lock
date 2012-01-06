@@ -33,6 +33,7 @@ GEM
     bcrypt-ruby (3.0.1)
     bcrypt-ruby (3.0.1-x86-mingw32)
     builder (2.1.2)
+    client_side_validations (3.1.4)
     devise (1.4.5)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.0.3)
@@ -130,6 +131,7 @@ PLATFORMS
 
 DEPENDENCIES
   annotate (= 2.4.0)
+  client_side_validations (= 3.1.4)
   devise (= 1.4.5)
   mocha
   nifty-generators (= 0.4.6)

@@ -1,31 +1,37 @@
 <script type="text/javascript">
 jQuery.noConflict();
-jQuery(document).ready( function() {
-jQuery("#new_contact").validate({
-		rules: {
-			phone: {
-				required: true,
-				email: true
-			}
-		},
-		messages: {
-			phone: "Please enter a valid email address"
-		}
-	});
-
-    jQuery("#phoneLabel").text("Please enter a valid " + jQuery("#contactOptions").val());
-    jQuery("#contactOptions").change( function () {
-	jQuery("#phoneLabel").text("Please enter a valid " + jQuery(this).val());
-      });
-  });
+ jQuery(document).ready( function() {
+//     jQuery("#new_contact").validate({
+// 	rules: {
+// 	    phone: {
+// 		required: function(element) {
+// 		    alert("Element " );
+// 		    return false;
+// 		}
+		
+// 	    }
+// 	},
+// 	messages: {
+// 	    contact_phone: "Please enter a valid email address"
+// 	}
+//     });
+    
+    jQuery("#phoneLabel").text("Please enter a valid " + jQuery("#contact_contact_type_id :selected").text());
+    jQuery("#contact_contact_type_id").change( function () {
+        selectedText = jQuery('#contact_contact_type_id :selected').text() ;
+	jQuery("#phoneLabel").text("Please enter a valid " + selectedText);
+    });
+});
 </script>
 <div id="addTypes" >
-<div >
-<%= form_for @contact do |f| %>
+<div class="resetLayout" >
+    <%= form_for @contact, :validate => true do |f| %>
   <%= f.error_messages %>
     <%= f.hidden_field :user_id %>
-    <%= fields_for @group do |field| %>
-    <%= field.hidden_field :id %>
+    <% unless @group.nil? %>
+      <%= fields_for @group do |field| %>
+        <%= field.hidden_field :id %>
+      <% end %>
     <% end %>
   <p>
     <%= f.label :name %><br />
