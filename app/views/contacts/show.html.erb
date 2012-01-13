@@ -7,8 +7,8 @@
 </p>
 <p>
   Contact Method <br />
-  <%= @contact.contact_type.name %><br />
-  <%= @contact.phone %>
+  <%= @contact.type %><br />
+  <%= @contact.entry %>
 </p>
 <p>
   <%= link_to "Edit", edit_contact_path(@contact) %> |

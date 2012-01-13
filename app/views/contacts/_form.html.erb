@@ -3,7 +3,7 @@ jQuery.noConflict();
  jQuery(document).ready( function() {
 //     jQuery("#new_contact").validate({
 // 	rules: {
-// 	    phone: {
+// 	    entry: {
 // 		required: function(element) {
 // 		    alert("Element " );
 // 		    return false;
@@ -12,20 +12,20 @@ jQuery.noConflict();
 // 	    }
 // 	},
 // 	messages: {
-// 	    contact_phone: "Please enter a valid email address"
+// 	    contact_entry: "Please enter a valid email address"
 // 	}
 //     });
     
-    jQuery("#phoneLabel").text("Please enter a valid " + jQuery("#contact_contact_type_id :selected").text());
+    jQuery("#entryLabel").text("Please enter a valid " + jQuery("#contact_contact_type_id :selected").text());
     jQuery("#contact_contact_type_id").change( function () {
         selectedText = jQuery('#contact_contact_type_id :selected').text() ;
-	jQuery("#phoneLabel").text("Please enter a valid " + selectedText);
+	jQuery("#entryLabel").text("Please enter a valid " + selectedText);
     });
 });
 </script>
 <div id="addTypes" >
 <div class="resetLayout" >
-    <%= form_for @contact, :validate => true do |f| %>
+  <%= form_for @contact, :validate => true do |f| %>
   <%= f.error_messages %>
     <%= f.hidden_field :user_id %>
     <% unless @group.nil? %>
@@ -39,11 +39,11 @@ jQuery.noConflict();
   </p>
 <p>
   Preferred method of contact
-  <%= f.select "contact_type_id", options_from_collection_for_select(ContactType.find(:all), "id", "name") %>
+  <%= f.select "type", options_for_select(Contact.select_options) %>
 </p>
  <p>
-    <label id="phoneLabel" for="phone">Phone Number or email address</label><br />
-    <%= f.text_field :phone %>
+    <label id="entryLabel" for="entry">Entry Number or email address</label><br />
+    <%= f.text_field :entry %>
   </p>
   <p><%= f.submit %></p>
 <% end %>

@@ -34,7 +34,7 @@ Navigator::Application.routes.draw do
   resources :subscriptions
   resources :contacts
   resources :messages
-  resources :contact_types
+
 
   root :to => "home#index"
 

@@ -10,4 +10,6 @@ doc/
 .project
 .DS_Store
 environments/development.rb
+*#
+
 

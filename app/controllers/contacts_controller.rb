@@ -27,16 +27,31 @@ before_filter :authorize, :only => [:index]
 
   def create
     @contact = Contact.new(params[:contact])
+    @contact.type = params[:contact][:type]
     unless params[:group].nil?
       logger.info "param Group[:id] is " + params[:group]["id"]
       group = Group.find(params[:group]["id"])
       logger.info "Group is " + group.name
       @contact.groups.push(group)
     end
-    if @contact.save
+    case @contact.type 
+    when "Phone" 
+      @typedContact = @contact.becomes(Phone)
+    when "Sms"
+      @typedContact = @contact.becomes(Sms)
+    else 
+      logger.info "This " + @contact.type + " is not a type"
+      raise "Not a supported type"
+    end
+    if @typedContact.save
       redirect_to @contact , :notice => "Successfully created contact."
     else
-      render :action => 'new'
+      #Move the errors from typedContact because @contact is going to be
+      # used in the _form after the call to render
+      @typedContact.errors.each do |attr, msg|
+        @contact.errors.add(attr, msg)
+      end
+      render "new"
     end
 
   end
