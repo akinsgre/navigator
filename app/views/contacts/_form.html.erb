@@ -29,9 +29,9 @@ jQuery.noConflict();
   <%= f.error_messages %>
     <%= f.hidden_field :user_id %>
     <% unless @group.nil? %>
-      <%= fields_for @group do |field| %>
-        <%= field.hidden_field :id %>
-      <% end %>
+       <%= f.fields_for @group do |fd| %>
+       <%= fd.hidden_field :id %>
+       <% end %>
     <% end %>
   <p>
     <%= f.label :name %><br />

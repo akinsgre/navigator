@@ -20,17 +20,18 @@ before_filter :authorize, :only => [:index]
 
     if !params[:group_id].nil? && Group.exists?(params[:group_id]) 
       @group = Group.find(params[:group_id]) 
+      logger.info @group
     end
-    @contact.groups.push(@group) unless @group.nil?
-
   end
 
   def create
     @contact = Contact.new(params[:contact])
     @contact.type = params[:contact][:type]
-    unless params[:group].nil?
-      logger.info "param Group[:id] is " + params[:group]["id"]
-      group = Group.find(params[:group]["id"])
+
+    unless params[:contact][:group].nil? || params[:contact][:group][:id].nil?
+      group_id = params[:contact][:group][:id]
+      logger.info "param Group[:id] is " + group_id
+      group = Group.find(group_id)
       logger.info "Group is " + group.name
       @contact.groups.push(group)
     end
@@ -43,6 +44,9 @@ before_filter :authorize, :only => [:index]
       logger.info "This " + @contact.type + " is not a type"
       raise "Not a supported type"
     end
+    logger.info "@contact has  " + @contact.groups.size.to_s + " groups."
+    @typedContact.groups = @contact.groups
+    logger.info "@typedContact has  " + @typedContact.groups.size.to_s + " groups."
     if @typedContact.save
       redirect_to @contact , :notice => "Successfully created contact."
     else

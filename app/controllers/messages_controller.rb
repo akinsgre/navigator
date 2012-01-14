@@ -26,12 +26,20 @@ class MessagesController < ApplicationController
     #   sent message.
 
     @contacts.each do |c|
-      logger.info "Sending " + c.contact_type.name + 
+      logger.info "Sending " + c.type + 
         " message to " + c.name + " : " + c.phone + 
         " with " + @message.message + " to " + message.group.name
       # TODO send message per contacts type
-      # @twilioMessage = @account.sms.messages.create({:from => '+17249071027', :to => c.phone, :body => @message.message})
- 
+      case c.type
+      when "Sms"
+        # @twilioMessage = @account.sms.messages.create({:from => '+17249071027', :to => c.phone, :body => @message.message})
+      when "Phone"
+        # @twilioMessage = @account.sms.messages.create({:from => '+17249071027', :to => c.phone, :body => @message.message})
+      when "Email"
+        # send mai
+      else
+      end
+      
     end
 
   end

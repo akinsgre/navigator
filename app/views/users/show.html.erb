@@ -25,7 +25,7 @@
 <li>Contacts
 <ul><%= link_to "Add a Contact", new_user_contact_path(current_user) %>
 <ul>
-<%= render current_user.contacts%>
+<%= render :partial => "contacts/contact", :collection => current_user.contacts %>
 </ul>
 </li>
 <li>All other Groups (Click to Join)

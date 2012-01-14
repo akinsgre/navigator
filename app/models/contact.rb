@@ -1,10 +1,9 @@
 class Contact < ActiveRecord::Base
   has_many :groups, :through => :group_contacts
   has_many :group_contacts
-  belongs_to :contact_type
 
   belongs_to :user
-  attr_accessible :name, :entry, :user_id
+  attr_accessible :name, :entry, :user_id, :groups, :type
   
   validates_presence_of :entry
 
