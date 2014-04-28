@@ -1,7 +1,7 @@
 body  {
     width:1000px;
     background-color:#c4c4c4;
-    background-image:url('/images/background1.png');
+    background-image:url('/assets/background1.png');
     background-repeat:repeat-x;
     font-family: Verdana, Helvetica, Arial;
     font-size: 14px;
@@ -93,7 +93,7 @@ background-color: #0c93cb; }
     border: 2px solid #ccc;
     overflow:auto;
     background-color:#ffd372;
-    background-image:url('/images/background2.png');
+    background-image:url('/assets/background2.png');
     background-repeat:repeat-x;
     border-radius:20px;
     clear:both;

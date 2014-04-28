@@ -1,11 +1,11 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.9'
+gem 'rails', '3.1.12'
 gem 'sqlite3', '1.3.4'
 gem 'nifty-generators', '0.4.6'
 gem 'devise', '1.4.5'
 gem 'twilio-ruby', '3.4.0'
-
+gem 'jquery-rails'
 
 group :development do
   gem 'rspec-rails', '2.6.1'

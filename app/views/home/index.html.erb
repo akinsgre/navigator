@@ -1,85 +1,35 @@
-<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
-<html> <head>
 
-
-<script type="text/javascript" >
-jQuery.noConflict();
-
-jQuery(document).ready(function(){
-
-jQuery("#emailForm").validate({
-		rules: {
-			email: {
-				required: true,
-				email: true
-			}
-		},
-		messages: {
-			email: "Please enter a valid email address"
-		}
-	});
-    jQuery( "#emailDialog").dialog({ autoOpen: false });
-    jQuery( "#emailDialog").dialog({title:"Enter Email" });
-    jQuery( "#emailDialog").dialog({width:"500px" });
-    jQuery( "#emailDialog").dialog({ buttons : {"Ok" : function() { 
-	    jQuery("#emailForm").submit();
-	  }}});
-
-    jQuery( "#emailForm").submit(function() { 
-	    inviteEmail = jQuery("#email").val();
-	    jQuery.post('email/create', { email : inviteEmail } );
-	    jQuery("#emailDialog").dialog("close");
-      });
-    jQuery( "#emailDialog").dialog({position : [240,260]});
-    
-    jQuery( "#sendEmail" ).click( function() {
-	jQuery("#emailDialog").dialog("open") ; 
-      }) ; 
-  });
-
-
-</script>
-
-</head>
-<body >
-
-
-
-
-
- <div class="col1">
-   <h1>Leaders</h1>
-   <p>Setup lists to communicate with your members.</p>
-   <ul>
-     <li>Time Changes</li>
-     <li>Venue Changes</li>
-     <li>Cancellations</li>
-   </ul>
-   <p>Set up sponsorship messages for your group.</p>
-   <p>Used by teams, clubs, churches and schools.</p>
-   </div>
-    <div class="col2">
-   <h1>Members</h1>
-      <p>Make sure you stay notified.  Receive notifications via:</p>
-      <ul>
-	<li>SMS</li>
-	<li>Email</li>
-	<li>Phone</li>
-      </ul>
-      <p>Never miss an important event again!</p>
-   </div>
-    <div class="col3">
-   <h1>When</h1>
-      <p>Coming Soon!</p>
-      <p>Just leave us your email address and we'll let you know when it's ready.</p>
-    <div id="sendEmail" class="button" >Keep me posted</div>
-   </div>
+<div class="col1">
+  <h1>Leaders</h1>
+  <p>Setup lists to communicate with your members.</p>
+  <ul>
+    <li>Time Changes</li>
+    <li>Venue Changes</li>
+    <li>Cancellations</li>
+  </ul>
+  <p>Set up sponsorship messages for your group.</p>
+  <p>Used by teams, clubs, churches and schools.</p>
+</div>
+<div class="col2">
+  <h1>Members</h1>
+  <p>Make sure you stay notified.  Receive notifications via:</p>
+  <ul>
+    <li>SMS</li>
+    <li>Email</li>
+    <li>Phone</li>
+  </ul>
+  <p>Never miss an important event again!</p>
+</div>
+<div class="col3">
+  <h1>When</h1>
+  <p>Coming Soon!</p>
+  <p>Just leave us your email address and we'll let you know when it's ready.</p>
+  <div id="sendEmail" class="button" >Keep me posted</div>
+</div>
 <div id="emailDialog" >
   <form name="emailForm" id="emailForm">
-   <label for="email">Email</label>
-  <input type="email" name="email" id="email" value="email@example.com" />
-  <br/>
- </form>
+    <label for="email">Email</label>
+    <input type="email" name="email" id="email" value="email@example.com" />
+    <br/>
+  </form>
 </div> <!-- emailDialog -->
-</body>
-</html>
