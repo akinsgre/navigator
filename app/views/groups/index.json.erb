@@ -1,0 +1,6 @@
+{ "aaData" : [
+<% @groups.each do |group| %>
+["<%= group.name %>", "<a href=\"/groups/<%=group.id%>/sponsors/new\">Sponsor</a>"] <%=',' unless group == @groups.last %>
+<% end %>
+]
+}

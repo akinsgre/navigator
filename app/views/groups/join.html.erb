@@ -1,0 +1,12 @@
+<% debug params %>
+<h2 class="resetLayout">Join this group <%= @group.name %></h2>
+<p>Which method of contact do you prefer?</p>
+<table >
+<% current_user.contacts.each do |c| %>
+<tr>
+<td><%= link_to "Join" %></td><td><%= link_to c.name, edit_contact_path(c) %></td>
+</tr>
+<% end %>
+</table>
+<p><%= link_to "Add a new contact" %></p>
+

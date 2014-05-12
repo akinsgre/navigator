@@ -1,49 +1,49 @@
 <script type="text/javascript">
 jQuery.noConflict();
-jQuery(document).ready( function() {
-jQuery("#new_contact").validate({
-		rules: {
-			phone: {
-				required: true,
-				email: true
-			}
-		},
-		messages: {
-			phone: "Please enter a valid email address"
-		}
-	});
-
-    jQuery("#phoneLabel").text("Please enter a valid " + jQuery("#contactOptions").val());
-    jQuery("#contactOptions").change( function () {
-	jQuery("#phoneLabel").text("Please enter a valid " + jQuery(this).val());
-      });
-  });
+ jQuery(document).ready( function() {
+//     jQuery("#new_contact").validate({
+// 	rules: {
+// 	    entry: {
+// 		required: function(element) {
+// 		    alert("Element " );
+// 		    return false;
+// 		}
+		
+// 	    }
+// 	},
+// 	messages: {
+// 	    contact_entry: "Please enter a valid email address"
+// 	}
+//     });
+    
+    jQuery("#entryLabel").text("Please enter a valid " + jQuery("#contact_contact_type_id :selected").text());
+    jQuery("#contact_contact_type_id").change( function () {
+        selectedText = jQuery('#contact_contact_type_id :selected').text() ;
+	jQuery("#entryLabel").text("Please enter a valid " + selectedText);
+    });
+});
 </script>
 <div id="addTypes" >
-<a>Add a contact manually</a>
-<div >
-<%= form_for @contact do |f| %>
+<div class="resetLayout" >
+  <%= form_for @contact, :validate => true do |f| %>
   <%= f.error_messages %>
-
-  <p>
-    <%= f.hidden_field :user_id %><br />
-
-  </p>
+    <%= f.hidden_field :user_id %>
+    <% unless @group.nil? %>
+       <%= f.fields_for @group do |fd| %>
+       <%= fd.hidden_field :id %>
+       <% end %>
+    <% end %>
   <p>
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </p>
 <p>
   Preferred method of contact
-<select id="contactOptions">
-  <option>Email</option>
-  <option>Phone</option>
-  <option>SMS</option>
-</select>
+  <%= f.select "type", options_for_select(Contact.select_options) %>
 </p>
  <p>
-    <label id="phoneLabel" for="phone">Phone Number or email address</label><br />
-    <%= f.text_field :phone %>
+    <label id="entryLabel" for="entry">Entry Number or email address</label><br />
+    <%= f.text_field :entry %>
   </p>
   <p><%= f.submit %></p>
 <% end %>

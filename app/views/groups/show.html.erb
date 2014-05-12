@@ -1,10 +1,7 @@
 <% title "Group" %>
 
-<h3><%= link_to "Send this group a message", :controller => "messages", :action => "new", :id => @group.id %></h3>
-<p>
-  <strong>Parent:</strong>
-  <%= @group.parent_id %>3
-</p>
+<h3 class="resetLayout" ><%= link_to "Send this group a message", :controller => "messages", :action => "new", :id => @group.id %></h3>
+
 <p>
   <strong>Name:</strong>
   <%= @group.name %>
@@ -15,11 +12,14 @@
 </p>
 <table>
 <% @group.contacts.each do |c| %>
-<tr><td><%= button_to "X", { :action => "remove_contact", :id => @group.id,  :contact_id => c.id }, :method => :put %></td><td><%= link_to c.name, edit_contact_path(c) %></td><td><%= c.phone %></td></tr>
+<tr><td><%= button_to "X", { :action => "remove_contact", :id => @group.id,  :contact_id => c.id }, :method => :put %></td><td><%= link_to c.name, edit_contact_path(c) %></td><td><%= c.entry %></td></tr>
 <% end %>
 </table>
 
-<%= link_to "Add a new contact", new_contact_path( :group_id => @group.id ) %>
+<% if @group.user_id == current_user.id %>
+<%= link_to "Add a new contact", new_group_contact_path(@group ) %>
+<% end %>
+
 <p>
   <%= link_to "Edit", edit_group_path(@group) %> |
   <%= link_to "Destroy", @group, :confirm => 'Are you sure?', :method => :delete %> |

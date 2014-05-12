@@ -26,10 +26,13 @@ class UsersController < AdminController
   end
 
   def show
-    @user = User.find(params[:id])
-
+    @subscriber = Subscription.find_by_user_id(current_user.id) 
+    @following = current_user.following
+    @groups = Group.find_all_by_user_id(current_user.id)
+    @otherGroups = @groups - @following
   end
- def destroy
+
+  def destroy
     @user = User.find(params[:id])
     @user.destroy
     redirect_to users_url, :notice => "Successfully destroyed user."

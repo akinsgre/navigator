@@ -2,6 +2,12 @@
 <h2>Sign in</h2>
 <p>Create a free account so that you can be added to your groups distribution lists</p>
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+<% flash.each do |key, msg| %>
+  <div id="flash_<%= key %>">
+    <p><%= msg %></p>
+    <div class="clear"></div>
+  </div>
+<% end %>
   <div><%= f.label :email %><br />
   <%= f.email_field :email %></div>
 

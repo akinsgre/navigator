@@ -1,5 +1,5 @@
 class ContactType < ActiveRecord::Base
-  belongs_to :contact
+  has_one :contact
 end
 
 # == Schema Information

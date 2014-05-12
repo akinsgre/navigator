@@ -7,6 +7,9 @@ gem 'devise'
 gem 'twilio-ruby', '3.4.0'
 gem 'jquery-rails'
 
+gem 'client_side_validations', '3.1.4'
+
+
 group :development do
   gem 'annotate', '2.4.0'
 end

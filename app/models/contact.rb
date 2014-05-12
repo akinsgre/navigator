@@ -1,10 +1,16 @@
 class Contact < ActiveRecord::Base
-  has_many :group_contacts
   has_many :groups, :through => :group_contacts
-  has_one :contact_types
+  has_many :group_contacts
 
   belongs_to :user
-  attr_accessible :name, :phone, :user_id
+  attr_accessible :name, :entry, :user_id, :groups, :type
+  
+  validates_presence_of :entry
+
+  require_dependency 'phone'
+  require_dependency 'sms'
+  
+
   
   #GAK 11/4/2011 
   #  Email is a virtual attribute so it can be captured in a form_for but then assigned to the User to whom the contact belongs
@@ -17,6 +23,11 @@ class Contact < ActiveRecord::Base
   def email=(email)
     @email = email
   end
+
+  def self.select_options
+    descendants.collect do |d| [d.identify,d.to_s] end
+  end
+
 
 end
 

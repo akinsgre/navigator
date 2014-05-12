@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111104160242) do
+ActiveRecord::Schema.define(:version => 20120113234045) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "user_id"
@@ -19,19 +19,21 @@ ActiveRecord::Schema.define(:version => 20111104160242) do
     t.datetime "updated_at"
   end
 
-  create_table "contact_types", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "contacts", :force => true do |t|
     t.string   "name"
-    t.string   "phone"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
-    t.integer  "contact_type_id"
+    t.string   "type"
+    t.string   "entry"
+  end
+
+  create_table "contributions", :force => true do |t|
+    t.integer  "group_id"
+    t.integer  "sponsor_id"
+    t.decimal  "amount",     :precision => 10, :scale => 2
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "emails", :force => true do |t|
@@ -43,6 +45,13 @@ ActiveRecord::Schema.define(:version => 20111104160242) do
   create_table "group_contacts", :force => true do |t|
     t.integer  "group_id"
     t.integer  "contact_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "group_sponsors", :force => true do |t|
+    t.integer  "group_id"
+    t.integer  "sponsor_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -65,6 +74,14 @@ ActiveRecord::Schema.define(:version => 20111104160242) do
 
   create_table "roles", :force => true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "sponsors", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "phone"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

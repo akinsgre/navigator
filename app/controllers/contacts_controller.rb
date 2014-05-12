@@ -11,17 +11,51 @@ before_filter :authorize, :only => [:index]
 
   def new
     @contact = Contact.new
-    @contact.user_id = params[:user_id] 
-    @existingContacts = []
+    logger.info "User id will be " + params[:user_id].to_s
+
+    unless params[:user_id].nil? || params[:user_id].to_s.rstrip.empty?
+      @contact.user_id = params[:user_id] 
+    end
+    logger.info "Group id will be " + params[:group_id].to_s
+
+    if !params[:group_id].nil? && Group.exists?(params[:group_id]) 
+      @group = Group.find(params[:group_id]) 
+      logger.info @group
+    end
   end
 
   def create
     @contact = Contact.new(params[:contact])
+    @contact.type = params[:contact][:type]
 
-    if @contact.save
-      redirect_to '/contacts/select_group', :notice => "Successfully created contact."
+    unless params[:contact][:group].nil? || params[:contact][:group][:id].nil?
+      group_id = params[:contact][:group][:id]
+      logger.info "param Group[:id] is " + group_id
+      group = Group.find(group_id)
+      logger.info "Group is " + group.name
+      @contact.groups.push(group)
+    end
+    case @contact.type 
+    when "Phone" 
+      @typedContact = @contact.becomes(Phone)
+    when "Sms"
+      @typedContact = @contact.becomes(Sms)
+    else 
+      logger.info "This " + @contact.type + " is not a type"
+      raise "Not a supported type"
+    end
+    logger.info "@contact has  " + @contact.groups.size.to_s + " groups."
+    @typedContact.groups = @contact.groups
+    logger.info "@typedContact has  " + @typedContact.groups.size.to_s + " groups."
+    if @typedContact.save
+      redirect_to @contact , :notice => "Successfully created contact."
     else
-      render :action => 'new'
+      #Move the errors from typedContact because @contact is going to be
+      # used in the _form after the call to render
+      @typedContact.errors.each do |attr, msg|
+        @contact.errors.add(attr, msg)
+      end
+      render "new"
     end
 
   end
