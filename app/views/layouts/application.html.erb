@@ -28,7 +28,6 @@
     Signed in as <%= current_user.email %>. Not you?  
     <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>  
   <% else %>  
-    <%= link_to "Sign up", new_user_registration_path %> or  
     <%= link_to "Sign in", new_user_session_path %>  
   <% end %>  
 
@@ -39,6 +38,7 @@
     <h4 >Let everyone know what's happening.</h4>
   <p><span class="emphasis">Welcome!</span> to the fastest, simplest way ever to notify <span class="emphasis">everybody</span> in your organization, club or team of upcoming events, schedule changes, cancellations, etc...</p>
   <p>Best of all, the application is free to your members.</p>
+  <h1>Start your group  <%= link_to "Sign up", new_user_registration_path %> </h1>
 </div>
 <!-- This is where the menu should be inserted... -->
 
