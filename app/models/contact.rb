@@ -3,7 +3,7 @@ class Contact < ActiveRecord::Base
   has_many :group_contacts
 
   belongs_to :user
-  attr_accessible :name, :entry, :user_id, :groups, :type
+
   
   validates_presence_of :entry
 
