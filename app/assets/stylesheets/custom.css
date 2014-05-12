@@ -153,6 +153,14 @@ background-color: #0c93cb; }
 
 }
 
+.footerMenu {
+float:left ; 
+
+}
+.copyright {
+float:right ; 
+}
+
 ul .footer {
     display: inline ;
     list-style: none;
