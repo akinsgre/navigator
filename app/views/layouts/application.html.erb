@@ -31,7 +31,11 @@
     Signed in as <%= current_user.email %>. Not you?  
     <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>  
   <% else %>  
-    <%= link_to "Sign in", new_user_session_path %>  
+    <%= link_to "Sign in", new_user_session_path %> 
+<%= link_to (('Sign in', 'SIfinalV1.1s40.gif', 'Sign In2'), 
+        url_for({:controller => 'controller_name', :action => 'action_name'}), 
+            :class => 'quick', 
+            :remote => true) %> 
   <% end %>  
 
 </div>
