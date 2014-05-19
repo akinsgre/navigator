@@ -29,7 +29,6 @@ GEM
     arel (4.0.2)
     bcrypt (3.1.7)
     builder (3.1.4)
-    client_side_validations (3.1.4)
     devise (3.2.4)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -121,8 +120,7 @@ PLATFORMS
 
 DEPENDENCIES
   annotate (= 2.4.0)
-  client_side_validations (= 3.1.4)
-  devise
+  devise (= 3.2.4)
   jquery-rails
   mocha
   nifty-generators (= 0.4.6)

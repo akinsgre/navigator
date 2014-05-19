@@ -8,7 +8,7 @@
 <%= csrf_meta_tag %>
 
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-
+<%= favicon_link_tag 'favicon.gif' %>
 
 <%= yield(:head) %>
 </head>
@@ -39,9 +39,6 @@
 
 <div class="banner" >
     <h4 >Let everyone know what's happening.</h4>
-  <p><span class="emphasis">Welcome!</span> to the fastest, simplest way ever to notify <span class="emphasis">everybody</span> in your organization, club or team of upcoming events, schedule changes, cancellations, etc...</p>
-  <p>Best of all, the application is free to your members.</p>
-  <h1>Start your group  <%= link_to "Sign up", new_user_registration_path %> </h1>
 </div>
 <!-- This is where the menu should be inserted... -->
 
