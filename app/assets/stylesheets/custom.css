@@ -20,10 +20,11 @@ div .resetLayout {
 .button {
     background-color: #0c93cb;
     width:170px;
-    height:30px;
+    height:70px;
     padding:20px;
     font-size:1.4em;
-    color: white;
+    color: orange
+;
     cursor:pointer;
     border-radius:5px;
 }
