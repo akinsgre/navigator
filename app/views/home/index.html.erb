@@ -1,6 +1,13 @@
 <p><span class="emphasis">Welcome!</span> to the fastest, simplest way ever to notify <span class="emphasis">everybody</span> in your organization, club or team of upcoming events, schedule changes, cancellations, etc...</p>
 <p>Best of all, the application is free to your members.</p>
-<h1>Start your group  <%= link_to "Sign up", new_user_registration_path %> </h1>
+
+
+<%= button_to "  Start your group  ", new_user_registration_path, :class => "button", :method => :get  %><%= button_to "  Sign In  ", new_user_registration_path, :class => "button", :method => :get  %>
+
+
+
+
+
 
 <div class="col1">
   <h1>Leaders</h1>
