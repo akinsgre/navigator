@@ -1,7 +1,8 @@
 <%= form_for @group do |f| %>
   <%= f.error_messages %>
   <fieldset>
-  <p class="resetLayout">
+    <legend>New Group</legend>
+    <p class="resetLayout">
     <div>
     <%= f.label :name %>
     <%= f.text_field :name %>
@@ -21,8 +22,13 @@
   <% end %>
   </fieldset>
   <fieldset>
+    <legend>Sponsor Info</legend>
     <%= f.label :sponsor_email %>
     <%= f.text_field :sponsor_email %>
+  </fieldset>
+  <fieldset>
+    <legend>Members</legend>
+    
   </fieldset>
   <p><%= f.submit %></p>
 <% end %>
