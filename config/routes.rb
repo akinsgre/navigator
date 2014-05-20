@@ -17,10 +17,13 @@ Navigator::Application.routes.draw do
 
   match "users/sign_out" => "users#sign_out", :via => :get
 
-  resources :users
+  resources :users do
+    resources :groups
+    resources :contacts
+  end
   resources :groups
   # resources :subscriptions
-  # resources :contacts
+
   # resources :messages
   # resources :contact_types
 
