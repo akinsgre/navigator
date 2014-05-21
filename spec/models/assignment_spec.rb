@@ -5,14 +5,15 @@ describe Assignment do
 end
 
 
+
 # == Schema Information
 #
 # Table name: assignments
 #
-#  id         :integer         primary key
+#  id         :integer         not null, primary key
 #  user_id    :integer
 #  role_id    :integer
-#  created_at :timestamp
-#  updated_at :timestamp
+#  created_at :datetime
+#  updated_at :datetime
 #
 

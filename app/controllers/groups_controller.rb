@@ -36,8 +36,9 @@ class GroupsController < ApplicationController
   end
 
   def create
-    logger.info "Creating a group with these parameters " + params[:group].to_s
-    @group = Group.new(params[:group])
+    logger.info "Creating a group with these parameters #{group_params}"
+    
+    @group = Group.new(group_params)
     if @group.save
       redirect_to @group, :notice => "Successfully created group."
     else
@@ -94,4 +95,9 @@ class GroupsController < ApplicationController
     @group.destroy
     redirect_to groups_url, :notice => "Successfully destroyed group."
   end
+  
+private
+def group_params
+  params.require(:group).permit(:name, :description, :user_id, :sponsor_email)
+end  
 end
