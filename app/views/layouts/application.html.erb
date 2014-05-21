@@ -25,7 +25,7 @@
   <%= image_tag ("OrangeSpeechBubble2.png") %>
 
 </div>
-<div class="signupLinks">
+<div class="signupLinks" >
 
   <% if user_signed_in? %>  
     Signed in as <%= current_user.email %>. Not you?  
@@ -33,7 +33,7 @@
  
   <% else %>  
 
-  <%= link_to image_tag('SIfinalV1.1s40.gif'), new_user_registration_path %>
+  <%= link_to image_tag('SignInY.png'), new_user_registration_path %>
 <% end %>
 
 </div>
@@ -44,7 +44,7 @@
 </div>
 <!-- This is where the menu should be inserted... -->
 
-<div class="outerDiv">
+<div class="outerDiv" align="center">
   <ul id="menu">
   <% if user_signed_in? %>  
   <li><%= link_to "Groups", groups_path %>  </li>

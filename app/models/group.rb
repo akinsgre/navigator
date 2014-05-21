@@ -9,8 +9,6 @@ class Group < ActiveRecord::Base
 
   belongs_to :user
 
-  attr_accessible :parent_id, :name, :user_id, :user
-
 #  scope :owned_by, -> (user_id) { where(:user_id =>user_id) }
 
   def self.search(search)
