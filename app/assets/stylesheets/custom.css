@@ -1,3 +1,10 @@
+input[type='submit'] {
+    background-color: #0c93cb;
+    font-size : 1.4em;
+    font-style : bold;
+    color:#fed271;
+}
+
 body  {
     width:1000px;
     background-color:#c4c4c4;
@@ -15,22 +22,22 @@ div .resetLayout {
     font-family : 'Open Sans', sans-serif;
     font-weight : 700 ; 
     font-size : 1.2em ; 
-    font-align : center ;
+    font-align : left ;
 
 }
 
 .button {
+    float:center;
     background-color: #0c93cb;
     width:170px;
     height:70px;
     padding:20px;
     font-size:1.4em;
-    font-face-color:orange;
-    align:center;
+    color:#fed271;
     cursor:pointer;
-    border-radius:5px;
-}
+    border-radius:10px;
 
+}
 h1, h2, h3 {
     color: #0c93cb;
     font-family: 'Open Sans', sans-serif;

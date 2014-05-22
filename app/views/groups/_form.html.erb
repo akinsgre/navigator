@@ -3,7 +3,7 @@
   <fieldset>
 
   <p class="resetLayout">
-=======
+
     <legend>New Group</legend>
     <p class="resetLayout">
 
@@ -25,12 +25,9 @@
        </p>
   <% end %>
   </fieldset>
-  <fieldset>
 
-    <%= f.label :sponsor_email %>
-    <%= f.text_field :sponsor_email %>
-  </fieldset>
-=======
+
+<fieldset>
     <legend>Sponsor Info</legend>
     <%= f.label :sponsor_email %>
     <%= f.text_field :sponsor_email %>
@@ -42,6 +39,6 @@
     <% end %>
     <p><%= f.link_to_add "Add a contact", :contacts %></p>
   </fieldset>
->>>>>>> bc064180111ae4435a12377ebe4004f0a80e98a7
+
   <p><%= f.submit %></p>
 <% end %>
