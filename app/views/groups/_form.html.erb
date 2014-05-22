@@ -1,7 +1,12 @@
-<%= form_for @group do |f| %>
+<%= nested_form_for @group do |f| %>
   <%= f.error_messages %>
   <fieldset>
+
   <p class="resetLayout">
+=======
+    <legend>New Group</legend>
+    <p class="resetLayout">
+
     <div>
     <%= f.label :name %>
     <%= f.text_field :name %>
@@ -21,8 +26,22 @@
   <% end %>
   </fieldset>
   <fieldset>
+
     <%= f.label :sponsor_email %>
     <%= f.text_field :sponsor_email %>
   </fieldset>
+=======
+    <legend>Sponsor Info</legend>
+    <%= f.label :sponsor_email %>
+    <%= f.text_field :sponsor_email %>
+  </fieldset>
+  <fieldset>
+    <legend>Members</legend>
+    <%= f.fields_for :contacts do |c| %>
+       <%= c.text_field :name %>
+    <% end %>
+    <p><%= f.link_to_add "Add a contact", :contacts %></p>
+  </fieldset>
+>>>>>>> bc064180111ae4435a12377ebe4004f0a80e98a7
   <p><%= f.submit %></p>
 <% end %>

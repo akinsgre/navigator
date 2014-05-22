@@ -5,13 +5,14 @@ describe Subscription do
 end
 
 
+
 # == Schema Information
 #
 # Table name: subscriptions
 #
-#  id         :integer         primary key
+#  id         :integer         not null, primary key
 #  user_id    :integer
-#  created_at :timestamp
-#  updated_at :timestamp
+#  created_at :datetime
+#  updated_at :datetime
 #
 

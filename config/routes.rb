@@ -21,11 +21,14 @@ Navigator::Application.routes.draw do
     resources :groups
     resources :contacts
   end
-  resources :groups
+
+  resources :groups do
+    resources :contacts
+  end
   # resources :subscriptions
 
-  # resources :messages
-  # resources :contact_types
+  resources :messages
+
 
   root :to => "home#index"
 
