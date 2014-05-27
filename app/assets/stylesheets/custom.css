@@ -27,6 +27,7 @@ div .resetLayout {
 }
 
 .button {
+    font-family: Verdana,Helvetica,Arial;
     float:center;
     background-color: #0c93cb;
     width:170px;
@@ -35,13 +36,16 @@ div .resetLayout {
     font-size:1.4em;
     color:#fed271;
     cursor:pointer;
-    border-radius:5px;
+    border-radius:8px;
+    border-color: #FED271;
+    border-style: solid;   
     font-weight: bold;
 
 }
 
 .next {     
     float:center;
+    padding-left: 20px;
     background-color: #0c93cb;
     width:170px;
     height:15px;
@@ -49,8 +53,12 @@ div .resetLayout {
     font-size:1.4em;
     color:#fed271;
     cursor:pointer;
-    border-radius:5px;
+    border-radius:8px;
+    border-color: #FED271;
+    border-style: solid;
     font-weight: bold;
+    left-padding: 20px;
+    
 
 }
 .prev {
@@ -62,7 +70,9 @@ div .resetLayout {
     font-size:1.4em;
     color:#fed271;
     cursor:pointer;
-    border-radius:5px;
+    border-radius:8px;
+    border-color: #FED271;
+    border-style: solid;
     font-weight: bold;
 
 }
@@ -238,8 +248,12 @@ ul li{
   margin: 5px;
   padding: 5px;
 }
+ul li span {
+    color: red;
+    margin: 5px;
+}
 #steps li.current {
-    color: #000;
+    color: #FF2F05;
 }
 
 #steps {
