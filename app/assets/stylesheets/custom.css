@@ -1,7 +1,7 @@
 input[type='submit'] {
     background-color: #0c93cb;
     font-size : 1.4em;
-    font-style : bold;
+    font-weight: bold;
     color:#fed271;
 }
 
@@ -35,7 +35,35 @@ div .resetLayout {
     font-size:1.4em;
     color:#fed271;
     cursor:pointer;
-    border-radius:10px;
+    border-radius:5px;
+    font-weight: bold;
+
+}
+
+.next {     
+    float:center;
+    background-color: #0c93cb;
+    width:170px;
+    height:15px;
+    padding:10px;
+    font-size:1.4em;
+    color:#fed271;
+    cursor:pointer;
+    border-radius:5px;
+    font-weight: bold;
+
+}
+.prev {
+    float:center;
+    background-color: #0c93cb;
+    width:170px;
+    height:15px;
+    padding:10px;
+    font-size:1.4em;
+    color:#fed271;
+    cursor:pointer;
+    border-radius:5px;
+    font-weight: bold;
 
 }
 h1, h2, h3 {
@@ -119,7 +147,6 @@ background-color: #0c93cb; }
 .fullCol {
     float : left ; 
     width:800px;
-
     margin:15px;
     padding:20px;
     border: 2px solid #ccc;
@@ -206,6 +233,23 @@ a {
     border: solid 1px black;
     margin-top: 20px;
 }
+ul li{
+  display: inline;
+  margin: 5px;
+  padding: 5px;
+}
+#steps li.current {
+    color: #000;
+}
+
+#steps {
+list-style: none outside none;
+width: 100%;
+overflow: hidden;
+margin: 2px;
+padding: 3px;
+}
+
 
 #flash_notice, #flash_error, #flash_alert {
     padding: 5px 8px;
