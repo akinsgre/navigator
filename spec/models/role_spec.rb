@@ -1,7 +1,10 @@
 require 'spec_helper'
 
 describe Role do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "should be valid" do
+    r = Role.new
+    r.should be_valid
+  end
 end
 
 

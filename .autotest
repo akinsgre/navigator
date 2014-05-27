@@ -1,0 +1,5 @@
+
+
+Autotest.add_hook :initialize do |at|
+  %w{.git tmp/ log/  .DS_Store ._ }.each {|exception| at.add_exception(exception)}
+end

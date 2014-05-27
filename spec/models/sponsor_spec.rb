@@ -1,7 +1,10 @@
 require 'spec_helper'
 
 describe Sponsor do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "should create a sponsor" do
+    s = Sponsor.new
+    s.should_not be_nil
+  end
 end
 
 # == Schema Information

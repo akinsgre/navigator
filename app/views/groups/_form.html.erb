@@ -31,12 +31,14 @@
     <legend>Sponsor Info</legend>
     <%= f.label :sponsor_email %>
     <%= f.text_field :sponsor_email %>
+    <p>You don't have to have a sponsor; if you don't have one, your messages will be supported by one of our other advertisers.</p>
   </fieldset>
   <fieldset>
     <legend>Members</legend>
     <%= f.fields_for :contacts do |c| %>
        <%= c.text_field :name %>
     <% end %>
+    <p>Upload a list of members <%= f.file_field :bulk_upload %></p>
     <p><%= f.link_to_add "Add a contact", :contacts %></p>
   </fieldset>
 

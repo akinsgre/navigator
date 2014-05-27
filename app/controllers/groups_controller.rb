@@ -1,10 +1,10 @@
 
 class GroupsController < ApplicationController
-  before_filter :authenticate_user!, :except => ['index']
+  before_filter :authenticate_user!
   respond_to :html, :json
 
   def index
-    logger.info "Current User " + current_user.email.to_s + " is subscribed (" + current_user.subscribed?.to_s + ")."
+    logger.info "Current User " + current_user.email.to_s + " is subscribed (" + current_user.subscribed?.to_s + ")." unless current_user.nil?
     @myGroups = Array.new
     if !current_user.nil? then
       current_user.contacts.each do |c|
@@ -36,8 +36,11 @@ class GroupsController < ApplicationController
   end
 
   def create
-    logger.info "Creating a group with these parameters #{group_params}"
-    
+    logger.debug "########### Creating a group with these parameters #{file_params}"
+    #if there is a bulk_upload parameter parse it as a member list
+    unless file_params["bulk_upload"].blank?
+      Member.save(file_params["bulk_upload"])
+    end
     @group = Group.new(group_params)
     if @group.save
       redirect_to @group, :notice => "Successfully created group."
@@ -100,4 +103,7 @@ private
 def group_params
   params.require(:group).permit(:name, :description, :user_id, :sponsor_email)
 end  
+def file_params
+  params.require(:group).permit(:bulk_upload)
+end
 end

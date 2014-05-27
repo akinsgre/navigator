@@ -1,7 +1,14 @@
 require 'spec_helper'
 
 describe GroupSponsor do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it 'should allow sponsors to be added to group' do
+  group = Group.new
+  sponsor = Sponsor.new
+  group.sponsors << sponsor
+  group.save
+
+  group.sponsors.should have(1).items
+  end
 end
 
 # == Schema Information

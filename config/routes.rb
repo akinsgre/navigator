@@ -20,12 +20,15 @@ Navigator::Application.routes.draw do
   resources :users do
     resources :groups
     resources :contacts
+    resources :subscriptions
   end
+
+  resources :subscriptions
 
   resources :groups do
     resources :contacts
   end
-  # resources :subscriptions
+
 
   resources :messages
 
@@ -35,3 +38,4 @@ Navigator::Application.routes.draw do
 
 
 end
+

@@ -13,8 +13,11 @@ group :development do
 end
 
 group :test do
-  gem 'rspec-rails', '2.14.2'
+  gem 'ZenTest', '4.10.0'
+  gem 'rspec', '2.14.1'
+  gem 'rspec-rails', '2.14.1'
   gem 'webrat'
   gem "mocha"
+  gem 'factory_girl', '4.4.0'
 end
 

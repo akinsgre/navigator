@@ -1,7 +1,13 @@
 require 'spec_helper'
 
 describe GroupContact do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "should allow a contact to be added to a group" do
+    g = Group.new
+    c = Contact.new
+    g.contacts << c
+    g.save
+    g.contacts.should have(1).items
+  end
 end
 
 # == Schema Information

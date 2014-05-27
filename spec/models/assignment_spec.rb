@@ -1,7 +1,10 @@
 require 'spec_helper'
 
 describe Assignment do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "should be valid" do
+    a = Assignment.new
+    a.should be_valid
+  end
 end
 
 
