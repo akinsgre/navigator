@@ -279,6 +279,10 @@ color: #0c93cb;
     font-weight: bold;
     text-decoration: underline;
     font-size: 1.9em;
+    border-style: solid;
+    border-color: #F8D286;
+    border-width: 3px;
+    
   }
 
 #flash_notice, #flash_error, #flash_alert {
