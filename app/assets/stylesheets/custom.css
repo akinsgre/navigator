@@ -3,6 +3,9 @@ input[type='submit'] {
     font-size : 1.4em;
     font-weight: bold;
     color:#fed271;
+    border-radius:3px;
+    border-color: #FED271;
+    border-style: solid;
 }
 
 body  {
