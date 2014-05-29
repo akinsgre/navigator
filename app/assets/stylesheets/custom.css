@@ -33,7 +33,7 @@ div .resetLayout {
     font-family:Ubuntu,Verdana,Helvetica;
     float:center;
     background-color: #0c93cb;
-    width:170px;
+    width:180px;
     height:70px;
     padding:20px;
     font-size:1.4em;
@@ -43,7 +43,7 @@ div .resetLayout {
     border-color: #FED271;
     border-style: solid;
     font-weight: bold;
-
+    vertical-align: bottom;
 }
 
 .next { 
@@ -181,6 +181,7 @@ background-color: #0c93cb; }
     overflow:auto;
     background-color:#ffe;
     border-radius:20px;
+    font-family:Ubuntu,Verdana,Helvetica;
 
 }
 
@@ -194,6 +195,7 @@ background-color: #0c93cb; }
     overflow:auto;
     background-color:#ffe;
     border-radius:20px;
+    font-family:Ubuntu,Verdana,Helvetica;
 
 }
 
@@ -207,7 +209,7 @@ background-color: #0c93cb; }
     overflow:auto;
     background-color:#ffe;
     border-radius:20px;
-
+    font-family:Ubuntu,Verdana,Helvetica;
 }
 
 .footerMenu {

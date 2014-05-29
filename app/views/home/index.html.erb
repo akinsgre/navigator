@@ -1,38 +1,18 @@
 <p><span class="emphasis">Welcome!</span> to the fastest, simplest way ever to notify <span class="emphasis">everybody</span> in your organization, club or team of upcoming events, schedule changes, cancellations, etc...</p>
 <p>Best of all, the application is free to your members.</p>
 
-
-<%= button_to "  Start your group  ", new_user_registration_path, :class => "button", :method => :get  %>
-
-
-
-
-
-
 <div class="col1">
-  <h1>Leaders</h1>
-  <p>Setup lists to communicate with your members.</p>
-  <ul>
-    <li>Time Changes</li>
-    <li>Venue Changes</li>
-    <li>Cancellations</li>
-  </ul>
-  <p>Set up sponsorship messages for your group.</p>
-  <p>Used by teams, clubs, churches and schools.</p>
+  <h1>Start Your Club</h1>
+  <%= button_to "  Start your group  ", new_user_registration_path, :class => "button", :method => :get  %>
+
 </div>
 <div class="col2">
-  <h1>Members</h1>
-  <p>Make sure you stay notified.  Receive notifications via:</p>
-  <ul>
-    <li>SMS</li>
-    <li>Email</li>
-    <li>Phone</li>
-  </ul>
-  <p>Never miss an important event again!</p>
+  <h1 align="center">Join Existing Group</h1>
+<%= button_to " Join group  ", new_user_registration_path, :class => "button", :method => :get  %>
+
 </div>
 <div class="col3">
-  <h1>When</h1>
-  <p>Coming Soon!</p>
-  <p>Just leave us your email address and we'll let you know when it's ready.</p>
-
+<a href="emailto:info@insomnia-consulting.org"><h1>Sponsoring</h1></a> <br>
+<a href="emailto:info@insomnia-consulting.org"><h1>Advertising</h1></a><br>
+<a href="emailto:info@insomnia-consulting.org"><h1>More Info</h1></a><br>
 </div>
