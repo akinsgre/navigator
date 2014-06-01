@@ -8,8 +8,10 @@
 </div>
 <div class="col2">
   <h1 align="center">Join Existing Group</h1>
-<%= button_to " Join group  ", new_user_registration_path, :class => "button", :method => :get  %>
-
+<p>Start typing below to find your group.  Click on your group name to select it and proceed.</p>
+<div id="the-basics">
+  <input class="typeahead" type='text' id='groupsearch'></input>
+</div>
 </div>
 <div class="col3">
 <a href="emailto:info@insomnia-consulting.org"><h1>Sponsoring</h1></a> <br>

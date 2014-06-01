@@ -4,11 +4,13 @@
 
 //= require jquery
 //= require jquery_ujs
+//= require twitter/bootstrap
 //= require jquery-ui-1.8.16.custom.min.js
 //= require jquery.validate.min.js
 //= require formToWizard
 
 //= require jquery_nested_form
+//= require twitter/typeahead
 
 //= require home.js
 //= require group.js
