@@ -1,10 +1,10 @@
 
 class GroupsController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :except => [:index, :add_contact]
   respond_to :html, :json
 
   def index
-    logger.info "Current User " + current_user.email.to_s + " is subscribed (" + current_user.subscribed?.to_s + ")." unless current_user.nil?
+    Rails.logger.debug "###### let's find some groups"
     @myGroups = Array.new
     if !current_user.nil? then
       current_user.contacts.each do |c|
@@ -17,6 +17,7 @@ class GroupsController < ApplicationController
     else
       @groups = Groups.all
     end
+    Rails.logger.debug "#### Show the groups #{@groups.inspect}"
     respond_with(@groups)
   end
 
@@ -76,11 +77,15 @@ class GroupsController < ApplicationController
       render :action => 'edit'
     end
   end
-
   def add_contact
+    
+  end
+  def post_contact
+    puts "###### #{params}"
     logger.info "Param id = " + params[:id].to_s
+
     @group = Group.find(params[:id])
-    if :contact_id && @group.contacts.add(Contact.find(params[:contact_id]))
+    if :contact_id && @group.contacts << Contact.find(params[:contact_id])
       redirect_to @group, :notice  => "Successfully updated group."
     else
       render :action => 'edit'
