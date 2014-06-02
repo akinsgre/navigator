@@ -6,6 +6,7 @@ gem 'nifty-generators', '0.4.6'
 gem 'devise', '3.2.4'
 gem 'twilio-ruby', '3.4.0'
 gem 'jquery-rails'
+gem 'polyglot', '0.3.4'
 gem 'nested_form', '0.3.2'
 
 gem "twitter-bootstrap-rails"
