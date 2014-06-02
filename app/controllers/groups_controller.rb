@@ -82,12 +82,19 @@ class GroupsController < ApplicationController
     @contact = Contact.new
     @contact.groups << @group
   end
-  def post_contact
+  def save_contact
     puts "###### #{params}"
     logger.info "Param id = " + params[:id].to_s
 
-    @group = Group.find(params[:id])
-    if :contact_id && @group.contacts << Contact.find(params[:contact_id])
+    @group = Group.find(params[:contact][:group_id])
+
+    @contact = Contact.new
+    @contact.entry = params[:contact][:entry]
+    @contact.identifier = params[:contact][:identifier]
+    @group.contacts << @contact
+    @group.save
+    
+    if @group.save
       redirect_to @group, :notice  => "Successfully updated group."
     else
       render :action => 'edit'
