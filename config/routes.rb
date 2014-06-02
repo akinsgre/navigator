@@ -5,6 +5,7 @@ Navigator::Application.routes.draw do
   post "email/create"
   get "profile/edit"
   get "groups/:id/add_contact", :to => 'groups#add_contact'
+  post "groups/save_contact", :to => "groups#save_contact"
   match "groups/remove_contact" => "groups#remove_contact", :via => :get 
   
   match "incoming_message" => "incoming_message#index", :via => :get

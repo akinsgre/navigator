@@ -47,6 +47,10 @@ describe GroupsController do
         response.should be_successful
       end
     end
-    
+    describe "POST 'save_contact'" do
+      it "should save the contact to the group" do
+        post "save_contact" , :contact => {:entry => "7244547790", :identifier => "Greg's email", :group_id => @group.id }
+      end
+    end
   end
 end

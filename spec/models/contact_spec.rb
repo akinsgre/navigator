@@ -8,7 +8,7 @@ describe Contact do
   it "should be created" do
     c = Contact.new
     c.entry = 'test'
-
+    c.identifier = "G. AKins' home phone"
     c.should be_valid
   end
 end
