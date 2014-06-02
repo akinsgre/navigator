@@ -142,6 +142,7 @@ li {
      font-family:Ubuntu,Verdana,Helvetica;
     font-size:1.4em;
     color: #EED090;  
+    float:left;
 }
 
 .banner {

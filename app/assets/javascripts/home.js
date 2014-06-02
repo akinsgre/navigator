@@ -25,8 +25,7 @@ $(function(){
 				  {
 				      name: 'groups',
 				      displayKey: 'value',
-				      source: groups.ttAdapter(),
-				      selected: function() {alert('test');}
+				      source: groups.ttAdapter()
 				  });
       $('#groupsearch').bind('typeahead:selected', function(obj, datum, name) {      
 				 window.location = "/groups/"+datum.id + "/add_contact" ;
