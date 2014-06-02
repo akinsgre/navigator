@@ -1,28 +1,4 @@
-<script type="text/javascript">
-jQuery.noConflict();
- jQuery(document).ready( function() {
-//     jQuery("#new_contact").validate({
-// 	rules: {
-// 	    entry: {
-// 		required: function(element) {
-// 		    alert("Element " );
-// 		    return false;
-// 		}
-		
-// 	    }
-// 	},
-// 	messages: {
-// 	    contact_entry: "Please enter a valid email address"
-// 	}
-//     });
-    
-    jQuery("#entryLabel").text("Please enter a valid " + jQuery("#contact_contact_type_id :selected").text());
-    jQuery("#contact_contact_type_id").change( function () {
-        selectedText = jQuery('#contact_contact_type_id :selected').text() ;
-	jQuery("#entryLabel").text("Please enter a valid " + selectedText);
-    });
-});
-</script>
+
 <div id="addTypes" >
 <div class="resetLayout" >
   <%= form_for @contact, :validate => true do |f| %>

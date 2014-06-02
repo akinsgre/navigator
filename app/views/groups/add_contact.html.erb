@@ -1,11 +1,15 @@
+
 <% provide(:title, 'Sign up') %>
 <h1>Sign up</h1>
 
 <div class="row">
   <div class="span6 " >
     <%= form_for(@contact, :url => groups_save_contact_path) do |f|  %>
-
-    <%= f.label :entry, "Email Address" %>
+<p>
+  Preferred method of contact
+  <%= f.select "type", options_for_select(Contact.select_options) %>
+</p>
+    <%= f.label :entry, "Email Address", :id => "entryLabel" %>
       <%= f.text_field :entry %>
 
       <%= f.label :identifier, "Contact Description" %>

@@ -9,6 +9,7 @@ class Contact < ActiveRecord::Base
 
   require_dependency 'phone'
   require_dependency 'sms'
+  require_dependency 'email'
   
 
   
@@ -23,6 +24,7 @@ class Contact < ActiveRecord::Base
   def email=(email)
     @email = email
   end
+
 
   def self.select_options
     descendants.collect do |d| [d.identify,d.to_s] end
