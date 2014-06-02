@@ -1,10 +1,10 @@
 
 class GroupsController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :except => [:index]
   respond_to :html, :json
 
   def index
-    logger.info "Current User " + current_user.email.to_s + " is subscribed (" + current_user.subscribed?.to_s + ")." unless current_user.nil?
+    Rails.logger.debug "###### let's find some groups"
     @myGroups = Array.new
     if !current_user.nil? then
       current_user.contacts.each do |c|
@@ -17,6 +17,7 @@ class GroupsController < ApplicationController
     else
       @groups = Groups.all
     end
+    Rails.logger.debug "#### Show the groups #{@groups.inspect}"
     respond_with(@groups)
   end
 

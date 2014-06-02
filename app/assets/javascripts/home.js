@@ -1,44 +1,43 @@
 $(function(){
       // instantiate the bloodhound suggestion engine
-      var numbers = new Bloodhound({
-				       datumTokenizer: Bloodhound.tokenizers.obj.whitespace('num'),
-				       queryTokenizer: Bloodhound.tokenizers.whitespace,
-				       local: [
-					   { num: 'one' },
-					   { num: 'two' },
-					   { num: 'three' },
-					   { num: 'four' },
-					   { num: 'five' },
-					   { num: 'six' },
-					   { num: 'seven' },
-					   { num: 'eight' },
-					   { num: 'nine' },
-					   { num: 'ten' }
-				       ]
+      var groups = new Bloodhound(
+	  {
+	      datumTokenizer: function (d) {
+		  return Bloodhound.tokenizers.whitespace(d.value);
+	      },
+	      queryTokenizer: Bloodhound.tokenizers.whitespace,
+	      remote: {
+		  url: '/groups.json',
+		  filter: function (groups) {
+		      return $.map(groups.results, function (group) {
+				       return {
+					   value: group
+				       };
 				   });
-
-      // initialize the bloodhound suggestion engine
-      numbers.initialize();
-
-      // instantiate the typeahead UI
-      $('#groupsearch').typeahead(null, {
-						     displayKey: 'num',
-						     source: numbers.ttAdapter()
-						 });
-
-      $("#emailForm").validate({
-				   rules: {
-				       email: {
-					   required: true,
-					   email: true
-				       }
-				   },
-				   messages: {
-				       email: "Please enter a valid email address"
-				   }
-			       }) ; 
-
-
-
+		  }
+	      }
+	  });
+      
+      groups.initialize();
+      
+      $('#groupsearch').typeahead(null, 
+				  {
+				      name: 'groups',
+				      displayKey: 'value',
+				      source: groups.ttAdapter()
+				  });
+      
+      $("#emailForm").validate(
+	  {
+	      rules: {
+		  email: {
+		      required: true,
+		      email: true
+		  }
+	      },
+	      messages: {
+		  email: "Please enter a valid email address"
+	      }
+	  }) ; 
 
   });
