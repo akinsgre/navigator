@@ -78,7 +78,9 @@ class GroupsController < ApplicationController
     end
   end
   def add_contact
-    
+    @group = Group.find(params[:id])
+    @contact = Contact.new
+    @contact.groups << @group
   end
   def post_contact
     puts "###### #{params}"

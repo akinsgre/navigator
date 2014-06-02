@@ -41,7 +41,7 @@ describe GroupsController do
     describe "GET 'add_contact'" do
       it "should be successful" do
         
-        get 'add_contact', :id => @group.id, :contact_id => @phone.id
+        get 'add_contact', :id => @group.id
         
         puts response.body
         response.should be_successful
