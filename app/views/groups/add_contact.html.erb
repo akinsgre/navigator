@@ -1,9 +1,9 @@
 <% provide(:title, 'Sign up') %>
 <h1>Sign up</h1>
 
-<div class="row" align="left">
-  <div class="span6 offset3" >
-    <%= form_for(@contact, :url => root_path) do |f|  %>
+<div class="row">
+  <div class="span6 " >
+    <%= form_for(@contact, :url => groups_save_contact_path) do |f|  %>
 
       <%= f.label :entry %>
       <%= f.text_field :entry %>
@@ -16,6 +16,7 @@
 
       <%= f.label :password_confirmation, "Confirmation" %>
       <%= f.password_field :password_confirmation %>
+      <br>
 
       <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
     <% end %>
