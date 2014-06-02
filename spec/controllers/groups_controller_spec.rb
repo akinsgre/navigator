@@ -33,5 +33,20 @@ describe GroupsController do
       
     end
   end
-
+  describe GroupsController do
+    before :each do 
+      @group = FactoryGirl.create(:group)
+      @phone = FactoryGirl.create(:phone)
+    end
+    describe "GET 'add_contact'" do
+      it "should be successful" do
+        
+        get 'add_contact', :id => @group.id, :contact_id => @phone.id
+        
+        puts response.body
+        response.should be_successful
+      end
+    end
+    
+  end
 end

@@ -11,7 +11,8 @@ $(function(){
 		  filter: function (groups) {
 		      return $.map(groups.results, function (group) {
 				       return {
-					   value: group
+					   value: group.name,
+					   id:group.id
 				       };
 				   });
 		  }
@@ -24,8 +25,13 @@ $(function(){
 				  {
 				      name: 'groups',
 				      displayKey: 'value',
-				      source: groups.ttAdapter()
+				      source: groups.ttAdapter(),
+				      selected: function() {alert('test');}
 				  });
+      $('#groupsearch').bind('typeahead:selected', function(obj, datum, name) {      
+				 window.location = "/groups/"+datum.id + "/add_contact" ;
+				 
+			     });
       
       $("#emailForm").validate(
 	  {

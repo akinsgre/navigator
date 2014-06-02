@@ -1,6 +1,6 @@
 { "results" : [
 <% @groups.each do |group| %>
-"<%= group.name %>" <% ',' if group == @groups.last %> 
+{"name":"<%= group.name %>","id":1} <% ',' if group == @groups.last %> 
 <% end %>
 ]
 }

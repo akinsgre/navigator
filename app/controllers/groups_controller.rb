@@ -1,6 +1,6 @@
 
 class GroupsController < ApplicationController
-  before_filter :authenticate_user!, :except => [:index]
+  before_filter :authenticate_user!, :except => [:index, :add_contact]
   respond_to :html, :json
 
   def index
@@ -77,11 +77,15 @@ class GroupsController < ApplicationController
       render :action => 'edit'
     end
   end
-
   def add_contact
+    
+  end
+  def post_contact
+    puts "###### #{params}"
     logger.info "Param id = " + params[:id].to_s
+
     @group = Group.find(params[:id])
-    if :contact_id && @group.contacts.add(Contact.find(params[:contact_id]))
+    if :contact_id && @group.contacts << Contact.find(params[:contact_id])
       redirect_to @group, :notice  => "Successfully updated group."
     else
       render :action => 'edit'
