@@ -1,6 +1,5 @@
 .tt-query,
 .tt-hint {
-    width: 396px;
     height: 30px;
     padding: 8px 12px;
     font-size: 24px;
@@ -8,6 +7,7 @@
     border: 2px solid #ccc;
     border-radius: 8px;
     outline: none;
+    width: 100%;
 }
 
 .tt-query {
@@ -16,10 +16,11 @@
 
 .tt-hint {
     color: #999
+
 }
 
 .tt-dropdown-menu {
-    width: 422px;
+    width: 100%;
     margin-top: 12px;
     padding: 8px 0;
     background-color: #fff;
@@ -27,6 +28,8 @@
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 8px;
     box-shadow: 0 5px 10px rgba(0,0,0,.2);
+
+
 }
 
 .tt-suggestion {
@@ -45,6 +48,7 @@
     margin: 0;
 }
 input[type='submit'] {
+    float: center !important;
     background-color: #0c93cb;
     font-size : 1.4em;
     font-weight: bold;
@@ -52,6 +56,11 @@ input[type='submit'] {
     border-radius:3px;
     border-color: #FED271;
     border-style: solid;
+    font-family: Verdana,Helvetica,Arial
+
+}
+input[type='text'] {
+    width:100%;
 }
 
 body  {
@@ -72,14 +81,31 @@ div .resetLayout {
     font-weight : 700 ; 
     font-size : 1.2em ; 
     font-align : left ;
-
 }
 
+.100_button {    
+    font-family: Verdana,Helvetica,Arial;
+    text-align: center;
+    float:center !important;
+    background-color: #0c93cb;
+    width: 100%;
+    padding:20px;
+    font-size:1.4em;
+    color:#fed271;
+    cursor:pointer;
+    border-radius:8px;
+    border-color: #FED271;
+    border-style: solid;
+    font-weight: bold;
+    vertical-align: bottom;
+}
+    
+
 .button {
-    font-family:Ubuntu,Verdana,Helvetica;
+    font-family: Verdana,Helvetica,Arial;
+    text-align: center;
     float:center;
     background-color: #0c93cb;
-    width:180px;
     height:70px;
     padding:20px;
     font-size:1.4em;
@@ -93,7 +119,7 @@ div .resetLayout {
 }
 
 .next { 
-    font-family:Ubuntu,Verdana,Helvetica;    
+    font-family: Verdana,Helvetica,Arial;    
     float: right;
     background-color: #0c93cb;
     width:60px;
@@ -105,9 +131,10 @@ div .resetLayout {
     border-color: #FED271;
     border-style: solid;
     font-weight: bold;
+    text-align: center;
 }
 .prev {
-    font-family:Ubuntu,Verdana,Helvetica;
+    font-family: Verdana,Helvetica,Arial;
     float: left;
     background-color: #0c93cb;
     width:60px;
@@ -120,12 +147,14 @@ div .resetLayout {
     border-color: #FED271;
     border-style: solid;
     font-weight: bold;
+    text-align: center;
 
 }
 h1, h2, h3 {
     color: #0c93cb;
     font-family: 'Open Sans', sans-serif;
     font-size: 1.6em;
+    text-align: center;
 }
 h1 a {
     text-decoration:none;
@@ -139,7 +168,7 @@ h4 {
     padding-left:100px;
 }
 li {
-     font-family:Ubuntu,Verdana,Helvetica;
+     font-family: Verdana,Helvetica,Arial;
     font-size:1.4em;
     color: #EED090;  
     float:left;
@@ -227,8 +256,7 @@ background-color: #0c93cb; }
     overflow:auto;
     background-color:#ffe;
     border-radius:20px;
-    font-family:Ubuntu,Verdana,Helvetica;
-
+    font-family: Verdana,Helvetica,Arial;
 }
 
 .col2 {
@@ -241,7 +269,7 @@ background-color: #0c93cb; }
     overflow:auto;
     background-color:#ffe;
     border-radius:20px;
-    font-family:Ubuntu,Verdana,Helvetica;
+    font-family: Verdana,Helvetica,Arial;
 
 }
 
@@ -255,7 +283,7 @@ background-color: #0c93cb; }
     overflow:auto;
     background-color:#ffe;
     border-radius:20px;
-    font-family:Ubuntu,Verdana,Helvetica;
+    font-family: Verdana,Helvetica,Arial;
 }
 
 .footerMenu {

@@ -6,7 +6,7 @@
   <div class="span6 " >
     <%= form_for(@contact, :url => groups_save_contact_path) do |f|  %>
 <p>
-  Preferred method of contact
+  Preferred method of contact <br>
   <%= f.select "type", options_for_select(Contact.select_options) %>
 </p>
     <%= f.label :entry, "Email Address", :id => "entryLabel" %>
