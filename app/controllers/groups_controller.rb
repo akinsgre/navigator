@@ -1,6 +1,6 @@
 
 class GroupsController < ApplicationController
-  before_filter :authenticate_user!, :except => [:index, :add_contact]
+  before_filter :authenticate_user!, :except => [:index, :add_contact, :save_contact]
   respond_to :html, :json
 
   def index
@@ -80,13 +80,13 @@ class GroupsController < ApplicationController
   def add_contact
     @group = Group.find(params[:id])
     @contact = Contact.new
-    @contact.groups << @group
+
   end
   def save_contact
-    puts "###### #{params}"
-    logger.info "Param id = " + params[:id].to_s
+    Rails.logger.info "###### #{params}"
+    Rails.logger.info "Param id = #{params[:id].to_s}"
 
-    @group = Group.find(params[:contact][:group_id])
+    @group = Group.find(params[:group][:id])
 
     @contact = Contact.new
     @contact.entry = params[:contact][:entry]
@@ -94,8 +94,10 @@ class GroupsController < ApplicationController
     @group.contacts << @contact
     @group.save
     
-    if @group.save
+    if @group.save && current_user
       redirect_to @group, :notice  => "Successfully updated group."
+    elsif @group.save && !current_user
+      redirect_to :root
     else
       render :action => 'edit'
     end

@@ -30,6 +30,7 @@ class MessagesController < ApplicationController
         " message to " + c.name + " : " + c.phone + 
         " with " + @message.message + " to " + message.group.name
       # TODO send message per contacts type
+      Rails.logger.debug "Sending the message #{@message.message} to  #{c.type} : #{c.inspect}"
       case c.type
       when "Sms"
         # @twilioMessage = @account.sms.messages.create({:from => '+17249071027', :to => c.phone, :body => @message.message})

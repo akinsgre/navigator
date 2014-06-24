@@ -257,10 +257,9 @@ border-radius:5px;
 #menu li a:hover { color: white; 
 background-color: #0c93cb; }
 
-.outerDiv {
+div.span12 {
     margin:30px;
     padding:20px;
-
     border: 2px solid #ccc;
     overflow:auto;
     background-color:#ffd372;

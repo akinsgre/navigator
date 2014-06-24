@@ -8,7 +8,7 @@ describe GroupsController do
   end
   describe "GET 'create'" do
     it "should be successful" do
-      ##<ActionDispatch::Http::UploadedFile:0x00000103ea9148 @tempfile=#<Tempfile:/var/folders/5c/v_l0d9zd6bbbjmvcvjlh8sgh0000gn/T/RackMultipart20140526-7087-1padjo>, @original_filename="member_list.csv", @content_type="text/csv", @headers="Content-Disposition: form-data; name=\"group[bulk_upload]\"; filename=\"member_list.csv\"\r\nContent-Type: text/csv\r\n">
+
       post 'create',{:group => {"name"=>"Test", "description"=>"Test Group", "user_id"=>"1", "sponsor_email"=>"", 
         "bulk_upload"=>""
         }}
@@ -49,7 +49,11 @@ describe GroupsController do
     end
     describe "POST 'save_contact'" do
       it "should save the contact to the group" do
-        post "save_contact" , :contact => {:entry => "7244547790", :identifier => "Greg's email", :group_id => @group.id }
+        @group.contacts.length.should eq(0)
+        post "save_contact" , "group"=>{"id"=>"1"}, "contact"=>{"type"=>"Phone", "entry"=>"724 454 7790", "identifier"=>"TEst"}
+        group = assigns[:group]
+        group.should_not be_nil
+        group.contacts.length.should eq(1)
       end
     end
   end

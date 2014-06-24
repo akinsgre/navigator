@@ -1,30 +1,30 @@
 <%= nested_form_for @group do |f| %>
-  <%= f.error_messages %>
-  <fieldset>
+<%= f.error_messages %>
+<fieldset>
 
   <p class="resetLayout">
 
     <legend>New Group</legend>
-    <p class="resetLayout">
+  <p class="resetLayout">
 
     <div>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
     </div>
     <div>
-    <%= f.label :description %>
-    <%= f.text_field :description %>
+      <%= f.label :description %>
+      <%= f.text_field :description %>
     </div>
     <%= f.hidden_field :user_id %>
   </p>
   <% if current_user.admin? %>
-       <p>
-	 Owned by: 
-	 <%= f.collection_select :user_id, User.all(:order => "email"), :id, :email, :include_blank => true %>
+  <p>
+    Owned by: 
+    <%= f.collection_select :user_id, User.all(:order => "email"), :id, :email, :include_blank => true %>
 
-       </p>
+  </p>
   <% end %>
-  </fieldset>
+</fieldset>
 
 
 <fieldset>
@@ -42,6 +42,5 @@
     <p><%= f.link_to_add "Add a contact", :contacts %></p>
   <p><%= f.submit %></p>
   </fieldset>
-
 
 <% end %>

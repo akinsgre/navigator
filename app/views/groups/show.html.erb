@@ -12,7 +12,7 @@
 </p>
 <table>
 <% @group.contacts.each do |c| %>
-<tr><td><%= button_to "X", { :action => "remove_contact", :id => @group.id,  :contact_id => c.id }, :method => :put %></td><td><%= link_to c.name, edit_contact_path(c) %></td><td><%= c.entry %></td></tr>
+<tr><td><%= button_to "X", { :action => "remove_contact", :id => @group.id,  :contact_id => c.id }, :method => :put %></td><td><%= link_to c.name, edit_group_contact_path(@group, c) %></td><td><%= c.entry %></td></tr>
 <% end %>
 </table>
 
