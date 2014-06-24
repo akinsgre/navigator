@@ -1,42 +1,46 @@
-<% title "User" %>
-<%= current_user.email %>
-<ul>
-
-
-<li>Groups I Maintain
-<ul><%= link_to "Add a Group", new_user_group_path(current_user) %></ul>
-<% if current_user.groups.empty? %>
-<p>You have no groups</p>
-<% else %>
-<ul>
-<% @groups.each do |group| %>	
-<li><%= link_to group.name, group %></li>
-<% end %>
-</ul>
-<% end %>
-</li>
-<li>Groups I Follow 
-  <ul>
-    <% @following.each do |group| %>
-    <li><%= group.name %></li>
-    <% end %>
-  </ul>
-</li>
-<li>Contacts
-<ul><%= link_to "Add a Contact", new_user_contact_path(current_user) %>
-<ul>
-<%= render :partial => "contacts/contact", :collection => current_user.contacts %>
-</ul>
-</li>
-<li>All other Groups (Click to Join)
-<ul>
-   <% @otherGroups.each do |group| %>
-      <li><%= link_to group.name,  group_path(group) %> - <a id="addContactBtn<%=group.id%>" href="#">Join</a>
-
-      </li>
-     <% end %>
-</ul>
-</li>
-
-<div id="addContactPopup">
+<head><SCRIPT LANGUAGE="JavaScript">
+<!--
+function JumpToIt(frm) {
+   var newPage = frm.url.options[frm.url.selectedIndex].value
+   if (newPage != "None") {
+       location.href=newPage
+   }
+}
+//-->
+</SCRIPT></head>
+<% title "User" %><br>
+<%= current_user.email %><br>
+<div class="col1" align="center" >
+ <h1>Group Admin</h1>
+<form>
+<select multiple name="url" width=20 >
+<option value="None" selected="selected" onClick="JumpToIt(this.form)"> Select a Page From this list --->
+<option value="http://localhost:3000/groups" onClick="JumpToIt(this.form)">Add A Group
+</option>
+<option value="http://geyerpac.com/">Add Members to Your Group
+</option>
+<option value="option3">Send Invite</option>
+<option value="http://localhost:3000/users/sign_up" onClick="JumpToIt(this.form)">Start Your Group</option>
+</select>
+</form>
 </div>
+
+<div class="col2" align="center">
+<a href="http://localhost:3000/groups"><h1>Groups I Follow</h1></a></br>
+<div class="dropdown"><ul>
+</div>
+<img src="/assets/favicon.gif" align="left"></img>
+</div>
+
+<div class="col3" align="center">
+<h1> Join Existing Group</h1>
+<p>
+Start typing below to find your group
+</p>
+<input id="groupsearch" class="typehead tt-input" type="text" icon="/favicon.ico" placeholder="Group Name" autocomplete="off" spellcheck="false" style="position: relative;
+	vertical-align: top; background-color: transparent;" dir="auto">
+   </input><br>
+<img src="/assets/favicon.gif" align="left"></img>									 						    
+
+</div>
+

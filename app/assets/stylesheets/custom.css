@@ -57,9 +57,11 @@ input[type='submit'] {
     border-color: #FED271;
     border-style: solid;
     font-family: Verdana,Helvetica,Arial
+    background-image: url(/images/favicon.gif);
 
 }
 input[type='text'] {
+
     width:100%;
 }
 
@@ -83,8 +85,8 @@ div .resetLayout {
     font-align : left ;
 }
 
-.100_button {    
-    font-family: Verdana,Helvetica,Arial;
+.100_button { 
+    icon: url('/images/favicon.gif');
     text-align: center;
     float:center !important;
     background-color: #0c93cb;
@@ -99,7 +101,38 @@ div .resetLayout {
     font-weight: bold;
     vertical-align: bottom;
 }
-    
+
+.buttonBG {
+    background-color: #0c93cb;
+    height:70%;
+    width:100%;
+    border-radius: 8px;
+}
+
+.buttonB {
+    font-family: Verdana,Helvetica,Arial;
+    text-align: center;
+    float:center;
+    background-color: #0c93cb;
+    min-height:70px;
+    min-width:221px;
+    width:100%;
+    height:45%;
+    padding:25px;
+    float: center;
+    font-size:1.4em;
+    color:#fed271;
+    background: url('/assets/favicon.gif');
+    padding-right:16px;
+    background-color:transparent;
+    background-position:left;
+    background-repeat:no-repeat;
+    border-radius:8px;
+    border-color: #FED271;
+    border-style: solid;
+    font-weight: bold;
+    vertical-align: bottom;
+}    
 
 .button {
     font-family: Verdana,Helvetica,Arial;
@@ -116,6 +149,10 @@ div .resetLayout {
     border-style: solid;
     font-weight: bold;
     vertical-align: bottom;
+    background-image: url(/images/favicon.ico);
+    background-repeat: no-repeat:
+    background-position: left;
+    padding-left: 16px;
 }
 
 .next { 
@@ -132,6 +169,7 @@ div .resetLayout {
     border-style: solid;
     font-weight: bold;
     text-align: center;
+    background-image: url(/images/favicon.ico);
 }
 .prev {
     font-family: Verdana,Helvetica,Arial;
@@ -148,7 +186,7 @@ div .resetLayout {
     border-style: solid;
     font-weight: bold;
     text-align: center;
-
+    background-image: url(/images/favicon.ico);
 }
 h1, h2, h3 {
     color: #0c93cb;
@@ -247,13 +285,13 @@ background-color: #0c93cb; }
 
 }
 .col1 {
-    float : left ; 
-    width:220px;
-    height:300px;
+    float : left ;
+    max-width:220px;
+    max-height:300px;
     margin:15px;
     padding:20px;
     border: 2px solid #ccc;
-    overflow:auto;
+    overflow:hidden;
     background-color:#ffe;
     border-radius:20px;
     font-family: Verdana,Helvetica,Arial;
@@ -261,12 +299,12 @@ background-color: #0c93cb; }
 
 .col2 {
     float : left ; 
-    width:220px;
-    height:300px;
+    max-width:220px;
+    max-height:300px;
     margin:15px;
     padding:20px;
     border: 2px solid #ccc;
-    overflow:auto;
+    overflow:hidden  ;
     background-color:#ffe;
     border-radius:20px;
     font-family: Verdana,Helvetica,Arial;
@@ -275,15 +313,22 @@ background-color: #0c93cb; }
 
 .col3 {
     float : left ; 
-    width:220px;
-    height:300px;
+    max-width:220px;
+    max-height:300px;
     margin:15px;
     padding:20px;
     border: 2px solid #ccc;
-    overflow:auto;
+    overflow:hidden;
     background-color:#ffe;
     border-radius:20px;
     font-family: Verdana,Helvetica,Arial;
+    text-align: left !important;
+}
+
+.dropdown {
+   max-width:220px;
+   float: left;
+
 }
 
 .footerMenu {
