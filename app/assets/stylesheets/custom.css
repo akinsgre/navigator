@@ -289,6 +289,7 @@ div.span12 {
     float : left ;
     max-width:220px;
     max-height:300px;
+    min-height:250px;
     margin:15px;
     padding:20px;
     border: 2px solid #ccc;
@@ -301,6 +302,7 @@ div.span12 {
 .col2 {
     float : left ; 
     max-width:220px;
+    min-height:250px;
     max-height:300px;
     margin:15px;
     padding:20px;
@@ -316,6 +318,7 @@ div.span12 {
     float : left ; 
     max-width:220px;
     max-height:300px;
+    min-height:250px;
     margin:15px;
     padding:20px;
     border: 2px solid #ccc;

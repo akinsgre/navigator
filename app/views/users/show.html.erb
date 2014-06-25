@@ -1,4 +1,4 @@
-<<<<<<< Updated upstream
+
 <head><SCRIPT LANGUAGE="JavaScript">
 <!--
 function JumpToIt(frm) {
@@ -9,28 +9,26 @@ function JumpToIt(frm) {
 }
 //-->
 </SCRIPT></head>
-<% title "User" %><br>
-<%= current_user.email %><br>
+
+<h1><%= current_user.email %></h1><br>
 <div class="col1" align="center" >
  <h1>Group Admin</h1>
 <form>
 <select multiple name="url" width=20 >
-<option value="None" selected="selected" onClick="JumpToIt(this.form)"> Select a Page From this list --->
-<option value="http://localhost:3000/groups" onClick="JumpToIt(this.form)">Add A Group
-</option>
-<option value="http://geyerpac.com/">Add Members to Your Group
-</option>
-<option value="option3">Send Invite</option>
-<option value="http://localhost:3000/users/sign_up" onClick="JumpToIt(this.form)">Start Your Group</option>
+<option value="None" selected="selected" onClick="JumpToIt(this.form)"> Select a Group From this list </option>
+<% @groups.each do |g| %>
+<option value="<%= user_groups_path(current_user) %>" onClick="JumpToIt(this.form)"><%= g.name %></option>
+<% end %>
 </select>
 </form>
-</div>
 
+
+</div>
 <div class="col2" align="center">
 <a href="http://localhost:3000/groups"><h1>Groups I Follow</h1></a></br>
 <div class="dropdown"><ul>
 </div>
-<img src="/assets/favicon.gif" align="left"></img>
+<img src="/assets/favicon.gif" align="left"></img><br>
 </div>
 
 <div class="col3" align="center">
