@@ -15,7 +15,9 @@
 <tr><td><%= button_to "X", { :action => "remove_contact", :id => @group.id,  :contact_id => c.id }, :method => :put %></td><td><%= link_to c.name, edit_group_contact_path(@group, c) %></td><td><%= c.entry %></td></tr>
 <% end %>
 </table>
-
+<input id="group_bulk_upload" name="group[bulk_upload]" type="file">
+</input>
+</div>
 <% if @group.user_id == current_user.id %>
 <%= link_to "Add a new contact", new_group_contact_path(@group ) %>
 <% end %>

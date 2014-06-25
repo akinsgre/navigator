@@ -9,8 +9,6 @@
 <% end %>
 <% unless current_user.subscribed? %>
 <div class="resetLayout" >
-<p>You have no groups assigned.  
-Join Groups or <%= link_to "become a premium member to create a  group.", new_user_subscription_path(current_user) %></p>
 
 </div>
 <% end %>
