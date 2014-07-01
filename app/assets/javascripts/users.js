@@ -22,13 +22,13 @@ $( function(){
        
        groups.initialize();
        
-       $('#groupsearch2').typeahead(null, 
+       $('#groupsearch').typeahead(null, 
        				      {
        					  name: 'groups',
        					  displayKey: 'value',
        					  source: groups.ttAdapter()
        				      });
-        $('#groupsearch2').bind('typeahead:selected', function(obj, datum, name) {      
+        $('#groupsearch').bind('typeahead:selected', function(obj, datum, name) {      
        				     window.location = "/groups/"+datum.id + "/add_contact" ;
        
        				 });

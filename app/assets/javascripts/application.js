@@ -15,4 +15,5 @@
 //= require formToWizard
 //= require home.js
 //= require group.js
+//= require application.js
 
