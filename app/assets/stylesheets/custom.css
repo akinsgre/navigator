@@ -49,6 +49,7 @@
 }
 input[type='submit'] {
     float: center !important;
+    min-height: 40px;
     background-color: #0c93cb;
     font-size : 1.4em;
     font-weight: bold;
@@ -91,6 +92,7 @@ div .resetLayout {
     float:center !important;
     background-color: #0c93cb;
     width: 100%;
+    min-height: 125px;
     padding:20px;
     font-size:1.4em;
     color:#fed271;
@@ -161,8 +163,7 @@ div .resetLayout {
     font-family: Verdana,Helvetica,Arial;    
     float: right;
     background-color: #0c93cb;
-    width:60px;
-    height:15px;
+    min-height:15%;
     padding:3px;
     font-size:1.2em;
     color:#fed271;    cursor:pointer;
@@ -178,7 +179,7 @@ div .resetLayout {
     float: left;
     background-color: #0c93cb;
     width:60px;
-    height:15px;
+    min-height:15%;
     padding:3px;
     font-size:1.2em;
     color:#fed271;
@@ -260,6 +261,7 @@ border-radius:5px;
 background-color: #0c93cb; }
 
 div.span12 {
+    max-width: 880px;
     margin:30px;
     padding:20px;
     border: 2px solid #ccc;
@@ -301,7 +303,8 @@ div.span12 {
 
 .col2 {
     float : left ; 
-    max-width:220px;
+    max-width:300px;
+    height: 100%;
     min-height:250px;
     max-height:300px;
     margin:15px;
@@ -378,13 +381,12 @@ ul li{
   display: inline;
   margin: 5px;
   padding: 5px;
-  color: #0C93CB;
+  color:  #F8D286;
 }
 ul li span {
-    color:  #F8D286;
+    color:  #0c93cb;
     margin: 5px;
 }
-
 
 #steps {
 list-style: none outside none;
@@ -396,19 +398,20 @@ background-image: url('/assets/background2.png');
 border-style: solid;
 border-color: #F8D286;
 border-width: 3px;
-color: #0c93cb;
+color:#fed271;
 }
 #steps li.current {
-    color:#F8D286;
-    background-color: #0c93cb;
+    color: #0c93cb;
+    background-color: #F8D286;
     font-weight: bold;
-    text-decoration: underline;
     font-size: 1.9em;
     border-style: solid;
-    border-color: #F8D286;
+    border-color: #0c93cb;
     border-width: 3px;
     
   }
+
+
 
 #flash_notice, #flash_error, #flash_alert {
     padding: 5px 8px;
