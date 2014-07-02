@@ -10,6 +10,7 @@ $( function(){
 	       remote: {
 		   url: '/groups.json',
 		   filter: function (groups) {
+		       console.log('### test ' + JSON.stringify(groups));
 		       return $.map(groups.results, function (group) {
 					return {
 					    value: group.name,
@@ -20,12 +21,11 @@ $( function(){
 	       }
 	   });
        
-       groups.initialize();
+       var initPromise = groups.initialize();
+       initPromise.done(function() {console.log('fail');}).fail(function() {console.log('Fail');});
        
-       $('#groupsearch').typeahead(null, 
+       $('#groupsearch').typeahead({}, 
        				      {
-       					  name: 'groups',
-       					  displayKey: 'value',
        					  source: groups.ttAdapter()
        				      });
         $('#groupsearch').bind('typeahead:selected', function(obj, datum, name) {      
