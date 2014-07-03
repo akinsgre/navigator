@@ -112,6 +112,9 @@ div .resetLayout {
     max-height:75%;
     border-radius: 8px;
 }
+.CGbuttonalign {
+    float: right;
+}
 
 .buttonB {
     font-family: Verdana,Helvetica,Arial;
