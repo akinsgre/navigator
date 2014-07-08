@@ -61,6 +61,13 @@ input[type='submit'] {
     background-image: url(/images/favicon.gif);
 
 }
+input[type='file'] {
+        background-color: #0c93cb;
+    font-size : 1.4em;
+    font-weight: bold;
+    color:#fed271;
+}
+
 input[type='text'] {
 
     width:100%;
@@ -114,6 +121,8 @@ div .resetLayout {
 }
 .CGbuttonalign {
     float: right;
+    align:right;
+    
 }
 
 .buttonB {
@@ -264,13 +273,18 @@ border-radius:5px;
 background-color: #0c93cb; }
 
 div.span12 {
+ background: -webkit-linear-gradient(left, #FAD383 , #c4c4c4); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(right, #FAD383, #c4c4c4); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(right, #FAD383, #c4c4c4); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to right, #FAD383, #c4c4c4); /* Standard syntax */
+  //background: url(''); 
+  background-size: 100% 100%;
+  height:100%
     max-width: 880px;
     margin:30px;
     padding:20px;
     border: 2px solid #ccc;
     overflow:auto;
-    background-color:#ffd372;
-    background-image:url('/assets/background2.png');
     background-repeat:repeat-x;
     border-radius:20px;
     clear:both;
@@ -302,37 +316,6 @@ div.span12 {
     background-color:#ffe;
     border-radius:20px;
     font-family: Verdana,Helvetica,Arial;
-}
-
-.col2 {
-    float : left ; 
-    max-width:300px;
-    height: 100%;
-    min-height:250px;
-    max-height:300px;
-    margin:15px;
-    padding:20px;
-    border: 2px solid #ccc;
-    overflow:hidden  ;
-    background-color:#ffe;
-    border-radius:20px;
-    font-family: Verdana,Helvetica,Arial;
-
-}
-
-.col3 {
-    float : left ; 
-    max-width:220px;
-    max-height:300px;
-    min-height:250px;
-    margin:15px;
-    padding:20px;
-    border: 2px solid #ccc;
-    overflow:hidden;
-    background-color:#ffe;
-    border-radius:20px;
-    font-family: Verdana,Helvetica,Arial;
-    text-align: left !important;
 }
 
 .dropdown {

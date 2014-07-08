@@ -10,7 +10,7 @@
 <% unless current_user.subscribed? %>
 <div class="resetLayout" >
 
-</div>
+
 <% end %>
 Groups I'm in : <%= @myGroups.length %>
 <table>
@@ -34,6 +34,7 @@ Groups I'm in : <%= @myGroups.length %>
       <td><%= link_to "Edit", edit_group_path(group) %></td>
       <td><%= link_to "Destroy", group, :confirm => 'Are you sure?', :method => :delete %></td>
     </tr>
+ </div>
   <% end %>
 </table>
 
@@ -42,3 +43,4 @@ Groups I'm in : <%= @myGroups.length %>
 <% unless @subscriber.nil? %>
 <p><%= link_to "New Group", new_group_path %></p>
 <% end %>
+

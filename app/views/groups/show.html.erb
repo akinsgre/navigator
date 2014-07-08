@@ -16,7 +16,7 @@
 </table>
 <input id="group_bulk_upload" name="group[bulk_upload]" class="button" type="file">
 </input>
-</div>
+
 <% if @group.user_id == current_user.id %>
 <%= link_to "Add a new contact", new_group_contact_path(@group ) %>
 <% end %>
@@ -26,3 +26,4 @@
   <%= link_to "Destroy", @group, :confirm => 'Are you sure?', :method => :delete %> |
   <%= link_to "View All", groups_path %>
 </p>
+</div>
