@@ -6,6 +6,7 @@ before_filter :authorize, :only => [:index]
   end
 
   def show
+    @group = Group.find(params[:group_id])
     @contact = Contact.find(params[:id])
   end
 
@@ -25,30 +26,33 @@ before_filter :authorize, :only => [:index]
   end
 
   def create
-    @contact = Contact.new(params[:contact])
+    Rails.logger.info "#### Params are #{params.inspect}"
+    @contact = Contact.new(params[:contact].permit(:name, :user_id, :entry, :type))
     @contact.type = params[:contact][:type]
-
+    
     unless params[:contact][:group].nil? || params[:contact][:group][:id].nil?
       group_id = params[:contact][:group][:id]
-      logger.info "param Group[:id] is " + group_id
-      group = Group.find(group_id)
-      logger.info "Group is " + group.name
-      @contact.groups.push(group)
+      logger.info "##### param Group[:id] is " + group_id
+      @group = Group.find(group_id)
+      logger.info "##### Group is " + @group.name
+      @contact.groups.push(@group)
     end
     case @contact.type 
     when "Phone" 
       @typedContact = @contact.becomes(Phone)
     when "Sms"
       @typedContact = @contact.becomes(Sms)
+    when "Email"
+      @typedContact = @contact.becomes(Email)
     else 
-      logger.info "This " + @contact.type + " is not a type"
+      Rails.logger.info "This #{@contact.type} is not a type"
       raise "Not a supported type"
     end
     logger.info "@contact has  " + @contact.groups.size.to_s + " groups."
     @typedContact.groups = @contact.groups
     logger.info "@typedContact has  " + @typedContact.groups.size.to_s + " groups."
     if @typedContact.save
-      redirect_to @contact , :notice => "Successfully created contact."
+      redirect_to group_contact_path(@group, @contact) , :notice => "Successfully created contact."
     else
       #Move the errors from typedContact because @contact is going to be
       # used in the _form after the call to render

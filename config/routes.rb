@@ -3,6 +3,7 @@ Navigator::Application.routes.draw do
   get "sponsors/info"
 
   post "email/create"
+  get "email/show"
   get "profile/edit"
   get "groups/:id/add_contact", :to => 'groups#add_contact'
   post "groups/save_contact", :to => "groups#save_contact"
