@@ -1,20 +1,25 @@
+<div class="container">
 <div class="fullCol">
 <h2>Sign up</h2>
 
+
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+ <div class="row" align="center"> <%= devise_error_messages! %></div><br /><br />
 
   <div><%= f.label :email %><br />
+ 
+
   <%= f.email_field :email %></div>
 
   <div><%= f.label :password %><br />
+
   <%= f.password_field :password %></div>
 
   <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
-
+ <%= f.password_field :password_confirmation %><br />
  <%= f.submit "Sign up" %>
 <% end %>
-
+</div>
 <%= render :partial => "devise/shared/links_sans_signin" %>
+</div>
 </div>

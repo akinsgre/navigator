@@ -1,9 +1,12 @@
+<div class="container fluid" width="93%">
+
 <%= nested_form_for @group do |f| %>
-<%= f.error_messages %>
+<%= f.error_messages %>   
+<div>
 <fieldset>
 
   <p class="resetLayout">
-
+    <div>
     <legend>New Group</legend>
   <p class="resetLayout">
 
@@ -25,7 +28,7 @@
   </p>
   <% end %>
 </fieldset>
-
+</div>
 
 <fieldset>
     <legend>Sponsor Info</legend>
@@ -39,8 +42,9 @@
        <%= c.text_field :name %>
     <% end %>
     <p>Upload a list of members <%= f.file_field :bulk_upload %></p>
-    <p><%= f.link_to_add "Add a contact", :contacts %></p>
+    <p><%= f.link_to_add "Add a contact", :contacts %></p></ br>
   <p><div class="CGbuttonalign" ><%= f.submit %></p></div>
   </fieldset>
 
 <% end %>
+</div>

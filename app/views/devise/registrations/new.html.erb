@@ -1,20 +1,21 @@
+<div class="container fluid">
 <div class="fullCol">
-<h2>Sign </h2>
-
+<div class="row fluid" align="center"><h2>Sign </h2></div>
+<div class="row">
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
+</div>
+  <div class="row fluid"><%= f.label :email %><br /></div>
+ <div class="row fluid"> <%= f.email_field :email %></div>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
+  <div class="row fluid"><%= f.label :password %><br /></div>
+ <div class="row fluid"> <%= f.password_field :password %></div>
 
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
+  <div class="row fluid"><%= f.label :password_confirmation %><br /></div>
+ <div class="row fluid"> <%= f.password_field :password_confirmation %></div>
 
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
-
-  <div><%= f.submit "Sign up" %></div>
+  <div class="row fluid">><%= f.submit "Sign up" %></div>
 <% end %>
-
 <%= render :partial => "devise/shared/links" %>
+</div>
 </div>
