@@ -186,6 +186,7 @@ div .resetLayout {
     border-style: solid;
     font-weight: bold;
     text-align: center;
+    vertical-align: bottom;
 }
 .prev {
     font-family: Verdana,Helvetica,Arial;

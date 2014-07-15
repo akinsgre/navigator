@@ -1,20 +1,24 @@
-<div class="container-fluid" width="93%">
-<%= nested_form_for @group do |f| %>
-<%= f.error_messages %>
-<div>
+<div class="container-fluid" width="100%">
+
+<%= nested_form_for @group do |f| %><br/>
+
+<%= f.error_messages %><br/><br/>
+<div>	
 <fieldset>
-    <div class="span11">
+
       <p class="resetLayout">
+	<div class="row-fluid">
+    <div class="span10">
     <legend>New Group</legend>
-    
-    <div class="span4">
+    </div>
+    <div class="span10">
       <%= f.label :name %></div>
-    <div class="span4">
+    <div class="span10">
       <%= f.text_field :name %>
     </div><br/><br/><br/>
-    <div class="span4">
+    <div class="span10">
       <%= f.label :description %></div>
-    <div class="span4">
+    <div class="span10">
 <%= f.text_field :description %>
     </div>
     <%= f.hidden_field :user_id %>
