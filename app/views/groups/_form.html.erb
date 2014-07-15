@@ -1,22 +1,21 @@
-<div class="container fluid" width="93%">
-
+<div class="container-fluid" width="93%">
 <%= nested_form_for @group do |f| %>
-<%= f.error_messages %>   
+<%= f.error_messages %>
 <div>
 <fieldset>
-
-  <p class="resetLayout">
-    <div>
+    <div class="span11">
+      <p class="resetLayout">
     <legend>New Group</legend>
-  <p class="resetLayout">
-
-    <div>
-      <%= f.label :name %>
+    
+    <div class="span4">
+      <%= f.label :name %></div>
+    <div class="span4">
       <%= f.text_field :name %>
-    </div>
-    <div>
-      <%= f.label :description %>
-      <%= f.text_field :description %>
+    </div><br/><br/><br/>
+    <div class="span4">
+      <%= f.label :description %></div>
+    <div class="span4">
+<%= f.text_field :description %>
     </div>
     <%= f.hidden_field :user_id %>
   </p>
@@ -29,7 +28,7 @@
   <% end %>
 </fieldset>
 </div>
-
+<div class="row-fluid">
 <fieldset>
     <legend>Sponsor Info</legend>
     <%= f.label :sponsor_email %>
@@ -37,14 +36,18 @@
     <p>You don't have to have a sponsor; if you don't have one, your messages will be supported by one of our other advertisers.</p>
   </fieldset>
   <fieldset>
+    <div class="span2">
     <legend>Members</legend>
     <%= f.fields_for :contacts do |c| %>
        <%= c.text_field :name %>
-    <% end %>
+    <% end %></div>
     <p>Upload a list of members <%= f.file_field :bulk_upload %></p>
-    <p><%= f.link_to_add "Add a contact", :contacts %></p></ br>
-  <p><div class="CGbuttonalign" ><%= f.submit %></p></div>
-  </fieldset>
+    <p><%= f.link_to_add "Add a contact", :contacts %></p></ br></div>
+<div class=row-fluid">
+<p><div class="CGbuttonalign" >  <%= f.submit %>
 
-<% end %>
+</p></div>
+  </fieldset></div>
 </div>
+<% end %>
+

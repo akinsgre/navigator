@@ -70,16 +70,18 @@ input[type='file'] {
 
 input[type='text'] {
 
-    width:100%;
+    width:90%;
 }
 
 body  {
-    width:1000px;
+    width:98%;
     background-color:#c4c4c4;
     background-image:url('/assets/background1.png');
     background-repeat:repeat-x;
     font-family: Verdana, Helvetica, Arial;
     font-size: 14px;
+    overflow:visible;
+    y-overflow:scroll;
 }
 
 div .resetLayout {
@@ -120,8 +122,8 @@ div .resetLayout {
     border-radius: 8px;
 }
 .CGbuttonalign {
-    float: right;
-    align:right;
+    float: left;
+    align:left;
     
 }
 
@@ -173,7 +175,7 @@ div .resetLayout {
 
 .next { 
     font-family: Verdana,Helvetica,Arial;    
-    float: right;
+    float: center;
     background-color: #0c93cb;
     min-height:15%;
     padding:3px;
@@ -184,7 +186,6 @@ div .resetLayout {
     border-style: solid;
     font-weight: bold;
     text-align: center;
-    background-image: url(/images/favicon.gif);
 }
 .prev {
     font-family: Verdana,Helvetica,Arial;
@@ -229,7 +230,7 @@ li {
 
 .banner {
     padding-left : 30px ;
-    width:900px;
+    width:100%;
 clear:both;
 }
 .title {
@@ -252,7 +253,7 @@ list-style: none;
 margin: 0px 0 20px 0; 
 padding: 0; 
 float: left; 
-width : 800px;
+width : 95%;
 
 }
 #menu li { 
@@ -272,6 +273,11 @@ border-radius:5px;
 #menu li a:hover { color: white; 
 background-color: #0c93cb; }
 
+div.span9 {
+ resize:auto;
+ max-width:80%;    
+}
+
 div.span12 {
  background: -webkit-linear-gradient(top, #FAD383 , #c4c4c4); /* For Safari 5.1 to 6.0 */
   background: -o-linear-gradient(bottom, #FAD383, #c4c4c4); /* For Opera 11.1 to 12.0 */
@@ -280,35 +286,34 @@ div.span12 {
   //background: url(''); 
   background-size: 100% 100%;
   height:100%
-    max-width: 880px;
-    margin:30px;
-    padding:20px;
-    border: 2px solid #ccc;
-    overflow:auto;
+  width:96%;
+    margin:22%;
+    padding:4%;
+    border: 2px solid #0c93cb;
+    overflow:visible;
     background-repeat:repeat-x;
     border-radius:20px;
     clear:both;
+    float:left;
 }
 .bubble {
-    width:100px;
+    width:;
 
 }
 .fullCol {
-    float : center ; 
-    width:93%;
-    margin:15px;
-    padding:20px;
+    float: center ; 
+    width:98%;
+    margin:1%;
+    padding:1%;
     border: 2px solid #ccc;
-    overflow:auto;
+    overflow:visible;
     background-color:#ffe;
-    border-radius:20px;
-
+   
 }
 .col1 {
     float : left ;
     max-width:220px;
-    max-height:300px;
-    min-height:250px;
+    min-height:100%;
     margin:15px;
     padding:20px;
     border: 2px solid #ccc;
@@ -356,12 +361,36 @@ a {
 }
 
 #container {
-    width: 75%;
+    width: 7ul .footer {
+    display: inline ;
+    list-style: none;
+}
+ul li .footer{
+    display: inline ;
+    list-style: none;
+}
+
+a img {
+    border: none;
+}
+
+a {
+    color: #0000FF;
+}
+
+.clear {
+    clear: both;
+    height: 0;
+    overflow: hidden;
+}
+
+#container {
+    width: 100%;
     margin: 0 auto;
     background-color: #FFF;
     padding: 20px 40px;
     border: solid 1px black;
-    margin-top: 20px;
+    margin-top: 5%;
 }
 ul li{
   display: inline;
@@ -376,16 +405,16 @@ ul li span {
 
 #steps {
 list-style: none outside none;
-width: 90%;
 overflow: hidden;
 margin: 2px;
 padding: 3px;
-background-image: url('/assets/background2.png');
 border-style: solid;
 border-color: #F8D286;
 border-width: 3px;
 color:#fed271;
+background-color: #0c93cb;
 }
+
 #steps li.current {
     color: #0c93cb;
     background-color: #F8D286;
@@ -396,8 +425,6 @@ color:#fed271;
     border-width: 3px;
     
   }
-
-
 
 #flash_notice, #flash_error, #flash_alert {
     padding: 5px 8px;

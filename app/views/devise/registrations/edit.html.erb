@@ -1,20 +1,53 @@
-
+<div class="container">
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
-  <%= devise_error_messages! %>
+  <div class="row-fluid">
+    <div class="span11">
+      <%= devise_error_messages! %>
+      </div>
+    </div>
+  <div class="row-fluid">
+    <div class="span11">
+      <%= f.label :email %><br />
+      </div>
+    </div>
+  <div class="row-fluid">
+    <div class="span11">
+      <%= f.email_field :email %>
+    </div>
+    </div>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
+  <div class="row-fluid">
+    <div class="span11">
+      <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+      </div>
+    </div>
+  <div class="row-fluid">
+    <div class="span11">
+      <%= f.password_field :password %>
+    </div>
+    </div>
 
-  <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-  <%= f.password_field :password %></div>
-
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
-
-  <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-  <%= f.password_field :current_password %></div>
+  <div class="row-fluid">
+    <div class="span11">
+      <%= f.label :password_confirmation %><br />
+      </div>
+    </div>
+  <div class="row-fluid">
+    <div class="span11">
+  <%= f.password_field :password_confirmation %>
+    </div>
+    </div>
+  <div class="row-fluid">
+    <div class="span11"><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+      </div>
+    </div>
+  <div class="row-fluid">
+    <div class="span11">
+      <%= f.password_field :current_password %>
+    </div>
+    </div>
 <p>Current contacts <%= link_to "Add a contact", new_contact_path(:user_id => current_user.id) %></p>
 <ul id="contacts">
 <% resource.contacts.each  {|contact|  %>
@@ -31,3 +64,4 @@
 <p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete %>.</p>
 
 <%= link_to "Back", :back %>
+</div>
