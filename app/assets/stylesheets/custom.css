@@ -299,7 +299,7 @@ div.span12 {
     float:left;
 }
 .bubble {
-    width:;
+    width:100px;
 
 }
 .fullCol {
@@ -310,6 +310,7 @@ div.span12 {
     border: 2px solid #ccc;
     overflow:visible;
     background-color:#ffe;
+    border-radius: 20px;
    
 }
 .col1 {
@@ -363,7 +364,14 @@ a {
 }
 
 #container {
-    width: 7ul .footer {
+    width: 75%;
+    margin: 0 auto;
+    background-color: #FFF;
+    padding: 20px 40px;
+    border: solid 1px black;
+    margin-top: 20px;
+}
+ul li {
     display: inline ;
     list-style: none;
 }
@@ -407,9 +415,11 @@ ul li span {
 
 #steps {
 list-style: none outside none;
+width:100%;
 overflow: hidden;
 margin: 2px;
 padding: 3px;
+background-image: url('/assets/background2.png');
 border-style: solid;
 border-color: #F8D286;
 border-width: 3px;
