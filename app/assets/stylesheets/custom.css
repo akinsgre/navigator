@@ -233,11 +233,13 @@ li {
 .banner {
     padding-left : 30px ;
     width:100%;
-clear:both;
+    clear:both;
+    text-align: left;
+    text-size: 1.9em;
 }
 .title {
-    float : left ; 
-    width:300px;
+    text-align: left ; 
+    font-size: 1.9em;
 }
 .logo {
     float : left ; 
@@ -298,6 +300,11 @@ div.span12 {
     clear:both;
     float:left;
 }
+
+div.row-fluid {
+    width:100%;
+}
+
 .bubble {
     width:100px;
 
@@ -316,7 +323,7 @@ div.span12 {
 .col1 {
     float : left ;
     max-width:220px;
-    min-height:100%;
+    min-height:150px;
     margin:15px;
     padding:20px;
     border: 2px solid #ccc;
@@ -363,14 +370,6 @@ a {
     overflow: hidden;
 }
 
-#container {
-    width: 75%;
-    margin: 0 auto;
-    background-color: #FFF;
-    padding: 20px 40px;
-    border: solid 1px black;
-    margin-top: 20px;
-}
 ul li {
     display: inline ;
     list-style: none;
