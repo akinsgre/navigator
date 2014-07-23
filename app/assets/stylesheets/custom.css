@@ -322,11 +322,13 @@ div.row-fluid {
 }   
 
 div.span2 {
-min-width:25%;
+width:31%;
+min-width:200px;
+
 }
 
 .col1 {
-    width:27%;
+    width:31%
     min-width:225px;
     float: left ;
     max-width:220px;
@@ -340,7 +342,7 @@ min-width:25%;
     font-family: Verdana,Helvetica,Arial;
 }
 .col2 {
-    width:25%;
+    min-width:29%
     max-width:220px;
     min-height:150px;
     margin:3%;
@@ -352,7 +354,7 @@ min-width:25%;
     font-family: Verdana,Helvetica,Arial;
 }
 .col3 {
-    width:25%;
+    min-width:27%;
     min-width:200px;
     max-width:220px;
     min-height:150px;
