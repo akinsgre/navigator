@@ -27,10 +27,11 @@
    <div class="row-fluid">
      <div class="span10">
        <%= f.text_field :description %>
-    </div>
-   </div>
+
     <%= f.hidden_field :user_id %>
   </p>
+    </div>
+   </div>
   <% if current_user.admin? %>
   <p>
     Owned by: 

@@ -79,7 +79,7 @@ body  {
     background-image:url('/assets/background1.png');
     background-repeat:repeat-x;
     font-family: Verdana, Helvetica, Arial;
-    font-size: 14px;
+    font-size: .9em;
     overflow:visible;
     y-overflow:scroll;
 }
@@ -100,7 +100,7 @@ div .resetLayout {
     text-align: center;
     float:center !important;
     background-color: #0c93cb;
-    width: 100%;
+    max-width: 90%;
     min-height: 125px;
     padding:20px;
     font-size:1.4em;
@@ -311,7 +311,7 @@ div.row-fluid {
 }
 .fullCol {
     float: center ; 
-    width:98%;
+    width:96%;
     margin:1%;
     padding:1%;
     border: 2px solid #ccc;
@@ -319,12 +319,44 @@ div.row-fluid {
     background-color:#ffe;
     border-radius: 20px;
    
+}   
+
+div.span2 {
+min-width:25%;
 }
+
 .col1 {
-    float : left ;
+    width:27%;
+    min-width:225px;
+    float: left ;
     max-width:220px;
     min-height:150px;
-    margin:15px;
+    margin:3%;
+    padding:20px;
+    border: 2px solid #ccc;
+    overflow:visible;
+    background-color:#ffe;
+    border-radius:20px;
+    font-family: Verdana,Helvetica,Arial;
+}
+.col2 {
+    width:25%;
+    max-width:220px;
+    min-height:150px;
+    margin:3%;
+    padding:1%;
+    border: 2px solid #ccc;
+    overflow:hidden;
+    background-color:#ffe;
+    border-radius:20px;
+    font-family: Verdana,Helvetica,Arial;
+}
+.col3 {
+    width:25%;
+    min-width:200px;
+    max-width:220px;
+    min-height:150px;
+    margin:3%;
     padding:20px;
     border: 2px solid #ccc;
     overflow:hidden;

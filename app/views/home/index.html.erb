@@ -14,35 +14,36 @@ function JumpToIt(frm) {
 <body>
 <div class="container-fluid" width="100%" resize="auto">
   <div class="row-fluid" width="100%">
-    <div class="span8">
-    <p><span class="emphasis" align="left">Welcome!</span> to the fastest, simplest way ever to notify
-      <span class="emphasis">everybody</span>in your organization, club or team of upcoming events, schedule changes, cancellations, etc...</p>
+    <div class="span11">
+    <p><span class="emphasis">Welcome!</span> to the fastest, simplest way ever to notify
+      <span class="emphasis" float="center">everybody</span>in your organization, club or team of upcoming events, schedule changes, cancellations, etc...</p>
     </div>
- <div class="span4">
-   <p>Best of all, the application is free to your members.</p><br/><br/><br/>
+  </div>
+ <div class="row-fluid">
+  <div class="span11">
+   <p>Best of all, the application is free to your members.</p>
      </div>
   </div>
-<div class="row-fluid">
-<div class="col1 span4" align="center" min-height="100%">
+
+<div class="row-fluid" width="100%">
+ <div class="col1 span2">
   <h1 align="center">Group Leaders</h1>
-
-  <%= button_to "Start your group", new_user_registration_path, :class => "100_button", :method => :get %>
+      <%= button_to "Start your group", new_user_registration_path, :class => "100_button", :method => :get %>
   </div>
-
-<div class="col1 span4">
-  <h1>Join Existing Group</h1>
-<p>Start typing below to find your group.  Click on your group name to select it and proceed.</p>
-<div id="remote">
-  <input class="typeahead" type='text' id="groupsearch" icon="favicon.gif" placeholder="Group Name">
- <i class="fa favicon.gif"></i></input>
-</div>
-</div>
-<div class="col1 span4">
-<a href="mailto:info@insomnia-consulting.org"><h1>Sponsoring</h1></a> <br>
-<a href="mailto:info@insomnia-consulting.org"><h1>Advertising</h1></a><br>
-<a href="mailto:info@insomnia-consulting.org"><h1>More Info</h1></a><br>
-</div>
-</div>
+  <div class="col2 span2">
+   <h1>Join Existing Group</h1>
+     <p>Start typing below to find your group.  Click on your group name to select it and proceed.</p>
+   <div id="remote" float="center">
+     <input class="typeahead" type='text' id="groupsearch" icon="favicon.gif" placeholder="Group Name" float="center">
+     <i class="fa favicon.gif"></i></input>
+     </div>
+   </div>
+ <div class="col3 span2">
+   <a href="mailto:info@insomnia-consulting.org"><h1>Sponsoring</h1></a> <br>
+   <a href="mailto:info@insomnia-consulting.org"><h1>Advertising</h1></a><br>
+   <a href="mailto:info@insomnia-consulting.org"><h1>More Info</h1></a><br>
+  </div>
+ </div>
 </div>
 
 </body></html>
