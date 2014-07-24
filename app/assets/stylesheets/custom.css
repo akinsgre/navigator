@@ -327,6 +327,9 @@ min-width:200px;
 
 }
 
+div.bubbleimg {
+    max-width:20%;
+}
 .col1 {
     width:31%
     min-width:225px;
@@ -368,6 +371,28 @@ min-width:200px;
     font-family: Verdana,Helvetica,Arial;
 }
 
+.colA {
+    float:left;
+    width:45%;
+     margin:3%;
+    padding:1%;
+    border: 2px solid #ccc;
+    overflow:hidden;
+    background-color:#ffe;
+    border-radius:20px;
+    font-family: Verdana,Helvetica,Arial;
+}
+.colB {
+    float:right;
+    width:45%;
+    margin:3%;
+    padding:1%;
+    border: 2px solid #ccc;
+    overflow:hidden;
+    background-color:#ffe;
+    border-radius:20px;
+    font-family: Verdana,Helvetica,Arial;
+}
 .dropdown {
    max-width:220px;
    float: left;
