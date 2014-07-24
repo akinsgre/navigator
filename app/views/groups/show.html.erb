@@ -1,29 +1,33 @@
 
-<h3 class="resetLayout" ><%= link_to "Send this group a message", :controller => "messages", :action => "new", :id => @group.id %></h3>
-
+<div class="row-fluid"><h3 class="resetLayout" ><%= link_to "Send this group a message", :controller => "messages", :action => "new", :id => @group.id %></h3></div>
+<div class="row-fluid">
 <p>
   <strong>Name:</strong>
   <%= @group.name %>
-</p>
-<p>
+</p></div>
+<div class="row-fluid"><p>
   <strong>Contact Email:</strong>
   <%= @group.user.email %>
-</p>
-<table>
+</p></div>
+<div class="row-fluid"><table>
 <% @group.contacts.each do |c| %>
 <tr><td><%= button_to "X", { :action => "remove_contact", :id => @group.id,  :contact_id => c.id }, :method => :put %></td><td><%= link_to c.name, edit_group_contact_path(@group, c) %></td><td><%= c.entry %></td></tr>
 <% end %>
-</table>
-<input id="group_bulk_upload" name="group[bulk_upload]" class="button" type="file">
+</table></div>
+<div class="row-fluid"><input id="group_bulk_upload" name="group[bulk_upload]" class="button" type="file"><br/><br/>
 </input>
-
+</div>
+<div class="row-fluid">
+  <div class="span11">
 <% if @group.user_id == current_user.id %>
 <%= link_to "Add a new contact", new_group_contact_path(@group ) %>
 <% end %>
-
+</div>
+</div>
 <p>
-  <%= link_to "Edit", edit_group_path(@group) %> |
+<div class="row-fluid">  <%= link_to "Edit", edit_group_path(@group) %> |
   <%= link_to "Destroy", @group, :confirm => 'Are you sure?', :method => :delete %> |
   <%= link_to "View All", groups_path %>
+  </div>
 </p>
 </div>

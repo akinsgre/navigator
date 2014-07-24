@@ -342,7 +342,7 @@ min-width:200px;
     font-family: Verdana,Helvetica,Arial;
 }
 .col2 {
-    min-width:29%
+    min-width:28%;
     max-width:220px;
     min-height:150px;
     margin:3%;
@@ -354,7 +354,8 @@ min-width:200px;
     font-family: Verdana,Helvetica,Arial;
 }
 .col3 {
-    min-width:27%;
+    !important float:right;
+    width:28%;
     min-width:200px;
     max-width:220px;
     min-height:150px;
