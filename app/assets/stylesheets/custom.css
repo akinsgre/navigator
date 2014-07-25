@@ -373,8 +373,9 @@ div.bubbleimg {
 
 .colA {
     float:left;
-    width:45%;
-     margin:3%;
+    min-width:45%;
+    min-height: 450px;
+    margin:3%;
     padding:1%;
     border: 2px solid #ccc;
     overflow:hidden;
@@ -383,8 +384,10 @@ div.bubbleimg {
     font-family: Verdana,Helvetica,Arial;
 }
 .colB {
+    text-align:center;
     float:right;
-    width:45%;
+    min-width:45%;
+    height:450px;
     margin:3%;
     padding:1%;
     border: 2px solid #ccc;
