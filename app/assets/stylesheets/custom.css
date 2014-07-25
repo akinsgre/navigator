@@ -48,7 +48,7 @@
     margin: 0;
 }
 input[type='submit'] {
-    float: center !important;
+    align: center;
     min-height: 40px;
     background-color: #0c93cb;
     font-size : 1.4em;
@@ -96,8 +96,8 @@ div .resetLayout {
 }
 
 .100_button { 
-    text-align: center;
     float:center !important;
+    text-align: center;
     background-color: #0c93cb;
     max-width: 90%;
     min-height: 125px;
@@ -331,11 +331,11 @@ div.bubbleimg {
 }
 .col1 {
     width:100%;
-    min-width:350px;
     float: left ;
     min-height:150px;
-    margin:3%;
-    padding:20px;
+    min-width:200px;
+    margin:0%;
+    padding:1%;
     border: 2px solid #ccc;
     overflow:visible;
     background-color:#ffe;
@@ -344,10 +344,9 @@ div.bubbleimg {
 }
 .col2 {
     width:100%;
-    min-width:350px;
     min-height:150px;
-    margin:3%;
-    padding:2%;
+    margin:0%;
+    padding:3%;
     border: 2px solid #ccc;
     overflow:hidden;
     background-color:#ffe;
@@ -358,8 +357,8 @@ div.bubbleimg {
     width:100%;
     min-width:200px;
     min-height:150px;
-    margin:3%;
-    padding:20px;
+    margin:0%;
+    padding:3%;
     border: 2px solid #ccc;
     overflow:hidden;
     background-color:#ffe;
@@ -371,7 +370,7 @@ div.bubbleimg {
     float:left;
     min-width:45%;
     min-height: 450px;
-    margin:3%;
+    margin:1%;
     padding:1%;
     border: 2px solid #ccc;
     overflow:hidden;
