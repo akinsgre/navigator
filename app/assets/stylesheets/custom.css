@@ -96,13 +96,12 @@ div .resetLayout {
 }
 
 .100_button { 
-    icon: url('/images/favicon.gif');
     text-align: center;
     float:center !important;
     background-color: #0c93cb;
     max-width: 90%;
     min-height: 125px;
-    padding:20px;
+    padding:3%;
     font-size:1.4em;
     color:#fed271;
     cursor:pointer;
@@ -331,10 +330,9 @@ div.bubbleimg {
     max-width:20%;
 }
 .col1 {
-    width:31%
-    min-width:225px;
+    width:100%;
+    min-width:350px;
     float: left ;
-    max-width:220px;
     min-height:150px;
     margin:3%;
     padding:20px;
@@ -345,11 +343,11 @@ div.bubbleimg {
     font-family: Verdana,Helvetica,Arial;
 }
 .col2 {
-    min-width:28%;
-    max-width:220px;
+    width:100%;
+    min-width:350px;
     min-height:150px;
     margin:3%;
-    padding:1%;
+    padding:2%;
     border: 2px solid #ccc;
     overflow:hidden;
     background-color:#ffe;
@@ -357,10 +355,8 @@ div.bubbleimg {
     font-family: Verdana,Helvetica,Arial;
 }
 .col3 {
-    !important float:right;
-    width:28%;
+    width:100%;
     min-width:200px;
-    max-width:220px;
     min-height:150px;
     margin:3%;
     padding:20px;
@@ -469,6 +465,7 @@ ul li{
   margin: 5px;
   padding: 5px;
   color:  #F8D286;
+float:center;
 }
 ul li span {
     color:  #0c93cb;
@@ -477,7 +474,7 @@ ul li span {
 
 #steps {
 list-style: none outside none;
-width:100%;
+width:97%;
 overflow: hidden;
 margin: 2px;
 padding: 3px;
