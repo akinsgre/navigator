@@ -435,6 +435,9 @@ ul li .footer{
     display: inline ;
     list-style: none;
 }
+ul#steps { 
+    align:center;
+}
 
 a img {
     border: none;
