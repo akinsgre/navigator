@@ -390,6 +390,17 @@ div.bubbleimg {
     border-radius:20px;
     font-family: Verdana,Helvetica,Arial;
 }
+.colC {
+    text-align:center;
+    min-width:440px;
+    margin:1%;
+    padding:3%;
+    border: 2px solid #ccc;
+    overflow:hidden;
+    background-color:#ffe;
+    border-radius:20px;
+    font-family: Verdana,Helvetica,Arial;
+}
 .dropdown {
    max-width:220px;
    float: left;
