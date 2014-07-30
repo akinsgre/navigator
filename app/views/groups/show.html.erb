@@ -44,21 +44,20 @@
       </div>
       </div>
     <div class="row-fluid">
-     <div class="span11">
+     <div class="span11" align="center">
        <% if @group.user_id == current_user.id %>
        <%= link_to "Add a new contact", new_group_contact_path(@group ) %>
        <% end %>
      </div>
     </div>
     <p>
-    <div class="row-fluid"> 
-      <div class="span11">
+      <div class="span4"  align="left">
 	<%= link_to "Edit", edit_group_path(@group) %> |
 	</div>
-      <div class="span11">
+      <div class="span4"  align="left">
 	<%= link_to "Destroy", @group, :confirm => 'Are you sure?', :method => :delete %> |
 	</div>
-      <div class="span11">
+      <div class="span3"  align="left">
 	<%= link_to "View All", groups_path %>
 	</div>
       </div>
