@@ -9,19 +9,26 @@
        <%= fd.hidden_field :id %>
        <% end %>
     <% end %>
-  <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+  <p><div class="row-fluid"><div class="span11">
+    <%= f.label :name %><br /></div></div>
+   <div class="row-fluid"><div class="span11"> <%= f.text_field :name %>
   </p>
-<p>
-  Preferred method of contact
+<p></div></div>
+<div class="row-fluid"><div class="span2">
+  Preferred method of contact</div>
+<div class="span10" float="left">
   <%= f.select "type", options_for_select(Contact.select_options) %>
 </p>
  <p>
-    <label id="entryLabel" for="entry">Entry Number or email address</label><br />
-    <%= f.text_field :entry %>
+</div></div>
+   <div class="row-fluid"><div class="span11"> <label id="entryLabel" for="entry">Entry Number or email address</label><br /></div></div>
+   <div class="row-fluid"><div class="span11">
+    <%= f.text_field :entry %></div></div>
   </p>
+<div class="row-fluid">
+<div class="span11" float="left">
   <p><%= f.submit %></p>
 <% end %>
+</div></div>
 </div>
 </div>
