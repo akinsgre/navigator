@@ -12,13 +12,22 @@
 
 
 <% end %>
-Groups I'm in : <%= @myGroups.length %>
-<table>
-  <tr>
+<div class="row-fluid">
+  <div class="span11">
+    Groups I'm in : <%= @myGroups.length %>
+  </div>
+ </div>
+ <div class="row-fluid">
+   <table>
+     <tr>
     <th>&nbsp;</th>
     <th>Name</th>
+   </div>
     <th>Contact Email</th>
   </tr>
+   </div>
+ <div class="row-fluid">
+   <div class="span2" float="left">
   <% for group in @groups %>
     <tr>
       <td>
@@ -27,13 +36,28 @@ Groups I'm in : <%= @myGroups.length %>
 	<% else %>
 	Member
 	<% end %>
+   </div>
+ </div>
+   <div class="span2">
       </td>
       <td><%= group.name %></td>
+   </div>
+   <div class="span2">
       <td><%= group.user.email unless group.user.nil? %></td>
+   </div>
+  </div>
+<div class="row-fluid">
+  <div class="span1">
       <td><%= link_to "Show", group %></td>
+  </div>
+  <div class="span1">
       <td><%= link_to "Edit", edit_group_path(group) %></td>
+  </div>
+  <div class="span1">
       <td><%= link_to "Destroy", group, :confirm => 'Are you sure?', :method => :delete %></td>
     </tr>
+</div>
+</div>
  </div>
   <% end %>
 </table>
