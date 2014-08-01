@@ -13,28 +13,37 @@
 
 <% end %>
 <div class="row-fluid">
-  <div class="span4">
+  <div class="span11">
    <b> Groups I'm in : <%= @myGroups.length %></b>
   </div>
 </div>
 <div class="row-fluid">
 <div class="colA span6">
  <div class="row-fluid">
-   <div class="span11" text-align="center">
-     <b>Group Name</b>
+  <div class="span2">&nbsp
+  </div>
+   <div class="span8" text-align="center">
+    &nbsp <b>Group Name</b>
    </div>
+   <div class="span2">&nbsp
+     </div>
   </div>
 <div class="row-fluid">
   <% for group in @groups %>
 	<% if !@myGroups.include?( group) %>
-	"Join Group"
+	<div class="span2">"Join Group"
+	  </div>
 	<% else %>
-	Member
+	<div class="span2">Member
+	  </div>
 	<% end %>
-        &nbsp&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp   <%= group.name %>
+        <div class="span8">  <%= group.name %>
  </div>
+<div class="span2">&nbsp
+  </div>
 </div>
-<div class="colB span5">
+</div>
+<div class="colD span5">
  <div class="row-fluid">
   <div class="span11" text-align="center">
     <b>Contact Email</b>
