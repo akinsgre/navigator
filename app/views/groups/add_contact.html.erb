@@ -1,22 +1,50 @@
 <div class="container-fluid">
+  <div class="row-fluid">
+      <% provide(:title, 'Sign up') %>
+    <div class="span11">
+      <h1>Sign up</h1>
+    </div>
+  </div>
 <div class="row-fluid">
-<% provide(:title, 'Sign up') %>
-<h1>Sign up</h1>
-</div>
-<div class="row-fluid">
-  <div class="span6" >
+  <div class="span11" >
     <%= form_for(@contact, :url => groups_save_contact_path) do |f|  %>
     <%= hidden_field :group, :id %>
+  </div>
+</div>
+<div class="row-fluid">
+  <div class="span11">
 <p>
   Preferred method of contact <br>
+  </div>
+</div>
+<div class="row-fluid">
+  <div class="span11">
   <%= f.select "type", options_for_select(Contact.select_options) %>
 </p>
-
+  </div>
+</div>
+<div class="row-fluid">
+  <div class="span11">
     <%= f.label :entry, "Email Address", :id => "entryLabel" %>
+  </div>
+</div>
+<div class="row-fluid">
+  <div class="span11">
       <%= f.text_field :entry %>
-
+  </div>
+</div>
+<div class="row-fluid">
+  <div class="span11">
       <%= f.label :identifier, "Contact Description" %>
+  </div>
+</div>
+<div class="row-fluid">
+  <div class="span11">
       <%= f.text_field :identifier %>
+  </div>
+</div>
+<div class="row-fluid">
+  <div class="span11">
       <br>
       <div class="buttonBG" align="right">
       <%= f.submit "Subscribe to the group!", class: "btn btn-large btn-primary" %>
