@@ -1,8 +1,32 @@
-<h1>Message</h1>
-<p>Send a message to <%= @message.group.name %></p>
+<div class="row-fluid">
+  <div class="span11">
+    <h1>Message</h1>
+  </div>
+</div>
+<div class="row-fluid">
+  <div class="span11">
+    <p>Send a message to <%= @message.group.name %></p>
+  </div>
+</div>
 <%= form_for @message, :url =>  { :action => "deliver" } do |f| %>
-<%= f.label :message %>
-<%= f.text_field :message %>
-<%= f.hidden_field :group_id %>
-<%= f.submit %>
+<div class="row-fluid">
+  <div class="span11">
+    <%= f.label :message %>
+  </div>
+</div>
+<div class="row-fluid">
+  <div class="span11">
+    <%= f.text_field :message %>
+   </div>
+</div>
+<div class="row-fluid">
+  <div class="span11">
+    <%= f.hidden_field :group_id %>
+  </div>
+</div>
+<div class="row-fluid">
+  <div class="span11">
+    <%= f.submit %>
+  </div>
+</div>
 <% end %>
