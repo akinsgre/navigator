@@ -11,6 +11,7 @@
     <div class="span11">
     <legend>New Group</legend>
     </div>
+</div>
   <div class="row-fluid">
     <div class="span11">
       <%= f.label :name %>
@@ -23,11 +24,16 @@
     </div>
   <div class="row-fluid">
     <div class="span11">
-      <%= f.label :description %></div></div>
+      <%= f.label :description %>
+  </div>
+</div>
    <div class="row-fluid">
      <div class="span11">
        <%= f.text_field :description %>
-
+       </div>
+     </div>
+   <div class="row-fluid">
+     <div class="span11">
     <%= f.hidden_field :user_id %>
   </p>
     </div>
@@ -44,27 +50,53 @@
 </div>
 <div class="row-fluid">
 <fieldset>
+  <div class="span11">
     <legend>Sponsor Info</legend>
+    </div>
+  </div>
+<div class="row-fluid">
+  <div class="span11">
     <%= f.label :sponsor_email %>
+  </div>
+</div>
+<div class="row-fluid">
+  <div class="span11">
     <%= f.text_field :sponsor_email %>
+  </div>
+</div>
+<div class="row-fluid">
+  <div class="span11">
     <p>You don't have to have a sponsor; if you don't have one, your messages will be supported by one of our other advertisers.</p>
   </fieldset>
   <fieldset>
+  </div>
+</div>
    <div class="row-fluid">
     <div class="span11">
-    <legend><b>Members</b></legend></div>
+    <legend><b>Members</b></legend>
+    </div>
+</div>
     <div class="row-fluid">
     <%= f.fields_for :contacts do |c| %>
        <%= c.text_field :name %>
-    <% end %></div>
-    <p><b>Upload a list of members&nbsp&nbsp</b> <%= f.file_field :bulk_upload %></p>
-    </div><br/>
-    <p><%= f.link_to_add "Add a contact", :contacts %></p><br/></div>
-<div class=row-fluid">
-<p><div class="CGbuttonalign" >  <%= f.submit %>
-
-</p></div>
-  </fieldset></div>
+    <% end %>
+    </div>
+<div class="row-fluid">
+  <div class"span2">
+    <b>Upload a list of members&nbsp&nbsp</b>
+  </div>
+  <%= f.file_field :bulk_upload %></p>
 </div>
+<div class="row-fluid">
+  <div class="span11">
+    <p><%= f.link_to_add "Add a contact", :contacts %>
+</div>
+</div>
+<div class="row-fluid">
+<div class="CGbuttonalign span11" > 
+    <%= f.submit %>
+</div>
+  </fieldset>
 <% end %>
-
+</div>
+</div>
