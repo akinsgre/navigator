@@ -88,6 +88,10 @@ div .resetLayout {
     clear:both;
 }
 
+div .error_explaination {
+    font-color:#0c93cb;
+}
+
 .emphasis {
     font-family : 'Open Sans', sans-serif;
     font-weight : 700 ; 

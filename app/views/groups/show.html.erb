@@ -51,11 +51,15 @@
      </div>
     </div>
     <p>
-      <div class="span4"  align="left">
-	<%= link_to "Edit", edit_group_path(@group) %> |
+      <div class="span3"  align="left">
+	<%= link_to "Edit", edit_group_path(@group) %> 
+      </div>
+      <div class="span1">|
 	</div>
-      <div class="span4"  align="center">
-	<%= link_to "Destroy", @group, :confirm => 'Are you sure?', :method => :delete %> |
+      <div class="span3"  align="center">
+	<%= link_to "Destroy", @group, :confirm => 'Are you sure?', :method => :delete %>
+      </div>
+      <div class="span1">|
 	</div>
       <div class="span3"  align="right">
 	<%= link_to "View All", groups_path %>
