@@ -88,10 +88,6 @@ div .resetLayout {
     clear:both;
 }
 
-div .error_explaination {
-    font-color:#0c93cb;
-}
-
 .emphasis {
     font-family : 'Open Sans', sans-serif;
     font-weight : 700 ; 
@@ -499,7 +495,7 @@ ul li{
   margin: 5px;
   padding: 5px;
   color:  #F8D286;
-float:center;
+  float:center;
 }
 ul li span {
     color:  #0c93cb;
@@ -580,4 +576,8 @@ background-color: #0c93cb;
 
 vv.error_messages ul {
     margin: 0;
+}
+
+div.error_explanation ul li {
+    color:red;
 }

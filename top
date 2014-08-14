@@ -1,0 +1,710 @@
+[33mcommit 00a9ba3dbf9e2b292dd6d5dff4fb98682a4a3632[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Wed Aug 13 07:22:59 2014 -0400
+
+    NMC- minor interface changes
+
+[33mcommit 09e2c0e45702636f26bbd336b62e71a5ad9211f2[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Mon Aug 11 09:27:27 2014 -0400
+
+    NMC- minor interface changes
+
+[33mcommit 65558e0b8f414690e70951c565d8ef0af375bcab[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Thu Aug 7 11:59:14 2014 -0400
+
+    NMC- further optimizing multiple views for bootstrap
+
+[33mcommit ff7c8da5629539ae607e292dd201a6f92bc74641[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Wed Aug 6 09:29:38 2014 -0400
+
+    NMC- further optimizing views for bootstrap. No major visible interface changes
+
+[33mcommit 971b9e08fb14f86d08458cdcf690d86ededb4df4[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Tue Aug 5 15:23:20 2014 -0400
+
+    NMC- minor interface enhancements for bootstrap optimization
+
+[33mcommit 3472b2c71fedc9d4f3eb9db27e7c4ff074d98fd4[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Tue Aug 5 09:31:27 2014 -0400
+
+    NMC- messages/new.html.erb adding div tags to optimize for bootstrap
+
+[33mcommit 0f8f65dde30d64218a2a8579542e9a26fc775431[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Mon Aug 4 09:09:57 2014 -0400
+
+    NMC- users/sign_in/new.html.erb optimizing for bootstrap resize adding div tags to page elements
+
+[33mcommit 798a6a5356b3ea321715ddc81b439246a7d4b263[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Fri Aug 1 15:10:37 2014 -0400
+
+    NMC- groups/index.html.erb further work on div tag layout
+
+[33mcommit 8c998fa4499772e903ef8de0e83c4e6284f7c183[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Fri Aug 1 13:40:36 2014 -0400
+
+    NMC- groups/index.html.erb - abandoning table layout for div tags for more control
+
+[33mcommit 13e22ee89342f87ac89fc2b3189d02039c68025b[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Fri Aug 1 12:24:54 2014 -0400
+
+    NMC- improving groups/index.html.erb. Trying to control elements using both table and div tags--incomplete
+
+[33mcommit ed7ede49e9ae0831df9119e492d6f4b9794edd13[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Fri Aug 1 09:22:56 2014 -0400
+
+    NMC- minor interface changes + groups/index.html optimizing for bootstrap (not complete yet)
+
+[33mcommit a3b6c5bdd9afcedd9abaf31eb633c41a770b1de0[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Thu Jul 31 11:23:31 2014 -0400
+
+    NMC- groups/1/contacts/new _form.html--optimizing elements for bootstrap resize
+
+[33mcommit efb0c13abc15ee064cd79e1b18f198a4fbd8f4d6[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Thu Jul 31 07:59:34 2014 -0400
+
+    NMC- minor adjustments + fixing 3 cols in users page to align in same row instead of screen width for each column
+
+[33mcommit 9715d57a0af58cb52b723057bec997b38d585ae3[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Wed Jul 30 14:45:36 2014 -0400
+
+    NMC- minor interface adjustments
+
+[33mcommit a9fbc1d399bc1479f4cd7a4a59381be8c7453ed8[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Wed Jul 30 08:40:18 2014 -0400
+
+    NMC_ minor interface enhancements- preventing overflow of groups/show.html right column
+
+[33mcommit 23985dfd12c38193e3191e71d2ed35b0c3f85f49[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Tue Jul 29 09:49:18 2014 -0400
+
+    NMC- adding second column to groups page-further adjustments necessary to optimize interface
+
+[33mcommit 961757a99b6d3f75c5d92bff36420fd2fe82dceb[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Mon Jul 28 15:39:12 2014 -0400
+
+    NMC- incremental backup. Minor interface adjustments
+
+[33mcommit f8d4ae653b7c2d94115868e62b2ce958685593d6[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Mon Jul 28 11:24:53 2014 -0400
+
+    NMC-users/sign_up-- adding text to describe the 'sign up' process + other minor interface enhancements
+
+[33mcommit 2fe6c0f5d098e47442e524f84ce20647e87569d6[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Mon Jul 28 09:06:52 2014 -0400
+
+    NMC- incremental backup. Centering textsearch@index and fixing margin of R col @users/sign_up
+
+[33mcommit 9fb720c47faa92f95587104804bbf338835161c3[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Fri Jul 25 10:41:10 2014 -0400
+
+    NMC- centering 'start your group' button on index page. further enhancing 3 cols to cover width
+
+[33mcommit 57cb72ce0330e594b63ea5a269f845c175717557[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Fri Jul 25 07:49:02 2014 -0400
+
+    NMC- expanding 3 cols to cover greater width of screen and other minor changes
+
+[33mcommit 790c7ebf7845e9b3358a5f9674be305fff7ca52c[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Fri Jul 25 06:19:44 2014 -0400
+
+    NMC- incremental backup registering minor interface changes
+
+[33mcommit 2b22226e948993beb2ca84093aef26c28718f322[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Thu Jul 24 13:02:09 2014 -0400
+
+    NMC-incremental backup. Limiting size for Orange SB, splitting users/sign_up into two seperate columns
+
+[33mcommit f361cf5c842e75cf425a12eb3a78585983f4ce61[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Thu Jul 24 08:21:33 2014 -0400
+
+    NMC- incremental back up registering minor interface changes
+
+[33mcommit 626aa4b810e8af08b2d0e4601f90ccf5fa0d5e23[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Wed Jul 23 13:07:18 2014 -0400
+
+    NMC- incremental backup. Further enhancing the home page elements for bootstrap resize.
+
+[33mcommit d131413df89c1f0ddb125d94a96a8ec790441e37[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Wed Jul 23 09:54:33 2014 -0400
+
+    NMC- incremental backup-Cols 1-3 have progress but not complete
+
+[33mcommit 5abf822e7729726250ec849bb800c26909874c9b[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Tue Jul 22 14:23:12 2014 -0400
+
+    NMC- eliminating empty space below upper elements
+
+[33mcommit be99464d7a1303db161fb589f3f9a3b0207727bb[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Tue Jul 22 12:41:48 2014 -0400
+
+    NMC-incremental back up
+
+[33mcommit 5f3bf63df3cc72e6391918ba9332c7721f1d847a[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Mon Jul 21 12:53:10 2014 -0400
+
+    NMC- updating large speechbubble image
+
+[33mcommit 57489952138ed6fe2e5c06bbbce0dcf3ca912d77[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Mon Jul 21 10:22:36 2014 -0400
+
+    NMC incremental back up. Further cleaning interface for resize, focus on upper elements of index page
+
+[33mcommit 14b4908ed610e98ae5f584a847b28eb2c52e7afc[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Fri Jul 18 09:31:08 2014 -0400
+
+    NMC- incremental backup- resolved issue of styling being removed from steps.
+
+[33mcommit 6e3170b480c355232d324ad29e800039cdb2d2f0[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Wed Jul 16 08:04:42 2014 -0400
+
+    NMC incremental backup
+
+[33mcommit e9e1eaade920fff2adea282ea79678a4f3c0004a[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Tue Jul 15 14:43:48 2014 -0400
+
+    NMC- back up with minor interface changes
+
+[33mcommit 5d1c2794f4ac053bfc050e747c073a2b8b17a604[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Tue Jul 15 08:05:04 2014 -0400
+
+    NMC- incremental backup.
+
+[33mcommit e4b41657975347f07bb45f7a7b6738484a6419b7[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Fri Jul 11 11:11:38 2014 -0400
+
+    NMC-incremental update- No major changes-minor display adjustments
+
+[33mcommit 93b2b85a434d472689613f5eb488842555b631e8[m
+Merge: 98430a6 d60b90a
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Thu Jul 10 14:59:18 2014 -0400
+
+    Merge branch 'master' of https://github.com/akinsgre/navigator
+
+[33mcommit 98430a6fb5dff74e4733202eb5e291f359086c90[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Thu Jul 10 10:24:37 2014 -0400
+
+    NMC-adding final elements to enable bootstrap resize
+
+[33mcommit d60b90a8a0ce41857b51b06b499bdcfd4f4b03d3[m
+Author: Greg Akins <angrygreg@gmail.com>
+Date:   Wed Jul 9 14:32:26 2014 -0400
+
+    Fixing some paths associated with contact creation
+
+[33mcommit 639a6d18be6cf70e8691cce6e277230f3029bbe5[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Tue Jul 8 10:27:07 2014 -0400
+
+    NMC- adding respomnsive layout via bootstrap--not yet complete
+
+[33mcommit 264abb61099ecfbe8a400c25e38961a3dff917de[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Thu Jul 3 12:05:18 2014 -0400
+
+    NMC- moving EDIT DESTROY VIEW ALL inside element, etc.
+
+[33mcommit 9905c9498fce222e6fe5b19a0bb902a15d02344a[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Wed Jul 2 13:57:51 2014 -0400
+
+    NMC- cleaning up UI-enlarging buttons/reversing colors for steps to join
+
+[33mcommit 0673cf3ede96501175a5b3913ef8908cb6caa926[m
+Author: Greg Akins <angrygreg@gmail.com>
+Date:   Wed Jul 2 07:09:45 2014 -0400
+
+    Fixing json error that broke Bloodhound
+
+[33mcommit 6101953ab6f2ee95ed6689a2c246a1abe78066c0[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Tue Jul 1 08:08:11 2014 -0400
+
+    NMC-trying to fix irradic functionality of groupsearch
+
+[33mcommit e78db6115acdfa6cdb706bac4a6a6cf44eacd4f1[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Thu Jun 26 13:26:49 2014 -0400
+
+    NMC- further correcting typo and changing method name to allow function
+
+[33mcommit 2f6b55875c34fadc2eb44d0f4510f9aa15540c93[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Wed Jun 25 15:32:42 2014 -0400
+
+    NMC- removing 'groups' link from users page and inserting group name
+
+[33mcommit fa580228976dfddad364c68f3ff2914ba884873f[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Wed Jun 25 14:48:36 2014 -0400
+
+    NMC- changing multiple option functionality to list groups
+
+[33mcommit 576e8c68e23d3b7b5bbc8ea888d753d3cbeeb7a5[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Wed Jun 25 08:01:07 2014 -0400
+
+    NMC- adding upload group list to group page.
+
+[33mcommit bddc2dc5ea90493d227c55ecbd703f976122cda3[m
+Author: Greg Akins <angrygreg@gmail.com>
+Date:   Tue Jun 24 11:08:47 2014 -0400
+
+    Merging some stashed changes
+
+[33mcommit ff01c3fff6127e34d2a7c6f4cc071f98afa27a61[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Tue Jun 24 10:23:54 2014 -0400
+
+     NMC- creating Admin interface design-- link content to be entered later
+
+[33mcommit 2308b4bcb231c7b31801cb42bce7cd2312575231[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Wed Jun 11 11:22:00 2014 -0400
+
+    NMC- layout updates/button and text box size and formatting
+
+[33mcommit a6bda85c7c66de57e00132c22794d651a440adcd[m
+Merge: 3ee71b7 4364595
+Author: Greg Akins <angrygreg@gmail.com>
+Date:   Mon Jun 2 16:53:44 2014 -0400
+
+    Merge branch 'master' of github.com:akinsgre/navigator
+
+[33mcommit 3ee71b7b2b85b43126e94b10eeb038cca35ca2a2[m
+Author: Greg Akins <angrygreg@gmail.com>
+Date:   Mon Jun 2 16:53:41 2014 -0400
+
+    Making new contact form work
+
+[33mcommit 43645959867b1a5ec4c00edf7064505a97d80981[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Mon Jun 2 11:38:35 2014 -0400
+
+    NMC merging temp files
+
+[33mcommit 34ff9dcc0386ecce88d5875e2bd6747c21b4ce75[m
+Merge: c14b405 b37eaaa
+Author: Greg Akins <angrygreg@gmail.com>
+Date:   Mon Jun 2 11:35:46 2014 -0400
+
+    Merge branch 'master' of github.com:akinsgre/navigator
+
+[33mcommit c14b405cab10e2a7feecabfaae77c3e87795f531[m
+Author: Greg Akins <angrygreg@gmail.com>
+Date:   Mon Jun 2 11:34:37 2014 -0400
+
+    Specifying version on Polyglot
+
+[33mcommit b37eaaa90376b91d4da8c3b06f475ea29ded6111[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Mon Jun 2 11:34:35 2014 -0400
+
+    NMC- furthernupdate to add_contact form
+
+[33mcommit 1938f99e7cf1cff9ea8e10d8c41307eaa7d9ac5d[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Mon Jun 2 11:23:34 2014 -0400
+
+    NMC- moving elements to left groups/1/add_contact
+
+[33mcommit 80cd98f1620189f2acbbaa878b505c83299416bd[m
+Merge: ae44011 8beff3a
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Mon Jun 2 11:11:00 2014 -0400
+
+    Merge branch 'master' of https://github.com/akinsgre/navigator
+
+[33mcommit ae440118a8f99959b1ce05b276abc4473ba09db9[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Mon Jun 2 11:10:06 2014 -0400
+
+    NMC- adding Sign In form for instance where group exists
+
+[33mcommit 8beff3ae6210f402245d64ab05e4afdf0166f80f[m
+Author: Greg Akins <angrygreg@gmail.com>
+Date:   Mon Jun 2 11:08:35 2014 -0400
+
+    Added save_contact controller
+
+[33mcommit 93e3c5f7256650ade408a0c529f71a8d67dd3a3c[m
+Merge: c1e2cea 9fb7381
+Author: Greg Akins <angrygreg@gmail.com>
+Date:   Mon Jun 2 10:34:53 2014 -0400
+
+    Merge branch 'master' of github.com:akinsgre/navigator
+
+[33mcommit c1e2ceae8afbf8dbf59cde43c75dccce6e49ab81[m
+Author: Greg Akins <angrygreg@gmail.com>
+Date:   Mon Jun 2 10:33:06 2014 -0400
+
+    Adding Contact test
+
+[33mcommit 9fb73811b41f5343a353818928b792aef06b716a[m
+Merge: 34660ce a0f9c1a
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Mon Jun 2 09:56:59 2014 -0400
+
+    Merging
+
+[33mcommit 34660cec0f51c29885768661c192b4aeebba7d92[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Mon Jun 2 09:55:41 2014 -0400
+
+    Removing files
+
+[33mcommit a0f9c1a79a17dbf268a59326b6c9992b03b7dd37[m
+Author: Greg Akins <angrygreg@gmail.com>
+Date:   Mon Jun 2 09:52:22 2014 -0400
+
+    Added 'add_contact' form
+
+[33mcommit 398e96105c2a8fd94a6959bccdc65481c3ced452[m
+Author: Greg Akins <angrygreg@gmail.com>
+Date:   Sun Jun 1 22:03:58 2014 -0400
+
+    Adding typeahead dynamic lookup on Groups json
+
+[33mcommit 2a5e80f7dde8f6265adc2728f7a2b62428e33f47[m
+Author: Greg Akins <angrygreg@gmail.com>
+Date:   Sun Jun 1 09:24:51 2014 -0400
+
+    Adding the group add with a superficial eample for styling
+
+[33mcommit 6e9b785690e708381a00a92caa5e52a23a237cc5[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Thu May 29 09:41:59 2014 -0400
+
+    NMC- updating INDEX- colum 1-3
+
+[33mcommit 51198895c924d972f70768b14c9552d520deba7e[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Wed May 28 14:01:35 2014 -0400
+
+    M2~NMC.com- adding border to sides of 'current step' in signup
+
+[33mcommit af6903fb3d9ad9db9a4cffd1fe60712e39010a9a[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Wed May 28 13:56:57 2014 -0400
+
+    NMC- updating input button border
+
+[33mcommit 171b1b4d2dcebeb762b81fdf41f12749440c1110[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Wed May 28 13:34:52 2014 -0400
+
+    NMC.com- updating Step1 to 3, further fix with next last buttons, etc.
+
+[33mcommit cec3d165d3c79fe5a3035cbdaee9c83140b16264[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Tue May 27 14:23:57 2014 -0400
+
+    updating Step 1-3 text for NMC, etc
+
+[33mcommit 51c5aa2eaa0cbf870d0361160a2474fe1719a1d6[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Tue May 27 11:37:09 2014 -0400
+
+    Updating next and last links to buttons, Step1-3 on one line
+
+[33mcommit 69513507facd8a171d912af2d11304035b796dd7[m
+Author: Greg Akins <angrygreg@gmail.com>
+Date:   Tue May 27 09:38:44 2014 -0400
+
+    Making sure autotests run, and putting some bits to start the member import
+
+[33mcommit db41c9a4b06e8fbda8513cf8e6c4b98b8c89d464[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Thu May 22 10:52:44 2014 -0400
+
+    Updating NMC- fixing button style, etc
+
+[33mcommit bcad56cb7b35be12e23f45ca7a1f8185ba018393[m
+Merge: 614b9c6 bc06418
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Thu May 22 09:15:07 2014 -0400
+
+    Merging changes
+
+[33mcommit 614b9c693dd8f0b39976686ee67d280a3917d629[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Wed May 21 08:31:19 2014 -0400
+
+    Updating Sign In img, rem. redundant sign in button
+
+[33mcommit bc064180111ae4435a12377ebe4004f0a80e98a7[m
+Author: Greg Akins <angrygreg@gmail.com>
+Date:   Tue May 20 20:22:53 2014 -0400
+
+    Changes to signup wizard
+
+[33mcommit 08d06556a395fa96f4a61b0a149b025bb50102c6[m
+Author: Greg Akins <angrygreg@gmail.com>
+Date:   Tue May 20 15:11:25 2014 -0400
+
+    Setting up wizard form
+
+[33mcommit 22636dedf3e5bf2051b9bdafcf599add22985394[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Tue May 20 11:40:57 2014 -0400
+
+    additional updates to notifymyclub
+
+[33mcommit 62f5037f0e9b1f7bd92048b3f509bf17b86f7efb[m
+Merge: ebcc003 218d109
+Author: Greg Akins <angrygreg@gmail.com>
+Date:   Tue May 20 11:35:14 2014 -0400
+
+    Merge branch 'master' of github.com:akinsgre/navigator
+
+[33mcommit ebcc0032881325a08c0eca4f7b27e9eb2983d704[m
+Author: Greg Akins <angrygreg@gmail.com>
+Date:   Tue May 20 11:34:58 2014 -0400
+
+    Changes to 'new group' wizard
+
+[33mcommit 218d1095fd8ae084399357587fe5ecaa7be7f394[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Tue May 20 11:26:14 2014 -0400
+
+    updating bubble img, custom.css, and adding buttons for login and signup
+
+[33mcommit 7259f0cd9b57e844733299b6397eb03bff19f259[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Mon May 19 16:00:47 2014 -0400
+
+    second attempt to update sign in image
+
+[33mcommit 98571d6d39b8b3194e83f57f569f670e83387767[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Mon May 19 14:59:39 2014 -0400
+
+    updating application.html.erb
+
+[33mcommit 603d4e4a928a42a68d456aee35d94c1e6c4e1d66[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Mon May 19 14:31:58 2014 -0400
+
+    uploading smaller 'sign in' image
+
+[33mcommit 2f2bd684100393701f10fa51b69383ac0bbea227[m
+Author: Greg Akins <angrygreg@gmail.com>
+Date:   Sun May 18 23:36:40 2014 -0400
+
+    Fixing signup page
+
+[33mcommit d454803134b2f027b43aef1e85b657d587342747[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Wed May 14 09:53:03 2014 -0400
+
+    updating favicon image for notifymyclub.com
+
+[33mcommit 86b8f6dacfaf99a299f1a3da8e75e5fc6ebdab51[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Wed May 14 09:15:14 2014 -0400
+
+    adding favicon image for notifymyclub.com
+
+[33mcommit 39f4cc1d4c3526f6accb88de6c334a09e28518ad[m
+Author: Rich Yester <ryester@insomnia-consulting.org>
+Date:   Tue May 13 08:46:52 2014 -0400
+
+    adding images for Sign In button
+
+[33mcommit e7af60144bd1248320999adcbcfdd4c07f5f50d2[m
+Author: Greg Akins <angrygreg@gmail.com>
+Date:   Mon May 12 11:35:04 2014 -0400
+
+    Updating migration for new Devise stuff
+
+[33mcommit 603c301d317524b9ec0c7c8344b34f6b8921743d[m
+Author: Greg Akins <angrygreg@gmail.com>
+Date:   Mon May 12 11:26:30 2014 -0400
+
+    Updating migration for new Devise stuff
+
+[33mcommit c59a75ec08363189b833c300753b8071f1a866e3[m
+Author: Greg Akins <angrygreg@gmail.com>
+Date:   Mon May 12 11:21:52 2014 -0400
+
+    Updating migration for new Devise stuff
+
+[33mcommit 68b4191458c83520fb8abd280fcf2e8f87b1b251[m
+Merge: 3c304de 10ade6b
+Author: Greg Akins <angrygreg@gmail.com>
+Date:   Mon May 12 10:54:59 2014 -0400
+
+    Fixing merge issues because I didn't switch teh branch
+
+[33mcommit 3c304def4b111ea525fee936476037a8f72f55e2[m
+Merge: b8eb516 f3ffc65
+Author: Greg Akins <angrygreg@gmail.com>
+Date:   Mon May 12 10:39:49 2014 -0400
+
+    Rails 4 upgrade
+
+[33mcommit b8eb5167e0255748e9b6685f5b65f121eb59ed78[m
+Author: Greg Akins <angrygreg@gmail.com>
+Date:   Mon May 12 10:38:37 2014 -0400
+
+    Rails 4 upgrade
+
+[33mcommit 4e33d4aeb2fe42c06581093e1ac1c6e359468330[m
+Author: Greg Akins <angrygreg@gmail.com>
+Date:   Mon Apr 28 14:38:54 2014 -0400
+
+    Changes for Rails 3.1
+
+[33mcommit 10ade6bf1f49f031cafeb1ab18785c4c6415b52d[m
+Author: Greg Akins <angrygreg@gmaail.com>
+Date:   Fri Jan 13 22:16:18 2012 -0500
+
+    Completed changes for adding a contact for a user and to a group.. I think; now need to work on message sending code
+
+[33mcommit 2c70e4ee21c333b1d5256bb7bdf6994fa41e6971[m
+Author: Greg Akins <angrygreg@gmail.com>
+Date:   Fri Jan 13 05:35:47 2012 -0800
+
+    Getting rid of contact_type association in favor of a polymorphic representation of contact
+
+[33mcommit 6982cf026ee2bb96b9ffefdcdf13360aabbe2e81[m
+Author: Greg Akins <angrygreg@gmail.com>
+Date:   Wed Jan 11 16:38:30 2012 -0800
+
+    Removed Contact_type tables and integer type id from contacts.. need to still add contact:type:string back to contacts
+
+[33mcommit 10740a7cbf09dbf61a5c55015165d642918d1f00[m
+Author: Greg Akins <angrygreg@gmail.com>
+Date:   Fri Jan 6 11:40:20 2012 -0800
+
+    Fixed 'new_contact' and added js validation
+
+[33mcommit 25d09ee99ae49831ecbfa3921bc06188e50fb9d8[m
+Author: Greg Akins <angrygreg@gmail.com>
+Date:   Thu Jan 5 14:10:30 2012 -0800
+
+    Starting 'Add a new Contact'  The users/:id/contact/new page is OK, but the controller was already designed to take a :group_id .. needs modified so you can add a contact without a group assocation
+
+[33mcommit 04a80788c51f1d9a82a09781dc3d7c07b0526026[m
+Author: Greg Akins <angrygreg@gmail.com>
+Date:   Thu Jan 5 13:19:48 2012 -0800
+
+    Finalized the '
+    Add a Group' use case
+
+[33mcommit 9abc9ea6be3bf356de973718c0800136e7eb997c[m
+Author: Greg Akins <angrygreg@gmail.com>
+Date:   Thu Jan 5 11:28:56 2012 -0800
+
+    Modified the registration to go to the users/show page instead of user/edit.  Removed references to a 'Premium' member from the users/show page.
+
+[33mcommit 686c1290095206ed14f73902c710c7a22e28d1bc[m
+Author: Greg Akins <angrygreg@gmaail.com>
+Date:   Thu Jan 5 07:27:48 2012 -0500
+
+    Fixed 'Add Contact to Group'
+
+[33mcommit 1e5353a3727d1e0d63ffbffb17f4111179458957[m
+Author: Greg Akins <angrygreg@gmaail.com>
+Date:   Tue Jan 3 18:20:28 2012 -0500
+
+    Merged changes.. included copyright link
+
+[33mcommit a81cfcbffb41be4e58fa7113406e026e87d874f1[m
+Merge: 436b881 4b96081
+Author: Greg Akins <angrygreg@gmaail.com>
+Date:   Mon Jan 2 19:28:09 2012 -0500
+
+    Resolving conflicts merging from master
+
+[33mcommit 436b88152c4439835ee39e47a7390b784674f468[m
+Merge: 29334f4 f3ffc65
+Author: Greg Akins <angrygreg@gmaail.com>
+Date:   Mon Jan 2 19:27:14 2012 -0500
+
+    Resolving conflicts merging from master
+
+[33mcommit 29334f421993dee6541b5bc3ca71a22febacee5b[m
+Author: Greg Akins <angrygreg@gmaail.com>
+Date:   Mon Jan 2 19:23:58 2012 -0500
+
+    Added a contribution model and made amount a field on the new sponsor form.. still having problems with group_sponsors_path
+
+[33mcommit dcb8d97132ec4f42eb2760e0dfde3ddd950cd193[m
+Author: Greg Akins <angrygreg@gmaail.com>
+Date:   Thu Dec 29 11:40:51 2011 -0500
+
+    Added list of groups on sponsor/info to which sponsor can contribute
+
+[33mcommit e9306ed2cc91ee7b70513978810a02917345cdaf[m
+Author: Greg Akins <angrygreg@gmaail.com>
+Date:   Mon Dec 19 22:41:13 2011 -0500
+
+    Commiting addition of sponsor routes
+
+[33mcommit 4b96081690c312c4c11d745684411fe536190b6f[m
+Merge: f3ffc65 2cc974b
+Author: Greg Akins <angrygreg@gmail.com>
+Date:   Mon Dec 12 14:19:04 2011 -0500
+
+    Merged changes from origin
+
+[33mcommit 13af8c1fdeee6eca67f9e370f8c16c6f6b50f174[m
+Author: Greg Akins <angrygreg@gmaail.com>
+Date:   Thu Nov 24 21:33:35 2011 -0500
+
+    PB 113138 : Fixed issue where a subscription could be deleted, but because a user still has groups, they still appear as a premium user.  However, TODO:  Should probably think about archiveing groups when Premium subscriptions are cancelled
+
+[33mcommit b4b5a7b1cc9bb95762f716c25f55c4a614dd6764[m
+Author: Greg Akins <angrygreg@gmaail.com>
+Date:   Thu Nov 24 21:09:12 2011 -0500
+
+    Reformatting Groups page.. still need to fix the issue where a user who has a group because they used to be a subscriber still shows up as premium even if they're not
+
+[33mcommit 2cc974b716af5fd2c321100ae3ca444e14d4e3f1[m
+Merge: ea9ece4 2a43671
+Author: Greg Akins <angrygreg@gmaail.com>
+Date:   Thu Nov 24 20:49:53 2011 -0500
+
+    Merge branch 'readdSignup' of github.com:akinsgre/navigator into readdSignup
+
+[33mcommit ea9ece4dd7adc805a4b5fa28d7610f678defb893[m
+Author: Greg Akins <angrygreg@gmaail.com>
+Date:   Mon Nov 21 19:36:03 2011 -0500
+
+    Fixing logout link (had to move javascript_include_tag again; working on 'As a Member, I want to subscribe to a
