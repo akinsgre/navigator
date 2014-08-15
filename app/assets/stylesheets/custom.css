@@ -580,4 +580,7 @@ vv.error_messages ul {
 
 div.error_explanation ul li {
     color:red;
+    font-weight:bold;
+    font-size:1.4em;
+    float:left;
 }
