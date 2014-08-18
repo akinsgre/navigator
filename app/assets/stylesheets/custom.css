@@ -384,7 +384,7 @@ div.bubbleimg {
 }
 .colB {
     text-align:center;
-    float:right;
+   !important float:right;
     min-width:45%;
     height:450px;
     margin:1%;
@@ -433,6 +433,10 @@ float:left ;
 float:right ; 
 }
 
+ul .steps {
+    float:center;
+}
+
 ul .footer {
     display: inline ;
     list-style: none;
@@ -465,6 +469,7 @@ ul li .footer{
     list-style: none;
 }
 ul#steps { 
+    width:99%;
     align:center;
 }
 
@@ -581,6 +586,6 @@ vv.error_messages ul {
 div.error_explanation ul li {
     color:red;
     font-weight:bold;
-    font-size:1.4em;
+    font-size:1.5em;
     float:left;
 }
