@@ -7,9 +7,10 @@
 	 <%= form_for(resource, :as => resource_name, :url => registration_path(          resource_name)) do |f| %>
 </div>      
  </div>
-      
        <div class="row-fluid" align="center"> 
-	 <%= devise_error_messages! %>
+	<div class="error_explanation span11"!important float="center">
+	  <%= devise_error_messages! %>
+	  </div>
        </div><br /><br />
 
        <div class="row-fluid"> 
