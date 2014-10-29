@@ -71,7 +71,8 @@ class GroupsController < ApplicationController
 
   def remove_contact
     @group = Group.find(params[:id])
-    if :contact_id && @group.contacts.delete(Contact.find(params[:contact_id]))
+    Rails.logger.debug "#### Removing #{params.inspect}"
+    if params[:contact_id] && @group.contacts.delete(Contact.find(params[:contact_id]))
       redirect_to @group, :notice  => "Successfully removed contact."
     else
       render :action => 'edit'

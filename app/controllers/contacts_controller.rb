@@ -26,10 +26,22 @@ before_filter :authorize, :only => [:index]
   end
 
   def create
-    Rails.logger.info "#### Params are #{params.inspect}"
-    @contact = Contact.new(params[:contact].permit(:name, :user_id, :entry, :type))
-    @contact.type = params[:contact][:type]
-    
+    Rails.logger.debug "#### Params are #{params.inspect}"
+    case params[:contact][:type]
+    when "Phone" 
+      @contact = Phone.new(params[:contact].permit(:name, :user_id, :entry, :type))
+    when "Sms"
+      @contact = Sms.new(params[:contact].permit(:name, :user_id, :entry, :type))
+      @typedContact = @contact.becomes(Sms)
+    when "Email"
+      @contact = Email.new(params[:contact].permit(:name, :user_id, :entry, :type))
+      @typedContact = @contact.becomes(Email)
+    else 
+      Rails.logger.info "This #{@contact.type} is not a type"
+      raise "Not a supported type"
+    end
+
+    Rails.logger.debug "##### Contact being created is #{@contact}"
     unless params[:contact][:group].nil? || params[:contact][:group][:id].nil?
       group_id = params[:contact][:group][:id]
       logger.info "##### param Group[:id] is " + group_id
@@ -37,28 +49,12 @@ before_filter :authorize, :only => [:index]
       logger.info "##### Group is " + @group.name
       @contact.groups.push(@group)
     end
-    case @contact.type 
-    when "Phone" 
-      @typedContact = @contact.becomes(Phone)
-    when "Sms"
-      @typedContact = @contact.becomes(Sms)
-    when "Email"
-      @typedContact = @contact.becomes(Email)
-    else 
-      Rails.logger.info "This #{@contact.type} is not a type"
-      raise "Not a supported type"
-    end
-    logger.info "@contact has  " + @contact.groups.size.to_s + " groups."
-    @typedContact.groups = @contact.groups
-    logger.info "@typedContact has  " + @typedContact.groups.size.to_s + " groups."
-    if @typedContact.save
+
+    logger.info "@contact #{@contact} has  " + @contact.groups.size.to_s + " groups."
+
+    if @contact.save
       redirect_to group_contact_path(@group, @contact) , :notice => "Successfully created contact."
     else
-      #Move the errors from typedContact because @contact is going to be
-      # used in the _form after the call to render
-      @typedContact.errors.each do |attr, msg|
-        @contact.errors.add(attr, msg)
-      end
       render "new"
     end
 

@@ -16,6 +16,7 @@ describe GroupsController do
     end
   end
 
+
   describe "GET 'create' with bulk_upload" do
     before :each do
       @file = fixture_file_upload('member_list.csv', 'text/csv')
@@ -49,11 +50,11 @@ describe GroupsController do
     end
     describe "POST 'save_contact'" do
       it "should save the contact to the group" do
-        @group.contacts.length.should eq(0)
+        @group.contacts.length.should eq(1)
         post "save_contact" , "group"=>{"id"=>"1"}, "contact"=>{"type"=>"Phone", "entry"=>"724 454 7790", "identifier"=>"TEst"}
         group = assigns[:group]
         group.should_not be_nil
-        group.contacts.length.should eq(1)
+        group.contacts.length.should eq(2)
       end
     end
   end

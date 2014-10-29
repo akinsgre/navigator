@@ -27,7 +27,7 @@
       <div class="span11">
 	<table>
 	  <% @group.contacts.each do |c| %>
-	  <tr><td><%= button_to "X", { :action => "remove_contact", :id => @group.id,  :contact_id => c.id }, :method => :put %></td><td><%= link_to c.name, edit_group_contact_path(@group, c) %></td><td><%= c.entry %></td></tr>
+	  <tr><td><%= link_to "X", groups_remove_contact_path(:id => @group, :contact_id => c) %></td><td><%= link_to c.name, edit_group_contact_path(@group, c) %></td><td><%= c.entry %></td></tr>
 	  <% end %>
          </table>
       </div>

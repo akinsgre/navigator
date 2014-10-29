@@ -27,10 +27,12 @@ class Contact < ActiveRecord::Base
 
 
   def self.select_options
-    descendants.collect do |d| [d.identify,d.to_s] end
+    descendants.collect do |d|   [d.identify,d.to_s] end
   end
 
-
+  def to_s
+    "Contact => #{self.name}, #{self.entry}"
+  end
 end
 
 
