@@ -5,12 +5,7 @@ class GroupsController < ApplicationController
 
   def index
     Rails.logger.debug "###### let's find some groups"
-    @myGroups = Array.new
-    if !current_user.nil? then
-      current_user.contacts.each do |c|
-      @myGroups += c.groups
-      end
-    end
+    @myGroups = current_user.mygroups
     logger.info "Search parameters are " + params[:search].to_s unless params[:search].nil?
     if params[:search].nil?
       @groups = Group.search(params[:search])

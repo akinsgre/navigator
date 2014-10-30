@@ -22,7 +22,7 @@ $( function(){
 	   });
        
        var initPromise = groups.initialize();
-       initPromise.done(function() {console.log('fail');}).fail(function() {console.log('Fail');});
+       initPromise.done(function() {}).fail(function() {console.log('Fail');});
        
        $('#groupsearch').typeahead({}, 
        				      {

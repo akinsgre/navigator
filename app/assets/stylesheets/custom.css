@@ -121,8 +121,8 @@ div .resetLayout {
     border-radius: 8px;
 }
 .CGbuttonalign {
-    float: left;
-    align:left;
+    float: right;
+
     
 }
 
@@ -373,8 +373,7 @@ div.bubbleimg {
 .colA {
     float:left;
     min-width:45%;
-    min-height: 450px;
-    margin:0%;
+    height: 100%;
     padding:3%;
     border: 2px solid #ccc;
     overflow:hidden;
@@ -382,12 +381,15 @@ div.bubbleimg {
     border-radius:20px;
     font-family: Verdana,Helvetica,Arial;
 }
+.row-fluid {
+
+}
 .colB {
     text-align:center;
    !important float:right;
     min-width:45%;
-    height:450px;
-    margin:1%;
+    height: 100%;
+    min-height: 100%;
     padding:3%;
     border: 2px solid #ccc;
     overflow:hidden;
@@ -582,10 +584,18 @@ background-color: #0c93cb;
 vv.error_messages ul {
     margin: 0;
 }
-
+div.error_explanation h2 {
+    font-size:0.9em;
+    float:left;
+    line-height:20px;
+    margin-bottom:0px;
+    margin-top:0px;
+}
 div.error_explanation ul li {
     color:red;
     font-weight:bold;
-    font-size:1.5em;
+    font-size:0.9em;
     float:left;
+    line-height:20px;
+    list-style: circle;
 }

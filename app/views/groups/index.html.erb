@@ -1,85 +1,31 @@
 <% title "Groups" %>
 
-<% form_tag groups_path, :method => 'get' do %>
-<p> 
-  <%= text_field_tag :search %>
-  <%= submit_tag "Search", :name => nil %>
-</p>
-
-<% end %>
-<% unless current_user.subscribed? %>
 <div class="resetLayout" >
-
-
-<% end %>
-<div class="row-fluid">
-  <div class="span11">
-   <b> Groups I'm in : <%= @myGroups.length %></b>
+  
+  <div class="row-fluid">
+    <div class="ColA span6Group">
+      <b> Groups I'm in : <%= @myGroups.length %></b>
+    </div>
   </div>
-</div>
-<div class="row-fluid">
-<div class="colA span6">
- <div class="row-fluid">
-  <div class="span2">&nbsp
+  <div class="row-fluid">
+    <div class="span12">
+      <table>
+      <th>Group Name</th>
+      <th>Admin Email</th>
+      <th>Actions</th>
+      <% for group in @groups %>
+      <tr>
+          <td><%= group.name %></td>
+	  <td><%= group.user.email unless group.user.nil? %></td>
+	  <td><%= link_to "Show", group %>|<%= link_to "Edit", edit_group_path(group) %>|<%= link_to "Destroy", group, :confirm => 'Are you sure?', :method => :delete %></td>
+
+      </tr>
+      <% end %>
+      </table>
+    </div>
   </div>
-   <div class="span8" text-align="center">
-    &nbsp <b>Group Name</b>
-   </div>
-   <div class="span2">&nbsp
-     </div>
-  </div>
-<div class="row-fluid">
-  <% for group in @groups %>
-	<% if !@myGroups.include?( group) %>
-	<div class="span2">"Join Group"
-	  </div>
-	<% else %>
-	<div class="span2">Member
-	  </div>
-	<% end %>
-        <div class="span8">  <%= group.name %>
- </div>
-<div class="span2">&nbsp
-  </div>
-</div>
-</div>
-<div class="colD span5">
- <div class="row-fluid">
-  <div class="span11" text-align="center">
-    <b>Contact Email</b>
-   </div>
-  </div>
- <div class="row-fluid">
-   <div class="span11">
-      <%= group.user.email unless group.user.nil? %>
-   </div>
-  </div>
-</div>
-</div>
-<br/>
-<div class="row-fluid">
-  <div class="span2" align="left">
-      <%= link_to "Show", group %>&nbsp
-      </div>
-      <div class="span2" align="center">|&nbsp
-      </div>
-  <div class="span2" align="center">
-     <%= link_to "Edit", edit_group_path(group) %>&nbsp
-     </div>
-     <div class="span2" align="center">|&nbsp
-     </div>
-  <div class="span2" align="right">
-      <%= link_to "Destroy", group, :confirm => 'Are you sure?', :method => :delete %>
-     <% end %> 
-</div>
-</div>
+
+  <p><%= link_to "New Group", new_group_path %></p>
 
 
-
-
-
-<% unless @subscriber.nil? %>
-<p><%= link_to "New Group", new_group_path %></p>
-<% end %>
-</div>
 </div>

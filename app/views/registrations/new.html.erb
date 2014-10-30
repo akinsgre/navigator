@@ -3,95 +3,95 @@
     <div class="colA span5">
       <div class="row-fluid">
 	<div class="span11">
-      <h2>Sign up</h2>
-	 <%= form_for(resource, :as => resource_name, :url => registration_path(          resource_name)) do |f| %>
-</div>      
- </div>
-       <div class="row-fluid" align="center"> 
-	<div class="error_explanation span11"!important float="center">
-	  <%= devise_error_messages! %>
-	  </div>
-       </div><br /><br />
-
-       <div class="row-fluid"> 
-	 <div class="span11">
-	   <%= f.label :email %><br />
-         </div>
-       </div>
-       <div class="row-fluid">
-	 <div class="span11">
-	   <%= f.email_field :email %>
-         </div>
-       </div>
-       <div class="row-fluid">
-	 <div class="span11">
-	   <%= f.label :password %><br />
-         </div>
-       </div>
-       <div class="row-fluid">
-	 <div class="span11">
-	   <%= f.password_field :password %>
-	</div>
-       </div>
-       <div class="row-fluid">
-	 <div class="span11">
-	   <%= f.label :password_confirmation %><br />
-         </div>
+	  <h2>Sign up</h2>
+	  <%= form_for(resource, :as => resource_name, :url => registration_path(          resource_name)) do |f| %>
+	</div>      
+      </div>
+      <div class="row-fluid" align="center"> 
+	<div class="error_explanation" float="center"><%= devise_error_messages! %></div>
+      </div>
+      
+      <div class="row-fluid"> 
+	<div class="span11">
+	  <%= f.label :email %><br />
         </div>
-       <div class="row-fluid">
-	 <div class="span11">
-	   <%= f.password_field :password_confirmation %><br />
-         </div>
-       </div>
-       <div class="row-fluid">
+      </div>
+      <div class="row-fluid">
+	<div class="span11">
+	  <%= f.email_field :email %>
+        </div>
+      </div>
+      <div class="row-fluid">
+	<div class="span11">
+	  <%= f.label :password %><br />
+        </div>
+      </div>
+      <div class="row-fluid">
+	<div class="span11">
+	  <%= f.password_field :password %>
+	</div>
+      </div>
+      <div class="row-fluid">
+	<div class="span11">
+	  <%= f.label :password_confirmation %><br />
+        </div>
+      </div>
+      <div class="row-fluid">
+	<div class="span11">
+	  <%= f.password_field :password_confirmation %><br />
+        </div>
+      </div>
+      <div class="row-fluid">
 	<div class="span11">
 	  <%= f.submit "Sign up" %>
-		     <% end %>
+	  <% end %>
+<%= render :partial => "devise/shared/links_sans_signin" %>
 	</div>
-       </div>
-      </div>
-<div class="colB span6" align="right">
-  <div class="row-fluid">
-    <div class="span11" text-align="center">
-      <div class="row-fluid">
-	<div class="span11" text-align="center"><h2>Steps to register a group with NMC:</h2><br/>
+
       </div>
     </div>
+    <div class="colB span6" >
+      <div class="row-fluid">
+	<div class="span11" text-align="center">
+	  <div class="row-fluid">
+	    <div class="span11" text-align="center"><h2>Steps to register a group with NMC:</h2><br/>
+	    </div>
+	  </div>
           <div class="row-fluid">
 	    <div class="span11" align="left">
-<b>1.</b>&nbsp Create a unique username and password
+	      <b>1.</b>&nbsp Create a unique username and password
+	    </div>
+	  </div>
+	  <div class="row-fluid">
+	    <div class="span11" align="left">
+	      <b>2.</b>&nbsp Provide a name and description of your group
+	    </div>
+	  </div>
+	  <div class="row-fluid">
+	    <div class="span11" align="left">
+	      <b>3.</b>&nbsp Provide an email for the sponsorer of your group (optional)
+	    </div>
+	  </div>
+	  <div class="row-fluid">
+	    <div class="span11" align="left">
+	      <b>4.</b>&nbsp Register the users in your group
+	    </div>
+	  </div>
+	  <div class="row-fluid">
+	    <div class="span11" align="left">
+	      <b>5.</b>&nbsp Keep your group informed about upcoming events via email or sms
+	    </div>
+	  </div> 
+	  <div class="row-fluid">
+	    <div class="span11" align="left">
+	      <b>6.</b>&nbsp<i> Enjoy the convenience of our service!</i>
+	    </div>
+	  </div>   
 	</div>
       </div>
-  <div class="row-fluid">
-    <div class="span11" align="left">
-    <b>2.</b>&nbsp Provide a name and description of your group
     </div>
+    <br/>
   </div>
-  <div class="row-fluid">
-    <div class="span11" align="left">
-      <b>3.</b>&nbsp Provide an email for the sponsorer of your group (optional)
-    </div>
-  </div>
-  <div class="row-fluid">
-    <div class="span11" align="left">
-     <b>4.</b>&nbsp Register the users in your group
-    </div>
-  </div>
-  <div class="row-fluid">
-    <div class="span11" align="left">
-      <b>5.</b>&nbsp Keep your group informed about upcoming events via email or sms
-    </div>
-  </div> 
-  <div class="row-fluid">
-    <div class="span11" align="left">
-      <b>6.</b>&nbsp<i> Enjoy the convenience of our service!</i>
-    </div>
-  </div>   
- </div>
- </div>
-</div>
-<br/>
-</div>
-<%= render :partial => "devise/shared/links_sans_signin" %>
+
 
 </div>

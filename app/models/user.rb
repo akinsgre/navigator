@@ -8,6 +8,13 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
   
+  def mygroups 
+    result = self.groups
+    self.contacts.each do |c|
+      result << c.groups
+    end
+    result
+  end
   #strong_parameters :email, :password, :password_confirmation, :remember_me
 
   def admin?
