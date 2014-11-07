@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 ruby '2.0.0'
 gem 'rails', '4.0.4'
-gem 'ruby 
+
 gem 'nifty-generators', '0.4.6'
 gem 'devise', '3.2.4'
 gem 'twilio-ruby', '3.4.0'
