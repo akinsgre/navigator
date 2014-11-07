@@ -27,22 +27,26 @@ before_filter :authorize, :only => [:index]
 
   def create
     Rails.logger.debug "#### Params are #{params.inspect}"
-    case params[:contact][:type]
-    when "Phone" 
+    contactType = params[:contact][:type] || params[:contact][:type] || params[:contact][:type]
+    case  contactType 
+    when'Phone'
+      
       @contact = Phone.new(params[:contact].permit(:name, :user_id, :entry, :type))
-    when "Sms"
+    when 'Sms'
+      
       @contact = Sms.new(params[:contact].permit(:name, :user_id, :entry, :type))
-      @typedContact = @contact.becomes(Sms)
-    when "Email"
+      
+    when 'Email'
+      
       @contact = Email.new(params[:contact].permit(:name, :user_id, :entry, :type))
-      @typedContact = @contact.becomes(Email)
-    else 
-      Rails.logger.info "This #{@contact.type} is not a type"
+      
+    else
+      Rails.logger.info "This #{@contact.class} is not a type"
       raise "Not a supported type"
     end
-
+    
     Rails.logger.debug "##### Contact being created is #{@contact}"
-    unless params[:contact][:group].nil? || params[:contact][:group][:id].nil?
+    unless params[:contact][:group].nil?  && params[:contact][:group][:id].nil?
       group_id = params[:contact][:group][:id]
       logger.info "##### param Group[:id] is " + group_id
       @group = Group.find(group_id)

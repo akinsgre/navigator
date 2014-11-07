@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<error>
+<error_code>403</error_code>
+<error_message>Not authorized</error_message>
+</error>

@@ -4,7 +4,6 @@ class Contact < ActiveRecord::Base
 
   belongs_to :user
 
-  
   validates_presence_of :entry
 
   require_dependency 'phone'
@@ -38,6 +37,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: contacts
@@ -49,5 +49,6 @@ end
 #  user_id    :integer
 #  type       :string(255)
 #  entry      :string(255)
+#  identifier :string(255)
 #
 

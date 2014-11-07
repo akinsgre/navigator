@@ -7,6 +7,7 @@ class Sms < Contact
 end
 
 
+
 # == Schema Information
 #
 # Table name: contacts
@@ -18,5 +19,6 @@ end
 #  user_id    :integer
 #  type       :string(255)
 #  entry      :string(255)
+#  identifier :string(255)
 #
 

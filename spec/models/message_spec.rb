@@ -1,8 +1,16 @@
-class Message < ActiveRecord::Base
-  belongs_to :group
+require 'spec_helper'
 
-  validates_presence_of :message
+describe Message do
+
+  it "should not be created" do
+    m = Message.new
+    m.should_not be_valid
+  end
+
 end
+
+
+
 
 
 
