@@ -1,7 +1,6 @@
 Navigator::Application.routes.draw do
 
   get "twiml/say"
-  get "twiml_controller/say"
   get "sponsors/info"
 
   post "email/create"
