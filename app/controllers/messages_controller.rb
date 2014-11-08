@@ -39,7 +39,9 @@ class MessagesController < ApplicationController
         @twilioMessage = @client.account.sms.messages.create({:from => '+17249071027', :to => c.entry, :body => @message.message})
       when "Phone"
         Rails.logger.debug "#### Send Phone Call"
-        @call = @client.account.calls.create(  :from => '+17249071027',  :to => c.entry, :url => "http://localhost:3000/twiml/say.xml?secret=#{ ENV['NMC_API_KEY'] }" )
+        message = Rack::Utils.escape(@message.message)
+        url = "http://notifymyclub.herokuapp.com/twiml/say.xml?secret=#{ ENV['NMC_API_KEY'] }&message=#{message}"
+        @call = @client.account.calls.create(  :from => '+17249071027',  :to => c.entry, :url => url )
         
       when "Email"
         Rails.logger.debug "#### Send Email"

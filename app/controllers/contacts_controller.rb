@@ -27,7 +27,8 @@ before_filter :authorize, :only => [:index]
 
   def create
     Rails.logger.debug "#### Params are #{params.inspect}"
-    contactType = params[:contact][:type] || params[:contact][:type] || params[:contact][:type]
+    Rails.logger.debug "#### Params[:contact] are #{params[:contact].inspect}"
+    contactType = params[:contact][:type]
     case  contactType 
     when'Phone'
       
