@@ -41,7 +41,7 @@ class MessagesController < ApplicationController
         Rails.logger.debug "#### Send Phone Call"
         message = Rack::Utils.escape(@message.message)
         url = "http://notifymyclub.herokuapp.com/twiml/say.xml?secret=#{ ENV['NMC_API_KEY'] }&message=#{message}"
-        @call = @client.account.calls.create(  :from => '+17249071027',  :to => c.entry, :url => url )
+        @call = @client.account.calls.create(  :from => '+17249071027',  :to => c.entry, :url => url, :method => 'GET' )
         
       when "Email"
         Rails.logger.debug "#### Send Email"
