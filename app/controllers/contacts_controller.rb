@@ -1,13 +1,20 @@
 class ContactsController < AdminController
-before_filter :authenticate_user!
-before_filter :authorize, :only => [:index]
+  before_filter :authenticate_user!, :except => [:new, :create]
+  #before_filter :authorize, :only => [:index]
   def index
-    @contacts = Contact.all
-  end
+    authorize unless params[:group_id] 
+    if params[:group_id]
+      @group = Group.find(params[:group_id])
+      @contacts = @group.contacts
+    else
+      @contacts = Contact.all
+    end
 
+  end
+  
   def show
-    @group = Group.find(params[:group_id])
     @contact = Contact.find(params[:id])
+    @group = Group.find(params[:group_id]) if params[:group_id]
   end
 
   def new
@@ -50,15 +57,16 @@ before_filter :authorize, :only => [:index]
     unless params[:contact][:group].nil?  && params[:contact][:group][:id].nil?
       group_id = params[:contact][:group][:id]
       logger.info "##### param Group[:id] is " + group_id
-      @group = Group.find(group_id)
-      logger.info "##### Group is " + @group.name
-      @contact.groups.push(@group)
+      group = Group.find(group_id)
+      logger.info "##### Group is " + group.name
+      @contact.groups.push(group)
     end
 
     logger.info "@contact #{@contact} has  " + @contact.groups.size.to_s + " groups."
 
     if @contact.save
-      redirect_to group_contact_path(@group, @contact) , :notice => "Successfully created contact."
+      redirect_to group_contact_path(group, @contact) , :notice => "Successfully created contact." if current_user
+      redirect_to root_path, :notice => "We will let you know when something is posted for \"#{group.name}." unless current_user
     else
       render "new"
     end
@@ -67,6 +75,7 @@ before_filter :authorize, :only => [:index]
 
   def edit
     @contact = Contact.find(params[:id])
+    @group = Group.find(params[:group_id]) if params[:group_id]
   end
 
   def update

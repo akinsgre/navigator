@@ -5,6 +5,9 @@ class Phone < Contact
   def self.identify
     "Phone"
   end
+def self.long_description
+  "Phone number (10 digit)"
+end
 end
 
 

@@ -3,7 +3,6 @@
 <% unless @group.nil? %>
 <p class="resetLayout">Add a contact to group: <%= @group.name %></p>
 <% end %>
-
 <%= render 'form' %>
 
 <p><%= link_to "Back to List", group_contacts_path(@group) %></p>

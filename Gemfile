@@ -2,6 +2,7 @@ source 'http://rubygems.org'
 ruby '2.0.0'
 gem 'rails', '4.0.4'
 
+gem 'sass-rails', '4.0.1'
 gem 'nifty-generators', '0.4.6'
 gem 'devise', '3.2.4'
 gem 'twilio-ruby', '3.4.0'
@@ -17,6 +18,8 @@ group :development do
 end
 group :development, :test do
   gem 'sqlite3'
+  gem 'factory_girl', '4.4.0'
+gem "factory_girl_rails"
 end
 
 group :test do
@@ -25,7 +28,7 @@ group :test do
   gem 'rspec-rails', '2.14.1'
   gem 'webrat'
   gem "mocha"
-  gem 'factory_girl', '4.4.0'
+
 end
 group :production do
   gem 'pg'

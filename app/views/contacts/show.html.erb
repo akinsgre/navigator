@@ -1,6 +1,5 @@
 <% title "Contact" %>
 
-
 <p class="resetLayout">
   <strong>Name:</strong>
   <%= @contact.name %>
@@ -11,7 +10,8 @@
   <%= @contact.entry %>
 </p>
 <p>
-  <%= link_to "Edit", edit_group_contact_path(@group, @contact) %> |
-  <%= link_to "Destroy", group_contact_path(@group, @contact), :confirm => 'Are you sure?', :method => :delete %> |
-  <%= link_to "View All", group_contacts_path(@group) %>
+  <%= edit_contact_or_group "Edit"  %> |
+  <%= link_to "Destroy", contact_path( @contact), :confirm => 'Are you sure?', :method => :delete %>
+  <%= link_to "| View All", group_contacts_path(@group) if @group %> 
 </p>
+

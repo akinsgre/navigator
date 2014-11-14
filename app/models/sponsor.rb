@@ -2,6 +2,11 @@ class Sponsor < ActiveRecord::Base
   has_many :groups, :through => :group_sponsors
   has_many :group_sponsors
   has_many :contributions
+  has_many :advertisements
+  
+  def self.getAd
+    Advertisement.first(:offset => rand(Advertisement.count)).message
+  end
 end
 
 # == Schema Information

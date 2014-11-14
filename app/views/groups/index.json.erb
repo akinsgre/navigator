@@ -1,6 +1,6 @@
 { "results" : [
 <% @groups.each do |group| %>
-{"name":"<%= group.name %>","id":1}<%= ',' if group != @groups.last %> 
+{"name":"<%= group.name %>","id":<%= group.id %>}<%= ',' if group != @groups.last %> 
 <% end %>
 ]
 }

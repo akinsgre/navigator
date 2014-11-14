@@ -1,6 +1,6 @@
 <head><SCRIPT LANGUAGE="JavaScript">
 <!--
-window.open("bigpage.html","fs","fullscreen=yes")
+
 function JumpToIt(frm) {
    var newPage = frm.url.options[frm.url.selectedIndex].value
    if (newPage != "None") {
@@ -9,8 +9,10 @@ function JumpToIt(frm) {
 }
 //-->
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0"> <link href="css/bootstrap-responsive.css" rel="stylesheet">
-</SCRIPT></head>
+
+</SCRIPT>
+
+</head>
 <body>
 <div class="container-fluid" width="100%" resize="auto">
   <div class="row-fluid" width="100%">
@@ -24,19 +26,15 @@ function JumpToIt(frm) {
    <p>Best of all, the application is free to your members.</p>
      </div>
   </div>
+<% flash.each do |key, msg| %>
+<div id="flash_<%= key %>">
+  <p><%= msg %></p>
+</div>
 
+
+<% end %>
 <div class="row-fluid" width="100%">
- <div class="col1 span4">
-  <div class="row-fluid">
-    <div class="span11">
-    <h1 align="center">Group Leaders</h1>
-    </div>
-    </div>
-  <div class="row-fluid">
-     <div class="span11" align="center" width="50%"> <%= button_to "Start your group", new_user_registration_path, :class => "100_button", :method => :get %>
-       </div>
-     </div>
-  </div>
+
   <div class="col2 span4">
     <div class="row-fluid">
       <div class="span11">
@@ -57,6 +55,17 @@ function JumpToIt(frm) {
      <i class="fa favicon.gif"></i></input>
      </div>
    </div>
+ <div class="col1 span4">
+  <div class="row-fluid">
+    <div class="span11">
+    <h1 align="center">Group Leaders</h1>
+    </div>
+    </div>
+  <div class="row-fluid">
+     <div class="span11" align="center" width="50%"> <%= button_to "Start your group", new_user_registration_path, :class => "100_button", :method => :get %>
+       </div>
+     </div>
+  </div>
  <div class="col3 span4">
    <div class="row-fluid">
      <div class="span11" align="center">

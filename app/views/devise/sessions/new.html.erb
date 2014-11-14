@@ -13,12 +13,10 @@
     <div class="span11">
       <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
 <% flash.each do |key, msg| %>
-  <div id="flash_<%= key %>">
-    <p><%= msg %></p>
-    </div>
-   </div>
-    <div class="clear"></div>
-  </div>
+<div id="flash_<%= key %>">
+  <p><%= msg %></p>
+</div>
+
 <% end %>
  <div class="row-fluid">
   <div class="span11"><%= f.label :email %><br />

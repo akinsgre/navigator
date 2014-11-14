@@ -33,7 +33,7 @@
 	  <select multiple name="url" width=20 >
 	    <option value="None" selected="selected" onClick="JumpToIt(this.form)"> Select a Group From this list </option>
 	    <% @groups.each do |g| %>
-	    <option value="<%= user_groups_path(current_user) %>" onClick="JumpToIt(this.form)"><%= g.name %></option>
+	    <option value="<%= user_group_path(current_user, g) %>" onClick="JumpToIt(this.form)"><%= g.name %></option>
 	    <% end %>
 	  </select>
 	</form>

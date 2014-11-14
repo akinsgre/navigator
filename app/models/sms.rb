@@ -4,6 +4,9 @@ class Sms < Contact
   def self.identify
     "Text Message"
   end
+  def self.long_description
+    "Phone number (that receives text messages)"
+  end
 end
 
 

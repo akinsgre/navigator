@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140602144245) do
+ActiveRecord::Schema.define(version: 20141112140951) do
+
+  create_table "advertisements", force: true do |t|
+    t.integer  "sponsor_id"
+    t.text     "message"
+    t.text     "html_message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "assignments", force: true do |t|
     t.integer  "user_id"

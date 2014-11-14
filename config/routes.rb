@@ -12,7 +12,7 @@ Navigator::Application.routes.draw do
   
   get "incoming_message", :to => "incoming_message#index"
 
-  post "messages/deliver"
+
   get "home/index"
   get "donate/new"
 
@@ -20,7 +20,8 @@ Navigator::Application.routes.draw do
   devise_for :users, :controllers => { :registrations => "registrations" }
 
   match "users/sign_out" => "users#sign_out", :via => :get
-
+  get 'contact_type/:id', :to => 'contact_type#show'
+  resources :contacts
   resources :users do
     resources :groups
     resources :contacts
@@ -30,6 +31,8 @@ Navigator::Application.routes.draw do
   resources :subscriptions
 
   resources :groups do
+    get "messages/new"
+    post "messages/deliver"
     resources :contacts
   end
 

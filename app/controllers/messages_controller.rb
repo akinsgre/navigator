@@ -4,7 +4,8 @@ class MessagesController < ApplicationController
 
   def new
     @message = Message.new
-    @message.group = Group.find(params[:id])
+    @group = Group.find(params[:group_id])
+    @message.group = @group
   end
 
   def deliver
@@ -12,6 +13,7 @@ class MessagesController < ApplicationController
     Rails.logger.debug " Called from #{caller[0]}"
     
     @message = Message.new(params[:message].permit(:message, :group_id))
+    @group = @message.group
     logger.debug "#### ID = " + @message.group_id.to_s
     @account_sid = ENV['TW_SID']
     @auth_token = ENV['TW_TOKEN']
@@ -33,14 +35,21 @@ class MessagesController < ApplicationController
       Rails.logger.debug "##### Sending #{c.type} message to #{c.name} with #{@message.message} to #{@message.group.name}"
       # TODO send message per contacts type"
       Rails.logger.debug "Sending the message #{@message.message} to  #{c.type} : #{c.inspect}"
+
       case c.type
       when "Sms"
         Rails.logger.debug "#### Send Text message"
-        @twilioMessage = @client.account.sms.messages.create({:from => '+17249071027', :to => c.entry, :body => @message.message})
+        @twilioMessage = @client.account.sms.messages.create({
+                                                               :from => '+17249071027', 
+                                                               :to => c.entry, 
+                                                               :body => "#{@message.message}\r\n\r\n#{Sponsor.getAd}"
+                                                             })
+
       when "Phone"
         Rails.logger.debug "#### Send Phone Call"
+        sponsor_msg = Rack::Utils.escape(Sponsor.getAd)
         message = Rack::Utils.escape(@message.message)
-        url = "http://notifymyclub.herokuapp.com/twiml/say.xml?secret=#{ ENV['NMC_API_KEY'] }&message=#{message}"
+        url = "http://notifymyclub.herokuapp.com/twiml/say.xml?secret=#{ ENV['NMC_API_KEY'] }&message=#{message}&sponsor_msg=#{sponsor_msg}"
         @call = @client.account.calls.create(  :from => '+17249071027',  :to => c.entry, :url => url, :method => 'GET' )
         
       when "Email"

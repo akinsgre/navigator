@@ -10,6 +10,9 @@ describe MessagesController do
       contacts = FactoryGirl.create_list(:email, 2)
       contacts << FactoryGirl.create(:sms)
       @group.contacts << contacts
+
+      @ad = FactoryGirl.create(:advertisement)
+
     end
     it "can send a message" do
 
@@ -39,6 +42,7 @@ describe MessagesController do
       contacts = FactoryGirl.create_list(:email, 2)
       contacts << FactoryGirl.create(:phone)
       @group.contacts << contacts
+      @ad = FactoryGirl.create(:advertisement)
     end
     it "can send a message" do
 

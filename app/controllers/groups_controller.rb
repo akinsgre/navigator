@@ -4,13 +4,13 @@ class GroupsController < ApplicationController
   respond_to :html, :json
 
   def index
-    Rails.logger.debug "###### let's find some groups"
-    @myGroups = current_user.mygroups
-    logger.info "Search parameters are " + params[:search].to_s unless params[:search].nil?
+    Rails.logger.debug "###### let's find some groups "
+    @myGroups = current_user.mygroups unless current_user.nil?
+    logger.info "##### Search parameters are " + params[:search].to_s unless params[:search].nil?
     if params[:search].nil?
-      @groups = Group.search(params[:search])
+      @groups = Group.all
     else
-      @groups = Groups.all
+      @groups = Group.search(params[:search])
     end
     Rails.logger.debug "#### Show the groups #{@groups.inspect}"
     respond_with(@groups)
@@ -76,11 +76,11 @@ class GroupsController < ApplicationController
   def add_contact
     @group = Group.find(params[:id])
     @contact = Contact.new
-
   end
+
   def save_contact
-    Rails.logger.info "###### #{params}"
-    Rails.logger.info "Param id = #{params[:id].to_s}"
+    Rails.logger.info "###### Params #{params}"
+    Rails.logger.info "Param contact = #{params[:contact].inspect}"
 
     @group = Group.find(params[:group][:id])
 

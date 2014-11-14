@@ -12,7 +12,7 @@ describe ContactsController do
   end
     it "should be successful" do
       get :index, :group_id => @group
-      expect(response).to eq(:success)
+      expect(response.status).to eq(200)
     end
   end
 

@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :message  do
-    message               "This is a test"
+    message   "Welcome to my rspec testing message"
   end
 end
