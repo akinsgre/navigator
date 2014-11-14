@@ -26,8 +26,8 @@ describe MessagesController do
       account.expects(:sms).returns(sms)
       sms.expects(:messages).returns(messages)
       messages.expects(:create).returns("Test Passed")
+      post :deliver, {:message => {"message"=> "This is a message", :group_id => @group.id}, :group_id => @group.id }
 
-      post :deliver, {:message => {"message"=> "This is a test", "group_id" => @group.id }}
       response.should be_success
 
       expect(assigns(:contacts)).to eq(@group.contacts)
@@ -55,7 +55,7 @@ describe MessagesController do
       account.expects(:calls).returns(calls)
       calls.expects(:create).returns("Phone Test Passed")
 
-      post :deliver, {:message => {"message"=> "This is a test", "group_id" => @group.id }}
+      post :deliver, {:message => {"message"=> "This is a message", :group_id => @group.id}, :group_id => @group.id }
       response.should be_success
 
       expect(assigns(:contacts)).to eq(@group.contacts)
