@@ -52,7 +52,7 @@ describe GroupsController do
         post "save_contact" , "group"=>{"id"=>"1"}, "contact"=>{"type"=>"Phone", "entry"=>"724 454 7790", "identifier"=>"Test"}
         group = assigns[:group]
         group.should_not be_nil
-        allContacts = @group.contacts.length + group.contacts.length
+        allContacts = group.contacts.length
         allContacts.should eq(2)
       end
     end

@@ -12,7 +12,7 @@ gem 'nested_form', '0.3.2'
 
 gem "twitter-bootstrap-rails"
 gem 'twitter-typeahead-rails', '0.10.2'
-
+gem 'seedbank'
 group :development do
   gem 'annotate', '2.4.0'
 end

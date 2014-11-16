@@ -10,8 +10,8 @@ describe Sponsor do
   end
   it "should have a static appendAdd method" do
     message = 'test'
-    message = Sponsor.getAd
-    message.should match('MyText')
+    message = Sponsor.getPhoneAd
+    message.should match('Notify My Club dot org.  Help your club get the word out')
   end
 
   it "should have advertisements" do

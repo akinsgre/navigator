@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141112140951) do
+ActiveRecord::Schema.define(version: 20141114235714) do
 
   create_table "advertisements", force: true do |t|
     t.integer  "sponsor_id"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20141112140951) do
     t.text     "html_message"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "phone_message"
   end
 
   create_table "assignments", force: true do |t|

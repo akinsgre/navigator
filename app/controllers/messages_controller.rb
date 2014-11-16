@@ -38,18 +38,20 @@ class MessagesController < ApplicationController
 
       case c.type
       when "Sms"
-        Rails.logger.debug "#### Send Text message"
+        body = "#{@message.message}\r\n\r\n#{Sponsor.getTextAd}"
+        Rails.logger.debug "#### Send Text message #{body}"
         @twilioMessage = @client.account.sms.messages.create({
                                                                :from => '+17249071027', 
                                                                :to => c.entry, 
-                                                               :body => "#{@message.message}\r\n\r\n#{Sponsor.getAd}"
+                                                               :body => body
                                                              })
 
       when "Phone"
         Rails.logger.debug "#### Send Phone Call"
-        sponsor_msg = Rack::Utils.escape(Sponsor.getAd)
+        sponsor_msg = Rack::Utils.escape(Sponsor.getPhoneAd)
         message = Rack::Utils.escape(@message.message)
         url = "http://notifymyclub.herokuapp.com/twiml/say.xml?secret=#{ ENV['NMC_API_KEY'] }&message=#{message}&sponsor_msg=#{sponsor_msg}"
+        Rails.logger.info "##### Sending Message #{url}"
         @call = @client.account.calls.create(  :from => '+17249071027',  :to => c.entry, :url => url, :method => 'GET' )
         
       when "Email"

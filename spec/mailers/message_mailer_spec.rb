@@ -10,12 +10,13 @@ describe MessageMailer do
     let(:message) { FactoryGirl.create(:message) }
     let(:advertisement) { FactoryGirl.create(:advertisement)}
     let(:mail) { MessageMailer.send_message(email, message) }
+
  
     it 'renders the subject' do
       expect(mail.subject).to eq('Message')
       puts mail.body.encoded
       expect(mail.body.encoded).to match("Welcome to my rspec testing message")
-      expect(mail.body.encoded).to match("MyText")
+      expect(mail.body.encoded).to match("MyHtml")
     end
  
   end

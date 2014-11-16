@@ -5,7 +5,7 @@ class MessageMailer < ActionMailer::Base
     @contact = contact
     @message = message
 
-    @sponsorMsg = Sponsor.getAd
+    @sponsorMsg = Sponsor.getEmailAd
 
     mail(to: @contact.entry, subject: 'Message')
     @message

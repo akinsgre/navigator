@@ -5,3 +5,6 @@ require File.expand_path('../config/application', __FILE__)
 require 'rake'
 
 Navigator::Application.load_tasks
+
+#require 'seedbank'
+#Seedbank.load_tasks if defined?(Seedbank)
