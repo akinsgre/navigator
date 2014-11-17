@@ -4,7 +4,6 @@ FactoryGirl.define do
     description 'test group'
     after(:create) do |group|
       group.contacts << create(:email)
-
     end
   end
 end

@@ -17,7 +17,10 @@ class GroupsController < ApplicationController
   end
 
   def show
+
     @group = Group.find(params[:id])
+    @menu_map = { "Edit" => edit_group_path(@group), "Destroy" => url_for(:action => 'destroy', :controller => 'groups'), "View All" => groups_path }
+
 
     if @group.nil?
       redirect_to :root, :status => 401, :notice => "You do not have access to this group."

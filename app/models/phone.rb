@@ -1,6 +1,8 @@
 class Phone < Contact
 
-  validates_length_of :entry, :is => 10, :message => 'must be 10 digits, excluding special characters such as spaces and dashes. No extension or country code allowed.', :if => Proc.new{|o| !o.entry.blank?}
+
+validates_plausible_phone :entry, :normalized_country_code => 'US', :message => I18n.t('validations.errors.models.phone.invalid_number')
+
 
   def self.identify
     "Phone"
@@ -8,6 +10,7 @@ class Phone < Contact
 def self.long_description
   "Phone number (10 digit)"
 end
+
 end
 
 

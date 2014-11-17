@@ -1,20 +1,31 @@
 require 'spec_helper'
 
-describe Phone do
+describe Email do
   it "should be created" do
-    phone = Phone.new
+    phone = Email.new
     phone.should_not be_valid
   end
   it "should be created" do
-    phone = Phone.new
-    phone.entry = '17245551212'
+    phone = Email.new
+    phone.entry = 'test1@example.com'
     phone.should be_valid
   end
   it "should be created" do
-    phone = Phone.new
-    phone.entry = '1724 555 1212'
+    phone = Email.new
+    phone.entry = 'test1+1@example.com'
     phone.should be_valid
   end
+  it "should be created" do
+    phone = Email.new
+    phone.entry = 'test1+1@example0-test.com'
+    phone.should be_valid
+  end
+  it "should not be valid" do
+    phone = Email.new
+    phone.entry = 'test1.com'
+    phone.should_not be_valid
+  end
+
 end
 
 

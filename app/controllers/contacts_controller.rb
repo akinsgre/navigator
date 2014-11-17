@@ -24,7 +24,7 @@ class ContactsController < AdminController
     unless params[:user_id].nil? || params[:user_id].to_s.rstrip.empty?
       @contact.user_id = params[:user_id] 
     end
-    logger.info "Group id will be " + params[:group_id].to_s
+    logger.info "##### Group id will be " + params[:group_id].to_s
 
     if !params[:group_id].nil? && Group.exists?(params[:group_id]) 
       @group = Group.find(params[:group_id]) 
@@ -57,17 +57,20 @@ class ContactsController < AdminController
     unless params[:contact][:group].nil?  && params[:contact][:group][:id].nil?
       group_id = params[:contact][:group][:id]
       logger.info "##### param Group[:id] is " + group_id
-      group = Group.find(group_id)
-      logger.info "##### Group is " + group.name
-      @contact.groups.push(group)
+      @group = Group.find(group_id)
+      logger.info "##### Group is " + @group.name
+      @contact.groups.push(@group)
     end
 
     logger.info "@contact #{@contact} has  " + @contact.groups.size.to_s + " groups."
 
     if @contact.save
-      redirect_to group_contact_path(group, @contact) , :notice => "Successfully created contact." if current_user
-      redirect_to root_path, :notice => "We will let you know when something is posted for \"#{group.name}." unless current_user
+      redirect_to group_contact_path(@group, @contact) , :notice => "Successfully created contact." if current_user
+      redirect_to root_path, :notice => "We will let you know when something is posted for \"#{@group.name}\"." unless current_user
     else
+      # Need to have a generic contact object on a new contact form.. 
+      # otherwise the create method breaks when it tries to examine the params[:contact]
+      @contact = @contact.becomes(Contact)
       render "new"
     end
 

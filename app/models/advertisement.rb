@@ -2,8 +2,7 @@ class Advertisement < ActiveRecord::Base
   belongs_to :sponsor
   validates :message, :html_message, :sponsor_id, :presence => true
 
-
-
+  scope :random_record, -> { (offset(rand(Advertisement.count)).first) }
 end
 
 # == Schema Information

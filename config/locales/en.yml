@@ -2,4 +2,23 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  en:
+  activerecord:
+    attributes:
+      phone:
+        entry: Phone
+      sms:
+        entry: Text Message
+      email:
+        entry: Email
+  validations:
+    errors:
+      models:
+        email:
+          invalid_email: "must be a valid email address."
+        phone:
+          invalid_number: "must be a valid US phone number."
+        sms:
+          invalid_number: "must be a valid US phone number."
+
+

@@ -5,13 +5,13 @@ class Sponsor < ActiveRecord::Base
   has_many :advertisements
   
   def self.getPhoneAd
-    Advertisement.first(:offset => rand(Advertisement.count)).phone_message
+    Advertisement.random_record.phone_message
   end
   def self.getTextAd
-    Advertisement.first(:offset => rand(Advertisement.count)).message
+    Advertisement.random_record.message
   end
   def self.getEmailAd
-    Advertisement.first(:offset => rand(Advertisement.count)).html_message
+    Advertisement.random_record.html_message
   end
 end
 

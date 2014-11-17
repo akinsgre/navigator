@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :phone do
-    entry '7244547790'
+    entry '17244547790'
   end
 end

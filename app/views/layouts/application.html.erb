@@ -47,6 +47,9 @@
 	<!-- This is where the menu should be inserted... -->
 
 	<div class="span12 row_fluid">
+
+	  <%= build_menu(@menu_map) %>
+
 	  <% if @group %>
 	  <h3>Group: <%= link_to @group.name, @group %></h3>
 	  <% end %>
