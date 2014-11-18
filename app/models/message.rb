@@ -1,5 +1,6 @@
 class Message < ActiveRecord::Base
   belongs_to :group
+  belongs_to :contact
 
   validates_presence_of :message
 end

@@ -21,7 +21,9 @@ Navigator::Application.routes.draw do
 
   match "users/sign_out" => "users#sign_out", :via => :get
   get 'contact_type/:id', :to => 'contact_type#show'
-  resources :contacts
+  resources :contacts do
+    get "opt_out"
+  end
   resources :users do
     resources :groups
     resources :contacts

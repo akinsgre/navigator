@@ -1,6 +1,7 @@
 class Contact < ActiveRecord::Base
   has_many :groups, :through => :group_contacts
   has_many :group_contacts
+  has_many :messages
 
   belongs_to :user
 

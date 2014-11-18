@@ -1,5 +1,5 @@
 class ContactsController < AdminController
-  before_filter :authenticate_user!, :except => [:new, :create]
+  before_filter :authenticate_user!, :except => [:new, :create, :opt_out]
   #before_filter :authorize, :only => [:index]
   def index
     authorize unless params[:group_id] 
@@ -97,5 +97,9 @@ class ContactsController < AdminController
     @contact = Contact.find(params[:id])
     @contact.destroy
     redirect_to contacts_url, :notice => "Successfully destroyed contact."
+  end
+  def opt_out
+    contact = Contact.find(params[:contact_id])
+    contact.destroy
   end
 end
