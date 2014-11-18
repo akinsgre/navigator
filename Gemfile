@@ -7,6 +7,7 @@ gem 'nifty-generators', '0.4.6'
 gem 'devise', '3.2.4'
 gem 'twilio-ruby', '3.4.0'
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'polyglot', '0.3.4'
 gem 'nested_form', '0.3.2'
 gem 'phony_rails'
@@ -15,13 +16,14 @@ gem 'valid_email'
 gem "twitter-bootstrap-rails"
 gem 'twitter-typeahead-rails', '0.10.2'
 gem 'seedbank'
+
 group :development do
   gem 'annotate', '2.4.0'
 end
 group :development, :test do
   gem 'sqlite3'
   gem 'factory_girl', '4.4.0'
-gem "factory_girl_rails"
+  gem "factory_girl_rails"
 end
 
 group :test do

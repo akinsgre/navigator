@@ -77,18 +77,18 @@ class ContactsController < AdminController
   end
 
   def edit
-    @contact = Contact.find(params[:id])
+    @contact = Contact.find(params[:id]).becomes(Contact)
     @group = Group.find(params[:group_id]) if params[:group_id]
   end
 
   def update
     @contact = Contact.find(params[:id])
-    @user = User.find_by_email(params[:email])
-    @user.email = @contact.email
-    logger.info "Updating user " + @user.email
-    if @contact.update_attributes(params[:contact]) && @user.save
-      redirect_to @contact, :notice  => "Successfully updated contact."
+    @group = Group.find(params[:group_id])
+    if @contact.update_attributes(params[:contact].permit(:name, :user_id, :entry, :type))
+      redirect_to group_contact_path(@group, @contact) , :notice => "Successfully created contact." if current_user
+      redirect_to root_path, :notice => "We will let you know when something is posted for \"#{@group.name}\"." unless current_user
     else
+      @contact = @contact.becomes(Contact)
       render :action => 'edit'
     end
   end

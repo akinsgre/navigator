@@ -7,6 +7,9 @@ validates_plausible_phone :entry, :normalized_country_code => 'US', :message => 
   def self.identify
     "Phone"
   end
+  def identify
+    "Phone"
+  end
 def self.long_description
   "Phone number (10 digit)"
 end

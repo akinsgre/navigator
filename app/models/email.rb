@@ -4,6 +4,9 @@ class Email < Contact
   def self.identify
     "Email"
   end
+  def identify
+    "Email"
+  end
   def self.long_description
     "Valid email address"
   end

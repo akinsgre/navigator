@@ -1,3 +1,5 @@
+$error-red: #FE1F0D;
+
 .tt-query,
 .tt-hint {
     height: 30px;
@@ -568,13 +570,18 @@ background-color: #0c93cb;
 }
 
 .error_messages {
-    width: 400px;
-    border: 2px solid #CF0000;
+    color: $error-red;
+    width: 50%;
+    border: 2px solid $error-red;
+    border-radius:10px;
     padding: 0px;
     padding-bottom: 12px;
     margin-bottom: 20px;
     background-color: #f0f0f0;
     font-size: 12px;
+}
+.error_messages ul li {
+    color: $error-red;
 }
 
 .error_messages h2 {
@@ -583,7 +590,7 @@ background-color: #0c93cb;
     padding: 5px 10px;
     font-size: 12px;
     margin: 0;
-    background-color: #c00;
+    background-color: $error-red;
     color: #fff;
 }
 

@@ -3,9 +3,9 @@
 
 
 //= require jquery
+//= require jquery-ui
 //= require jquery_ujs
 //= require twitter/bootstrap
-//= require jquery-ui-1.8.16.custom.min.js
 //= require jquery.validate.min.js
 
 

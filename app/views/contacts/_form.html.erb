@@ -1,7 +1,7 @@
 
 <div id="addTypes" >
 <div class="resetLayout" >
-  <%= form_for @contact, :url => group_contacts_path(@group), :validate => true do |f| %>
+  <%= form_for [@group, @contact],  :validate => true do |f| %>
   <%= f.error_messages %>
     <%= f.hidden_field :user_id %>
     <% unless @group.nil? %>

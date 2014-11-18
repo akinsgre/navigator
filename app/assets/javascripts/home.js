@@ -1,5 +1,23 @@
+function popUpWindow(id, title, containerId) {
+    console.log("This is a test");
+    var divObj = $('#' + id);
+
+    divObj.dialog('open');
+    $('#' + id + " input:text:visible:first").focus();
+}
 $( function(){
 
+       $( "#popups" ).load("privacy.html");
+       $("#popups").dialog({autoOpen:false, 
+			    width:"80%", 
+			    height:500, 
+			    modal:true});
+
+       $("#openwindow").click( function(e) {
+       				   e.preventDefault();
+       				   popUpWindow('popups', 'Test', 'testID') ;
+       			       });
+       
        // instantiate the bloodhound suggestion engine
        var groups = new Bloodhound(
 	   {

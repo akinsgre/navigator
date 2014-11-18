@@ -1,66 +1,7 @@
-<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
-<html> <head>
-<link rel="stylesheet" href="./stylesheets/application.css" type="text/css" />
-<link rel="stylesheet" href="./stylesheets/ui-lightness/jquery-ui-1.8.16.custom.css" type="text/css" />
-<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-<script src="./javascripts/jquery-1.6.4.min.js" type="text/javascript" ></script>
-<script src="./javascripts/jquery-ui-1.8.16.custom.min.js" type="text/javascript" ></script>
-<script src="./javascripts/jquery.validate.min.js" type="text/javascript" ></script>
-<script type="text/javascript" >
-jQuery.noConflict();
 
-jQuery(document).ready(function(){
-
-jQuery("#emailForm").validate({
-		rules: {
-			email: {
-				required: true,
-				email: true
-			}
-		},
-		messages: {
-			email: "Please enter a valid email address"
-		}
-	});
-    jQuery( "#emailDialog").dialog({ autoOpen: false });
-    jQuery( "#emailDialog").dialog({title:"Enter Email" });
-    jQuery( "#emailDialog").dialog({width:"500px" });
-    jQuery( "#emailDialog").dialog({ buttons : {"Ok" : function() { 
-	    jQuery("#emailForm").submit();
-	  }}});
-
-    jQuery( "#emailForm").submit(function() { 
-	    inviteEmail = jQuery("#email").val();
-	    jQuery.post('email/create', { email : inviteEmail } );
-	    jQuery("#emailDialog").dialog("close");
-      });
-    jQuery( "#emailDialog").dialog({position : [240,260]});
-    
-    jQuery( "#sendEmail" ).click( function() {
-	jQuery("#emailDialog").dialog("open") ; 
-      }) ; 
-  });
-
-
-</script>
-<title>notifymyclub.com - Privacy</title>
-</head>
-<body >
-
-
-<div class="banner">
-<div style="float:left" id="title" >
-  <h1 ><a href="/" >notifyMyClub.com</a></h1>
-  <h4 >Let everyone know what's happening.</h4>
-</div>
-<img class="bubble" src="../images/OrangeSpeechBubble.png"/>
-</div>
-
-<div class="outerDiv"">  
-
- <div class="fullCol">
    <h1>Privacy</h1>
    <p>This statement applies to websites operated by, or on behalf of, notifyMyClub.com and it's affiliated companies and subsidiaries.</p>
+
    <p>At notifyMyClub.com, protecting the privacy and security of your information is of utmost importance to us.  We therefore contract in writing with you to never sell, lease, share, rent or barter any of your personal information to anyone outside of our organization.</p>
    <p>We value the trust you place in notifyMyClub.com and maintain strict privacy policies.  We are committed to providing our customers and users with a secure environment and "state of the art" technologies to safeguard your information.  In the event that you terminate your customer relationship with us, or become an inactive customer, notifyMyClub.com will continue to adhere to the policies and practices described in this notice.</p>
 <h4>Information We Collect About You</h4>
@@ -89,14 +30,6 @@ Questions regarding this Privacy Policy or the security practices of
    notifyMyClub.com should be directed to notifyMyClub.com Privacy and
    Security Administrator at <a href="mailto:security@notifymyclub.com">security@notifymyclub.com</a>.</p>
 <p>This Privacy Policy is effective as of November 12, 2011.</p>
- </div>
 
-</div> <!-- outer div -->
-<ul class="footer">
-  <li class="footer" ><a href="privacy.html">Privacy</a></li>
-    <li class="footer" >|</li>
-  <li class="footer" ><a href="terms.html">Terms of Use</a></li>
 
-</ul>
-</body>
-</html>
+
