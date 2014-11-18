@@ -12,7 +12,7 @@ Navigator::Application.configure do
     port:                 587,
     domain:               'gmail.com',
     user_name:            ENV['EMAIL_NAME'],
-    password:             ENV['EMAIL_PASSWORD']
+    password:             ENV['EMAIL_PASSWORD'],
     authentication:       'plain',
     enable_starttls_auto: true  }
 
