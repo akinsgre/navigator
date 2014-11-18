@@ -1,5 +1,6 @@
 Navigator::Application.routes.draw do
 
+  get "incoming_message/receive"
   get "twiml/say"
   get "sponsors/info"
 
