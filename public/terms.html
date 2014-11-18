@@ -1,64 +1,4 @@
-<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
-<html> <head>
-<link rel="stylesheet" href="./stylesheets/application.css" type="text/css" />
-<link rel="stylesheet" href="./stylesheets/ui-lightness/jquery-ui-1.8.16.custom.css" type="text/css" />
-<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-<script src="./javascripts/jquery-1.6.4.min.js" type="text/javascript" ></script>
-<script src="./javascripts/jquery-ui-1.8.16.custom.min.js" type="text/javascript" ></script>
-<script src="./javascripts/jquery.validate.min.js" type="text/javascript" ></script>
-<script type="text/javascript" >
-jQuery.noConflict();
-
-jQuery(document).ready(function(){
-
-jQuery("#emailForm").validate({
-		rules: {
-			email: {
-				required: true,
-				email: true
-			}
-		},
-		messages: {
-			email: "Please enter a valid email address"
-		}
-	});
-    jQuery( "#emailDialog").dialog({ autoOpen: false });
-    jQuery( "#emailDialog").dialog({title:"Enter Email" });
-    jQuery( "#emailDialog").dialog({width:"500px" });
-    jQuery( "#emailDialog").dialog({ buttons : {"Ok" : function() { 
-	    jQuery("#emailForm").submit();
-	  }}});
-
-    jQuery( "#emailForm").submit(function() { 
-	    inviteEmail = jQuery("#email").val();
-	    jQuery.post('email/create', { email : inviteEmail } );
-	    jQuery("#emailDialog").dialog("close");
-      });
-    jQuery( "#emailDialog").dialog({position : [240,260]});
-    
-    jQuery( "#sendEmail" ).click( function() {
-	jQuery("#emailDialog").dialog("open") ; 
-      }) ; 
-  });
-
-
-</script>
-<title>notifymyclub.com - Terms and Conditions</title>
-</head>
-<body >
-
-
-<div class="banner">
-<div style="float:left" id="title" >
-  <h1 ><a href="/" >notifyMyClub.com</a></h1>
-  <h4 >Let everyone know what's happening.</h4>
-</div>
-<img class="bubble" src="../images/OrangeSpeechBubble.png"/>
-</div>
-
-<div class="outerDiv"">  
-
- <div class="fullCol">
+<a name="top"></a> 
    <h1>Terms of Use</h1>
    <p>The notifyMyClub.com Web Site is offered to you conditioned on your acceptance without modification of the terms, conditions, and notices contained herein. Your use of the notifyMyClub.com web site constitutes your agreement to all such terms, conditions, and notices.</p>
 <p>PLEASE READ THE FOLLOWING TERMS OF USE AND DISCLAIMERS CAREFULLY BEFORE USING THIS WEB SITE (this &quot;Site&quot;). By accessing or using this Site, you agree to these terms of use, conditions and all applicable laws. If you do not agree to these terms you may not use this Site. notifyMyClub.com reserves the right to revise these terms and conditions at any time and users are deemed to be apprised of and bound by any changes to these terms and conditions by virtue of using the Site. You are responsible for regularly reviewing these terms and conditions.</p>
@@ -117,14 +57,5 @@ notifyMyClub.com&reg; are trademarks of notifyMyClub.com.</p>
 <p>All other trade names or service names are trademarks, service marks or registered marks of their respective holders.<br />
 &nbsp; </p>
 <p>Last updated: November 12, 2011</p>
- </div>
 
-</div> <!-- outer div -->
-<ul class="footer">
-  <li class="footer" ><a href="privacy.html">Privacy</a></li>
-    <li class="footer" >|</li>
-  <li class="footer" ><a href="terms.html">Terms of Use</a></li>
 
-</ul>
-</body>
-</html>

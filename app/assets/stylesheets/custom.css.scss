@@ -584,6 +584,13 @@ background-color: #0c93cb;
     color: $error-red;
 }
 
+.ui-widget button {
+    float:right
+}
+
+.typeahead {
+    z-index:inherit;
+}
 .error_messages h2 {
     text-align: left;
     font-weight: bold;

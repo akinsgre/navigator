@@ -1,22 +1,37 @@
 function popUpWindow(id, title, containerId) {
-    console.log("This is a test");
     var divObj = $('#' + id);
-
+    divObj.dialog({'title':title});
+    divObj.dialog({
+		      // Hack to make the 'X' appear in JQuery Titlebar close 
+		      // http://stackoverflow.com/questions/17367736/jquery-ui-dialog-missing-close-icon
+		      open: function() {
+			  $(this).closest(".ui-dialog")
+			      .find(".ui-dialog-titlebar-close")
+			      .removeClass("ui-dialog-titlebar-close")
+			      .html("<span class='ui-button-icon-primary ui-icon ui-icon-closethick'></span>");
+		      }});
     divObj.dialog('open');
-    $('#' + id + " input:text:visible:first").focus();
 }
+
 $( function(){
 
-       $( "#popups" ).load("privacy.html");
+
+       $( "#popups" ).scrollTop(0);
        $("#popups").dialog({autoOpen:false, 
 			    width:"80%", 
 			    height:500, 
+			    draggable: false,
 			    modal:true});
 
-       $("#openwindow").click( function(e) {
+       $(".openwindow").each(function() {
+			     $(this).click( function(e) {
+				   var link = $(this).attr("href");
+				   $( "#popups" ).load(link);
+				   var title = $(this).attr("title");
        				   e.preventDefault();
-       				   popUpWindow('popups', 'Test', 'testID') ;
+       				   popUpWindow('popups', title, 'showterms') ;
        			       });
+			     }) ; 
        
        // instantiate the bloodhound suggestion engine
        var groups = new Bloodhound(
