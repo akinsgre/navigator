@@ -13,9 +13,12 @@ describe Phone do
   it "should be created" do
     phone = Phone.new
     phone.entry = '1724 555 1212'
+
     phone.should be_valid
+    phone.normalized_entry.should eq(Phony.normalize(phone.entry))
   end
 end
+
 
 
 
@@ -24,13 +27,14 @@ end
 #
 # Table name: contacts
 #
-#  id         :integer         not null, primary key
-#  name       :string(255)
-#  created_at :datetime
-#  updated_at :datetime
-#  user_id    :integer
-#  type       :string(255)
-#  entry      :string(255)
-#  identifier :string(255)
+#  id               :integer         not null, primary key
+#  name             :string(255)
+#  created_at       :datetime
+#  updated_at       :datetime
+#  user_id          :integer
+#  type             :string(255)
+#  entry            :string(255)
+#  identifier       :string(255)
+#  normalized_entry :text
 #
 

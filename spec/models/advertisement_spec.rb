@@ -14,15 +14,17 @@ describe Advertisement do
   end
 end
 
+
 # == Schema Information
 #
 # Table name: advertisements
 #
-#  id           :integer         not null, primary key
-#  sponsor_id   :integer
-#  message      :text
-#  html_message :text
-#  created_at   :datetime
-#  updated_at   :datetime
+#  id            :integer         not null, primary key
+#  sponsor_id    :integer
+#  message       :text
+#  html_message  :text
+#  created_at    :datetime
+#  updated_at    :datetime
+#  phone_message :text
 #
 
