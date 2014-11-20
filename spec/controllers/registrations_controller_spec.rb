@@ -13,5 +13,10 @@ describe RegistrationsController do
       expect(response.status).should eq(200)
       expect(response).to render_template(:new)
     end
+    it "should create a registered user" do
+      post :create, {:user => { :email => 'invited@example.com' }}
+      expect(response.status).to eq(200)
+      expect(response).to render_template(:new)
+    end
   end
 end
