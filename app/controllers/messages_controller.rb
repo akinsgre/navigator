@@ -38,7 +38,7 @@ class MessagesController < ApplicationController
 
       case c.type
       when "Sms"
-        body = "#{@message.message}\r\n\r\n#{Sponsor.getTextAd}"
+        body = "#{@message.group.name}: #{@message.message}\r\n\r\n#{Sponsor.getTextAd}"
         Rails.logger.debug "#### Send Text message #{body}"
         @twilioMessage = @client.account.sms.messages.create({
                                                                :from => '+17249071027', 

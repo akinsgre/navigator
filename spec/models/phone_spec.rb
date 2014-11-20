@@ -1,21 +1,48 @@
 require 'spec_helper'
 
 describe Phone do
-  it "should be created" do
-    phone = Phone.new
-    phone.should_not be_valid
-  end
-  it "should be created" do
-    phone = Phone.new
-    phone.entry = '17245551212'
-    phone.should be_valid
-  end
-  it "should be created" do
-    phone = Phone.new
-    phone.entry = '1724 555 1212'
+  describe 'valid phone numbers' do
+    it "should be created" do
+      phone = Phone.new
+      phone.should_not be_valid
+    end
+    it "should be created" do
+      phone = Phone.new
+      phone.entry = '17245551212'
+      phone.should be_valid
+      phone.should be_valid
+      phone.normalized_entry.should eq(PhonyRails.normalize_number(phone.entry, :default_country_code => 'US'))
+    end
+    it "should be created (format 1)" do
+      phone = Phone.new
+      phone.entry = '1724 555 1212'
 
-    phone.should be_valid
-    phone.normalized_entry.should eq(Phony.normalize(phone.entry))
+      phone.should be_valid
+      phone.normalized_entry.should eq(PhonyRails.normalize_number(phone.entry, :default_country_code => 'US'))
+    end
+    it "should be created (format 2)" do
+      phone = Phone.new
+      phone.entry = '(724) 555 - 1212'
+
+      phone.should be_valid
+      phone.normalized_entry.should eq(PhonyRails.normalize_number(phone.entry, :default_country_code => 'US'))
+    end
+    it "should be created (format 3)" do
+      phone = Phone.new
+      phone.entry = '724.555.1212'
+
+      phone.should be_valid
+      phone.normalized_entry.should eq(PhonyRails.normalize_number(phone.entry, :default_country_code => 'US'))
+    end
+  end
+  describe 'invalid phone numbers' do
+    it "should be created (format 3)" do
+      phone = Phone.new
+      phone.entry = '724.555.1'
+
+      phone.should_not be_valid
+
+    end
   end
 end
 

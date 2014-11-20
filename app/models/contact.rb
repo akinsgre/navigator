@@ -25,7 +25,6 @@ class Contact < ActiveRecord::Base
     @email = email
   end
 
-
   def self.select_options
     descendants.collect do |d|   [d.identify,d.to_s] end
   end
