@@ -19,6 +19,11 @@
     <br/><h1><%= current_user.email %></h1><br/>
   </div>
 </div>
+ <% flash.each do |key, msg| %>
+ <div id="flash_<%= key %>">
+   <p><%= msg %></p>
+ </div>
+<% end %>
 <div class="row-fluid">
   <div class="col1 span4" align="center" >
     <div class="row-fluid">

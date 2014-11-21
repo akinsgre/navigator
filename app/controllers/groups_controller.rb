@@ -1,4 +1,3 @@
-
 class GroupsController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :add_contact, :save_contact]
   respond_to :html, :json
@@ -17,8 +16,14 @@ class GroupsController < ApplicationController
   end
 
   def show
+    begin
 
-    @group = Group.find(params[:id])
+      @group = current_user.groups.find(params[:id])
+    rescue
+      Rails.logger.debug "##### You don't have access to group #{@group}"
+      flash[:alert] = "You don't have access to this group."
+      redirect_to root_path and return
+    end
     @menu_map = { "Edit" => edit_group_path(@group), "Destroy" => url_for(:action => 'destroy', :controller => 'groups'), "View All" => groups_path }
 
 

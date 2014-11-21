@@ -6,7 +6,8 @@
 //= require jquery-ui
 //= require jquery_ujs
 //= require twitter/bootstrap
-//= require jquery.validate.min.js
+//= require jquery.validate
+//= require jquery.validate.additional-methods
 
 
 //= require jquery_nested_form
@@ -15,5 +16,6 @@
 //= require formToWizard
 //= require home.js
 //= require group.js
-//= require application.js
+//= require users.js
+
 

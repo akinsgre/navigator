@@ -2,15 +2,30 @@
 require 'spec_helper'
 
 describe GroupsController do
-  before :each do
-    @user = FactoryGirl.create(:user)
-    sign_in @user
+  describe "Get 'show' " do
+    before :each do
+    @user2 = FactoryGirl.create(:user)
+    sign_in @user2
+      @group1 = FactoryGirl.create(:group, user: @user)
+      @group2 = FactoryGirl.create(:group, user: @user2)      
+    end
+    it "should show the group" do
+      get 'show', {:id => @group1.id }
+      response.should redirect_to root_path
+    end
   end
-  describe "GET 'create'" do
-    it "should be successful" do
 
+
+  describe "GET 'create'" do
+    before :each do
+      @user = FactoryGirl.create(:user)
+      sign_in @user
+      
+    end
+    it "should be successful" do
+      
       post 'create',{:group => {"name"=>"Test", "description"=>"Test Group", "user_id"=>"1", "sponsor_email"=>"", 
-        "bulk_upload"=>""
+          "bulk_upload"=>""
         }}
       response.should redirect_to Group.last
     end
@@ -19,6 +34,8 @@ describe GroupsController do
 
   describe "GET 'create' with bulk_upload" do
     before :each do
+      @user = FactoryGirl.create(:user)
+      sign_in @user
       @file = fixture_file_upload('member_list.csv', 'text/csv')
     end
     it "can upload a file" do

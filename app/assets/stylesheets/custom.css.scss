@@ -1,5 +1,10 @@
 $error-red: #FE1F0D;
+legend {
+    font-weight: bold;
+    text-align:left;
+    width:90%;
 
+}
 .tt-query,
 .tt-hint {
     height: 30px;
@@ -71,8 +76,7 @@ input[type='file'] {
 }
 
 input[type='text'] {
-
-    width:90%;
+    width:100%;
 }
 
 body  {
@@ -387,31 +391,28 @@ div.bubbleimg {
     border-radius:20px;
     font-family: Verdana,Helvetica,Arial;
 }
-
-.colA {
-    float:left;
+@mixin col {
     min-width:45%;
     height: 100%;
     padding:3%;
+
+    margin-top:20px;
     border: 2px solid #ccc;
     overflow:hidden;
     background-color:#ffe;
     border-radius:20px;
     font-family: Verdana,Helvetica,Arial;
 }
+.colA {
+    @include col;
+    float:left;
+}
 
 .colB {
+    @include col;
     text-align:center;
     float: right !important ;
-    min-width:45%;
-    height: 100%;
-    min-height: 100%;
-    padding:3%;
-    border: 2px solid #ccc;
-    overflow:hidden;
-    background-color:#ffe;
-    border-radius:20px;
-    font-family: Verdana,Helvetica,Arial;
+
 }
 .colC {
     text-align:center;

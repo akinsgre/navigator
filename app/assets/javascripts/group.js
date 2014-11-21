@@ -12,4 +12,21 @@ $( function(){
 					      })
 					  .fail(function(jqXHR, textStatus) { console.log("Something messed up"+textStatus); } ) ; 
 				  }) ; 
+
+       $("#new_group").validate( 
+	   {
+	       rules: {
+		   'group[sponsor_email]': {
+
+		       email:true
+		   }
+	       },
+	       messages: {
+		   'group[sponsor_email]': {
+
+		       email: "The sponsor's email must be in the format of name@domain.com."
+		   }
+	       }
+	   });  
+
 }) ; 

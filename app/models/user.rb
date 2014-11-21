@@ -8,6 +8,11 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
   
+
+#  validates :email, :email => { :message => I18n.t('validations.errors.models.email.invalid_email')}
+  validates :email, :length => {    :minimum   => 3  }
+
+    
   def mygroups 
     result = self.groups
     self.contacts.each do |c|

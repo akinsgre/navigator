@@ -26,12 +26,10 @@ function JumpToIt(frm) {
    <p>Best of all, the application is free to your members.</p>
      </div>
   </div>
-<% flash.each do |key, msg| %>
-<div id="flash_<%= key %>">
-  <p><%= msg %></p>
-</div>
-
-
+ <% flash.each do |key, msg| %>
+ <div id="flash_<%= key %>">
+   <p><%= msg %></p>
+ </div>
 <% end %>
 <div class="row-fluid" width="100%">
 

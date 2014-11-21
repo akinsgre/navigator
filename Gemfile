@@ -1,9 +1,10 @@
 source 'http://rubygems.org'
+
+
 ruby '2.0.0'
 gem 'rails', '4.0.4'
 
 gem 'sass-rails', '4.0.1'
-gem 'nifty-generators', '0.4.6'
 gem 'devise', '3.2.4'
 gem 'twilio-ruby', '3.4.0'
 gem 'jquery-rails'
@@ -13,9 +14,11 @@ gem 'nested_form', '0.3.2'
 gem 'phony_rails'
 gem 'valid_email'
 
+
 gem "twitter-bootstrap-rails"
 gem 'twitter-typeahead-rails', '0.10.2'
 gem 'seedbank'
+gem 'jquery-validation-rails'
 
 group :development do
   gem 'annotate', '2.4.0'
