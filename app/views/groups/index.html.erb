@@ -11,13 +11,19 @@
     <div class="span12">
       <table>
       <th>Group Name</th>
-      <th>Admin Email</th>
-      <th>Actions</th>
+
+
       <% for group in @groups %>
       <tr>
-          <td><%= group.name %></td>
+          <td><%= link_to group.name, group %></td>
+	    <% if current_user.admin? %>
 	  <td><%= group.user.email unless group.user.nil? %></td>
-	  <td><%= link_to "Show", group %>|<%= link_to "Edit", edit_group_path(group) %>|<%= link_to "Destroy", group, :confirm => 'Are you sure?', :method => :delete %></td>
+	  <td>
+
+	    |<%= link_to "Edit", edit_group_path(group) %>
+	    |<%= link_to "Destroy", group, :confirm => 'Are you sure?', :method => :delete %>
+	    <% end %>
+	  </td>
 
       </tr>
       <% end %>

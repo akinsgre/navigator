@@ -1,15 +1,15 @@
 module ApplicationHelper
   def build_menu(menu_map)
     unless menu_map.nil?
-      menuLayout = raw("<div class=\"span12 row_fluid\" style=\"background-color:blue\">") 
 
+      menuLayout = raw("<ul class=\"nav nav-pills \"> ") unless menu_map.empty?
       menu_map.each do |key,value|
-        menuLayout << link_to( key, value) unless key == "Destroy"
-        menuLayout << link_to(key, value, :confirm => 'Are you sure?', :method => :delete) if key == "Destroy"
-        menuLayout << raw("&nbsp")
+        menuLayout << raw("<li role=\"presentation\" >") + link_to( key, value) + raw("</li>") unless key == "Remove Group" 
+        menuLayout << raw("<li role=\"presentation\" >") + link_to(key, value, :confirm => 'Are you sure?', :method => :delete) + raw("</li>") if key == "Remove Group"
+        
       end 
+      menuLayout << raw("</ul>") unless menu_map.empty?
 
-      menuLayout << raw("</div>") 
     end
 
   end

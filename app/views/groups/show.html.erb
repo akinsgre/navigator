@@ -3,54 +3,37 @@
     <div class="span11">
       <%= link_to "Send this group a message", group_messages_new_path(@group) %>
     </div>
-    
-    <div class="row-fluid">
-      <div class="colA span6" float="left">
-	<div class="row-fluid">
-
-	    <p>
-	      <strong>Name:</strong>
-	      <%= @group.name %>
-	    </p>
-
-	</div>
-	<div class="row-fluid">
-
-	    <p>
-	      <strong>Contact Email:</strong>
-	      <%= @group.user.email %>
-	    </p>
-
-	</div>
+  </div>    
+  <div class="row-fluid">
+    <div class="colA span6" float="left">
+      <div class="row-fluid">
+	<p>
+	  <strong>Name:</strong>
+	  <%= @group.name %>
+	</p>
       </div>
-      <div class="colD span6">
-	<div class="row-fluid">
-
-	    <table>
-	      <% @group.contacts.each do |c| %>
-	      <tr><td><%= link_to "X", groups_remove_contact_path(:id => @group, :contact_id => c) %></td>
-		<td><%= link_to c.name, edit_group_contact_path(@group, c) %></td><td><%= c.entry %></td>		<td><%= c.type %></td></tr>
-	      <% end %>
-            </table>
-
-	</div>
-
-
-
-	<div class="row-fluid">
-
-	    <% if @group.user_id == current_user.id %>
-	    <%= link_to "Add a new contact", new_group_contact_path(@group ) %>
-	    <% end %>
-
-	</div>
-
-
+      <div class="row-fluid">
+	<p>
+	  <strong>Contact Email:</strong>
+	  <%= @group.user.email %>
+	</p>
       </div>
-
-
+    </div>
+    <div class="colB span6">
+      <div class="row-fluid">
+	<table>
+	  <% @group.contacts.each do |c| %>
+	  <tr><td><%= link_to "X", groups_remove_contact_path(:id => @group, :contact_id => c) %></td>
+	    <td><%= link_to c.name, edit_group_contact_path(@group, c) %></td><td><%= c.entry %></td>		<td><%= c.type %></td></tr>
+	  <% end %>
+        </table>
       </div>
-
+      <div class="row-fluid">
+	<% if @group.user_id == current_user.id %>
+	<%= link_to "Add a new contact", new_group_contact_path(@group ) %>
+	<% end %>
+      </div>
     </div>
   </div>
 </div>
+

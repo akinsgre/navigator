@@ -48,8 +48,10 @@
 	<!-- This is where the menu should be inserted... -->
 
 	<div class="span12 row_fluid">
+	  <div>
+	    <%= build_menu(@menu_map) %>
+	  </div>
 
-	  <%= build_menu(@menu_map) %>
 
 	  <% if @group && @group.id %>
 	  <h3>Group: <%= link_to @group.name, @group %></h3>
@@ -57,16 +59,21 @@
 	  <%= yield %>
 	</div>
       </div>
-    <ul>
-      <div class="footerMenu" >
-	<li class="footer" ><a class="openwindow" href="/privacy.html#top" title="Privacy Policy" >Privacy</a></li>
-	<li class="footer">|</li>
-	<li class="footer" ><a class="openwindow" href="/terms.html#top" title="Terms of Use" >Terms of Use</a></li>
-      </div>
+
+	<div class="footerMenu" >
+	  <ul>
+	    
+	    <li class="footer" ><a class="openwindow" href="/privacy.html#top" title="Privacy Policy" >Privacy</a></li>
+
+	    <li class="footer" ><a class="openwindow" href="/terms.html#top" title="Terms of Use" >Terms of Use</a></li>
+	  </ul>
+	</div>
+	
       <div class="copyright" >
 	&copy; notifyMyClub.com 2011, All Rights Reserved.
       </div>
-    </ul>
+
+
     </div> <!-- outer div -->
 
 

@@ -31,25 +31,21 @@
 	<h1>Group Admin</h1>
       </div>
     </div>
-    <%= link_to "New Group", new_group_path %>
+    <%= link_to "Add a New Group", new_group_path %>
     <div class="row-fluid">
-      <div class="span11" float="center">
-	<form>
-	  <select multiple name="url" width=20 >
-	    <option value="None" selected="selected" onClick="JumpToIt(this.form)"> Select a Group From this list </option>
-	    <% @groups.each do |g| %>
-	    <option value="<%= user_group_path(current_user, g) %>" onClick="JumpToIt(this.form)"><%= g.name %></option>
-	    <% end %>
-	  </select>
-	</form>
-      </div>
+	<ul>
+	<% @groups.each do |g| %>
+	<li><%= link_to g.name, user_group_path(current_user, g) %></li>
+	<% end %>
+	</ul>
+
     </div>
 
   </div>
   <div class="col1 span4" align="center">
     <div class="row-fluid">
       <div class="span11" float="center">
-	<a href="http://localhost:3000/groups"><h1>Groups I Follow</h1></a></br>
+	<h1>Groups I Follow</h1>
       </div>
     </div>
     <div class="dropdown"><ul>
