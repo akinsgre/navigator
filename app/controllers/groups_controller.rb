@@ -40,11 +40,8 @@ class GroupsController < ApplicationController
   end
 
   def create
-    logger.debug "########### Creating a group with these parameters #{file_params}"
-    #if there is a bulk_upload parameter parse it as a member list
-    unless file_params["bulk_upload"].blank?
-      Member.save(file_params["bulk_upload"])
-    end
+
+
     @group = Group.new(group_params)
     if @group.save
       redirect_to @group, :notice => "Successfully created group."
@@ -59,10 +56,8 @@ class GroupsController < ApplicationController
 
   def update
     @group = Group.find(params[:id])
-    logger.info "Contact_id is " + params[:contact].to_s
-    @contact = Contact.find(params[:contact])
-    @group.contacts.push(@contact)
-    if @group.save!
+
+    if @group.update_attributes(params[:group].permit(:name, :description))
       respond_to do |format|
         format.html { redirect_to @group, :notice  => "Successfully updated group." }
         format.js
@@ -116,14 +111,13 @@ class GroupsController < ApplicationController
   def destroy
     @group = Group.find(params[:id])
     @group.destroy
-    redirect_to groups_url, :notice => "Successfully destroyed group."
+    flash[:notice] =  "Successfully destroyed group."
+    redirect_to current_user
   end
   
 private
 def group_params
   params.require(:group).permit(:name, :description, :user_id, :sponsor_email)
 end  
-def file_params
-  params.require(:group).permit(:bulk_upload)
-end
+
 end
