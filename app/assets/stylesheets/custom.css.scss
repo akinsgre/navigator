@@ -429,17 +429,43 @@ ul.nav-pills li a {
 .copyright {
     float:right ; 
 }
-
-ul .steps {
-    float:center;
+#steps {
+    list-style: none outside none;
+    width:97%;
+    overflow: hidden;
+    margin: 2px;
+    padding: 3px;
+    background-image: asset-data-url('background2.png');
+    border-style: solid;
+    border-color: #F8D286;
+    border-width: 3px;
+    color:#fed271;
+    background-color: #0c93cb;
 }
+#steps li {
+    display:inline;
+}
+#steps li.current {
+    color: #0c93cb;
+    background-color: #F8D286;
+    font-weight: bold;
+    font-size: 1.9em;
+    border-style: solid;
+    border-color: #0c93cb;
+    border-width: 3px;
+    
+}
+ul#steps { 
+    width:99%;
+    align:center;
+}
+
 .footerMenu {
     width: 50%;
     margin-left: 1%;
     float:left;
 }
 .footerMenu ul  {
-
     padding: 0;
     margin: 0;
     list-style-type: none;
@@ -448,18 +474,18 @@ ul .steps {
     text-decoration: underline;
 }
 .footerMenu a {
-
     width: 6em;
-
     text-decoration: none;
     color: $site-blue;
-
     padding: 0.2em 0.6em;
 
 }
 li.footer {
     list-style: none;
     display:inline;
+}
+ul li .footer{
+    list-style: none;
 }
 
 a img {
@@ -476,14 +502,7 @@ a {
     overflow: hidden;
 }
 
-ul li .footer{
 
-    list-style: none;
-}
-ul#steps { 
-    width:99%;
-    align:center;
-}
 
 a img {
     border: none;
@@ -510,7 +529,6 @@ ul {
 }
 
 ul li {
-
     margin: 5px;
     padding: 5px;
     color:  $site-blue;
@@ -521,30 +539,7 @@ ul li span {
     margin: 5px;
 }
 
-#steps {
-    list-style: none outside none;
-    width:97%;
-    overflow: hidden;
-    margin: 2px;
-    padding: 3px;
-    background-image: asset-data-url('background2.png');
-    border-style: solid;
-    border-color: #F8D286;
-    border-width: 3px;
-    color:#fed271;
-    background-color: #0c93cb;
-}
 
-#steps li.current {
-    color: #0c93cb;
-    background-color: #F8D286;
-    font-weight: bold;
-    font-size: 1.9em;
-    border-style: solid;
-    border-color: #0c93cb;
-    border-width: 3px;
-    
-}
 
 #flash_notice, #flash_error, #flash_alert {
     padding: 5px 8px;
