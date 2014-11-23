@@ -1,6 +1,5 @@
 source 'http://rubygems.org'
 
-
 ruby '2.0.0'
 gem 'rails', '4.0.4'
 
@@ -13,7 +12,7 @@ gem 'polyglot', '0.3.4'
 gem 'nested_form', '0.3.2'
 gem 'phony_rails'
 gem 'valid_email'
-
+gem 'exception_notification'
 
 gem "twitter-bootstrap-rails"
 gem 'twitter-typeahead-rails', '0.10.2'
