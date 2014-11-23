@@ -11,7 +11,7 @@
 </p>
 <p>
   <%= edit_contact_or_group "Edit"  %> |
-  <%= link_to "Delete", contact_path( @contact), :confirm => 'Are you sure?', :method => :delete %>
-  <%= link_to "| View All", group_contacts_path(@group) if @group %> 
+  <%= link_to "Delete", group_contact_path(@group, @contact), :confirm => 'Are you sure?', :method => :delete %>
+  <%= link_to "| Add another contact", new_group_contact_path(@group) if @group %> 
 </p>
 

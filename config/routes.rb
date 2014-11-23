@@ -34,6 +34,8 @@ Navigator::Application.routes.draw do
   resources :subscriptions
 
   resources :groups do
+    get "contact/edit", as: "sm"
+    get "contact/edit", as: "phone"
     get "messages/new"
     post "messages/deliver"
     resources :contacts

@@ -24,7 +24,7 @@ class GroupsController < ApplicationController
       flash[:alert] = "You don't have access to this group."
       redirect_to root_path and return
     end
-    @menu_map = { "Edit" => edit_group_path(@group), "Remove Group" => url_for(:action => 'destroy', :controller => 'groups'), "View All" => groups_path }
+    @menu_map = {"My Groups" => user_path(current_user),  "Edit" => edit_group_path(@group), "Remove Group" => url_for(:action => 'destroy', :controller => 'groups') }
 
 
     if @group.nil?

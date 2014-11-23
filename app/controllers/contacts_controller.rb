@@ -1,6 +1,7 @@
 class ContactsController < AdminController
   before_filter :authenticate_user!, :except => [:new, :create, :opt_out]
   #before_filter :authorize, :only => [:index]
+
   def index
     authorize unless params[:group_id] 
     if params[:group_id]
@@ -32,42 +33,22 @@ class ContactsController < AdminController
     end
   end
 
+  
+
   def create
-    Rails.logger.debug "#### Params are #{params.inspect}"
-    Rails.logger.debug "#### Params[:contact] are #{params[:contact].inspect}"
-    contactType = params[:contact][:type]
-    case  contactType 
-    when'Phone'
-      
-      @contact = Phone.new(params[:contact].permit(:name, :user_id, :entry, :type))
-    when 'Sms'
-      
-      @contact = Sms.new(params[:contact].permit(:name, :user_id, :entry, :type))
-      
-    when 'Email'
-      
-      @contact = Email.new(params[:contact].permit(:name, :user_id, :entry, :type))
-      
-    else
-      Rails.logger.info "This #{@contact.class} is not a type"
-      raise "Not a supported type"
-    end
-    
-    Rails.logger.debug "##### Contact being created is #{@contact}"
+    @contact = Contact.determine_type(params)
     unless params[:contact][:group].nil?  && params[:contact][:group][:id].nil?
       group_id = params[:contact][:group][:id]
-      logger.info "##### param Group[:id] is " + group_id
       @group = Group.find(group_id)
       logger.info "##### Group is " + @group.name
       @contact.groups.push(@group)
     end
 
-    logger.info "@contact #{@contact} has  " + @contact.groups.size.to_s + " groups."
-
-    if @contact.save
-      redirect_to group_contact_path(@group, @contact) , :notice => "Successfully created contact." if current_user
+    if @contact.errors.size == 0
+      redirect_to group_contact_path(@group, @contact), :notice => "Successfully created contact"  if current_user
       redirect_to root_path, :notice => "We will let you know when something is posted for \"#{@group.name}\"." unless current_user
     else
+      Rails.logger.warn "##### New contact had errors #{@contact.errors.full_messages}"
       # Need to have a generic contact object on a new contact form.. 
       # otherwise the create method breaks when it tries to examine the params[:contact]
       @contact = @contact.becomes(Contact)
@@ -82,21 +63,23 @@ class ContactsController < AdminController
   end
 
   def update
-    @contact = Contact.find(params[:id])
+    # move all this garbage to the model.
     @group = Group.find(params[:group_id])
-    if @contact.update_attributes(params[:contact].permit(:name, :user_id, :entry, :type))
-      redirect_to group_contact_path(@group, @contact) , :notice => "Successfully created contact." if current_user
-      redirect_to root_path, :notice => "We will let you know when something is posted for \"#{@group.name}\"." unless current_user
+    @contact = Contact.determine_type(params)
+    if @contact.errors.size == 0
+      redirect_to group_contact_path(@group, @contact) , :notice => "Successfully updated contact." and return if current_user
+      redirect_to root_path, :notice => "We will let you know when something is posted for \"#{@group.name}\"." and return unless current_user
     else
       @contact = @contact.becomes(Contact)
-      render :action => 'edit'
+      render :action => 'edit'          
     end
   end
 
   def destroy
+    @group = Group.find(params[:group_id]) if params[:group_id]
     @contact = Contact.find(params[:id])
     @contact.destroy
-    redirect_to contacts_url, :notice => "Successfully destroyed contact."
+    redirect_to group_contacts_url(@group), :notice => "Successfully destroyed contact."
   end
   def opt_out
     contact = Contact.find(params[:contact_id])

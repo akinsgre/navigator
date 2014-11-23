@@ -367,11 +367,12 @@ div.bubbleimg {
     border-radius:20px;
     font-family: Verdana,Helvetica,Arial;
 }
+
 ul.nav-pills li a {
     background-color: $site-blue;
     color: #ffd372;
-
 }
+
 @mixin col {
     min-width:45%;
     height: 100%;
@@ -509,7 +510,7 @@ ul {
 }
 
 ul li {
-    clear: left;
+
     margin: 5px;
     padding: 5px;
     color:  $site-blue;

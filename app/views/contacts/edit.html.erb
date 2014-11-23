@@ -5,13 +5,10 @@
 <p>
 <div class="row-fluid">
   <div class="span5">
-  <%= show_contact_or_group "Show" %>
-  </div>
-  <div class="span2">
-    |
+    <%= show_contact_or_group "Show" %>
   </div>
   <div class="span5">
-  <%= link_to "| View All", group_contacts_path(@group) if @group %> 
+    <%= link_to "| View All", group_contacts_path(@group) if @group %> 
 </p>
 </div>
 </div>

@@ -9,11 +9,11 @@
       <td><%= contact.name %></td>
       <td><%= contact.entry %></td>
       <td><%= contact.type %></td>
-      <td><%= link_to "Show", contact.becomes(Contact) %></td>
-      <td><%= link_to "Edit", edit_contact_path(contact.becomes(Contact)) %></td>
-      <td><%= link_to "Destroy", contact.becomes(Contact), :confirm => 'Are you sure?', :method => :delete %></td>
+      <td><%= link_to "Show", group_contact_path(@group, contact.becomes(Contact)) %></td>
+      <td><%= link_to "Edit", edit_group_contact_path(@group, contact.becomes(Contact)) %></td>
+      <td><%= link_to "Remove", [@group, contact.becomes(Contact)], :confirm => 'Are you sure?', :method => :delete %></td>
     </tr>
   <% end %>
 </table>
 
-<p><%= link_to "New Contact", new_contact_path %></p>
+<p><%= link_to "New Contact", new_group_contact_path(@group) %></p>

@@ -1,5 +1,5 @@
 class Phone < Contact
-
+  include ActiveModel::Naming
   phony_normalize :entry, as: :normalized_entry, :default_country_code => 'US'
   validates_plausible_phone :entry, :normalized_country_code => 'US', :message => I18n.t('validations.errors.models.phone.invalid_number')
 

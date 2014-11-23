@@ -1,4 +1,5 @@
 class Email < Contact
+  include ActiveModel::Naming
   validates :entry, :email => { :message => I18n.t('validations.errors.models.email.invalid_email')}
 
   def self.identify

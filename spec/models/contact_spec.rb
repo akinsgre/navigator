@@ -11,6 +11,7 @@ describe Contact do
     c.identifier = "G. AKins' home phone"
     c.should be_valid
   end
+
 end
 
 
