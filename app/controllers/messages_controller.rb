@@ -30,10 +30,12 @@ class MessagesController < ApplicationController
     #   In addition, the sponsor from whom the contribution was subtracted will have their advertisement added to the
     #   sent message.
     Rails.logger.debug "##### Sending #{@message.inspect} to each contact"
+      # Check membership level before sending message
+      # abort if number of messages exceeds threshhold
     @contacts.each do |c|
       Rails.logger.debug "##### Contact is #{c.inspect}"
       Rails.logger.debug "##### Sending #{c.type} message to #{c.name} with #{@message.message} to #{@message.group.name}"
-      # TODO send message per contacts type"
+
       Rails.logger.debug "Sending the message #{@message.message} to  #{c.type} : #{c.inspect}"
 
       case c.type

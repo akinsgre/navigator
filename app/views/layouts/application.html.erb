@@ -54,7 +54,7 @@
 
 
 	  <% if @group && @group.id %>
-	  <h3>Group: <%= link_to @group.name, @group %></h3>
+	  <h3><%= link_to @group.name, @group %></h3>
 	  <% end %>
 	  <%= yield %>
 	</div>
