@@ -16,17 +16,22 @@ $( function(){
        $("#new_group").validate( 
 	   {
 	       rules: {
+		   'group[name]': {
+		       required:true
+		   },
 		   'group[sponsor_email]': {
-
 		       email:true
 		   }
 	       },
 	       messages: {
+		   'group[name]': {
+		       required:"You must name your group"
+		   },
 		   'group[sponsor_email]': {
-
 		       email: "The sponsor's email must be in the format of name@domain.com."
 		   }
-	       }
+	       },
+               onfocusout: function(element) { $(element).valid(); }
 	   });  
 
 }) ; 

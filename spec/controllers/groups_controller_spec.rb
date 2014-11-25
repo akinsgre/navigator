@@ -56,6 +56,12 @@ describe GroupsController do
       @group = FactoryGirl.create(:group)
       @phone = FactoryGirl.create(:phone)
     end
+    describe "GET 'index'. not logged in" do
+      it 'should return 404' do
+        get :index, :format => :html
+        expect(response.status).to eq(200)
+      end
+    end
     describe "GET 'add_contact'" do
       it "should be successful" do
         get 'add_contact', :id => @group.id

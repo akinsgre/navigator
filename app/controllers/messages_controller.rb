@@ -13,7 +13,8 @@ class MessagesController < ApplicationController
     Rails.logger.debug " Called from #{caller[0]}"
     
     @message = Message.new(params[:message].permit(:message, :group_id))
-
+    @group = Group.find(@message.group_id)
+    render(:file => File.join(Rails.root, 'public/404'), :status => 404, :layout => false, content_type: "text/html" ) and return if @group.nil?
     logger.debug "#### ID = " + @message.group_id.to_s
     @account_sid = ENV['TW_SID']
     @auth_token = ENV['TW_TOKEN']
@@ -23,7 +24,7 @@ class MessagesController < ApplicationController
 
     # end of Twilio gem stuff
     Rails.logger.debug "##### Getting the contacts for #{@message.group_id}"
-    @group = Group.find(@message.group_id)
+
     @message.group = @group
     @contacts =  Group.find(@message.group_id).contacts
 
@@ -46,7 +47,7 @@ class MessagesController < ApplicationController
           body = "#{@message.group.name}: #{@message.message}\r\n\r\n#{Sponsor.getTextAd}"
           Rails.logger.debug "#### Send Text message #{body}"
           @twilioMessage = @client.account.sms.messages.create({
-                                                                 :from => '+17249071027', 
+                                                                 :from => @group.twilio_number, 
                                                                  :to => c.entry, 
                                                                  :body => body
                                                                })
@@ -57,14 +58,14 @@ class MessagesController < ApplicationController
           message = Rack::Utils.escape(@message.message)
           url = "http://notifymyclub.herokuapp.com/twiml/say.xml?secret=#{ ENV['NMC_API_KEY'] }&message=#{message}&sponsor_msg=#{sponsor_msg}&group=#{@group.name}"
           Rails.logger.info "##### Sending Message #{url}"
-          @call = @client.account.calls.create(  :from => '+17249071027',  :to => c.entry, :url => url, :method => 'GET' )
+          @call = @client.account.calls.create(  :from => @group.twilio_number,  :to => c.entry, :url => url, :method => 'GET' )
           
         when "Email"
           Rails.logger.debug "#### Send Email"
           MessageMailer.send_message(c,@message).deliver
         else
         end
-      else
+
         
       end
       

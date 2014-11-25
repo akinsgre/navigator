@@ -6,6 +6,7 @@ puts "##### Development Seeding"
   Group.create!(name: name , description: "Test #{g} ", user: user)
 end
 
+
 (1..8).each do |i|
   puts "##### Adding the Test#{i}@insomnia-consulting.org"
   Invite.create!(email: "Test#{i}@insomnia-consulting.org")

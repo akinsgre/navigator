@@ -13,6 +13,10 @@ if user.nil?
   user = User.create!(:email => "admin@insomnia-consulting.org", :password => "password1")
 end
 
+MembershipLevel.create!(name: 'Basic', allowed_messages: 30)
+MembershipLevel.create!(name: 'Premium', allowed_messages: nil)
+MembershipLevel.create!(name: 'Sponsored', allowed_messages: nil)
+
 puts "Trying to assign Administrator Role to User"
 
 role = Role.find_by_name("Administrator")

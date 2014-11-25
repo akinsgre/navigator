@@ -1,85 +1,42 @@
-<head><SCRIPT LANGUAGE="JavaScript">
-<!--
-
-function JumpToIt(frm) {
-   var newPage = frm.url.options[frm.url.selectedIndex].value
-   if (newPage != "None") {
-       location.href=newPage
-   }
-}
-//-->
+<p><span class="emphasis">Welcome!</span> to the fastest, simplest way ever to notify
+  <span class="emphasis" float="center"> everybody</span>&nbsp in your organization, club or team of upcoming events, schedule changes, cancellations, etc...</p>
+<p>Best of all, the application is free to your members.</p>
 
 
-</SCRIPT>
 
-</head>
-<body>
-<div class="container-fluid" width="100%" resize="auto">
-  <div class="row-fluid" width="100%">
-    <div class="span11">
-    <p><span class="emphasis">Welcome!</span> to the fastest, simplest way ever to notify
-      <span class="emphasis" float="center"> everybody</span>&nbsp in your organization, club or team of upcoming events, schedule changes, cancellations, etc...</p>
-    </div>
-  </div>
- <div class="row-fluid">
-  <div class="span11">
-   <p>Best of all, the application is free to your members.</p>
-     </div>
-  </div>
- <% flash.each do |key, msg| %>
- <div id="flash_<%= key %>">
-   <p><%= msg %></p>
- </div>
+<% flash.each do |key, msg| %>
+<div id="flash_<%= key %>">
+  <p><%= msg %></p>
+</div>
 <% end %>
-<div class="row-fluid" width="100%">
-
-  <div class="col2 span4">
-    <div class="row-fluid">
-      <div class="span11">
-	<h1>Join Existing Group</h1>
-	</div>
+<div class="row-fluid" >
+  <div class="col-md-4">
+    <h1>Join Existing Group</h1>
+    Start typing below to find your group.  Click on your group name to select it and proceed.
+    <div id="remote" align="center">
+      <input class="typeahead" type='text' id="groupsearch" icon="favicon.gif" placeholder="Group Name" float="center"></input>
     </div>
-    <div class="row-fluid">
-      <div class="span11">
-     <p>Start typing below to find your group.  Click on your group name to select it and proceed.</p>
-      </div>
-     </div>
-  <div class="row-fluid">
-    <div class="span11" float="center">
-      <div id="remote" align="center">
-     <input class="typeahead" type='text' id="groupsearch" icon="favicon.gif" placeholder="Group Name" float="center">
-     </div>
-      </div>
-     <i class="fa favicon.gif"></i></input>
-     </div>
-   </div>
- <div class="col1 span4">
-  <div class="row-fluid">
-    <div class="span11">
+  </div>
+  <div class="col-md-4">
     <h1 align="center">Group Leaders</h1>
-    </div>
-    </div>
-  <div class="row-fluid">
-     <div class="span11" align="center" width="50%"> <%= button_to "Start your group", new_user_registration_path, :class => "100_button", :method => :get %>
-       </div>
-     </div>
+<div class="center-wrapper">
+    <%= button_to "Start your group", new_user_registration_path, :class => "100_button", :method => :get %>
+</div>
   </div>
- <div class="col3 span4">
-   <div class="row-fluid">
-     <div class="span11" align="center">
-       <a href="mailto:info@insomnia-consulting.org"><h1>Sponsoring</h1></a>
-     </div>
-     </div>
-   <div class="row-fluid">
-     <div class="span11" align="center"> <a href="mailto:info@insomnia-consulting.org"><h1>Advertising</h1></a>
-     </div>
-     </div>
-   <div class="row-fluid">
-     <div class="span11" align="center"> <a href="mailto:info@insomnia-consulting.org"><h1>More Info</h1></a>
-    </div>
-   </div>
+  <div class="col-md-4">
+    <a href="mailto:info@insomnia-consulting.org"><h1>Sponsoring</h1></a>
+    <a href="mailto:info@insomnia-consulting.org"><h1>Advertising</h1></a>
+    <a href="mailto:info@insomnia-consulting.org"><h1>More Info</h1></a>
+
   </div>
- </div>
 </div>
 
-</body></html>
+
+
+
+
+
+
+
+
+

@@ -55,6 +55,7 @@ legend {
 .tt-suggestion p {
     margin: 0;
 }
+
 input[type='submit'] {
     align: center;
     min-height: 40px;
@@ -76,19 +77,18 @@ input[type='file'] {
     color:#fed271;
 }
 
+input[type='email'],
 input[type='text'] {
     width:100%;
 }
 
 body  {
-    width:98%;
+
     background-color:#c4c4c4;
     background-image:asset-data-url('background1.png');
     background-repeat:repeat-x;
     font-family: Verdana, Helvetica, Arial;
-    font-size: .9em;
-    overflow:visible;
-    y-overflow:scroll;
+
 }
 
 div .resetLayout {
@@ -199,7 +199,7 @@ div .resetLayout {
 }
 .prev {
     font-family: Verdana,Helvetica,Arial;
-    float: left;
+
     background-color: #0c93cb;
     width:60px;
     min-height:15%;
@@ -271,36 +271,8 @@ li {
     width : 260px;
 
 }
-div.span7 {
-    align:center;
-}
 
-div.span9 {
-    resize:auto;
-    max-width:80%;    
-}
 
-div.span12 {
-    background: -webkit-linear-gradient(top, #FAD383 , #c4c4c4); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(bottom, #FAD383, #c4c4c4); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(top, #FAD383, #c4c4c4); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(to bottom, #FAD383, #c4c4c4); /* Standard syntax */
-    //background: url(''); 
-    background-size: 100% 100%;
-    height:100% ; 
-    width:96%;
-    min-width:500px;
-    margin:2%;
-    padding-right:2%;
-    padding-left:2%;
-    padding-bottom: 2%;
-    border: 2px solid #0c93cb;
-    overflow:visible;
-    background-repeat:repeat-x;
-    border-radius:20px;
-    clear:both;
-    float:left;
-}
 
 div.wide {
     width:100%;
@@ -323,30 +295,12 @@ div.wide {
     
 }   
 
-div.span2 {
-    width:31%;
-    min-width:200px;
-
-}
-
 div.bubbleimg {
     max-width:20%;
 }
-.col1 {
-    width:100%;
-    float: left ;
-    min-height:150px;
-    min-width:250px;
-    margin:0%;
-    padding:1%;
-    border: 2px solid #ccc;
-    overflow:visible;
-    background-color:#ffe;
-    border-radius:20px;
-    font-family: Verdana,Helvetica,Arial;
-}
+
 .col2 {
-    width:100%;
+
     min-height:150px;
     margin:0%;
     padding:3%;
@@ -581,7 +535,19 @@ ul li span {
 
 .typeahead {
     z-index:inherit;
+
 }
+table {
+    width:100%
+}
+td {
+    text-align:left;
+}
+.center-wrapper {
+    text-align: center;
+}
+
+
 .error_messages h2 {
     text-align: left;
     font-weight: bold;

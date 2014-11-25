@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141119212956) do
+ActiveRecord::Schema.define(version: 20141125212740) do
 
   create_table "advertisements", force: true do |t|
     t.integer  "sponsor_id"
@@ -70,10 +70,19 @@ ActiveRecord::Schema.define(version: 20141119212956) do
     t.integer  "user_id"
     t.string   "description"
     t.string   "sponsor_email"
+    t.text     "membership_level_id"
+    t.text     "twilio_number"
   end
 
   create_table "invites", force: true do |t|
     t.text     "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "membership_levels", force: true do |t|
+    t.integer  "allowed_messages"
+    t.text     "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -16,7 +16,7 @@
       <% for group in @groups %>
       <tr>
           <td><%= link_to group.name, group %></td>
-	    <% if current_user.admin? %>
+	    <% if current_user && current_user.admin? %>
 	  <td><%= group.user.email unless group.user.nil? %></td>
 	  <td>
 

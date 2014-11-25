@@ -3,7 +3,7 @@ require 'spec_helper'
 describe GroupContact do
   it "should allow a contact to be added to a group" do
     g = Group.new
-    c = Contact.new
+    c = FactoryGirl.create(:email)
     g.contacts << c
     g.save
     g.contacts.should have(1).items

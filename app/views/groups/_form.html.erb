@@ -1,66 +1,46 @@
 <div class="container-fluid" width="100%">
   <%= nested_form_for @group do |f| %><br/>
   <%= f.error_messages %><br/>
-
   <fieldset align="center">
     <p>Tell us about your group, then click "Next" to continue</p>
     <legend>New Group</legend>
     <div class="row-fluid">
-      <div class="span11">
-	<%= f.label :name %>
-      </div>
+      <%= f.label :name %>
     </div>
     <div class="row-fluid">
-      <div class="span11">
-	<%= f.text_field :name %>
-      </div>
-    </div>
-    <div class="row-fluid">
-      <div class="span11">
+      <%= f.text_field :name %>
+      <div class="row-fluid">
 	<%= f.label :description %>
       </div>
-    </div>
-    <div class="row-fluid">
-      <div class="span11">
+      <div class="row-fluid">
 	<%= f.text_field :description %>
 	<%= f.hidden_field :user_id %>
       </div>
-    </div>
-    <% if current_user.admin? %>
-    <p>
-      Owned by:
-      <%= f.collection_select :user_id, User.all(:order => "email"), :id, :email, :include_blank => true %>
-    </p>
-    <% end %>
+      <% if current_user.admin? %>
+      <p>
+	Owned by:
+	<%= f.collection_select :user_id, User.all(:order => "email"), :id, :email, :include_blank => true %>
+      </p>
+      <% end %>
   </fieldset>
-
   <fieldset>
     <legend>Sponsor Info</legend>
     <p>If you provide a sponsor that agrees to support your membership, you will be upgraded to the Plus membership level.  Click <a class="openwindow" href="/membership.html" title="Sponsors and Membership">here</a> for more information about sponsorship and membership levels.</p>
     <p>Just give us a valid Sponsor email and we'll contact the sponsor and discuss the plan with them</p>
     <p>Give us an email, then click "Next" to continue</p>
     <div class="row-fluid">
-      <div class="span11">
-	<%= f.label :sponsor_email %>
-      </div>
+      <%= f.label :sponsor_email %>
     </div>
     <div class="row-fluid">
-      <div class="span11">
-	<%= f.email_field :sponsor_email %>
-      </div>
+      <%= f.email_field :sponsor_email %>
     </div>
     <div class="row-fluid">
-      <div class="span11">
-	<p>You don't have to have a sponsor; if you don't have one, your messages will be supported by one of our other advertisers.</p>
-      </div>
+      <p>You don't have to have a sponsor; if you don't have one, your messages will be supported by one of our other advertisers.</p>
       <div class="row-fluid">
-	
 	<div class="CGbuttonalign" > 
 	  <%= f.submit %>
 	</div>
       </div>
   </fieldset>
-
-
   <% end %>
   </div>

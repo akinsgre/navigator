@@ -28,7 +28,8 @@ class UsersController < AdminController
   def show
     @subscriber = Subscription.find_by_user_id(current_user.id) 
     @following = current_user.following
-    @groups = Group.find_all_by_user_id(current_user.id)
+
+    @groups = current_user.groups
     @otherGroups = @groups - @following
   end
 
