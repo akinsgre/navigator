@@ -4,6 +4,11 @@
       <%= link_to "Send this group a message", group_messages_new_path(@group) %>
     </div>
   </div>    
+<% flash.each do |key, msg| %>
+<div id="flash_<%= key %>">
+  <p><%= msg %></p>
+</div>
+<% end %>
   <div class="row-fluid">
     <div class="colA span6" float="left">
       <div class="row-fluid">

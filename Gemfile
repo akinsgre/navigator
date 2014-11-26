@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 ruby '2.0.0'
 gem 'rails', '4.1.8'
-
+gem 'rails_config'
 gem 'sass-rails', '4.0.1'
 gem 'devise', '3.2.4'
 gem 'twilio-ruby', '3.4.0'

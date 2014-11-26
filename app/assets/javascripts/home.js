@@ -1,4 +1,4 @@
-function popUpWindow(id, title, containerId) {
+ function popUpWindow(id, title, containerId) {
     var divObj = $('#' + id);
     divObj.dialog({'title':title});
     divObj.dialog({
@@ -55,19 +55,15 @@ $( function(){
        var initPromise = groups.initialize();
        initPromise.done(function() {}).fail(function() { console.log('Fail');});
        
-       $('#groupsearch').typeahead({}, 
+       $('[id^="groupsearch"]').typeahead({}, 
        				      {
        					  source: groups.ttAdapter()
        				      });
-        $('#groupsearch').bind('typeahead:selected', function(obj, datum, name) {   
-				   console.log("#### Datam avlue " + datum.value);
-				   console.log("#### Datam id " + datum.id);
-				   console.log("#### name " + name);
-       				     window.location = "/groups/"+datum.id + "/contacts/new" ;
-       
+       $('[id^="groupsearch"]').bind('typeahead:selected', function(obj, datum, name) {   
+					 var query = "";
+					 if ($(this).attr('id').split("_")[1] == "user" ) {
+					     query = "?user=true" ;
+					 } 
+       					 window.location = "/groups/"+datum.id + "/contacts/new" + query ;
        				 });
-
-
-
-
    });

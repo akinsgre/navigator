@@ -5,12 +5,15 @@ class ContactsController < AdminController
   def index
     authorize unless params[:group_id] 
     if params[:group_id]
-      @group = Group.find(params[:group_id])
+      @group = current_user.groups.find(params[:group_id])
       @contacts = @group.contacts
     else
       @contacts = Contact.all
     end
-
+  rescue
+    Rails.logger.debug "##### You don't have access to group #{@group}"
+    flash[:alert] = "You don't have access to this group."
+    redirect_to root_path and return
   end
   
   def show
@@ -20,10 +23,10 @@ class ContactsController < AdminController
 
   def new
     @contact = Contact.new
-    logger.info "User id will be " + params[:user_id].to_s
 
-    unless params[:user_id].nil? || params[:user_id].to_s.rstrip.empty?
-      @contact.user_id = params[:user_id] 
+    if params[:user] && current_user
+      Rails.logger.debug "##### Setting a user ID on this group"
+      @contact.user_id = current_user.id
     end
     logger.info "##### Group id will be " + params[:group_id].to_s
 

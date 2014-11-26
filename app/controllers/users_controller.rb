@@ -1,5 +1,6 @@
 class UsersController < AdminController
-  before_filter :authenticate_user!, :authorize, :only => [:index]
+  before_filter :authenticate_user! 
+  before_filter :authorize, :only => [:index]
 
   def index
       @users = User.all

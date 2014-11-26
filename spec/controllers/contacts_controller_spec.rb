@@ -11,10 +11,24 @@ describe ContactsController do
       @group = FactoryGirl.create(:group)
       @contact = FactoryGirl.create(:phone)
     end
+    describe "GET 'new'" do
+      it "should be successful with no ID" do
+        get :new
+        expect(response.status).to eq(200)
+        expect(assigns(:contact)).to_not be_nil
+        expect(assigns(:contact).user_id).to be_nil
+      end
+      it "should be successful with user specified" do
+        get :new, :user => true
+        expect(response.status).to eq(200)
+        expect(assigns(:contact)).to_not be_nil
+        expect(assigns(:contact).user_id).to eq(@user.id)
+      end
+    end
     describe "GET 'index'" do
       it "should be successful" do
         get :index, :group_id => @group
-        expect(response.status).to eq(200)
+        expect(response).to redirect_to root_path
       end
     end
     describe "PATCH 'update'" do
@@ -25,13 +39,30 @@ describe ContactsController do
       end
     end
   end
-  before :each do
-    @email = FactoryGirl.create(:email)
-  end
-  describe "GET 'opt_out'" do
-    it "should be successful" do
-      get :opt_out, contact_id:  @email
-      expect(response.status).to eq(200)
+  describe "Not Logged In" do
+    before :each do
+      @email = FactoryGirl.create(:email)
+    end
+    describe "GET 'new'" do
+      it "should be successful with no ID" do
+        get :new
+        expect(response.status).to eq(200)
+        expect(assigns(:contact)).to_not be_nil
+        expect(assigns(:contact).user_id).to be_nil
+      end
+      it "should be successful with user specified" do
+        get :new, :user => true
+        expect(response.status).to eq(200)
+        expect(assigns(:contact)).to_not be_nil
+        expect(assigns(:contact).user_id).to be_nil
+      end
+    end
+    describe "GET 'opt_out'" do
+      it "should be successful" do
+        get :opt_out, contact_id:  @email
+        expect(response.status).to eq(200)
+      end
+
     end
   end
 end
