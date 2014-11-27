@@ -57,7 +57,7 @@ class MessagesController < ApplicationController
           sponsor_msg = Rack::Utils.escape(Sponsor.getPhoneAd)
           message = Rack::Utils.escape(@message.message)
           group = Rack::Utils.escape(@group.name)
-          app_url = "#{request.original_url}" unless Rails.env.development?
+          app_url = "#{request.protocol + request.host_with_port}" unless Rails.env.development?
           app_url = "http://nmc-demo.herokuapp.com" if Rails.env.development?
           url = "#{app_url}/twiml/say.xml?secret=#{ ENV['NMC_API_KEY'] }&message=#{message}&sponsor_msg=#{sponsor_msg}&group=#{group}"
           Rails.logger.info "##### Sending Message #{url}"
