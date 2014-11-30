@@ -4,6 +4,7 @@ describe MessagesController do
 
   describe 'SMS' do
     before :each do
+
       @user = FactoryGirl.create(:user)
       sign_in @user
       @group = FactoryGirl.create(:group)

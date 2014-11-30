@@ -8,8 +8,9 @@ Navigator::Application.routes.draw do
   get "email/show"
   get "profile/edit"
   get "groups/:id/add_contact", :to => 'groups#add_contact'
-  post "groups/save_contact", :to => "groups#save_contact"
+
   get "groups/remove_contact", :to =>  "groups#remove_contact"
+  get "contacts/opt_out", :to =>  "contacts#opt_out", as: "contact_opt_out"
   
   get "incoming_message", :to => "incoming_message#index"
 
@@ -22,9 +23,7 @@ Navigator::Application.routes.draw do
 
   match "users/sign_out" => "users#sign_out", :via => :get
   get 'contact_type/:id', :to => 'contact_type#show'
-  resources :contacts do
-    get "opt_out"
-  end
+
   resources :users do
     resources :groups
     resources :contacts

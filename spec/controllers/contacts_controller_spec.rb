@@ -10,16 +10,11 @@ describe ContactsController do
       sign_in @user
       @group = FactoryGirl.create(:group)
       @contact = FactoryGirl.create(:phone)
+
     end
     describe "GET 'new'" do
-      it "should be successful with no ID" do
-        get :new
-        expect(response.status).to eq(200)
-        expect(assigns(:contact)).to_not be_nil
-        expect(assigns(:contact).user_id).to be_nil
-      end
       it "should be successful with user specified" do
-        get :new, :user => true
+        get :new, :user => true, :group_id => @group.id
         expect(response.status).to eq(200)
         expect(assigns(:contact)).to_not be_nil
         expect(assigns(:contact).user_id).to eq(@user.id)
@@ -42,16 +37,23 @@ describe ContactsController do
   describe "Not Logged In" do
     before :each do
       @email = FactoryGirl.create(:email)
+      @group = FactoryGirl.create(:group)
     end
     describe "GET 'new'" do
       it "should be successful with no ID" do
-        get :new
+        get :new, :group_id => @group.id
+        expect(response.status).to eq(200)
+        expect(assigns(:contact)).to_not be_nil
+        expect(assigns(:contact).user_id).to be_nil
+      end
+      it "should redirect_to group if there are more contacts than allowed" do
+        get :new, :group_id => @group.id
         expect(response.status).to eq(200)
         expect(assigns(:contact)).to_not be_nil
         expect(assigns(:contact).user_id).to be_nil
       end
       it "should be successful with user specified" do
-        get :new, :user => true
+        get :new, :user => true, :group_id => @group.id
         expect(response.status).to eq(200)
         expect(assigns(:contact)).to_not be_nil
         expect(assigns(:contact).user_id).to be_nil

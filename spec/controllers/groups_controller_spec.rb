@@ -4,8 +4,8 @@ require 'spec_helper'
 describe GroupsController do
   describe "Get 'show' " do
     before :each do
-    @user2 = FactoryGirl.create(:user)
-    sign_in @user2
+      @user2 = FactoryGirl.create(:user)
+      sign_in @user2
       @group1 = FactoryGirl.create(:group, user: @user)
       @group2 = FactoryGirl.create(:group, user: @user2)      
     end
@@ -19,11 +19,11 @@ describe GroupsController do
   describe "GET 'create'" do
     before :each do
       @user = FactoryGirl.create(:user)
+      @group1 = FactoryGirl.create(:group, user: @user)
+      puts "##### Membership level is #{@group1.membership_level}" 
       sign_in @user
-      
     end
-    it "should be successful" do
-      
+    it "should be redirect to created group" do
       post 'create',{:group => {"name"=>"Test", "description"=>"Test Group", "user_id"=>"1", "sponsor_email"=>"", 
           "bulk_upload"=>""
         }}
@@ -69,15 +69,6 @@ describe GroupsController do
         response.should be_successful
       end
     end
-    describe "POST 'save_contact'" do
-      it "should save the contact to the group" do
-        @group.contacts.length.should eq(1)
-        post "save_contact" , "group"=>{"id"=>"1"}, "contact"=>{"type"=>"Phone", "entry"=>"724 454 7790", "identifier"=>"Test"}
-        group = assigns[:group]
-        group.should_not be_nil
-        allContacts = group.contacts.length
-        allContacts.should eq(2)
-      end
-    end
+
   end
 end

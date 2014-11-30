@@ -507,7 +507,8 @@ ul li span {
 
 #flash_error, #flash_alert {
     background-color: #FCC;
-    border: solid 1px #C66;
+    border: solid 1px $error-red;
+    color: $error-red;
 }
 
 .fieldWithErrors {

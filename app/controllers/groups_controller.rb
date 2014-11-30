@@ -41,12 +41,11 @@ class GroupsController < ApplicationController
   end
 
   def create
-
-
     @group = Group.new(group_params)
     if @group.save
       redirect_to @group, :notice => "Successfully created group."
     else
+      puts @group.errors.full_messages
       render :action => 'new'
     end
   end
@@ -82,26 +81,7 @@ class GroupsController < ApplicationController
     @contact = Contact.new
   end
 
-  def save_contact
-    Rails.logger.info "###### Params #{params}"
-    Rails.logger.info "Param contact = #{params[:contact].inspect}"
 
-    @group = Group.find(params[:group][:id])
-
-    @contact = Contact.new
-    @contact.entry = params[:contact][:entry]
-    @contact.identifier = params[:contact][:identifier]
-    @group.contacts << @contact
-    @group.save
-    
-    if @group.save && current_user
-      redirect_to @group, :notice  => "Successfully updated group."
-    elsif @group.save && !current_user
-      redirect_to :root
-    else
-      render :action => 'edit'
-    end
-  end
 
   def join
     @group = Group.find(params[:id])

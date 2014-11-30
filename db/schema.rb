@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141125212740) do
+ActiveRecord::Schema.define(version: 20141129021425) do
 
   create_table "advertisements", force: true do |t|
     t.integer  "sponsor_id"
@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(version: 20141125212740) do
     t.integer  "user_id"
     t.string   "description"
     t.string   "sponsor_email"
-    t.text     "membership_level_id"
+    t.integer  "membership_level_id"
     t.text     "twilio_number"
   end
 
@@ -85,7 +85,10 @@ ActiveRecord::Schema.define(version: 20141125212740) do
     t.text     "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "allowed_contacts"
   end
+
+  add_index "membership_levels", ["name"], name: "index_membership_levels_on_name", unique: true
 
   create_table "messages", force: true do |t|
     t.string   "message"

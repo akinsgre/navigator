@@ -5,5 +5,8 @@ FactoryGirl.define do
     after(:create) do |group|
       group.contacts << create(:email)
     end
+
   end
 end
+
+

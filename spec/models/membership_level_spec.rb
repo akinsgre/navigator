@@ -1,9 +1,18 @@
-class MembershipLevel < ActiveRecord::Base
-  
-  def self.DEFAULT 
-    MembershipLevel.find_by_name( 'Basic')
+require 'spec_helper'
+
+describe MembershipLevel do
+
+  it "can't be created with duplicate name" do
+    expect(MembershipLevel.DEFAULT.name).to eq('Basic')
+
+    m = MembershipLevel.new
+    m.name = 'Basic'
+    expect { m.save }.to raise_error(ActiveRecord::RecordNotUnique)
+
   end
 end
+
+
 
 
 # == Schema Information

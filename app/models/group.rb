@@ -26,8 +26,14 @@ class Group < ActiveRecord::Base
       find(:all)
     end
   end
+  def exceed_contacts?
+     !membership_level.allowed_messages.nil? && contact_count >= membership_level.allowed_contacts
+  end
   def exceed_messages?
-    monthly_message_count >= 30
+    !membership_level.allowed_messages.nil? && (monthly_message_count >= membership_level.allowed_messages)
+  end
+  def contact_count
+    self.contacts.size
   end
   def monthly_message_count(month_date=Date.today)
     month_start = Date.new(month_date.year, month_date.month, 1)
@@ -37,12 +43,14 @@ class Group < ActiveRecord::Base
   private
 
   def associate_defaults
-    ml = MembershipLevel::DEFAULT
+    ml = MembershipLevel.DEFAULT
+
     #self.update_attribute :membership_level_id, ml.id
     self.membership_level = ml
     self.twilio_number = ENV['TW_NUMBER']
   end
 end
+
 
 # == Schema Information
 #
@@ -56,7 +64,7 @@ end
 #  user_id             :integer
 #  description         :string(255)
 #  sponsor_email       :string(255)
-#  membership          :integer
 #  membership_level_id :text
+#  twilio_number       :text
 #
 
