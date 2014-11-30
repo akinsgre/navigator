@@ -62,7 +62,9 @@ describe Group do
   end
 
   it 'should never refuse to send messages when group membership is premium' do
-    group = Group.new(name: 'test', membership_level: MembershipLevel.find_by_name('Premium'))
+    group = Group.new(name: 'test')
+    group.membership_level = MembershipLevel.find_by_name('Premium')
+
     (1..30).each do
       message = FactoryGirl.create(:message)
       group.messages << message
@@ -71,10 +73,11 @@ describe Group do
     expect(group.exceed_messages?).to be_false
   end
   it 'should never refuse to add contacts when group membership is premium' do
-    group = Group.new(name: 'test', membership_level: MembershipLevel.find_by_name('Premium'))
+    group = Group.new(name: 'test')
+    group.membership_level = MembershipLevel.find_by_name('Premium')
     (1..30).each do
-      message = FactoryGirl.create(:message)
-      group.messages << message
+      contact = FactoryGirl.create(:email)
+      group.contacts << contact
     end
     group.save
     expect(group.exceed_contacts?).to be_false
