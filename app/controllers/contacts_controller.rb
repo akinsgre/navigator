@@ -50,7 +50,7 @@ class ContactsController < AdminController
     end
 
     if @contact.errors.size == 0
-      redirect_to group_contact_path(@group, @contact), :notice => "Successfully created contact"  if current_user
+      redirect_to group_path(@group), :notice => "Successfully created contact"  if current_user
       redirect_to root_path, :notice => "We will let you know when something is posted for \"#{@group.name}\"." unless current_user
     else
       Rails.logger.warn "##### New contact had errors #{@contact.errors.full_messages}"

@@ -10,7 +10,7 @@ Navigator::Application.routes.draw do
   get "groups/:id/add_contact", :to => 'groups#add_contact'
 
   get "groups/remove_contact", :to =>  "groups#remove_contact"
-  get "contacts/opt_out", :to =>  "contacts#opt_out", as: "contact_opt_out"
+  get "contacts/opt_out/:contact_id", :to =>  "contacts#opt_out", as: "contact_opt_out"
   
   get "incoming_message", :to => "incoming_message#index"
 
