@@ -4,14 +4,8 @@ class Sponsor < ActiveRecord::Base
   has_many :contributions
   has_many :advertisements
   
-  def self.getPhoneAd
-    Advertisement.random_record.phone_message
-  end
-  def self.getTextAd
-    Advertisement.random_record.message
-  end
-  def self.getEmailAd
-    Advertisement.random_record.html_message
+  def self.getAd
+    Advertisement.random_record
   end
 end
 

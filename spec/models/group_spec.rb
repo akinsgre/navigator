@@ -31,6 +31,7 @@ describe Group do
       group.messages << message
     end
     group.save
+
     expect(group.exceed_messages?).to be_false
   end
   it 'should refuse to allow additional contacts when group membership is basic' do
@@ -58,7 +59,7 @@ describe Group do
       group.messages << message
     end
     group.save
-    expect(group.exceed_messages?).to be_false
+    expect(group.exceed_messages?).to be_true
   end
 
   it 'should never refuse to send messages when group membership is premium' do

@@ -27,8 +27,7 @@ class Group < ActiveRecord::Base
     end
   end
   def exceed_contacts?
-    puts membership_level.name
-     !membership_level.allowed_contacts.nil? && (contact_count >= membership_level.allowed_contacts)
+    !membership_level.allowed_contacts.nil? && (contact_count >= membership_level.allowed_contacts)
   end
   def exceed_messages?
     !membership_level.allowed_messages.nil? && (monthly_message_count >= membership_level.allowed_messages)

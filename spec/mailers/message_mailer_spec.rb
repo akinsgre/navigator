@@ -12,7 +12,7 @@ describe MessageMailer do
     let(:message) { FactoryGirl.create(:message, group: group) }
 
     let(:advertisement) { FactoryGirl.create(:advertisement)}
-    let(:mail) { MessageMailer.send_message(email, message) }
+    let(:mail) { MessageMailer.send_message(email, message, advertisement) }
 
  
     it 'renders the subject' do

@@ -8,11 +8,13 @@ describe Sponsor do
     s = Sponsor.new
     s.should_not be_nil
   end
-  it "should have a static appendAdd method" do
-    message = 'test'
-    message = Sponsor.getPhoneAd
-    message.should match('Notify My Club dot org.  Help your club get the word out')
+  it "should have a static method to get a random advertisement" do
+    ad = Sponsor.getAd
+    ad.phone_message.should match('Notify My Club dot org.  Help your club get the word out')
+    ad.message.should match('MyText')
+    ad.html_message.should match('<b>MyHtml</b>')
   end
+
 
   it "should have advertisements" do
     s = Sponsor.new
