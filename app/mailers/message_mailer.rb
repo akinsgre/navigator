@@ -1,5 +1,5 @@
 class MessageMailer < ActionMailer::Base
-  default from: "nmc@insomnia-consulting.org"
+  default from: "NotifyMyClub <info@notifymyclub.com>"
 
   def send_message(contact, message, advertisement)
     @contact = contact

@@ -18,7 +18,7 @@ Navigator::Application.configure do
   config.action_mailer.smtp_settings = {
     address:              'smtp.gmail.com',
     port:                 587,
-    domain:               'gmail.com',
+    domain:               'notifymyclub.com',
     user_name:            ENV['EMAIL_NAME'],
     password:             ENV['EMAIL_PASSWORD'],
     authentication:       'plain',

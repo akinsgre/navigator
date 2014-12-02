@@ -2,7 +2,7 @@ Navigator::Application.routes.draw do
 
   get "incoming_message/receive"
   get "twiml/say"
-  get "sponsors/info"
+
 
   post "email/create"
   get "email/show"
@@ -31,6 +31,8 @@ Navigator::Application.routes.draw do
   end
 
   resources :subscriptions
+
+      get "sponsors/info"
 
   resources :groups do
     get "contact/edit", as: "sm"
