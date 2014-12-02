@@ -1,7 +1,7 @@
 require 'twilio-ruby'
 
 class MessagesController < ApplicationController
-
+  include MessageHelper
   def new
     @message = Message.new
     @group = Group.find(params[:group_id])
@@ -23,7 +23,6 @@ class MessagesController < ApplicationController
     Rails.logger.debug "##### Set up a client to talk to the Twilio REST API using Twilio gem with #{@account_sid} #{@auth_token}"
     @client = Twilio::REST::Client.new(@account_sid, @auth_token)
     @message.group = @group
-    ad = Sponsor.getAd
 
     if @group.exceed_messages?
       flash[:alert] = "The message cannot be sent because you have already sent #{@group.membership_level.allowed_messages} this month.  You must upgrade to a 'Premium' or 'Sponsored' level to be able to send additional messages."
@@ -35,17 +34,19 @@ class MessagesController < ApplicationController
       # abort if number of messages exceeds threshhold
 
       @contacts.each do |c|
+    advertisement = Sponsor.getAd
+    Rails.logger.info "####### Advertisment is #{advertisement.inspect}"
         case c.type
         when "Sms"
-          body = "#{@message.group.name}: #{@message.message}\r\n\r\n#{ad.message}"
-          sent_message = ad.message
+          body = "#{@message.group.name}: #{@message.message}\r\n\r\n#{advertisement.message}"
+          sent_message = advertisement.message
           @twilioMessage = @client.account.sms.messages.create({
                                                                  :from => @group.twilio_number, 
                                                                  :to => c.entry, 
                                                                  :body => body
                                                                })
         when "Phone"
-          sponsor_msg = Rack::Utils.escape(ad.phone_message)
+          sponsor_msg = Rack::Utils.escape(advertisement.phone_message)
           message = Rack::Utils.escape(@message.message)
           sent_message = sponsor_msg
           group = Rack::Utils.escape(@group.name)
@@ -54,12 +55,11 @@ class MessagesController < ApplicationController
           url = "#{app_url}/twiml/say.xml?secret=#{ ENV['NMC_API_KEY'] }&IfMachine=Continue&message=#{message}&sponsor_msg=#{sponsor_msg}&group=#{group}"
           @call = @client.account.calls.create(  :from => @group.twilio_number,  :to => c.entry, :url => url, :method => 'GET' )
         when "Email"
-          MessageMailer.send_message(c,@message, ad).deliver
-          sent_message = ad.html_message
+          MessageMailer.send_message(c,@message, advertisement).deliver
+          sent_message = advertisement.html_message
         else
         end
-        #TODO Add to Advertiser message history
-        AdHistory.create!(message: sent_message, group_id: @group.id, contact_id: c.id, sponsor_id: ad.sponsor_id)
+        record_message(sent_message, @group, c, advertisement)
       end
       flash.now[:notice] = "Message sent successfully to #{@contacts.size} contacts."
       render "groups/show", id: @group.id      

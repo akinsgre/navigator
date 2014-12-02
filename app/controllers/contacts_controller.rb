@@ -42,14 +42,15 @@ class ContactsController < AdminController
 
   def create
     @contact = Contact.determine_type(params)
+
     unless params[:contact][:group].nil?  && params[:contact][:group][:id].nil?
       group_id = params[:contact][:group][:id]
       @group = Group.find(group_id)
       logger.info "##### Group is " + @group.name
-      @group.contacts << @contact
+      @contact.groups.push(@group)
     end
-
-    if @contact.errors.size == 0
+    
+    if @contact.save && @contact.errors.size == 0
       redirect_to group_path(@group), :notice => "Successfully created contact"  if current_user
       redirect_to root_path, :notice => "We will let you know when something is posted for \"#{@group.name}\"." unless current_user
     else
@@ -58,6 +59,7 @@ class ContactsController < AdminController
       # otherwise the create method breaks when it tries to examine the params[:contact]
       @contact = @contact.becomes(Contact)
       render "new"
+
     end
 
   end

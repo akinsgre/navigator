@@ -2,7 +2,14 @@ class Advertisement < ActiveRecord::Base
   belongs_to :sponsor
   validates :message, :html_message, :sponsor_id, :presence => true
 
-  scope :random_record, -> { (offset(rand(Advertisement.count)).first) }
+  scope :random_record, -> { 
+    ( offset(rand(Advertisement.active_ad_count))).where(" sponsor_id in (?)", Sponsor.active_accounts.to_a).first
+  }
+  
+  def self.active_ad_count
+    self.where(" sponsor_id in (?)", Sponsor.active_accounts.to_a).count
+  end
+
 end
 
 
