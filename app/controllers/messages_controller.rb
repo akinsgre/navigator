@@ -38,7 +38,7 @@ class MessagesController < ApplicationController
     Rails.logger.info "####### Advertisment is #{advertisement.inspect}"
         case c.type
         when "Sms"
-          body = "#{@message.group.name}: #{@message.message}\r\n\r\n#{advertisement.message}\r\n\r\nReply with \"STOP\" to stop these notifications"
+          body = "#{@message.group.name}: #{@message.message}\r\n\r\n#{advertisement.message}\r\n\r\nReply with \"STOP#{@message.group.id}\" to stop these notifications"
           sent_message = advertisement.message
           @twilioMessage = @client.account.sms.messages.create({
                                                                  :from => @group.twilio_number, 
