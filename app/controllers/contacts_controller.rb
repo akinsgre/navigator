@@ -28,16 +28,22 @@ class ContactsController < AdminController
       Rails.logger.debug "##### Setting a user ID on this group"
       @contact.user_id = current_user.id
     end
-    logger.info "##### Group id will be #{ params[:group_id]}"
+    Rails.logger.info "##### Group id will be #{ params[:group_id]}.. and Contact is #{@contact}"
 
     if !params[:group_id].nil? && Group.exists?(params[:group_id]) 
       @group = Group.find(params[:group_id]) 
-
+      Rails.logger.info "##### Found a group be #{@group}.. and Contact is #{@contact}"
       if @group.exceed_contacts?
         flash[:alert] = "This contact cannot be added because you have already added #{@group.membership_level.allowed_contacts}.  You must upgrade to a 'Premium' or 'Sponsored' level to be able to add additional contacts."
-        redirect_to @group
+        @contact = nil
+        redirect_to @group and return
       end
+    else
+      Rails.logger.info "##### Could not find Group #{params[:group_id]}"
+      @contact = nil
+      render(:file => File.join(Rails.root, 'public/404'), :status => 404, :layout => false, content_type: "text/html" ) and return
     end
+    Rails.logger.debug "##### Group is #{@group} and Contact is #{@contact}"
   end
 
   def create

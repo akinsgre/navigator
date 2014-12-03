@@ -20,6 +20,13 @@ describe ContactsController do
         expect(assigns(:contact).user_id).to eq(@user.id)
       end
     end
+    describe "GET 'new'" do
+      it "should return 404 with invalid Group ID" do
+        get :new, :user => true, :group_id => 999
+        expect(response.status).to eq(404)
+        expect(assigns(:contact)).to be_nil
+      end
+    end
     describe "GET 'index'" do
       it "should be successful" do
         get :index, :group_id => @group
