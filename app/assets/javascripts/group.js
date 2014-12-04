@@ -17,7 +17,8 @@ $( function(){
 	   {
 	       rules: {
 		   'group[name]': {
-		       required:true
+		       required:true,
+		       maxlength:20
 		   },
 		   'group[sponsor_email]': {
 		       email:true
@@ -25,7 +26,8 @@ $( function(){
 	       },
 	       messages: {
 		   'group[name]': {
-		       required:"You must name your group"
+		       required:"You must name your group",
+		       maxlength:"The name must be less than 20 characters."
 		   },
 		   'group[sponsor_email]': {
 		       email: "The sponsor's email must be in the format of name@domain.com."

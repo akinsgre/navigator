@@ -12,6 +12,8 @@ class Group < ActiveRecord::Base
 
   validates_presence_of :membership_level
   validates :name, :presence => true
+  validates :name, length: {minimum: 1, maximum: 20}
+
   validates :twilio_number, :presence => true
   validates_plausible_phone :twilio_number,  :message => I18n.t('validations.errors.models.phone.invalid_number')
 
