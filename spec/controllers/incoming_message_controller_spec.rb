@@ -29,14 +29,7 @@ describe IncomingMessageController do
       expect(c).to be_true
       GroupContact.find_by_contact_id_and_group_id(@sms.id, @group.id).should be_nil
     end
-    it "returns http success destroying phone" do
-      data = {  :secret => ENV['NMC_API_KEY'], "From" => '+17244547790', "CallSid" => "asdfasdf" }
-      get :receive, data
 
-      response.status.should eq(200)
-      c = Contact.exists?(@phone.id)
-      c.should be_false
-    end
   end
 
 end
