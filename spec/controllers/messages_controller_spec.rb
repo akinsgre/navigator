@@ -23,11 +23,11 @@ describe MessagesController do
       sms = mock()
 
       Twilio::REST::Client.expects('new').returns(client)
-      client.expects(:account).returns(account)
-      account.expects(:sms).returns(sms)
-      sms.expects(:messages).returns(messages)
-      messages.expects(:create).returns("Test Passed")
-      post :deliver, {:message => {"message"=> "This is a message", :group_id => @group.id}, :group_id => @group.id }
+      client.expects(:account).times(2).returns(account)
+      account.expects(:sms).times(2).returns(sms)
+      sms.expects(:messages).times(2).returns(messages)
+      messages.expects(:create).times(2).returns("Test Passed")
+      post :deliver, {:message => {"message"=> "I've been building enterprise Java web apps since servlets were created.  In that time the java ecosystem has changed a lot but sadly many enterprise Java developers are stuck", :group_id => @group.id}, :group_id => @group.id }
 
       response.should be_success
 

@@ -38,13 +38,20 @@ class MessagesController < ApplicationController
     Rails.logger.info "####### Advertisment is #{advertisement.inspect}"
         case c.type
         when "Sms"
-          body = "#{@message.group.name}: #{@message.message}\r\n\r\n#{advertisement.message}\r\n\r\nReply with \"STOP#{@message.group.id}\" to stop these notifications"
+          #Twilio 160 character message limit
+          message = ''
+
+          message = "#{@message.message}"
+          #split message into 160 character (Twilio limit) chunks
+          messages = build_message(message, advertisement)
+          messages.each do |msg|
+            @twilioMessage = @client.account.sms.messages.create({
+                                                                   :from => @group.twilio_number, 
+                                                                   :to => c.entry, 
+                                                                   :body => msg
+                                                                 })
+          end
           sent_message = advertisement.message
-          @twilioMessage = @client.account.sms.messages.create({
-                                                                 :from => @group.twilio_number, 
-                                                                 :to => c.entry, 
-                                                                 :body => body
-                                                               })
         when "Phone"
           sponsor_msg = Rack::Utils.escape(advertisement.phone_message)
           message = Rack::Utils.escape(@message.message)
