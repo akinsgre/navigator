@@ -9,6 +9,7 @@ class IncomingMessageController < ApplicationController
       group_id = params[:Body].delete("STOP")
       
       contact = Sms.find_by_normalized_entry(number)
+      Rails.logger.debug "##### We're going to delete contact #{contact.id} and group #{group_id}"
       group_contact = GroupContact.find_by_contact_id_and_group_id( contact.id, group_id)
       group_contact.destroy unless group_contact.nil?
     elsif params["CallSid"]
