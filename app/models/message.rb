@@ -3,6 +3,8 @@ class Message < ActiveRecord::Base
   belongs_to :contact
 
   validates_presence_of :message
+  validates :message, length: {minimum: 1, maximum: 200 }
+
 end
 
 

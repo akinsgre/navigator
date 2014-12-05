@@ -9,7 +9,7 @@ class MessagesController < ApplicationController
   end
 
   def deliver
-    @message = Message.new(params[:message].permit(:message, :group_id))
+    @message = Message.new(params[:message].permit(:message, :group_id, :phone_message))
     @contacts =  Group.find(@message.group_id).contacts
     
     @group = Group.find(@message.group_id)
@@ -34,13 +34,13 @@ class MessagesController < ApplicationController
       # abort if number of messages exceeds threshhold
 
       @contacts.each do |c|
-    advertisement = Sponsor.getAd
-    Rails.logger.info "####### Advertisment is #{advertisement.inspect}"
+        advertisement = Sponsor.getAd
+        Rails.logger.info "####### Advertisment is #{advertisement.inspect}"
         case c.type
         when "Sms"
           #Twilio 160 character message limit
           message = ''
-
+          
           message = "#{@message.message}"
           #split message into 160 character (Twilio limit) chunks
           messages = build_message(message, advertisement)
@@ -54,7 +54,11 @@ class MessagesController < ApplicationController
           sent_message = advertisement.message
         when "Phone"
           sponsor_msg = Rack::Utils.escape(advertisement.phone_message)
-          message = Rack::Utils.escape(@message.message)
+          if @message.phone_message.blank?
+            message = Rack::Utils.escape(@message.message)
+          else
+            message = Rack::Utils.escape(@message.phone_message)
+          end
           sent_message = sponsor_msg
           group = Rack::Utils.escape(@group.name)
           app_url = "#{request.protocol + request.host_with_port}" unless Rails.env.development?

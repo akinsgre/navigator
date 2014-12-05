@@ -6,17 +6,28 @@
 <div class="row-fluid">
   <div class="span11">
     <p>Send a message to <%= @message.group.name %></p>
+    <p>The Text message is required.  This will be used for text messages and email.  If the Phone message isn't specified, then the text message will be used for Text, Phone and Email.</p>
   </div>
 </div>
 <%= form_for @message, :url =>  { :action => "deliver" } do |f| %>
 <div class="row-fluid">
   <div class="span11">
-    <%= f.label :message %>
+    <%= f.label :message, "Text Message (Required)" %>
   </div>
 </div>
 <div class="row-fluid">
   <div class="span11">
-    <%= f.text_field :message %>
+    <%= f.text_field :message, :maxlength => 200 %>
+   </div>
+</div>
+<div class="row-fluid">
+  <div class="span11">
+    <%= f.label :phone_message, "Phone message (Optional)"  %>
+  </div>
+</div>
+<div class="row-fluid">
+  <div class="span11">
+    <%= f.text_field :phone_message %>
    </div>
 </div>
 <div class="row-fluid">
