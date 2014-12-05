@@ -1,6 +1,5 @@
-class ContactsController < AdminController
+class ContactsController < ApplicationController
   before_filter :authenticate_user!, :except => [:new, :create, :opt_out]
-  #before_filter :authorize, :only => [:index]
 
   def index
     authorize unless params[:group_id] 

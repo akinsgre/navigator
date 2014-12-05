@@ -1,9 +1,9 @@
 class UsersController < AdminController
   before_filter :authenticate_user! 
-  before_filter :authorize, :only => [:index]
+
 
   def index
-      @users = User.all
+
   end
 
   def edit

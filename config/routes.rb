@@ -1,5 +1,6 @@
 Navigator::Application.routes.draw do
 
+  devise_for :admins
   get "incoming_message/receive"
   get "twiml/say"
 
@@ -32,7 +33,7 @@ Navigator::Application.routes.draw do
 
   resources :subscriptions
 
-      get "sponsors/info"
+  resources :sponsors
 
   resources :groups do
     get "contact/edit", as: "sm"

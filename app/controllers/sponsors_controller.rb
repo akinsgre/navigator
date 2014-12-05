@@ -1,5 +1,7 @@
 class SponsorsController < ApplicationController
-  def info
+  layout 'megaboogie'
+  before_filter :authenticate_admin!
+  def index 
   end
 
   def new
