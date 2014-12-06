@@ -1,1 +1,44 @@
-index for sponsors
+<h1>Sponsor</h1>
+
+<div class="accordion" id="accordion2">
+  <% @sponsors.each do |s| %>
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%=s.id%>">
+	<p><%= s.name %></p>
+
+      </a>
+    </div>
+    <div id="collapse<%=s.id%>" class="accordion-body collapse">
+      <div class="accordion-inner">
+	<div class="PrettyTable">
+	<table>
+	  <tr>
+	    <th>Email</th>
+	    <th>Phone</th>
+	    <th>Active?</th>
+	    <th>Messages Sent this month</th>
+	    <th>Messages Allowed / Month</th>
+	  </tr>
+	  <tr>
+            <td><%=s.email %></td>
+            <td><%= s.phone %></td>
+	    <td><%= s.active %></td>
+	    <td><%= s.messages_sent %></td>
+	    <td><%= s.messages_allowed %></td>
+	  </tr>
+	</table>
+	</div>
+	<h4>Advertisements</h4>
+	<ul>
+	  <% s.advertisements.each do |a| %>
+	      <li><div class="xxx" title="<%= a.message %>"><%= image_tag 'x' %></li>
+	      <li><%= a.html_message %></li>
+	      <li><%= a.phone_message %></li>
+	  <% end unless s.advertisements.empty? %>
+	</ul>
+      </div>
+    </div>
+  </div>
+
+  <% end unless @sponsors.nil? %>

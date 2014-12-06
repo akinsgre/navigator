@@ -34,7 +34,7 @@
 	  <!-- Collect the nav links, forms, and other content for toggling -->
 	  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	    <ul class="nav navbar-nav navbar-right">
-	      <li>Googly</li>
+
               <li><% if admin_signed_in? %>  
 		<p>Signed in as <%= current_admin.email %>. </p>
 		<p>Not you?  <%= link_to "Sign out", destroy_admin_session_path, :method => :delete %> </p>

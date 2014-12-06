@@ -17,5 +17,6 @@
 //= require home.js
 //= require group.js
 //= require users.js
+//= require sponsor.js
 
 

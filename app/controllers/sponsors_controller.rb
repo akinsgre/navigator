@@ -2,6 +2,7 @@ class SponsorsController < ApplicationController
   layout 'megaboogie'
   before_filter :authenticate_admin!
   def index 
+    @sponsors = Sponsor.all
   end
 
   def new

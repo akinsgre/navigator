@@ -101,6 +101,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: groups
@@ -113,7 +114,7 @@ end
 #  user_id             :integer
 #  description         :string(255)
 #  sponsor_email       :string(255)
-#  membership_level_id :text
+#  membership_level_id :integer
 #  twilio_number       :text
 #
 

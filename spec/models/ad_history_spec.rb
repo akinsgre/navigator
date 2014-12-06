@@ -16,3 +16,17 @@ describe AdHistory do
     expect(ah).to be_valid
   end
 end
+
+# == Schema Information
+#
+# Table name: ad_histories
+#
+#  id         :integer         not null, primary key
+#  sponsor_id :integer
+#  message    :text
+#  group_id   :integer
+#  contact_id :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+

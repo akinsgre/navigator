@@ -24,15 +24,19 @@ describe Sponsor do
   end
 end
 
+
 # == Schema Information
 #
 # Table name: sponsors
 #
-#  id         :integer         not null, primary key
-#  name       :string(255)
-#  email      :string(255)
-#  phone      :string(255)
-#  created_at :datetime
-#  updated_at :datetime
+#  id               :integer         not null, primary key
+#  name             :string(255)
+#  email            :string(255)
+#  phone            :string(255)
+#  created_at       :datetime
+#  updated_at       :datetime
+#  active           :boolean         default(FALSE)
+#  messages_sent    :integer         default(0)
+#  messages_allowed :integer         default(0)
 #
 

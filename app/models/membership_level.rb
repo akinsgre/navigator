@@ -6,6 +6,7 @@ class MembershipLevel < ActiveRecord::Base
 end
 
 
+
 # == Schema Information
 #
 # Table name: membership_levels
@@ -15,6 +16,6 @@ end
 #  name             :text
 #  created_at       :datetime
 #  updated_at       :datetime
-#  allowed_contacts :decimal(, )
+#  allowed_contacts :integer
 #
 
