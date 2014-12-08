@@ -20,7 +20,7 @@ describe GroupsController do
     before :each do
       @user = FactoryGirl.create(:user)
       @group1 = FactoryGirl.create(:group, user: @user)
-      puts "##### Membership level is #{@group1.membership_level}" 
+
       sign_in @user
     end
     it "should be redirect to created group" do
@@ -65,7 +65,7 @@ describe GroupsController do
     describe "GET 'add_contact'" do
       it "should be successful" do
         get 'add_contact', :id => @group.id
-        puts response.body
+
         response.should be_successful
       end
     end

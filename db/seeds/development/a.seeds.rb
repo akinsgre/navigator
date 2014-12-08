@@ -28,7 +28,7 @@ ActiveRecord::Base.transaction do
 end
 ActiveRecord::Base.transaction do
   puts "##### Adding a sponsor / advertisement"
-  s = Sponsor.create(name: "Insomnia Consulting", email: "gakins@insomnia-consulting.org", phone: "7244547790", active: true)
+  s = Sponsor.create(name: "Insomnia Consulting", email: "gakins@insomnia-consulting.org", phone: "7244547790", active: true, messages_allowed: nil)
   a = Advertisement.new(message: "Insomnia-Consulting.org: Software development services.", html_message: "<b><a href=\"http://insomnia-consulting.org\">Insomnia-Consulting.org</a> Software development services.</b>", :phone_message => "Insomnia dash Consulting dot org.  Software development consulting.")
   a.save
   s.advertisements << a

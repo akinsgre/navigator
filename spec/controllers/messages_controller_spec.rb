@@ -11,8 +11,9 @@ describe MessagesController do
       contacts = FactoryGirl.create_list(:email, 2)
       contacts << FactoryGirl.create(:sms)
       @group.contacts << contacts
-
+      @sponsor = FactoryGirl.create(:sponsor)
       @ad = FactoryGirl.create(:advertisement)
+      @sponsor.advertisements << @ad
 
     end
     it "can send a message" do
@@ -34,6 +35,7 @@ describe MessagesController do
       expect(assigns(:contacts)).to eq(@group.contacts)
       expect(assigns(:twilioMessage)).to eq("Test Passed")
     end
+
   end
   describe 'Phone' do
     before :each do
@@ -43,7 +45,7 @@ describe MessagesController do
       contacts = FactoryGirl.create_list(:email, 2)
       contacts << FactoryGirl.create(:phone)
       @group.contacts << contacts
-      @ad = FactoryGirl.create(:advertisement)
+      @sponsor = FactoryGirl.create(:sponsor_with_advertisement)
     end
     it "can send a message" do
 

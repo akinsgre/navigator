@@ -9,7 +9,7 @@ class IncomingMessageController < ApplicationController
       group_id = params[:Body].delete("STOP")
       contacts = Sms.all.where(:normalized_entry => '17244547790').select(:id)
       contacts.each do |c|
-      puts "##### We're going to delete contact #{c.id} and group #{group_id}"
+
         group_contact = GroupContact.find_by_contact_id_and_group_id( c.id, group_id)
         unless group_contact.nil?
           group_contact.destroy 
