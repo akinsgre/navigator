@@ -13,6 +13,7 @@ gem 'nested_form', '0.3.2'
 gem 'phony_rails'
 gem 'valid_email'
 gem 'exception_notification'
+gem 'koala'
 
 gem "twitter-bootstrap-rails"
 gem 'twitter-typeahead-rails', '0.10.2'

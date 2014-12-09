@@ -1,5 +1,16 @@
 $( function(){
-       
+       $("#fb_group").change(function() {
+				 FB.login(function(response) { 
+					      if (response.session) 
+					      { 
+						  location.href = '/facebook_users/' ;
+					      } else 
+					      { 
+						  alert("User canceled login!"); 
+					      } 
+					      
+					  });
+			     });
        $("#new_group").formToWizard() ;
        
        $("#entryLabel").text("Please enter a valid " + $("#contact_type :selected").text());

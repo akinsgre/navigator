@@ -34,7 +34,12 @@
 	  <!-- Collect the nav links, forms, and other content for toggling -->
 	  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	    <ul class="nav navbar-nav navbar-right">
-
+<li><div
+  class="fb-like"
+  data-share="true"
+  data-width="250"
+  data-show-faces="true">
+</div></li>
               <li><% if user_signed_in? %>  
 		<p>Signed in as <%= current_user.email %>. </p>
 		<p>Not you?  <%= link_to "Sign out", destroy_user_session_path, :method => :delete %> </p>
