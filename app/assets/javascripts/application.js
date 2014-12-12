@@ -8,9 +8,9 @@
 //= require twitter/bootstrap
 //= require jquery.validate
 //= require jquery.validate.additional-methods
-
-
 //= require jquery_nested_form
+//= require jquery.cookie
+// 
 //= require twitter/typeahead
 
 //= require formToWizard

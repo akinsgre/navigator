@@ -32,7 +32,12 @@ class MessagesController < ApplicationController
       Rails.logger.debug "##### Sending #{@message.inspect} to each contact"
       # Check membership, on Group model (ie., Group.messages_exceeded?) level before sending message
       # abort if number of messages exceeds threshhold
-
+      # if @group.facebook_group?
+      #   @access_token = current_user.fb_token
+      #   Rails.logger.debug "##### Access Token = #{@access_token}"
+      #   graph = Koala::Facebook::API.new(@access_token)
+      #   graph.put_object('10203899060529169', "feed", :message => "This is just a test of an app I'm writing.#{Date.today.to_s}")
+      # end
       @contacts.each do |c|
         advertisement = Sponsor.getAd
         Rails.logger.info "####### Advertisment is #{advertisement.inspect}"

@@ -1,15 +1,28 @@
+function setFbCookies(response) {
+    $.cookie('fbs_862680253782909', response.authResponse.accessToken, {path: '/'}) ; 
+}
 $( function(){
-       $("#fb_group").change(function() {
-				 FB.login(function(response) { 
-					      if (response.session) 
-					      { 
-						  location.href = '/facebook_users/' ;
-					      } else 
-					      { 
-						  alert("User canceled login!"); 
-					      } 
-					      
-					  });
+       $("#fb_group").change(function(e) {
+				 e.preventDefault();
+				 if ( $(this).is(':checked') ) {
+				     FB.login(function(response) {
+						  FB.login(
+						      function(response) {
+							  if (response.authResponse) {
+							      $('#connect').html('Connected! Hitting OmniAuth callback (GET /auth/facebook/callback)...');
+							      // since we have cookies enabled, this request will allow omniauth to parse out the auth code from the signed request in the fbsr_XXX cookie
+							      $.getJSON('/auth/facebook/callback', 
+									{ signed_request : response.authResponse.signedRequest },
+									function(json) {
+									    alert("Test " + JSON.stringify(json));
+									});
+							  }
+						      }, { 
+							  scope: 'email,user_likes,publish_actions',
+							  return_scopes: true
+							 });
+					      });
+				 }
 			     });
        $("#new_group").formToWizard() ;
        

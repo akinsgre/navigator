@@ -1,6 +1,7 @@
 Navigator::Application.routes.draw do
 
   get 'facebook/index'
+  get 'auth/facebook/callback', :to => 'facebook#callback'
 
   devise_for :admins
   get "incoming_message/receive"
