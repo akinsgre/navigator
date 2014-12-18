@@ -1,6 +1,7 @@
 class Contact < ActiveRecord::Base
   has_many :groups, :through => :group_contacts
   has_many :group_contacts
+
   has_many :messages
 
   belongs_to :user
@@ -10,8 +11,7 @@ class Contact < ActiveRecord::Base
   require_dependency 'phone'
   require_dependency 'sms'
   require_dependency 'email'
-  
-
+  require_dependency 'fb_group'
   
   #GAK 11/4/2011 
   #  Email is a virtual attribute so it can be captured in a form_for but then assigned to the User to whom the contact belongs
@@ -24,9 +24,11 @@ class Contact < ActiveRecord::Base
   def email=(email)
     @email = email
   end
-
+  def self.hide?
+    false
+  end
   def self.select_options
-    descendants.collect do |d|   [d.identify,d.to_s] end
+    descendants.reject { |d| d.hide? }.collect { |d| [d.identify,d.to_s] }
   end
 
   def to_s

@@ -16,7 +16,6 @@ gem 'exception_notification'
 gem 'omniauth-facebook', '1.4.0'
 gem 'koala'
 
-gem "twitter-bootstrap-rails"
 gem 'twitter-typeahead-rails', '0.10.2'
 gem 'seedbank'
 gem 'jquery-validation-rails'

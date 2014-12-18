@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row-fluid">
     <div class="span11">
-      <%= link_to "Send this group a message", group_messages_new_path(@group) %>
+      <%= link_to "Send this group a message", group_messages_new_path(@group), :id => "sendpost" %>
     </div>
   </div>    
 <% flash.each do |key, msg| %>
@@ -26,10 +26,11 @@
     </div>
     <div class="colB span6">
       <div class="row-fluid">
-	<input type="checkbox" id="fb_group" name="fb_group" ></input>
-	<input type="text" id="fb_group_name" name="fb_group_name" ></input>
+	<p><a id="fbgrouplogin"></a></p>
+	<p><a href="#" id="fbgroupedit"></a></p>
+
 	<% if @group.contacts.size > 0 %>
-	<table>
+	<table id="contacts">
 	  <th></th>
 	  <th>Name</th>
 	  <th>Value</th>

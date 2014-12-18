@@ -14,8 +14,8 @@
     <%= yield(:head) %>
   </head>
   <body>
-
-<div id="fb-root"></div>
+    <div id="appid"><%= ENV['APP_ID'] %></div>
+    <div id="fb-root"></div>
     <div id="popups"></div>
     <div id="main" class="container-fluid">
 

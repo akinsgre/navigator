@@ -12,35 +12,40 @@ function popUpWindow(id, title, containerId) {
 		      }});
     divObj.dialog('open');
 }
-function statusChangeCallback(response) {
-    console.log('statusChangeCallback');
-    console.log(response);
-    // The response object is returned with a status field that lets the
-    // app know the current login status of the person.
-    // Full docs on the response object can be found in the documentation
-    // for FB.getLoginStatus().
-    if (response.status === 'connected') {
-      // Logged into your app and Facebook.
-      testAPI();
-    } else if (response.status === 'not_authorized') {
-	console.log ("The person is logged into Facebook, but not your app.");
-    } else {
-      console.log(" The person is not logged into Facebook, so we're not sure if they are logged into this app or not.");
-    }
-  }
-$( function(){
-       // This is called with the results from from FB.getLoginStatus().
-       
 
+function statusChangeCallback(response) {
+    //#update my current access_token
+    if (response.status === 'connected') {
+	console.log("#### Status change Callback " + response.authResponse.accessToken);
+	 $.post("/facebook/refresh", {"accessToken":response.authResponse.accessToken }).done(function(response) {
+	 										     console.log("Saved new access Token" + response.accessToken);
+	 										 }) ; 
+	$("#fbgroupedit").html("Click here to add a Facebook group").show();
+	$("#fbgrouplogin").hide();
+	return true;
+    } else {
+	console.log("Not logged into Facebook");	
+	$("#fbgroupedit").hide();
+	$("#fbgrouplogin").show().html("Login to Facebook to be able to choose a Facebook group to post to.");
+	return false;
+    }
+}
+$( function(){
+       
+       var loggedIn = false ; 
+       var appId = $('#appid').text();
+       console.log("App ID is " + appId);
        window.fbAsyncInit = function() {
 	   FB.init({
-		       appId  : '862680253782909',
+		       appId  : appId,
 		       status : true, // check login status
 		       cookie : true, // enable cookies to allow the server to access the session
-		       xfbml  : true  // parse XFBML
+		       xfbml  : true,  // parse XFBML
+		       version    : 'v2.2'
 		   });
 
 	   FB.getLoginStatus(function(response) {
+
 				 statusChangeCallback(response);
 			     });
 
@@ -48,21 +53,11 @@ $( function(){
        (function(d) {
             var js, id = 'facebook-jssdk'; if (d.getElementById(id)) {return;}
             js = d.createElement('script'); js.id = id; js.async = true;
-	    //js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=862680253782909&version=v2.1";
-            js.src = "//connect.facebook.net/en_US/all/debug.js";
+	    // js.src = "//connect.facebook.net/en_US/all/debug.js";
+	    js.src = "//connect.facebook.net/en_US/sdk.js";
             d.getElementsByTagName('head')[0].appendChild(js);
         }(document));
 
-       // Here we run a very simple test of the Graph API after login is
-       // successful.  See statusChangeCallback() for when this call is made.
-       function testAPI() {
-	   console.log('Welcome!  Fetching your information.... ');
-	   FB.api('/me', function(response) {
-		      console.log('Successful login for: ' + response.name);
-		      console.log('Thanks for logging in, ' + response.name + '!');
-		  });
-       }
-       
        
        $( "#popups" ).scrollTop(0);
        $("#popups").dialog({autoOpen:false, 

@@ -32,17 +32,33 @@ class MessagesController < ApplicationController
       Rails.logger.debug "##### Sending #{@message.inspect} to each contact"
       # Check membership, on Group model (ie., Group.messages_exceeded?) level before sending message
       # abort if number of messages exceeds threshhold
-      # if @group.facebook_group?
-      #   @access_token = current_user.fb_token
-      #   Rails.logger.debug "##### Access Token = #{@access_token}"
-      #   graph = Koala::Facebook::API.new(@access_token)
-      #   graph.put_object('10203899060529169', "feed", :message => "This is just a test of an app I'm writing.#{Date.today.to_s}")
-      # end
+
+      @contacts.each do |c|
+        if c.type == "FbGroup"
+          #check permissions before going any further
+
+          graph = Koala::Facebook::API.new(current_user.fb_token)
+          permissions = graph.get_connections("me",'permissions')
+          Rails.logger.debug "##### Permissions #{permissions}"
+        end
+      end
       @contacts.each do |c|
         advertisement = Sponsor.getAd
         Rails.logger.info "####### Advertisment is #{advertisement.inspect}"
+        fbPermissions = false
+        Rails.logger.info "####### Contact is #{c.type}"
+
         case c.type
+        when "FbGroup"
+
+          graph = Koala::Facebook::API.new(current_user.fb_token)
+          message = "#{@group.name}\r\n #{@message.message}\r\n\r\n#{advertisement.message}"
+          Rails.logger.debug "##### Sending a message to FB group #{c.inspect}"
+          result = graph.put_connections("#{c.entry}", "feed", message: message)
+          Rails.logger.debug "##### Posted and received #{result}"
+
         when "Sms"
+
           #Twilio 160 character message limit
           message = ''
           

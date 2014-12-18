@@ -1,6 +1,8 @@
 class Group < ActiveRecord::Base
   has_many :contacts, :through => :group_contacts
   has_many :group_contacts
+  has_many :fb_group_details, :through => :fb_groups
+  has_many :fb_groups
   belongs_to :membership_level
 
   accepts_nested_attributes_for :contacts
@@ -28,10 +30,12 @@ class Group < ActiveRecord::Base
       find(:all)
     end
   end
+  
   def exceed_contacts?
     !membership_level.allowed_contacts.nil? && (contact_count >= membership_level.allowed_contacts)
   end
   def exceed_messages?
+    Rails.logger.debug "##### Messages exceeded?  Group ID: #{id}, MembershipLevel: #{self.membership_level.inspect}"
     !membership_level.allowed_messages.nil? && (monthly_message_count >= membership_level.allowed_messages)
   end
   def contact_count
@@ -48,8 +52,8 @@ class Group < ActiveRecord::Base
     ml = MembershipLevel.DEFAULT
 
     #self.update_attribute :membership_level_id, ml.id
-    self.membership_level = ml
-    self.twilio_number = ENV['TW_NUMBER']
+    self.membership_level ||= ml
+    self.twilio_number ||= ENV['TW_NUMBER']
   end
 end
 

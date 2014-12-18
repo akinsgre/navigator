@@ -3,46 +3,63 @@ class FacebookController < ApplicationController
   respond_to :html, :json
   
   def callback
-    Rails.logger.debug "########################################"
+
     auth = request.env['omniauth.auth']
-    #extend_fb_token(auth['credentials']['token'])
-    Rails.logger.debug "##### Scopes : #{auth['grantedScopes']}"
+    
+    Rails.logger.debug "##### Scopes : #{auth.inspect}"
     if current_user
       current_user.fb_token = auth['credentials']['token'] 
+      Rails.logger.debug "###### Access Token is #{current_user.fb_token}"
       if current_user.save
-        respond_with("success")
+        Rails.logger.debug "##### Facebook auth token saved for #{current_user.email}"
+        render :json => {'status' => 'success'}
       else
-        respond_with("failure")
+        render :json => {'status' => 'failure'}
       end
     end
   end
-  def index
+
+  def refresh
+     Rails.logger.debug "####### Refreshing accessToken with #{params['accessToken']}"
+     Rails.logger.debug "####### Current User token #{current_user.fb_token}"
+     if params['accessToken'] != current_user.fb_token
+       Rails.logger.debug "##### Saving new token"
+       current_user.fb_token = params['accessToken']
+       current_user.save
+     end
+     hashMap = { "accessToken" =>  current_user.fb_token  }
+    render :json => hashMap
+  end
+  def post
+    Rails.logger.debug "##### facebook#post params #{params}"
+    fbGroupId = params["value"]
+    redirect_to new_user_session_path and return if current_user.nil?
     @access_token = current_user.fb_token
+
     Rails.logger.debug "##### Access Token = #{@access_token}"
     graph = Koala::Facebook::API.new(@access_token)
-    graph.put_object('10203899060529169', "feed", :message => "This is just a test of an app I'm writing.#{Date.today.to_s}")
-    profile_path = graph.get_picture("10203899060529169",:type=>"large")
-    Rails.logger.debug "###### Profile path #{profile_path}"    
-    
+    uri = "/#{fbGroupId[0]}" if fbGroupId.size == 1
+    Rails.logger.debug "##### Get this URI #{uri} for #{fbGroupId[0]}" 
+    @fbgroup = graph.get_object(uri)
+    Rails.logger.debug "##### FB Group information = #{@fbgroup["name"]}"
+    group = Group.find(params[:group_id])
+    fbg = FbGroup.new({name: @fbgroup["name"], entry: fbGroupId[0]})
+    group.contacts << fbg
+    unless group.save
+      raise 'Error saving the group'
+    end
+    render :nothing => true
   end
-  def extend_fb_token(token)
-    # can be called once a day to extend fb access token
-    # if called twice or more in one day, will return the same token
-    require "net/https"
-    require "uri"
-    url = "https://graph.facebook.com/oauth/access_token?client_id=#{ENV['APP_ID']}&client_secret=#{ENV['SECRET_KEY']}&grant_type=fb_exchange_token&fb_exchange_token=#{token}"
-    Rails.logger.debug "##### Posting #{url}"
-    uri = URI.parse(url)
-    http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = true
-    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+  def groups
+    redirect_to new_user_session_path and return if current_user.nil?
+    @access_token = current_user.fb_token
 
-    request = Net::HTTP::Get.new(uri.request_uri)
+    Rails.logger.debug "##### Access Token = #{@access_token}"
+    graph = Koala::Facebook::API.new(@access_token)
+    @fbgroups = graph.get_connection("/me", "groups")
+    @fbgroups.reject! { |fb| fb['administrator'].nil? }
+    @fbgroups
 
-    response = http.request(request)
-    Rails.logger.debug "##### Got his response #{response.body}"
-    matched_response = /access_token=(.+)&expires=(.+)/.match(response.body)
-    parsed_response = Hash["extension", Hash["token", matched_response[1], "expiry", matched_response[2]]]
-    return parsed_response
   end
+
 end

@@ -5,12 +5,16 @@
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
-//= require twitter/bootstrap
+
+//= require bootstrap
+
+//= require bootstrap-editable
+// 
 //= require jquery.validate
 //= require jquery.validate.additional-methods
 //= require jquery_nested_form
 //= require jquery.cookie
-// 
+
 //= require twitter/typeahead
 
 //= require formToWizard

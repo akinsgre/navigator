@@ -49,7 +49,6 @@ GEM
     exception_notification (4.0.1)
       actionmailer (>= 3.0.4)
       activesupport (>= 3.0.4)
-    execjs (2.2.2)
     factory_girl (4.4.0)
       activesupport (>= 3.0.0)
     factory_girl_rails (4.4.1)
@@ -177,11 +176,6 @@ GEM
       builder (>= 2.1.2)
       jwt (>= 0.1.2)
       multi_json (>= 1.0.3)
-    twitter-bootstrap-rails (3.2.0)
-      actionpack (~> 4.1)
-      execjs (~> 2.2)
-      rails (~> 4.1)
-      railties (~> 4.1)
     twitter-typeahead-rails (0.10.2)
       actionpack (>= 3.1)
       jquery-rails
@@ -232,7 +226,6 @@ DEPENDENCIES
   seedbank
   sqlite3
   twilio-ruby (= 3.4.0)
-  twitter-bootstrap-rails
   twitter-typeahead-rails (= 0.10.2)
   unicorn
   valid_email

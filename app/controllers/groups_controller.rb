@@ -18,10 +18,14 @@ class GroupsController < ApplicationController
 
   def show
     begin
+      @access_token = current_user.fb_token
+      Rails.logger.debug "##### Access Token = #{@access_token}"
+      graph = Koala::Facebook::API.new(@access_token)
+      
 
       @group = current_user.groups.find(params[:id])
-    rescue
-      Rails.logger.debug "##### You don't have access to group #{@group}"
+    rescue => e
+      Rails.logger.debug "##### You don't have access to group #{e}"
       flash[:alert] = "You don't have access to this group."
       redirect_to root_path and return
     end
