@@ -31,7 +31,6 @@ GEM
     addressable (2.3.6)
     annotate (2.4.0)
     arel (5.0.1.20140414130214)
-    awesome_print (1.2.0)
     bcrypt (3.1.9)
     builder (3.2.2)
     countries (0.9.3)
@@ -205,7 +204,6 @@ PLATFORMS
 DEPENDENCIES
   ZenTest (= 4.10.0)
   annotate (= 2.4.0)
-  awesome_print
   devise (= 3.4.1)
   exception_notification
   factory_girl (= 4.4.0)

@@ -27,7 +27,7 @@ group :development, :test do
   gem 'sqlite3'
   gem 'factory_girl', '4.4.0'
   gem "factory_girl_rails"
-  gem 'awesome_print'
+
 end
 
 group :test do

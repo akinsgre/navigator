@@ -1,4 +1,3 @@
-require 'awesome_print'
 class FacebookController < ApplicationController
   respond_to :html, :json
   
