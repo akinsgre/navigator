@@ -65,16 +65,23 @@ $( function(){
 			    height:500, 
 			    draggable: false,
 			    modal:true});
+       
+       
+       $("body").on("click",".openwindow", function(e) {
+			console.log("Clicked link " );
+       			e.preventDefault();
+			var link = $(this).attr("href");
+			var title = $(this).attr("title");
+			$.get(link, function(response) {
+				  console.log(response);
+				  $( "#popups" ).html(response);
+				  
+				  popUpWindow('popups', title, 'showterms') ;
+			      }) ;
 
-       $(".openwindow").each(function() {
-				 $(this).click( function(e) {
-						    var link = $(this).attr("href");
-						    $( "#popups" ).load(link);
-						    var title = $(this).attr("title");
-       						    e.preventDefault();
-       						    popUpWindow('popups', title, 'showterms') ;
-       						});
-			     }) ; 
+       			
+       		    });
+       
        
        // instantiate the bloodhound suggestion engine
        var groups = new Bloodhound(

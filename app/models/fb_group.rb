@@ -1,6 +1,6 @@
 class FbGroup < Contact
   include ActiveModel::Naming
-#  validates :entry, :email => { :message => I18n.t('validations.errors.models.email.invalid_email')}
+  validates :entry, :email => { :message => I18n.t('validations.errors.models.email.invalid_email')}
 
   def self.identify
     "Facebook Group"
@@ -9,10 +9,10 @@ class FbGroup < Contact
     "Facebook Group"
   end
   def self.long_description
-    "Facebook group that you administrate"
+    "Facebook group id for a group you administer <a class=\"openwindow\" href=\"/help/fb_group\" title=\"How to add a Facebook Group\" >Info</a>"
   end
   def self.hide?
-    true
+    false
   end
 end
 

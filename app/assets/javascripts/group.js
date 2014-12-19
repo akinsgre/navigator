@@ -24,62 +24,23 @@ $( function(){
 				
 			      }) ; 
        
-       $("#fbgrouplogin").click(function(e) {
-				    event.preventDefault();
-				    var loggedIn = false;
-				    FB.getLoginStatus(function(response) {
-							  loggedIn = statusChangeCallback(response);
-						      });
-				    if (loggedIn == false) {
-					FB.login(function(response) {
-						     if (response.authResponse) {
-							 $.getJSON('/auth/facebook/callback', 
-								   { signed_request : response.authResponse.signedRequest },
-								   function( data ) {
-								       $('#fbgrouplogin').hide();
-								       $('#fbgroupedit').html("Click here to add a Facebook group").show();
-								   });
-							 
-
-						     }
-						 }, {scope:'email,user_groups'} );
-				    }
-
-				});
-       $('#fbgroupedit').editable({
-				      type: 'checklist',    
-				      source: '/facebook/groups',
-				      url: groupId+'/facebook/post',     
-				      pk: 1,    
-				      title: 'Select groups',
-				      placement: 'right',
-				      display: function(value, sourceData) {
-
-					  var checked, html = '';
-					  
-					  checked = $.grep(sourceData, function(o){
-							       return $.grep(value, function(v){ 
-										 return v == o.value; 
-									     }).length;
-							   });
-
-					  $.each(checked, function(i, v) { 
-						     html+= '<tr><td></td><td>'+$.fn.editableutils.escape(v.text)+'</td><td></td><td>Facebook Group</td></tr>';
-						 });
-
-					  $('#contacts').append(html);
-				      }
-				  });
-
        $("#new_group").formToWizard() ;
-       
-       $("#entryLabel").text("Please enter a valid " + $("#contact_type :selected").text());
+       //retrieve long description from contact_type
+       var selectedItem = $("#contact_type :selected");
+       $.getJSON("/contact_type/"+ selectedItem.val(), function(response) {
+
+		     console.log("Respons is " + response);
+		     
+		     $("#entryLabel").html("Please enter a valid " + response);		     
+		 });
+
        $("#contact_type").change( function () {
 				      selectedType = $('#contact_type :selected').val() ;
 				      $.ajax( "/contact_type/" + selectedType + ".json" )
 					  .done(
 					      function(data) {
-						  $("#entryLabel").text("Please enter a " + data);
+						  console.log ("Data " + data);
+						  $("#entryLabel").empty().append("Please enter a " + data);
 					      })
 					  .fail(function(jqXHR, textStatus) { console.log("Something messed up"+textStatus); } ) ; 
 				  }) ; 

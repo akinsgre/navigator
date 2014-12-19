@@ -448,10 +448,6 @@ ul li .footer{
     list-style: none;
 }
 
-a img {
-    border: none;
-}
-
 a {
     color: $site_blue ;
 }
@@ -462,8 +458,9 @@ a {
     overflow: hidden;
 }
 
-
-
+img.help {
+    padding: 25px;
+}
 a img {
     border: none;
 }

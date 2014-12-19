@@ -1,5 +1,7 @@
 Navigator::Application.routes.draw do
 
+  resources :help
+
   get 'auth/facebook/callback', :to => 'facebook#callback'
   get 'facebook/groups', :to => 'facebook#groups'
   post 'facebook/refresh', :to => 'facebook#refresh'

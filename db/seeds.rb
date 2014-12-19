@@ -8,6 +8,7 @@
 puts "##### Finding an admin user, or adding one."
 user = User.create!(:email => "test0@insomnia-consulting.org", :password => "Password1")
 admin = Admin.create!(:email => "admin@insomnia-consulting.org", :password => "Password1")
+Help.create!(name: "fb_group", title: "Add a Facebook Group", info: "Extract ID from your Facebook Group URL")
 puts "##### Finished with seeding"
 
 
