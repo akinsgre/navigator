@@ -1,0 +1,5 @@
+{
+<% @fbgroups.each do |fb| %>
+"<%= fb['id'] %>" : "<%= fb['name'] %>"<%= ',' unless fb == @fbgroups.last %>
+<% end %>
+}

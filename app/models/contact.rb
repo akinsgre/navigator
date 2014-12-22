@@ -1,6 +1,7 @@
 class Contact < ActiveRecord::Base
   has_many :groups, :through => :group_contacts
   has_many :group_contacts
+
   has_many :messages
 
   belongs_to :user
@@ -10,8 +11,7 @@ class Contact < ActiveRecord::Base
   require_dependency 'phone'
   require_dependency 'sms'
   require_dependency 'email'
-  
-
+  require_dependency 'fb_group'
   
   #GAK 11/4/2011 
   #  Email is a virtual attribute so it can be captured in a form_for but then assigned to the User to whom the contact belongs
@@ -24,9 +24,12 @@ class Contact < ActiveRecord::Base
   def email=(email)
     @email = email
   end
-
-  def self.select_options
-    descendants.collect do |d|   [d.identify,d.to_s] end
+  def self.hide?(user,group)
+    false
+  end
+  def self.select_options(user, group)
+    Rails.logger.debug "##### User owns group (#{user.id} == #{group.user.id}) #{user == group.user}" unless user.nil?
+    descendants.reject { |d| d.hide?(user, group ) }.collect { |d| [d.identify,d.to_s] }
   end
 
   def to_s
@@ -49,6 +52,8 @@ class Contact < ActiveRecord::Base
           @contact = @contact.becomes(Sms)
         when 'Email'
           @contact = @contact.becomes(Email)
+        when 'FbGroup'
+          @contact = @contact.becomes(FbGroup)
         else
           raise "Not a supported type"
         end
@@ -64,6 +69,8 @@ class Contact < ActiveRecord::Base
         @contact = Sms.new(params[:contact].permit(:name, :user_id, :entry, :type))
       when 'Email'
         @contact = Email.new(params[:contact].permit(:name, :user_id, :entry, :type))
+      when 'FbGroup'
+        @contact = FbGroup.new(params[:contact].permit(:name, :user_id, :entry, :type))
       else
         raise "Not a supported type"
       end

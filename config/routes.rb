@@ -1,5 +1,12 @@
 Navigator::Application.routes.draw do
 
+  resources :help
+
+  get 'auth/facebook/callback', :to => 'facebook#callback'
+  get 'facebook/groups', :to => 'facebook#groups'
+  post 'facebook/refresh', :to => 'facebook#refresh'
+
+
   devise_for :admins
   get "incoming_message/receive"
   get "twiml/say"
@@ -12,7 +19,6 @@ Navigator::Application.routes.draw do
 
   get "groups/remove_contact", :to =>  "groups#remove_contact"
   get "contacts/opt_out/:contact_id", :to =>  "contacts#opt_out", as: "contact_opt_out"
-  
   get "incoming_message", :to => "incoming_message#index"
 
 
@@ -26,7 +32,9 @@ Navigator::Application.routes.draw do
   get 'contact_type/:id', :to => 'contact_type#show'
 
   resources :users do
-    resources :groups
+    resources :groups do
+      post 'facebook/post', :to => 'facebook#post'
+    end
     resources :contacts
     resources :subscriptions
   end
@@ -34,8 +42,9 @@ Navigator::Application.routes.draw do
   resources :subscriptions
 
   resources :sponsors
-
+  
   resources :groups do
+    post 'facebook/post', :to => 'facebook#post'
     get "contact/edit", as: "sm"
     get "contact/edit", as: "phone"
     get "messages/new"

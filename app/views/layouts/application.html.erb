@@ -14,6 +14,8 @@
     <%= yield(:head) %>
   </head>
   <body>
+    <div id="appid"><%= ENV['APP_ID'] %></div>
+    <div id="fb-root"></div>
     <div id="popups"></div>
     <div id="main" class="container-fluid">
 
@@ -34,7 +36,9 @@
 	  <!-- Collect the nav links, forms, and other content for toggling -->
 	  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	    <ul class="nav navbar-nav navbar-right">
-
+<li>
+<div class="fb-like" data-href="http://notifymyclub.com" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+</li>
               <li><% if user_signed_in? %>  
 		<p>Signed in as <%= current_user.email %>. </p>
 		<p>Not you?  <%= link_to "Sign out", destroy_user_session_path, :method => :delete %> </p>
@@ -69,9 +73,7 @@
     
     <div class="footerMenu" >
       <ul>
-	
 	<li class="footer" ><a class="openwindow" href="/privacy.html#top" title="Privacy Policy" >Privacy</a></li>
-
 	<li class="footer" ><a class="openwindow" href="/terms.html#top" title="Terms of Use" >Terms of Use</a></li>
       </ul>
     </div>

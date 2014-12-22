@@ -1,10 +1,18 @@
-/*
-  =require twitter-bootstrap-static/bootstrap
+@mixin col {
+    min-width:45%;
+    height: 100%;
+    padding:3%;
 
-  Use Font Awesome icons (default)
-  To use Glyphicons sprites instead of Font Awesome, replace with "require twitter-bootstrap-static/sprites"
-  =require twitter-bootstrap-static/fontawesome
-  */
+    margin-top:20px;
+    border: 2px solid #ccc;
+    overflow:hidden;
+    background-color:#ffe;
+    border-radius:20px;
+    font-family: Verdana,Helvetica,Arial;
+}
+.col-md-6 {
+    @include col;
+}
 .col-md-12 {
     background: -webkit-linear-gradient(top, #FAD383 , #c4c4c4); /* For Safari 5.1 to 6.0 */
     background: -o-linear-gradient(bottom, #FAD383, #c4c4c4); /* For Opera 11.1 to 12.0 */

@@ -4,7 +4,7 @@ ruby '2.0.0'
 gem 'rails', '4.1.8'
 gem 'rails_config'
 gem 'sass-rails', '4.0.1'
-gem 'devise', '3.2.4'
+gem 'devise', '3.4.1'
 gem 'twilio-ruby', '3.4.0'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
@@ -13,8 +13,9 @@ gem 'nested_form', '0.3.2'
 gem 'phony_rails'
 gem 'valid_email'
 gem 'exception_notification'
+gem 'omniauth-facebook', '1.4.0'
+gem 'koala'
 
-gem "twitter-bootstrap-rails"
 gem 'twitter-typeahead-rails', '0.10.2'
 gem 'seedbank'
 gem 'jquery-validation-rails'
@@ -26,6 +27,7 @@ group :development, :test do
   gem 'sqlite3'
   gem 'factory_girl', '4.4.0'
   gem "factory_girl_rails"
+
 end
 
 group :test do

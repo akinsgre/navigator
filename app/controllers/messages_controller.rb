@@ -6,6 +6,22 @@ class MessagesController < ApplicationController
     @message = Message.new
     @group = Group.find(params[:group_id])
     @message.group = @group
+    @fbGroupIds = ''
+    @fbMessageExists = false
+    @group.contacts.each do |c|
+        advertisement = Sponsor.getAd
+        Rails.logger.info "####### Advertisment is #{advertisement.inspect}"
+        fbPermissions = false
+        Rails.logger.info "####### Contact is #{c.type}"
+
+        case c.type
+        when "FbGroup"
+          Rails.logger.debug "##### Sending a FB message"
+          @fbMessageExists = true
+          @fbMessage = "#{@group.name} : #{@message.message} : #{advertisement.message}"
+          @fbGroupIds += "#{c.entry}#{',' unless c == @group.contacts.last} " 
+        end
+      end
   end
 
   def deliver
@@ -29,14 +45,21 @@ class MessagesController < ApplicationController
       redirect_to @group and return
     end
     if @message.save
+
       Rails.logger.debug "##### Sending #{@message.inspect} to each contact"
       # Check membership, on Group model (ie., Group.messages_exceeded?) level before sending message
       # abort if number of messages exceeds threshhold
-
+      errors = 0
       @contacts.each do |c|
         advertisement = Sponsor.getAd
         Rails.logger.info "####### Advertisment is #{advertisement.inspect}"
+        fbPermissions = false
+        Rails.logger.info "####### Contact is #{c.type}"
+        @fbMessageExists = false
         case c.type
+        when "FbGroup"
+          Rails.logger.debug "##### Sending a FB message"
+
         when "Sms"
           #Twilio 160 character message limit
           message = ''
@@ -70,14 +93,14 @@ class MessagesController < ApplicationController
           sent_message = advertisement.html_message
         else
         end
-        record_message(sent_message, @group, c, advertisement)
+        record_message(sent_message, @group, c, advertisement ) unless c.type == "FbGroup"
       end
-      flash.now[:notice] = "Message sent successfully to #{@contacts.size} contacts."
+      flash.now[:notice] = "Message sent successfully to #{@contacts.size - errors } contacts."
       render "groups/show", id: @group.id      
     end
-  # rescue
-  #   flash.now[:alert] = "There was a problem sending this message."
-  #   render "groups/show", id: @group.id
+  rescue => e
+    flash.now[:alert] = "There was a problem sending this message. #{e.message}"
+    render "groups/show", id: @group.id
   end
 
   def index

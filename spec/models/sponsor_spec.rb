@@ -2,13 +2,13 @@ require 'spec_helper'
 describe 'Sponsor with limited messages' do
   before :each do
     @sponsor = FactoryGirl.create(:sponsor_with_advertisement, messages_allowed: 1)
-
   end
   it "should create a sponsor" do
-    puts @sponsor.inspect
-    ad = FactoryGirl.create(:ad_history, :sponsor_id => 2)
-    puts ad.inspect
+    puts "##### #{@sponsor.inspect}"
     expect( Sponsor.active_accounts.size).to eq(1)
+    ad = FactoryGirl.create(:ad_history, :sponsor_id => 2)
+    puts "###### #{ad.inspect}"
+    expect( Sponsor.active_accounts.size).to eq(0)
 
   end
 end
@@ -38,6 +38,7 @@ describe Sponsor do
 end
 
 
+
 # == Schema Information
 #
 # Table name: sponsors
@@ -49,7 +50,6 @@ end
 #  created_at       :datetime
 #  updated_at       :datetime
 #  active           :boolean         default(FALSE)
-#  messages_sent    :integer         default(0)
 #  messages_allowed :integer         default(0)
 #
 

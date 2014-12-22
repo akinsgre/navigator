@@ -23,6 +23,7 @@ class Sponsor < ActiveRecord::Base
 end
 
 
+
 # == Schema Information
 #
 # Table name: sponsors
@@ -34,7 +35,6 @@ end
 #  created_at       :datetime
 #  updated_at       :datetime
 #  active           :boolean         default(FALSE)
-#  messages_sent    :integer         default(0)
 #  messages_allowed :integer         default(0)
 #
 
