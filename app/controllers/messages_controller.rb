@@ -58,10 +58,7 @@ class MessagesController < ApplicationController
         case c.type
         when "FbGroup"
           Rails.logger.debug "##### Sending a FB message"
-          MessageMailer.send_message(c,@message, advertisement).deliver
-
         when "Sms"
-
           #Twilio 160 character message limit
           message = ''
           
