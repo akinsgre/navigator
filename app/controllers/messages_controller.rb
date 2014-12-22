@@ -6,6 +6,22 @@ class MessagesController < ApplicationController
     @message = Message.new
     @group = Group.find(params[:group_id])
     @message.group = @group
+    @fbGroupIds = ''
+    @fbMessageExists = false
+    @group.contacts.each do |c|
+        advertisement = Sponsor.getAd
+        Rails.logger.info "####### Advertisment is #{advertisement.inspect}"
+        fbPermissions = false
+        Rails.logger.info "####### Contact is #{c.type}"
+
+        case c.type
+        when "FbGroup"
+          Rails.logger.debug "##### Sending a FB message"
+          @fbMessageExists = true
+          @fbMessage = "#{@group.name} : #{@message.message} : #{advertisement.message}"
+          @fbGroupIds += "#{c.entry}#{',' unless c == @group.contacts.last} " 
+        end
+      end
   end
 
   def deliver
@@ -32,30 +48,17 @@ class MessagesController < ApplicationController
       Rails.logger.debug "##### Sending #{@message.inspect} to each contact"
       # Check membership, on Group model (ie., Group.messages_exceeded?) level before sending message
       # abort if number of messages exceeds threshhold
-
-      @contacts.each do |c|
-        if c.type == "FbGroup"
-          #check permissions before going any further
-
-          graph = Koala::Facebook::API.new(current_user.fb_token)
-          permissions = graph.get_connections("me",'permissions')
-          Rails.logger.debug "##### Permissions #{permissions}"
-        end
-      end
+      errors = 0
       @contacts.each do |c|
         advertisement = Sponsor.getAd
         Rails.logger.info "####### Advertisment is #{advertisement.inspect}"
         fbPermissions = false
         Rails.logger.info "####### Contact is #{c.type}"
-
+        @fbMessageExists = false
         case c.type
         when "FbGroup"
-
-          graph = Koala::Facebook::API.new(current_user.fb_token)
-          message = "#{@group.name}\r\n #{@message.message}\r\n\r\n#{advertisement.message}"
-          Rails.logger.debug "##### Sending a message to FB group #{c.inspect}"
-          result = graph.put_connections("#{c.entry}", "feed", message: message)
-          Rails.logger.debug "##### Posted and received #{result}"
+          Rails.logger.debug "##### Sending a FB message"
+          MessageMailer.send_message(c,@message, advertisement).deliver
 
         when "Sms"
 
@@ -93,12 +96,12 @@ class MessagesController < ApplicationController
         end
         record_message(sent_message, @group, c, advertisement)
       end
-      flash.now[:notice] = "Message sent successfully to #{@contacts.size} contacts."
+      flash.now[:notice] = "Message sent successfully to #{@contacts.size - errors} contacts."
       render "groups/show", id: @group.id      
     end
-  # rescue
-  #   flash.now[:alert] = "There was a problem sending this message."
-  #   render "groups/show", id: @group.id
+  rescue => e
+    flash.now[:alert] = "There was a problem sending this message. #{e.message}"
+    render "groups/show", id: @group.id
   end
 
   def index

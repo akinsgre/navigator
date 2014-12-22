@@ -4,5 +4,6 @@ FactoryGirl.define do
   factory :help do
     title "MyText"
     info "MyText"
+    name "fb_send"
   end
 end

@@ -21,6 +21,7 @@
 //= require home.js
 //= require group.js
 //= require users.js
+//= require messages.js
 //= require sponsor.js
 
 

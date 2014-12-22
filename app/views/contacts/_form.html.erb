@@ -18,7 +18,7 @@
      Preferred method of contact
    </div>
     <div class="span4" float="left">
-      <%= f.select :type, options_for_select(Contact.select_options, f.object.type) %>
+      <%= f.select :type, options_for_select(Contact.select_options(current_user, @group), f.object.type) %>
       </p>
      </div>
   </div>

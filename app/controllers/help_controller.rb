@@ -4,7 +4,8 @@ class HelpController < ApplicationController
   end
 
   def show
+    Rails.logger.debug "##### Help being found is #{params}"
     @help = Help.find_by_name(params[:id])
-    render :layout => false
+    render @help.name, :layout => false
   end
 end

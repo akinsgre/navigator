@@ -24,11 +24,12 @@ class Contact < ActiveRecord::Base
   def email=(email)
     @email = email
   end
-  def self.hide?
+  def self.hide?(user,group)
     false
   end
-  def self.select_options
-    descendants.reject { |d| d.hide? }.collect { |d| [d.identify,d.to_s] }
+  def self.select_options(user, group)
+    Rails.logger.debug "##### User owns group (#{user.id} == #{group.user.id}) #{user == group.user}" unless user.nil?
+    descendants.reject { |d| d.hide?(user, group ) }.collect { |d| [d.identify,d.to_s] }
   end
 
   def to_s
@@ -51,6 +52,8 @@ class Contact < ActiveRecord::Base
           @contact = @contact.becomes(Sms)
         when 'Email'
           @contact = @contact.becomes(Email)
+        when 'FbGroup'
+          @contact = @contact.becomes(FbGroup)
         else
           raise "Not a supported type"
         end
@@ -66,6 +69,8 @@ class Contact < ActiveRecord::Base
         @contact = Sms.new(params[:contact].permit(:name, :user_id, :entry, :type))
       when 'Email'
         @contact = Email.new(params[:contact].permit(:name, :user_id, :entry, :type))
+      when 'FbGroup'
+        @contact = FbGroup.new(params[:contact].permit(:name, :user_id, :entry, :type))
       else
         raise "Not a supported type"
       end

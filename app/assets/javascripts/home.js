@@ -11,25 +11,10 @@ function popUpWindow(id, title, containerId) {
 			      .html("<span class='ui-button-icon-primary ui-icon ui-icon-closethick'></span>");
 		      }});
     divObj.dialog('open');
+    divObj.scrollTop("0") ; 
 }
 
-function statusChangeCallback(response) {
-    //#update my current access_token
-    if (response.status === 'connected') {
-	console.log("#### Status change Callback " + response.authResponse.accessToken);
-	 $.post("/facebook/refresh", {"accessToken":response.authResponse.accessToken }).done(function(response) {
-	 										     console.log("Saved new access Token" + response.accessToken);
-	 										 }) ; 
-	$("#fbgroupedit").html("Click here to add a Facebook group").show();
-	$("#fbgrouplogin").hide();
-	return true;
-    } else {
-	console.log("Not logged into Facebook");	
-	$("#fbgroupedit").hide();
-	$("#fbgrouplogin").show().html("Login to Facebook to be able to choose a Facebook group to post to.");
-	return false;
-    }
-}
+
 $( function(){
        
        var loggedIn = false ; 
@@ -39,21 +24,33 @@ $( function(){
 	   FB.init({
 		       appId  : appId,
 		       status : true, // check login status
+		       level : 'debug',
 		       cookie : true, // enable cookies to allow the server to access the session
 		       xfbml  : true,  // parse XFBML
 		       version    : 'v2.2'
 		   });
+	   var accessToken = "" ; 
 
-	   FB.getLoginStatus(function(response) {
-
-				 statusChangeCallback(response);
-			     });
-
+	   if ($("#fbgroup").length > 0) {
+	       var groupId = $('#fbGroupIds').text();
+	       var groupArr = groupId.split(",");
+	       console.log("Group id arre " + groupArr);
+	       FB.login(function(response){ 
+			    console.log(JSON.stringify(response.authResponse.accessToken));
+			    FB.ui({to:groupArr,
+				   method: 'send', 
+				   link : "http://www.notifymyclub.com"
+				  });
+			    
+			},{scope:"manage_pages"}); 
+	       
+	   }
+	   
        };
        (function(d) {
             var js, id = 'facebook-jssdk'; if (d.getElementById(id)) {return;}
             js = d.createElement('script'); js.id = id; js.async = true;
-	    // js.src = "//connect.facebook.net/en_US/all/debug.js";
+	    //js.src = "//connect.facebook.net/en_US/all/debug.js";
 	    js.src = "//connect.facebook.net/en_US/sdk.js";
             d.getElementsByTagName('head')[0].appendChild(js);
         }(document));
@@ -73,9 +70,7 @@ $( function(){
 			var link = $(this).attr("href");
 			var title = $(this).attr("title");
 			$.get(link, function(response) {
-				  console.log(response);
 				  $( "#popups" ).html(response);
-				  
 				  popUpWindow('popups', title, 'showterms') ;
 			      }) ;
 

@@ -1,39 +1,18 @@
 $( function(){
        var groupId = window.location.href.split('/')[window.location.href.split('/').length-1];
        var url = '/';
-       $("#sendpost").click(function(e) {
-				url = $(this).attr('href');
-				e.preventDefault();
-				var loggedIn = false;
-				dfd = new $.Deferred();
-				FB.login(function(response) {
-					     if (response.status == "connected" ) {
-						 console.log("Saved new access Token" + response.authResponse.accessToken);
-						 $.post("/facebook/refresh", 
-							{"accessToken":response.authResponse.accessToken }
-						       ).done(function(response) {
-								  console.log("Response " + JSON.stringify(response));
-							      }) ; 
-					     }
-					     dfd.resolve();
-					   }, {scope:'publish_actions'} );
-				dfd.done( function() {
-				    window.location = url;
-				});
 
 				
-			      }) ; 
-       
        $("#new_group").formToWizard() ;
+
        //retrieve long description from contact_type
-       var selectedItem = $("#contact_type :selected");
-       $.getJSON("/contact_type/"+ selectedItem.val(), function(response) {
-
-		     console.log("Respons is " + response);
-		     
-		     $("#entryLabel").html("Please enter a valid " + response);		     
-		 });
-
+       if ($('#contact_type').length) {
+	   var selectedItem = $("#contact_type :selected");
+	   $.getJSON("/contact_type/"+ selectedItem.val(), function(response) {
+			 console.log("Response is " + response);
+			 $("#entryLabel").html("Please enter a valid " + response);		     
+		     });
+       }
        $("#contact_type").change( function () {
 				      selectedType = $('#contact_type :selected').val() ;
 				      $.ajax( "/contact_type/" + selectedType + ".json" )

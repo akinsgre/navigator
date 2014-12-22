@@ -10,7 +10,7 @@
 </div>
 <% end %>
   <div class="row-fluid">
-    <div class="colA span6" float="left">
+    <div class="col-md-6" float="left">
       <div class="row-fluid">
 	<p>
 	  <strong>Name:</strong>
@@ -24,7 +24,7 @@
 	</p>
       </div>
     </div>
-    <div class="colB span6">
+    <div class="col-md-6">
       <div class="row-fluid">
 
 	<% if @group.contacts.size > 0 %>
@@ -41,6 +41,7 @@
 	<% end %>
       </div>
       <div class="row-fluid">
+	<p style="max-width:100%">Click on "Add a new contact" to add contacts for this group.  Contacts can be a Phone number for voice or text; an email, or a Facebook group</p>
 	<% if @group.user_id == current_user.id %>
 	<%= link_to "Add a new contact", new_group_contact_path(@group ) %>
 	<% end %>
