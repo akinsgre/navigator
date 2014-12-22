@@ -1,3 +1,11 @@
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: font_path('glyphicons-halflings-regular.eot');
+  src: font_path('glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), 
+  font_path('glyphicons-halflings-regular.woff') format('woff'), url(asset_path('glyphicons-halflings-regular.ttf')) format('truetype'),
+  font_path('glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}
+
 @mixin col {
     min-width:45%;
     height: 100%;
