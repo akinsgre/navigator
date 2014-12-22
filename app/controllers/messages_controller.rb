@@ -45,6 +45,7 @@ class MessagesController < ApplicationController
       redirect_to @group and return
     end
     if @message.save
+
       Rails.logger.debug "##### Sending #{@message.inspect} to each contact"
       # Check membership, on Group model (ie., Group.messages_exceeded?) level before sending message
       # abort if number of messages exceeds threshhold
@@ -58,6 +59,7 @@ class MessagesController < ApplicationController
         case c.type
         when "FbGroup"
           Rails.logger.debug "##### Sending a FB message"
+
         when "Sms"
           #Twilio 160 character message limit
           message = ''
@@ -91,9 +93,9 @@ class MessagesController < ApplicationController
           sent_message = advertisement.html_message
         else
         end
-        record_message(sent_message, @group, c, advertisement)
+        record_message(sent_message, @group, c, advertisement ) unless c.type == "FbGroup"
       end
-      flash.now[:notice] = "Message sent successfully to #{@contacts.size - errors} contacts."
+      flash.now[:notice] = "Message sent successfully to #{@contacts.size - errors } contacts."
       render "groups/show", id: @group.id      
     end
   rescue => e
