@@ -42,7 +42,7 @@ $( function(){
 				   link : "http://www.notifymyclub.com"
 				  });
 			    
-			},{scope:"manage_pages"}); 
+			}); 
 	       
 	   }
 	   
