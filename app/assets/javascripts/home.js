@@ -38,10 +38,9 @@ $( function(){
 	       FB.login(function(response){ 
 			    console.log(JSON.stringify(response.authResponse.accessToken));
 			    FB.ui({to:groupArr,
-				   method: 'send', 
-				   link : "http://www.notifymyclub.com"
-				  });
-			    
+			    	   method: 'share', 
+			    	   href:'http://www.notifymyclub.com'
+			    	  });
 			}); 
 	       
 	   }
