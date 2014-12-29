@@ -32,6 +32,7 @@ $( function(){
 	   var accessToken = "" ; 
 
 	   if ($("#fbgroup").length > 0) {
+	       console.log("FBGroup exists" + $('#fbgroup').attr("id"));
 	       var groupId = $('#fbGroupIds').text();
 	       var groupArr = groupId.split(",");
 	       console.log("Group id arre " + groupArr);

@@ -11,7 +11,7 @@ class Contact < ActiveRecord::Base
   require_dependency 'phone'
   require_dependency 'sms'
   require_dependency 'email'
-  require_dependency 'fb_group'
+  require_dependency 'fb_group' if Feature.active?(:facebook)
   
   #GAK 11/4/2011 
   #  Email is a virtual attribute so it can be captured in a form_for but then assigned to the User to whom the contact belongs

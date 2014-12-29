@@ -15,6 +15,8 @@ gem 'valid_email'
 gem 'exception_notification'
 gem 'omniauth-facebook', '1.4.0'
 gem 'koala'
+gem 'redis'
+gem 'rollout'
 
 gem 'twitter-typeahead-rails', '0.10.2'
 gem 'seedbank'

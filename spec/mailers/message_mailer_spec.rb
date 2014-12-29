@@ -16,7 +16,7 @@ describe MessageMailer do
 
  
     it 'renders the subject' do
-      expect(mail.subject).to eq('Message from Test Group')
+      expect(mail.subject).to eq('Message from Test Group ')
 
       expect(mail.body.encoded).to match("Welcome to my rspec testing message")
       expect(mail.body.encoded).to match("MyHtml")
