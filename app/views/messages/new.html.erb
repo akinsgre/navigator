@@ -6,7 +6,7 @@
 <div class="row-fluid">
   <div class="span11">
     <p>Send a message to <%= @message.group.name %></p>
-    <% if @fbMessageExists && Feature.active?(:facebook)%>
+    <% if @fbMessageExists && Feature.active?(:facebook, current_user)%>
        <p>Facebook restricts the ability to automatically post information to a group.  Consequently, you'll need to enter your message twice.  Once in the Facebook "Share" window, and then again a second time in the NotifyMyClub fields.<a class="openwindow" href="/help/fb_send" title="How to add a Facebook Group" ><span class="glyphicon glyphicon-info-sign"></span></a></p>
        <div id="fbgroup">
 	 <div id="fbMessage" ><%= @fbMessage %></div>

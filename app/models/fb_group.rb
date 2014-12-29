@@ -15,7 +15,8 @@ class FbGroup < Contact
 
   def self.hide?(user,group)
     Rails.logger.debug "###### User #{user.id unless user.nil?} Group #{group.id unless group.nil?}" 
-    user != group.user
+
+    user != group.user || !Feature.active?(:facebook, user)
 
   end
 end
