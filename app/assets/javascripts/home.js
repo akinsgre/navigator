@@ -38,11 +38,15 @@ $( function(){
 	       console.log("Group id arre " + groupArr);
 	       FB.login(function(response){ 
 			    console.log(JSON.stringify(response.authResponse.accessToken));
-			    FB.ui({to:groupArr,
-			    	   method: 'share', 
-			    	   href:'http://www.notifymyclub.com'
-			    	  });
-			}); 
+			    $.post("/facebook/refresh", {"accessToken":response.authResponse.accessToken })
+				.done(function(response) {
+					  console.log("Saved new access Token" + response.accessToken);  
+				      }) ; 
+			    // FB.ui({ to:groupArr,
+			    // 	   method: 'share', 
+			    // 	   href:'http://www.notifymyclub.com'
+			    // 	  });
+			}, {scope: 'user_groups,publish_actions'} ); 
 	       
 	   }
 	   

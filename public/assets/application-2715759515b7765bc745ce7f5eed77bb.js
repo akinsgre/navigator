@@ -41296,25 +41296,10 @@ function popUpWindow(id, title, containerId) {
 			      .html("<span class='ui-button-icon-primary ui-icon ui-icon-closethick'></span>");
 		      }});
     divObj.dialog('open');
+    divObj.scrollTop("0") ; 
 }
 
-function statusChangeCallback(response) {
-    //#update my current access_token
-    if (response.status === 'connected') {
-	console.log("#### Status change Callback " + response.authResponse.accessToken);
-	 $.post("/facebook/refresh", {"accessToken":response.authResponse.accessToken }).done(function(response) {
-	 										     console.log("Saved new access Token" + response.accessToken);
-	 										 }) ; 
-	$("#fbgroupedit").html("Click here to add a Facebook group").show();
-	$("#fbgrouplogin").hide();
-	return true;
-    } else {
-	console.log("Not logged into Facebook");	
-	$("#fbgroupedit").hide();
-	$("#fbgrouplogin").show().html("Login to Facebook to be able to choose a Facebook group to post to.");
-	return false;
-    }
-}
+
 $( function(){
        
        var loggedIn = false ; 
@@ -41324,21 +41309,37 @@ $( function(){
 	   FB.init({
 		       appId  : appId,
 		       status : true, // check login status
+		       level : 'debug',
 		       cookie : true, // enable cookies to allow the server to access the session
 		       xfbml  : true,  // parse XFBML
 		       version    : 'v2.2'
 		   });
+	   var accessToken = "" ; 
 
-	   FB.getLoginStatus(function(response) {
-
-				 statusChangeCallback(response);
-			     });
-
+	   if ($("#fbgroup").length > 0) {
+	       console.log("FBGroup exists" + $('#fbgroup').attr("id"));
+	       var groupId = $('#fbGroupIds').text();
+	       var groupArr = groupId.split(",");
+	       console.log("Group id arre " + groupArr);
+	       FB.login(function(response){ 
+			    console.log(JSON.stringify(response.authResponse.accessToken));
+			    $.post("/facebook/refresh", {"accessToken":response.authResponse.accessToken })
+				.done(function(response) {
+					  console.log("Saved new access Token" + response.accessToken);  
+				      }) ; 
+			    // FB.ui({ to:groupArr,
+			    // 	   method: 'share', 
+			    // 	   href:'http://www.notifymyclub.com'
+			    // 	  });
+			}, {scope: 'user_groups,publish_actions'} ); 
+	       
+	   }
+	   
        };
        (function(d) {
             var js, id = 'facebook-jssdk'; if (d.getElementById(id)) {return;}
             js = d.createElement('script'); js.id = id; js.async = true;
-	    // js.src = "//connect.facebook.net/en_US/all/debug.js";
+	    //js.src = "//connect.facebook.net/en_US/all/debug.js";
 	    js.src = "//connect.facebook.net/en_US/sdk.js";
             d.getElementsByTagName('head')[0].appendChild(js);
         }(document));
@@ -41350,16 +41351,21 @@ $( function(){
 			    height:500, 
 			    draggable: false,
 			    modal:true});
+       
+       
+       $("body").on("click",".openwindow", function(e) {
+			console.log("Clicked link " );
+       			e.preventDefault();
+			var link = $(this).attr("href");
+			var title = $(this).attr("title");
+			$.get(link, function(response) {
+				  $( "#popups" ).html(response);
+				  popUpWindow('popups', title, 'showterms') ;
+			      }) ;
 
-       $(".openwindow").each(function() {
-				 $(this).click( function(e) {
-						    var link = $(this).attr("href");
-						    $( "#popups" ).load(link);
-						    var title = $(this).attr("title");
-       						    e.preventDefault();
-       						    popUpWindow('popups', title, 'showterms') ;
-       						});
-			     }) ; 
+       			
+       		    });
+       
        
        // instantiate the bloodhound suggestion engine
        var groups = new Bloodhound(
@@ -41398,85 +41404,25 @@ $( function(){
 $( function(){
        var groupId = window.location.href.split('/')[window.location.href.split('/').length-1];
        var url = '/';
-       $("#sendpost").click(function(e) {
-				url = $(this).attr('href');
-				e.preventDefault();
-				var loggedIn = false;
-				dfd = new $.Deferred();
-				FB.login(function(response) {
-					     if (response.status == "connected" ) {
-						 console.log("Saved new access Token" + response.authResponse.accessToken);
-						 $.post("/facebook/refresh", 
-							{"accessToken":response.authResponse.accessToken }
-						       ).done(function(response) {
-								  console.log("Response " + JSON.stringify(response));
-							      }) ; 
-					     }
-					     dfd.resolve();
-					   }, {scope:'publish_actions'} );
-				dfd.done( function() {
-				    window.location = url;
-				});
 
 				
-			      }) ; 
-       
-       $("#fbgrouplogin").click(function(e) {
-				    event.preventDefault();
-				    var loggedIn = false;
-				    FB.getLoginStatus(function(response) {
-							  loggedIn = statusChangeCallback(response);
-						      });
-				    if (loggedIn == false) {
-					FB.login(function(response) {
-						     if (response.authResponse) {
-							 $.getJSON('/auth/facebook/callback', 
-								   { signed_request : response.authResponse.signedRequest },
-								   function( data ) {
-								       $('#fbgrouplogin').hide();
-								       $('#fbgroupedit').html("Click here to add a Facebook group").show();
-								   });
-							 
-
-						     }
-						 }, {scope:'email,user_groups'} );
-				    }
-
-				});
-       $('#fbgroupedit').editable({
-				      type: 'checklist',    
-				      source: '/facebook/groups',
-				      url: groupId+'/facebook/post',     
-				      pk: 1,    
-				      title: 'Select groups',
-				      placement: 'right',
-				      display: function(value, sourceData) {
-
-					  var checked, html = '';
-					  
-					  checked = $.grep(sourceData, function(o){
-							       return $.grep(value, function(v){ 
-										 return v == o.value; 
-									     }).length;
-							   });
-
-					  $.each(checked, function(i, v) { 
-						     html+= '<tr><td></td><td>'+$.fn.editableutils.escape(v.text)+'</td><td></td><td>Facebook Group</td></tr>';
-						 });
-
-					  $('#contacts').append(html);
-				      }
-				  });
-
        $("#new_group").formToWizard() ;
-       
-       $("#entryLabel").text("Please enter a valid " + $("#contact_type :selected").text());
+
+       //retrieve long description from contact_type
+       if ($('#contact_type').length) {
+	   var selectedItem = $("#contact_type :selected");
+	   $.getJSON("/contact_type/"+ selectedItem.val(), function(response) {
+			 console.log("Response is " + response);
+			 $("#entryLabel").html("Please enter a valid " + response);		     
+		     });
+       }
        $("#contact_type").change( function () {
 				      selectedType = $('#contact_type :selected').val() ;
 				      $.ajax( "/contact_type/" + selectedType + ".json" )
 					  .done(
 					      function(data) {
-						  $("#entryLabel").text("Please enter a " + data);
+						  console.log ("Data " + data);
+						  $("#entryLabel").empty().append("Please enter a " + data);
 					      })
 					  .fail(function(jqXHR, textStatus) { console.log("Something messed up"+textStatus); } ) ; 
 				  }) ; 
@@ -41540,6 +41486,9 @@ $( function() {
 	       }
 	   });  
    });
+$( function(){
+
+   }) ; 
 $(function() {
     $(".xxx").tooltip();
   });
@@ -41555,6 +41504,7 @@ $(function() {
 
 
 // 
+
 
 
 

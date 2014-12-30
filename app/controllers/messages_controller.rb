@@ -58,7 +58,14 @@ class MessagesController < ApplicationController
         @fbMessageExists = false
         case c.type
         when "FbGroup"
-          Rails.logger.debug "##### Sending a FB message"
+          if Feature.active?(:facebook, current_user)
+            Rails.logger.debug "##### Sending a FB message"
+            graph = Koala::Facebook::API.new(current_user.fb_token)
+            message = "#{@message.message}"
+            Rails.logger.debug "##### Sending a message to FB group #{c.inspect}"
+            result = graph.put_object("#{c.entry}", "feed", message: message)
+            Rails.logger.debug "##### Posted and received #{result}"
+          end
         when "Sms"
           #Twilio 160 character message limit
           message = ''
