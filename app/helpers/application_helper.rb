@@ -1,7 +1,6 @@
 module ApplicationHelper
   def build_menu(menu_map)
     unless menu_map.nil?
-
       menuLayout = raw("<ul class=\"nav nav-pills  \"> ") unless menu_map.empty?
       menu_map.each do |key,value|
         menuLayout << raw("<li role=\"presentation\" >") + link_to( key, value) + raw("</li>") unless key == "Remove Group" 

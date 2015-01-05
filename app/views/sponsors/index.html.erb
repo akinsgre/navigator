@@ -29,12 +29,13 @@
 	  </tr>
 	</table>
 	</div>
-	<h4>Advertisements</h4>
+	<h4>Advertisements&nbsp;<%= link_to new_sponsor_advertisement_path(s) do %><span class="glyphicon glyphicon-plus"></span><% end %></h4>
 	<ul>
 	  <% s.advertisements.each do |a| %>
-	      <li><div class="xxx" title="<%= a.message %>"><%= image_tag 'x' %></li>
-	      <li><%= a.html_message %></li>
-	      <li><%= a.phone_message %></li>
+	      <%= a.message %>
+	      <span class="xxx" title="<%= a.html_message %>"><span class="glyphicon glyphicon-header"></span></span>
+	      <span class="xxx" title="<%= a.phone_message %>"><span class="glyphicon glyphicon-earphone"></span></span>
+
 	  <% end unless s.advertisements.empty? %>
 	</ul>
       </div>

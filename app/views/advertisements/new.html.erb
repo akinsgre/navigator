@@ -1,0 +1,15 @@
+<div class="fullCol">
+  <%= form_for(:advertisement, :url => sponsor_advertisements_path(@sponsor.id)) do |f| %>
+<%= f.label :message %>
+<%= f.text_field :message %>
+<br />
+<%= f.label :html_message %>
+<%= f.text_field :html_message %>
+<br />
+<%= f.label :phone_message %>
+<%= f.text_field :phone_message %>
+<br />
+<%= f.submit "Save" %>
+<% end %>
+</div>
+

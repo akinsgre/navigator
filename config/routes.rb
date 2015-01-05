@@ -1,5 +1,7 @@
 Navigator::Application.routes.draw do
 
+
+
   resources :help
 
   get 'auth/facebook/callback', :to => 'facebook#callback'
@@ -41,7 +43,9 @@ Navigator::Application.routes.draw do
 
   resources :subscriptions
 
-  resources :sponsors
+  resources :sponsors do
+    resources :advertisements
+  end
   
   resources :groups do
     post 'facebook/post', :to => 'facebook#post'

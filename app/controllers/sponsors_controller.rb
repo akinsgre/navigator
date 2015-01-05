@@ -3,25 +3,26 @@ class SponsorsController < ApplicationController
   before_filter :authenticate_admin!
   def index 
     @sponsors = Sponsor.all
+    @menu_map = {"new" => new_sponsor_path }
+
   end
 
   def new
-    @group = Group.find(params[:group_id])
-    @new_sponsor = @group.sponsors.build
-    @contribution = @group.contributions.build
-
+    @sponsor = Sponsor.new
+    @contribution = @sponsor.contributions.build
   end
 
   def create
-    @group = Group.find(params[:group_id])
-    @sponsor = Sponsor.new(params[:sponsor])
-    @contribution = Contribution.new(params[:contribution])
-    @contribution.sponsor = @sponsor
-    @sponsor.groups.push(@group)
 
-    @group.contributions.push(@contribution)
+    @sponsor = Sponsor.new(params.require(:sponsor).permit(:name, :email, :phone))
+    
+    @contribution = Contribution.new(params.require(:contribution).permit(:amount))
+    #message cost
+    @sponsor.messages_allowed = @contribution.amount/0.03 
+    @contribution.sponsor = @sponsor
+
     if @sponsor.save
-      redirect_to group_sponsor_path, :notice => "Successfully created sponsor."
+      redirect_to sponsors_path, :notice => "Successfully created sponsor."
     else
       render :action => 'new'
     end
