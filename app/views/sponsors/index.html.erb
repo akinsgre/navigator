@@ -1,5 +1,9 @@
 <h1>Sponsor</h1>
-
+<% flash.each do |key, msg| %>
+<div id="flash_<%= key %>">
+  <p><%= msg %></p>
+</div>
+<% end %>
 <div class="accordion" id="accordion2">
   <% @sponsors.each do |s| %>
   <div class="accordion-group">
@@ -31,11 +35,15 @@
 	</div>
 	<h4>Advertisements&nbsp;<%= link_to new_sponsor_advertisement_path(s) do %><span class="glyphicon glyphicon-plus"></span><% end %></h4>
 	<ul>
-	  <% s.advertisements.each do |a| %>
-	      <%= a.message %>
-	      <span class="xxx" title="<%= a.html_message %>"><span class="glyphicon glyphicon-header"></span></span>
-	      <span class="xxx" title="<%= a.phone_message %>"><span class="glyphicon glyphicon-earphone"></span></span>
 
+	  <% s.advertisements.each do |a| %>
+	  <div>
+	  <%= link_to( sponsor_advertisement_path(s,a), method: :delete, data: { confirm: 'Are you sure?' }) do %><span class="glyphicon glyphicon-trash"></span><% end %>
+	  <%= link_to edit_sponsor_advertisement_path(s,a) do %><span class="glyphicon glyphicon-edit"></span><% end %>
+	      <%= a.message %>
+	      <span class="adtext" title="<%= a.html_message %>"><span class="glyphicon glyphicon-header"></span></span>
+	      <span class="adtext" title="<%= a.phone_message %>"><span class="glyphicon glyphicon-earphone"></span></span>
+	      </div>
 	  <% end unless s.advertisements.empty? %>
 	</ul>
       </div>

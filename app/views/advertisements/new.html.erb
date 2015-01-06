@@ -1,5 +1,5 @@
 <div class="fullCol">
-  <%= form_for(:advertisement, :url => sponsor_advertisements_path(@sponsor.id)) do |f| %>
+<%= form_for([@sponsor,@advertisement], :url => {:action => 'create'}) do |f| %>
 <%= f.label :message %>
 <%= f.text_field :message %>
 <br />

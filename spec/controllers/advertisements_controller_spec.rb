@@ -35,8 +35,11 @@ describe AdvertisementsController do
     let(:advertisement) { FactoryGirl.create(:advertisement) }
     let(:sponsor) { FactoryGirl.create(:sponsor) }
     it "returns http success" do
-      patch 'update', :id => advertisement, :sponsor_id => sponsor 
-      response.should be_success
+      patch 'update', :id => advertisement, :sponsor_id => sponsor, :advertisement => { 
+        :message => 'test', 
+        :html_message => 'html message', 
+        :phone_message => 'test' }
+      response.should be_redirect
     end
   end
 
@@ -50,13 +53,47 @@ describe AdvertisementsController do
   end
 
   describe "GET 'edit'" do
-
-    let(:advertisement) { FactoryGirl.create(:advertisement) }
-    let(:sponsor) { FactoryGirl.create(:sponsor) }
+    before :each do
+      @advertisement = FactoryGirl.create(:advertisement)
+      @sponsor = FactoryGirl.create(:sponsor)
+    end
     it "returns http success" do
-      get 'edit', :id => advertisement, :sponsor_id => sponsor 
+      get 'edit', :id => @advertisement, :sponsor_id => @sponsor 
       response.should be_success
     end
   end
+
+  describe "DELETE 'destroy'" do
+    before :each do
+      @advertisement = FactoryGirl.create(:advertisement)
+      @sponsor = FactoryGirl.create(:sponsor)
+    end
+    it "returns http success" do
+      expect { delete :destroy, :id => @advertisement, :sponsor_id => @sponsor }.to change(Advertisement, :count)
+      response.should be_redirect
+      request.flash[:notice].should eq('Successfully deleted Advertisement.')
+
+    end
+  end
+
+  describe "DELETE 'destroy'" do
+    before :each do
+      @advertisement = FactoryGirl.create(:advertisement)
+      @sponsor = FactoryGirl.create(:sponsor)
+    end
+    it "fails to delete" do
+      advertisement = stub()
+
+      advertisement.stubs(:destroy){ raise "this error" }
+      advertisement.stubs(:id).returns(12)
+      Advertisement.stubs(:find).with('12').returns(advertisement)
+
+      expect { delete :destroy, :id => advertisement.id, :sponsor_id => @sponsor.id }.to_not change(Advertisement, :count)
+      response.should be_redirect
+      request.flash[:alert].should eq('Unable to delete Advertisement.')
+
+    end
+  end
+
 
 end

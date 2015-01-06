@@ -1,5 +1,4 @@
-<div class="fullCol">
-<%= form_for( [@sponsor,@advertisement], :url => {:action => 'update'}) do |f| %>
+<%= nested_form_for @advertisementcreate'} do |f| %>
 <%= f.label :message %>
 <%= f.text_field :message %>
 <br />
@@ -11,4 +10,3 @@
 <br />
 <%= f.submit "Save" %>
 <% end %>
-</div>

@@ -1,3 +1,3 @@
 $(function() {
-    $(".xxx").tooltip();
+    $(".adtext").tooltip();
   });

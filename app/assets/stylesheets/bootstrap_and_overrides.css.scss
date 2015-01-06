@@ -6,6 +6,16 @@
   font_path('glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
 }
 
+.tooltip.top {
+    width: 450px;
+}
+.tooltip.in {
+    
+}
+.tooltip-inner {
+    max-width: 450px;
+}
+
 @mixin col {
     min-width:45%;
     height: 100%;

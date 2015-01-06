@@ -3,7 +3,7 @@ class SponsorsController < ApplicationController
   before_filter :authenticate_admin!
   def index 
     @sponsors = Sponsor.all
-    @menu_map = {"new" => new_sponsor_path }
+    @menu_map = {"New Sponsor" => new_sponsor_path }
 
   end
 
