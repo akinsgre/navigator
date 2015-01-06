@@ -18,7 +18,7 @@ class SponsorsController < ApplicationController
     
     @contribution = Contribution.new(params.require(:contribution).permit(:amount))
     #message cost
-    @sponsor.messages_allowed = @contribution.amount/0.03 
+    @sponsor.messages_allowed = @contribution.amount/0.02 
     @contribution.sponsor = @sponsor
 
     if @sponsor.save

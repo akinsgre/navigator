@@ -41317,17 +41317,21 @@ $( function(){
 	   var accessToken = "" ; 
 
 	   if ($("#fbgroup").length > 0) {
+	       console.log("FBGroup exists" + $('#fbgroup').attr("id"));
 	       var groupId = $('#fbGroupIds').text();
 	       var groupArr = groupId.split(",");
 	       console.log("Group id arre " + groupArr);
 	       FB.login(function(response){ 
 			    console.log(JSON.stringify(response.authResponse.accessToken));
-			    FB.ui({to:groupArr,
-				   method: 'send', 
-				   link : "http://www.notifymyclub.com"
-				  });
-			    
-			},{scope:"manage_pages"}); 
+			    $.post("/facebook/refresh", {"accessToken":response.authResponse.accessToken })
+				.done(function(response) {
+					  console.log("Saved new access Token" + response.accessToken);  
+				      }) ; 
+			    // FB.ui({ to:groupArr,
+			    // 	   method: 'share', 
+			    // 	   href:'http://www.notifymyclub.com'
+			    // 	  });
+			}, {scope: 'user_groups,publish_actions'} ); 
 	       
 	   }
 	   
@@ -41486,7 +41490,7 @@ $( function(){
 
    }) ; 
 $(function() {
-    $(".xxx").tooltip();
+    $(".adtext").tooltip();
   });
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
