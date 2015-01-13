@@ -33,6 +33,23 @@ describe ContactsController do
         expect(response).to redirect_to root_path
       end
     end
+    describe "GET 'search'" do
+
+      it "should be successful" do
+        get :search, :entry => '724 454 7790', :format => 'json'
+        expect(response).to be_success
+        expect(assigns(:contacts)).to_not be_empty
+
+      end
+    end
+    describe "POST 'assign'" do
+
+      it "should be successful" do
+        post :assign, {"name"=>"contactsubmit", "value"=>['3'], "pk"=>"1", "controller"=>"contacts", "action"=>"assign"}
+        expect(response).to be_success
+
+      end
+    end
     describe "PATCH 'update'" do
       it "should be successful" do
         patch :update, { "contact"=>{"user_id"=>"", "group"=>{"id"=>@group.id}, "name"=>"Test One", "type"=>"Email", "entry"=>"testone@insomnia-consulting.org"}, "group_id"=>@group.id, "id"=>@contact.id} 

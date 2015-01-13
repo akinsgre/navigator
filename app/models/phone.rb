@@ -10,10 +10,28 @@ class Phone < Contact
   def identify
     "Phone"
   end
-def self.long_description
-  "Phone number (10 digit)"
-end
+  def self.long_description
+    "Phone number (10 digit)"
+  end
 
+  def self.normalize_number(number, options = {})
+
+    return if number.nil?
+    number = number.clone # Just to be sure, we don't want to change the original.
+    number.gsub!(/[^\d\+]/, '') # Strips weird stuff from the number
+
+    return if number.blank?
+    if default_country_number = options[:default_country_number]
+
+      # Add default_country_number if missing
+      number = "#{default_country_number}#{number}" if not number =~ /\A(00|\+|#{default_country_number})/
+    end
+
+    Phony.normalize(number)
+  rescue => e
+
+    number # If all goes wrong .. we still return the original input.
+  end
 end
 
 

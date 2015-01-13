@@ -1,0 +1,1 @@
+[<% @contacts.each do |contact| %>{<%= contact.id %>:"<%= raw(contact.entry) %>"}<%= ',' if contact != @contacts.last %><% end unless @contacts.empty? %>]

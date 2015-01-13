@@ -1,3 +1,4 @@
+
 @font-face {
   font-family: 'Glyphicons Halflings';
   src: font_path('glyphicons-halflings-regular.eot');
@@ -5,6 +6,19 @@
   font_path('glyphicons-halflings-regular.woff') format('woff'), url(asset_path('glyphicons-halflings-regular.ttf')) format('truetype'),
   font_path('glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
 }
+.popover {
+    width: 300px
+}
+
+.btn {
+    margin-bottom:10px;
+}
+
+
+.list-group-item {
+    padding: 0 10px;
+}
+
 
 .tooltip.top {
     width: 450px;
@@ -15,6 +29,7 @@
 .tooltip-inner {
     max-width: 450px;
 }
+
 
 @mixin col {
     min-width:45%;

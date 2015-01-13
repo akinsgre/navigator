@@ -1,5 +1,7 @@
 $error-red: #FE1F0D;
 $site-blue: #0c93cb;
+$site-orange: #f7941d;
+$site-green: #a5cd39;
 #appid {
     display:none;
 }
@@ -9,11 +11,15 @@ $site-blue: #0c93cb;
 #fbgroupedit {
     display:none;
 }
+label {
+    color: $site-blue;
+}
 legend {
     font-weight: bold;
     text-align:left;
     width:20%;
     padding-left:20px;
+    color: $site-green;
 }
 
 .tt-query,
@@ -91,7 +97,15 @@ input[type='email'],
 input[type='text'] {
     width:100%;
 }
-
+#contactsearch_user {
+    width: 80%
+}
+div.col-md-4 > h4 {
+    padding:0;
+}
+h1 span.glyphicon {
+    padding-left: 5px;
+}
 body  {
 
     background-color:#c4c4c4;
@@ -244,7 +258,7 @@ h3 {
 }
 h1 a {
     text-decoration:none;
-    color: #0c93cb;
+    color: $site-green;
     font-family: 'Open Sans', sans-serif;
 
 }
@@ -333,7 +347,7 @@ div.bubbleimg {
 }
 
 ul.nav-pills li a {
-    background-color: $site-blue;
+    background-color: $site-green;
     color: #ffd372;
 }
 
@@ -440,20 +454,25 @@ ul#steps {
 .footerMenu a {
     width: 6em;
     text-decoration: none;
-    color: $site-blue;
+    color: $site-green;
     padding: 0.2em 0.6em;
 
 }
 li.footer {
+
     list-style: none;
     display:inline;
 }
+.footer > a {
+    color: $site-blue;
+}
+
 ul li .footer{
     list-style: none;
 }
 
 a {
-    color: $site_blue ;
+    color: $site_green ;
 }
 
 .clear {
@@ -490,10 +509,7 @@ ul {
 }
 
 ul li {
-    margin: 5px;
-    padding: 5px;
     color:  $site-blue;
-
 }
 ul li span {
     color:  #0c93cb;
@@ -540,10 +556,13 @@ ul li span {
 .ui-widget button {
     float:right
 }
+.twitter-typeahead {
+    width:100%;
+}
 
 .typeahead {
+    
     z-index:inherit;
-
 }
 div.accordion-inner > h4 {
 padding-left: 0;    

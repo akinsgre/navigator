@@ -40,4 +40,8 @@ class UsersController < AdminController
     redirect_to users_url, :notice => "Successfully destroyed user."
   end
 
+  def setup
+    
+  end
+
 end

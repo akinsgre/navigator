@@ -1,5 +1,6 @@
 class ContactsController < ApplicationController
   before_filter :authenticate_user!, :except => [:new, :create, :opt_out]
+  respond_to :html, :json
 
   def index
     authorize unless params[:group_id] 
@@ -14,7 +15,28 @@ class ContactsController < ApplicationController
     flash[:alert] = "You don't have access to this group."
     redirect_to root_path and return
   end
-  
+
+  def search
+    if params[:entry]
+      Rails.logger.info("##### Searching for contacts")
+      normalized_entry = Phone.normalize_number(params[:entry], :default_country_number => '01')
+      if Phony.plausible?(normalized_entry)
+        Rails.logger.info("##### Searching for phone")
+        contacts = Contact.where(:normalized_entry => normalized_entry).to_a
+      else 
+        Rails.logger.info("##### Searching for email ")
+        contacts = Contact.where(:entry => params[:entry]).to_a
+      end
+    else
+      Rails.logger.info("##### Getting all contacts")
+      @contacts = Contact.all
+    end
+    @contacts = [] if @contacts.nil?
+    @contacts += contacts unless contacts.empty?
+    Rails.logger.info("##### Contacts are #{@contacts.to_json}")
+    respond_with(@contacts)
+  end
+
   def show
     @contact = Contact.find(params[:id])
     @group = Group.find(params[:group_id]) if params[:group_id]
@@ -73,7 +95,7 @@ class ContactsController < ApplicationController
     @contact = Contact.find(params[:id]).becomes(Contact)
     @group = Group.find(params[:group_id]) if params[:group_id]
   end
-
+  
   def update
     # move all this garbage to the model.
     @group = Group.find(params[:group_id])
@@ -96,5 +118,10 @@ class ContactsController < ApplicationController
   def opt_out
     contact = Contact.find(params[:contact_id])
     contact.destroy
+  end
+  def assign
+    Rails.logger.debug "############# Params are #{params}"
+    current_user.contacts << Contact.find(params[:value])
+    render :nothing => true, :status => 200, :content_type => 'text/html'
   end
 end
