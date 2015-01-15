@@ -14,14 +14,17 @@ class User < ActiveRecord::Base
 
     
   def mygroups 
-    result = self.groups
+    result = []
+    self.groups.each {|g| result << g }
     self.contacts.each do |c|
-      result << c.groups
+      c.groups.each do |g|
+        result << g unless result.include? g
+      end
     end
     result
   end
   #strong_parameters :email, :password, :password_confirmation, :remember_me
-
+  
   def admin?
     isAdmin = false ; 
     self.role.each { |r|

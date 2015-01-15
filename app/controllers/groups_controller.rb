@@ -1,4 +1,6 @@
 class GroupsController < ApplicationController
+  include GroupsHelper
+
   before_filter :authenticate_user!, :except => [:index, :add_contact, :save_contact]
   respond_to :html, :json
 
@@ -6,7 +8,7 @@ class GroupsController < ApplicationController
     Rails.logger.debug "###### let's find some groups "
     @myGroups = current_user.mygroups unless current_user.nil?
     @myGroups ||= []
-    logger.info "##### Search parameters are " + params[:search].to_s unless params[:search].nil?
+    logger.debug "##### Search parameters are " + params[:search].to_s unless params[:search].nil?
     if params[:search].nil?
       @groups = Group.all
     else
@@ -17,12 +19,11 @@ class GroupsController < ApplicationController
   end
 
   def show
+    @thisgroup = Group.find(params[:id])
+    Rails.logger.debug "####### this group is #{@thisgroup.inspect}"
     begin
-      @access_token = current_user.fb_token
-      Rails.logger.debug "##### Access Token = #{@access_token}"
-      graph = Koala::Facebook::API.new(@access_token)
-      
-
+      Rails.logger.debug "##### GroupsController.show - params = #{params.inspect}"
+      Rails.logger.debug "##### current_user has groups #{current_user.groups.inspect}"
       @group = current_user.groups.find(params[:id])
     rescue => e
       Rails.logger.debug "##### You don't have access to group #{e}"
@@ -39,7 +40,7 @@ class GroupsController < ApplicationController
   end
 
   def new
-    logger.info "Current User = " + current_user.email
+    logger.debug "Current User = " + current_user.email
     @group = Group.new
     @group.user = current_user
   end

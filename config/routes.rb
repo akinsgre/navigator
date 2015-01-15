@@ -22,7 +22,8 @@ Navigator::Application.routes.draw do
   get "groups/remove_contact", :to =>  "groups#remove_contact"
   get "contacts/opt_out/:contact_id", :to =>  "contacts#opt_out", as: "contact_opt_out"
   get "incoming_message", :to => "incoming_message#index"
-
+  get "contacts/search", :to => "contacts#search"
+  post "contacts/assign", :to => "contacts#assign"
 
   get "home/index"
   get "donate/new"
@@ -31,13 +32,15 @@ Navigator::Application.routes.draw do
   devise_for :users, :controllers => { :registrations => "registrations" }
 
   match "users/sign_out" => "users#sign_out", :via => :get
+  get "users/setup", :to => "users#setup"
+
   get 'contact_type/:id', :to => 'contact_type#show'
 
   resources :users do
     resources :groups do
       post 'facebook/post', :to => 'facebook#post'
     end
-    resources :contacts
+    resources :contacts    
     resources :subscriptions
   end
 

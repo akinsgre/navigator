@@ -12,6 +12,8 @@ describe Contact do
     c.should be_valid
   end
 
+
+
 end
 
 

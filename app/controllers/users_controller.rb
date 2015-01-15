@@ -27,17 +27,18 @@ class UsersController < AdminController
   end
 
   def show
-    @subscriber = Subscription.find_by_user_id(current_user.id) 
-    @following = current_user.following
-
-    @groups = current_user.groups
-    @otherGroups = @groups - @following
+    Rails.logger.debug "##### Starting UsersController.show"
+    @contacts = current_user.contacts.select(:entry).uniq {|c| c.entry }.map { |c| c.entry }
   end
 
   def destroy
     @user = User.find(params[:id])
     @user.destroy
     redirect_to users_url, :notice => "Successfully destroyed user."
+  end
+
+  def setup
+    
   end
 
 end

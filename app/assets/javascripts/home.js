@@ -19,7 +19,7 @@ $( function(){
        
        var loggedIn = false ; 
        var appId = $('#appid').text();
-       console.log("App ID is " + appId);
+
        window.fbAsyncInit = function() {
 	   FB.init({
 		       appId  : appId,
@@ -90,7 +90,6 @@ $( function(){
 	       remote: {
 		   url: '/groups.json?search=%QUERY',
 		   filter: function (groups) {
-		       console.log('### test ' + JSON.stringify(groups) );
 		       return $.map(groups.results, function (group) {
 		   			return {
 		   			    value: group.name,

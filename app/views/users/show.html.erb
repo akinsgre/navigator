@@ -1,9 +1,8 @@
-
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-
-
+<div id="contactlist">
+</div>
 <div >
   <h1><%= current_user.email %></h1>
 </div>
@@ -14,21 +13,37 @@
 </div>
 <% end %>
 
-<div class="col-md-6" align="center" >
-  <h1>Group Admin</h1>
+<div class="col-md-4" align="center" >
+  <h1>My Groups</h1>
   <%= link_to "Add a New Group", new_group_path %>
-  <ul>
-    <% @groups.each do |g| %>
-    <li><%= link_to g.name, user_group_path(current_user, g) %></li>
+
+  <ul class="list-group">
+    <% current_user.mygroups.each do |g| %>
+    <li class="list-group-item"><%= group_link(current_user, g) %></li>
     <% end %>
   </ul>
+
 </div>
-<div class="col-md-6" float="center">
+<div class="col-md-4" float="center">
   <h1> Join Existing Group</h1>
   <h4>Start typing below to find your group</h4>
   <div class="center-wrapper">
-  <input class="typeahead" type='text' id="groupsearch_user" icon="favicon.gif" placeholder="Group Name">
+  <input class="typeahead" type='text' id="groupsearch_user" placeholder="Group Name">
   </div>
+</div>
+<div class="col-md-4" float="center">
+
+  <h1> My Contacts</h1>
+  <h4>The contact methods I have registered<a class="openwindow" href="/add_registered.html#top" title="Privacy Policy" ><span class="glyphicon glyphicon-info-sign"></span></a></h4>
+  <div id="list">
+  <ul class="list-group">
+  <% @contacts.each do |c| %>
+  <li class="list-group-item" ><%= c %></li>
+  <% end %>
+  </ul>
+  </div>
+
+
 </div>
 
 

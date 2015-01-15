@@ -31,7 +31,19 @@ describe GroupsController do
     end
   end
 
+  describe "GET 'index' html while logged in" do
+    it 'should return 404' do
+      get :index, :format => :html
+      expect(response.status).to eq(200)
+    end
+  end
+  describe "GET 'index' json while logged in" do
+    it 'should return 404' do
+      get :index, :format => :json
+      expect(response.status).to eq(200)
 
+    end
+  end
   describe "GET 'create' with bulk_upload" do
     before :each do
       @user = FactoryGirl.create(:user)

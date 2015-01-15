@@ -12,7 +12,7 @@ class Contact < ActiveRecord::Base
   require_dependency 'sms'
   require_dependency 'email'
   require_dependency 'fb_group'
-  
+
   #GAK 11/4/2011 
   #  Email is a virtual attribute so it can be captured in a form_for but then assigned to the User to whom the contact belongs
   #  rather than being saved on the Contact record (which breaks for those contacts created by group_owners and not associated 
@@ -35,12 +35,25 @@ class Contact < ActiveRecord::Base
   def to_s
     "Contact => #{self.name}, #{self.entry}"
   end
-  def self.determine_type(params)
 
+  def self.determine_type(params)
     contactType = params[:contact][:type]
-    if Contact.exists?(params[:id])
+    Rails.logger.info "###### Params in determine_type #{params[:id] }"
+    normalized_entry = Phone.normalize_number(params[:contact][:entry], :default_country_number => '01')
+    Rails.logger.info "###### normalized_entry is #{normalized_entry}"
+    contactExists = Contact.exists?(params[:id]) || 
+      Contact.exists?(:normalized_entry => normalized_entry) || 
+      Contact.exists?(:entry => params[:contact][:entry])
+    if contactExists
+      Rails.logger.info "###### The contact does exist #{contactType}"
       ActiveRecord::Base.transaction do
-        @contact = Contact.find(params[:id]).becomes(Contact)
+        @contact = Contact.find(params[:id]) unless params[:id].nil?
+        @contact = Contact.find_by(:normalized_entry => normalized_entry) unless normalized_entry.nil?
+        unless params[:contact][:entry].nil?
+
+          @contact ||= Contact.find_by(:entry => params[:contact][:entry]) 
+        end
+        Rails.logger.debug "###### Contact is #{@contact.inspect}"
         if @contact.type != contactType 
           @contact.type = contactType 
           @contact.save
@@ -62,6 +75,7 @@ class Contact < ActiveRecord::Base
         raise ActiveRecord::Rollback unless @contact.update_attributes(params[:contact].permit(:name, :user_id, :entry))
       end
     else
+      puts "##### The contact does not exist"
       case  contactType 
       when'Phone'
         @contact = Phone.new(params[:contact].permit(:name, :user_id, :entry, :type))
@@ -78,12 +92,8 @@ class Contact < ActiveRecord::Base
     end
     @contact
   end
+
 end
-
-
-
-
-
 
 # == Schema Information
 #
