@@ -22,17 +22,18 @@ class ContactsController < ApplicationController
       normalized_entry = Phone.normalize_number(params[:entry], :default_country_number => '01')
       if Phony.plausible?(normalized_entry)
         Rails.logger.info("##### Searching for phone")
-        contacts = Contact.where(:normalized_entry => normalized_entry).to_a
+        contact = Contact.find_by_normalized_entry(normalized_entry)
       else 
         Rails.logger.info("##### Searching for email ")
-        contacts = Contact.where(:entry => params[:entry]).to_a
+        contact = Contact.find_by_entry(params[:entry])
       end
     else
       Rails.logger.info("##### Getting all contacts")
       @contacts = Contact.all
     end
     @contacts = [] if @contacts.nil?
-    @contacts += contacts unless contacts.empty?
+    @contacts << contact unless contact.nil?
+
     Rails.logger.info("##### Contacts are #{@contacts.to_json}")
     respond_with(@contacts)
   end
@@ -68,13 +69,14 @@ class ContactsController < ApplicationController
   end
 
   def create
-    @contact = Contact.determine_type(params)
 
+    @contact = Contact.determine_type(params)
+    Rails.logger.info "####### Contact now has #{@contact.groups.size} groups"
     unless params[:contact][:group].nil?  && params[:contact][:group][:id].nil?
       group_id = params[:contact][:group][:id]
       @group = Group.find(group_id)
-      logger.info "##### Group is " + @group.name
-      @contact.groups.push(@group)
+      Rails.logger.info "##### Contact has groups #{@contact.groups.inspect}"
+      @contact.groups.push(@group) unless @contact.groups.include?(@group)
     end
     
     if @contact.save && @contact.errors.size == 0

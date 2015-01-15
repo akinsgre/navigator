@@ -23,12 +23,14 @@ $( function() {
 					},
 					url: '/contacts/assign',     
 					pk: 1,    
-					title: 'Select contactss',
+					title: 'Select contacts',
 					placement: 'right',
-					display: function(value, sourceData) {
-					    console.log("Value is " + value ) ; 
+					display: function(value, sourceData, response) {
+					    checked = $.fn.editableutils.itemsByValue(value, sourceData);
+
 					    console.log("Source is " + JSON.stringify(sourceData) ) ; 
-					    var $el = $('.list-group'),
+					    console.log("Response is " + JSON.stringify(response) ) ; 
+					    var $el = $('#list'),
 					    checked, html = '';
 					    if(!value) {
 						return;
@@ -39,7 +41,7 @@ $( function() {
 										   return v == o.value; 
 									       }).length;
 							     });
-					    
+					    console.log("Checked is " + JSON.stringify(checked) ) ; 
 					    $.each(checked, function(i, v) { 
 						       html+= '<li class="list-group-item">'+$.fn.editableutils.escape(v.text)+'</li>';
 						   });

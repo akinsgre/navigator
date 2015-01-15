@@ -15,7 +15,7 @@ class Phone < Contact
   end
 
   def self.normalize_number(number, options = {})
-
+    
     return if number.nil?
     number = number.clone # Just to be sure, we don't want to change the original.
     number.gsub!(/[^\d\+]/, '') # Strips weird stuff from the number
@@ -28,6 +28,7 @@ class Phone < Contact
     end
 
     Phony.normalize(number)
+
   rescue => e
 
     number # If all goes wrong .. we still return the original input.

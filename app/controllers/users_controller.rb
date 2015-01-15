@@ -29,9 +29,8 @@ class UsersController < AdminController
   def show
     @subscriber = Subscription.find_by_user_id(current_user.id) 
     @following = current_user.following
+    @contacts = current_user.contacts.select(:entry).uniq {|c| c.entry }.map { |c| c.entry }
 
-    @groups = current_user.groups
-    @otherGroups = @groups - @following
   end
 
   def destroy
