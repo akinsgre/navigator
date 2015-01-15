@@ -14,12 +14,12 @@
 <% end %>
 
 <div class="col-md-4" align="center" >
-  <h1>Group Admin</h1>
+  <h1>My Groups</h1>
   <%= link_to "Add a New Group", new_group_path %>
 
   <ul class="list-group">
     <% current_user.mygroups.each do |g| %>
-    <li class="list-group-item"><%= "Admin" if current_user.groups.include?(g) %> <%= link_to g.name, user_group_path(current_user, g) %></li>
+    <li class="list-group-item"><%= group_link(current_user, g) %></li>
     <% end %>
   </ul>
 

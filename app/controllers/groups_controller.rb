@@ -1,4 +1,6 @@
 class GroupsController < ApplicationController
+  include GroupsHelper
+
   before_filter :authenticate_user!, :except => [:index, :add_contact, :save_contact]
   respond_to :html, :json
 
