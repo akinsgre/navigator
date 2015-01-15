@@ -125,7 +125,11 @@ class ContactsController < ApplicationController
   end
   def assign
     Rails.logger.debug "############# Params are #{params}"
-    current_user.contacts << Contact.find(params[:value])
-    render :nothing => true, :status => 200, :content_type => 'text/html'
+    #send a confirmation token to the user and link the contact on a response.
+    @contact = Contact.find(params[:value])
+    Rails.logger.debug "############# Contact is #{@contact}"
+    ContactMailer.confirm_contact(@contact).deliver
+#    render :nothing => true, :status => 200, :content_type => 'text/html'
+    render js: "alert('Hello Mudda');"
   end
 end

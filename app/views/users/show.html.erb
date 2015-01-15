@@ -34,7 +34,7 @@
 <div class="col-md-4" float="center">
 
   <h1> My Contacts</h1>
-  <h4>The contact methods I have registered</h4>
+  <h4>The contact methods I have registered<a class="openwindow" href="/add_registered.html#top" title="Privacy Policy" ><span class="glyphicon glyphicon-info-sign"></span></a></h4>
   <div id="list">
   <ul class="list-group">
   <% @contacts.each do |c| %>
@@ -42,12 +42,7 @@
   <% end %>
   </ul>
   </div>
-  <div class="input-group">
-      <span class="input-group-btn">
-        <button id="contactsubmit" class="btn btn-default" type="button">      <span class="glyphicon glyphicon-search"></span></button>
-      </span>
-      <input type="text" id="contactsearch" class="form-control" placeholder="Search for existing contacts" >
-    </div><!-- /input-group -->
+
 
 </div>
 
