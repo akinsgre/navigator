@@ -27,10 +27,8 @@ class UsersController < AdminController
   end
 
   def show
-    @subscriber = Subscription.find_by_user_id(current_user.id) 
-    @following = current_user.following
+    Rails.logger.debug "##### Starting UsersController.show"
     @contacts = current_user.contacts.select(:entry).uniq {|c| c.entry }.map { |c| c.entry }
-
   end
 
   def destroy

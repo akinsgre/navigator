@@ -20,7 +20,7 @@ class Group < ActiveRecord::Base
   validates_plausible_phone :twilio_number,  :message => I18n.t('validations.errors.models.phone.invalid_number')
 
   belongs_to :user
-  
+  before_save :runthis
   after_initialize :associate_defaults
 
   def self.search(search)
@@ -54,6 +54,11 @@ class Group < ActiveRecord::Base
     #self.update_attribute :membership_level_id, ml.id
     self.membership_level ||= ml
     self.twilio_number ||= ENV['TW_NUMBER']
+  end
+  private 
+  def runthis
+    Rails.logger.debug "############# We're updating self"
+    caller.each { |line| Rails.logger.debug line }
   end
 end
 

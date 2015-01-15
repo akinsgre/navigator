@@ -11,8 +11,8 @@ class ContactsController < ApplicationController
       @contacts = Contact.all
     end
   rescue
-    Rails.logger.debug "##### You don't have access to group #{@group}"
-    flash[:alert] = "You don't have access to this group."
+    Rails.logger.debug "##### You do not have access to group #{@group}"
+    flash[:alert] = "You do not have access to this group."
     redirect_to root_path and return
   end
 
@@ -47,7 +47,7 @@ class ContactsController < ApplicationController
     @contact = Contact.new
 
     if params[:user] && current_user
-      Rails.logger.debug "##### Setting a user ID on this group"
+      Rails.logger.debug "##### Setting a user ID on this contact"
       @contact.user_id = current_user.id
     end
     Rails.logger.info "##### Group id will be #{ params[:group_id]}.. and Contact is #{@contact}"
@@ -80,8 +80,10 @@ class ContactsController < ApplicationController
     end
     
     if @contact.save && @contact.errors.size == 0
-      redirect_to group_path(@group), :notice => "Successfully created contact"  if current_user
-      redirect_to root_path, :notice => "We will let you know when something is posted for \"#{@group.name}\"." unless current_user
+      @group = Group.find(group_id)
+      
+      redirect_to user_group_path(current_user, @group), :notice => "Successfully created contact"  if current_user && @group.user == current_user
+      redirect_to root_path, :notice => "We will let you know when something is posted for \"#{@group.name}\"." #unless current_user
     else
       Rails.logger.warn "##### New contact had errors #{@contact.errors.full_messages}"
       # Need to have a generic contact object on a new contact form.. 

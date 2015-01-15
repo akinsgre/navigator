@@ -14,7 +14,8 @@ class User < ActiveRecord::Base
 
     
   def mygroups 
-    result = self.groups
+    result = []
+    self.groups.each {|g| result << g }
     self.contacts.each do |c|
       c.groups.each do |g|
         result << g unless result.include? g
