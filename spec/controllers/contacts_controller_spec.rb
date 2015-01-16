@@ -60,6 +60,17 @@ describe ContactsController do
         expect{ post :create, params }.to change(Contact,:count).by(0)
  
       end
+      it "should be added if the contact/type doesn't exists" do
+        params = ActionController::Parameters.new(
+                                                  { "contact"=>{"user_id"=>"", 
+                                                      "group"=>{"id"=>@group.id}, 
+                                                      "name"=>"Ralphie", 
+                                                      "type"=>"Sms", 
+                                                      "entry"=>"724 454 7790"}, 
+                                                    "group_id"=>@group.id})
+        expect{ post :create, params }.to change(Contact,:count).by(1)
+ 
+      end
       it "should be not add to Group if already exists on group" do
         Rails.logger.info "START ##################################"
         Rails.logger.info "#######################################"
@@ -78,17 +89,7 @@ describe ContactsController do
 
       end
     end
-    describe "POST 'assign'" do
-      before :each do
-        @contact = FactoryGirl.create(:phone)
-      end
-      it "should be successful" do
-        
-        post :assign, {"name"=>"contactsubmit", "value"=>['3'], "pk"=>"1", "controller"=>"contacts", "action"=>"assign"}
-        expect(response).to be_success
 
-      end
-    end
     describe "PATCH 'update'" do
       it "should be successful" do
         patch :update, { "contact"=>{"user_id"=>"", "group"=>{"id"=>@group.id}, "name"=>"Test One", "type"=>"Email", "entry"=>"testone@insomnia-consulting.org"}, "group_id"=>@group.id, "id"=>@contact.id} 

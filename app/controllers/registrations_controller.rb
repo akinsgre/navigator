@@ -11,9 +11,6 @@ class RegistrationsController < Devise::RegistrationsController
       render :new
     end
   end
-  protected
-  def after_sign_up_path_for(resource)
-    '/users/setup'
-  end
+
 end
 

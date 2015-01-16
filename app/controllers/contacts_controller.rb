@@ -82,8 +82,8 @@ class ContactsController < ApplicationController
     if @contact.save && @contact.errors.size == 0
       @group = Group.find(group_id)
       
-      redirect_to user_group_path(current_user, @group), :notice => "Successfully created contact"  if current_user && @group.user == current_user
-      redirect_to root_path, :notice => "We will let you know when something is posted for \"#{@group.name}\"." #unless current_user
+      redirect_to user_group_path(current_user, @group), :notice => "Successfully created contact" and return if current_user && @group.user == current_user
+      redirect_to root_path, :notice => "We will let you know when something is posted for \"#{@group.name}\"." if !current_user || @group.user != current_user
     else
       Rails.logger.warn "##### New contact had errors #{@contact.errors.full_messages}"
       # Need to have a generic contact object on a new contact form.. 
@@ -123,13 +123,5 @@ class ContactsController < ApplicationController
     contact = Contact.find(params[:contact_id])
     contact.destroy
   end
-  def assign
-    Rails.logger.debug "############# Params are #{params}"
-    #send a confirmation token to the user and link the contact on a response.
-    @contact = Contact.find(params[:value])
-    Rails.logger.debug "############# Contact is #{@contact}"
-    ContactMailer.confirm_contact(@contact).deliver
-#    render :nothing => true, :status => 200, :content_type => 'text/html'
-    render js: "alert('Hello Mudda');"
-  end
+
 end
