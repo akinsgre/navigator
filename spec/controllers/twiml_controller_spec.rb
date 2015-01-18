@@ -22,7 +22,7 @@ describe TwimlController do
     end
 
     it "should fail if auth key is specified incorrect" do
-      xml = { :format => 'xml' , :secret => 'xxxxxxxxxx' }
+      xml = {  :secret => 'xxxxxxxxxx' }
       get :say, xml
       expect(response.status).to eq(403)
     end
