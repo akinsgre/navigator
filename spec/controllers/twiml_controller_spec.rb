@@ -8,18 +8,13 @@ describe TwimlController do
     before :each do
       @group = FactoryGirl.create(:group)
     end
-    it "should send error for non xml format" do
-      get :say
-      expect(response.status).to eq(403)
-    end
     it "should fail if auth key is not specified" do
-      xml = { :format => 'xml' }
-      get :say, xml
+      get :say
       expect(response.status).to eq(403)
     end
 
     it "should succeed if auth key is specified" do
-      xml = { :format => 'xml' , :secret => ENV['NMC_API_KEY'], :message => 'This is a test', 
+      xml = { :secret => ENV['NMC_API_KEY'], :message => 'This is a test', 
         :group => @group.name, :sponsor_msg => "Brought to you by ..."  }
       get :say, xml
       Rails.logger.info "##### Response: #{response.body}"
