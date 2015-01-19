@@ -65,7 +65,6 @@ $( function(){
 			      });
        $('#new_invite').submit(function(e){
 				e.preventDefault();
-				console.log("Email is " +  $('#email').val()) ; 
 				$.ajax({
 					   url: "invites/create",
 					   type: "POST",
@@ -89,7 +88,6 @@ $( function(){
        
        
        $("body").on("click",".openwindow", function(e) {
-			console.log("Clicked link " );
        			e.preventDefault();
 			var link = $(this).attr("href");
 			var title = $(this).attr("title");
