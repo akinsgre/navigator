@@ -7,6 +7,7 @@ Navigator::Application.routes.draw do
   get 'auth/facebook/callback', :to => 'facebook#callback'
   get 'facebook/groups', :to => 'facebook#groups'
   post 'facebook/refresh', :to => 'facebook#refresh'
+  post 'invites/create', :to => 'invites#create'
 
 
   devise_for :admins

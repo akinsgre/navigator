@@ -21,6 +21,38 @@ legend {
     padding-left:20px;
     color: $site-green;
 }
+.button {
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    padding: 12px 24px;
+    border: 0px solid #0a75a2;
+    border-radius: 10px;
+    background: #10beff;
+    background: -webkit-gradient(linear, left top, left bottom, from(#10beff), to(#0a75a2));
+    background: -moz-linear-gradient(top, #10beff, #0a75a2);
+    background: linear-gradient(to bottom, #10beff, #0a75a2);
+    text-shadow: #064966 1px 1px 1px;
+    font: normal normal bold 2em arial;
+    color: #f7951d;
+    text-decoration: none;
+}
+.button:hover,
+.button:focus {
+    border: 0px solid #0c92cb;
+    background: #13e4ff;
+    background: -webkit-gradient(linear, left top, left bottom, from(#13e4ff), to(#0c8cc2));
+    background: -moz-linear-gradient(top, #13e4ff, #0c8cc2);
+    background: linear-gradient(to bottom, #13e4ff, #0c8cc2);
+    color: #f7951d;
+    text-decoration: none;
+}
+.button:active {
+    background: #0a75a2;
+    background: -webkit-gradient(linear, left top, left bottom, from(#0a75a2), to(#0a75a2));
+    background: -moz-linear-gradient(top, #0a75a2, #0a75a2);
+    background: linear-gradient(to bottom, #0a75a2, #0a75a2);
+}
 
 .tt-query,
 .tt-hint {
@@ -76,7 +108,6 @@ input[type='submit'] {
     align: center;
     min-height: 40px;
     background-color: #0c93cb;
-    font-size : 1.4em;
     font-weight: bold;
     color:#fed271;
     border-radius:3px;
@@ -184,27 +215,6 @@ div .resetLayout {
     vertical-align: bottom;
 }    
 
-.button {
-
-    text-align: center;
-    width:80%!important;
-    float:center;
-    background-color: #0c93cb;
-    height:70px;
-    padding:20px;
-    font-size:1.4em;
-    color:#fed271;
-    cursor:pointer;
-    border-radius:8px;
-    border-color: #FED271;
-    border-style: solid;
-    font-weight: bold;
-    vertical-align: bottom;
-    background-image: url(/images/favicon.ico);
-    background-repeat: no-repeat;
-    background-position: left;
-    padding-left: 16px;
-}
 
 .next { 
     font-family: Verdana,Helvetica,Arial;    
@@ -474,6 +484,7 @@ ul li .footer{
 
 a {
     color: $site_green ;
+    cursor: pointer;
 }
 
 .clear {

@@ -59,6 +59,26 @@ $( function(){
             d.getElementsByTagName('head')[0].appendChild(js);
         }(document));
 
+       $("#invite_btn").click(function(e) {
+				  e.preventDefault();
+				  $('#invite_form').modal('show') ;
+			      });
+       $('#new_invite').submit(function(e){
+				e.preventDefault();
+				console.log("Email is " +  $('#email').val()) ; 
+				$.ajax({
+					   url: "invites/create",
+					   type: "POST",
+					   data:$("#new_invite").serialize()
+				       }).done(function() {
+						   $('#alerts').html("<div id=\"flash_notice\"><p>Thank you for requesting an invite.  An email will be sent to confirm your request.</p></div>");
+						   $('#invite_form').modal('hide') ;
+
+					       });
+				   return false ; 
+			    });
+       
+
        
        $( "#popups" ).scrollTop(0);
        $("#popups").dialog({autoOpen:false, 
