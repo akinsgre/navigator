@@ -69,7 +69,7 @@ class ContactsController < ApplicationController
   end
 
   def create
-
+    Rails.logger.info("############## Starting create... contact is #{@contact}")
     @contact = Contact.determine_type(params)
     Rails.logger.info "####### Contact now has #{@contact.groups.size} groups"
     unless params[:contact][:group].nil?  && params[:contact][:group][:id].nil?
@@ -103,7 +103,9 @@ class ContactsController < ApplicationController
   def update
     # move all this garbage to the model.
     @group = Group.find(params[:group_id])
+    Rails.logger.info "###### Total number of contacts before update = #{Contact.all.size}"
     @contact = Contact.determine_type(params)
+    Rails.logger.info "###### Total number of contacts after update = #{Contact.all.size}"
     if @contact.errors.size == 0
       redirect_to group_contact_path(@group, @contact) , :notice => "Successfully updated contact." and return if current_user
       redirect_to root_path, :notice => "We will let you know when something is posted for \"#{@group.name}\"." and return unless current_user

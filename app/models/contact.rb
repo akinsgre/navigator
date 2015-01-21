@@ -37,21 +37,23 @@ class Contact < ActiveRecord::Base
   end
 
   def self.determine_type(params)
+
     contactType = params[:contact][:type]
-    Rails.logger.info "###### Params in determine_type #{params[:id] }"
+
     normalized_entry = Phone.normalize_number(params[:contact][:entry], :default_country_number => '01')
-    Rails.logger.info "###### normalized_entry is #{normalized_entry}"
+
     contactExists = Contact.exists?(params[:id]) || 
-      Contact.exists?(:normalized_entry => normalized_entry, :type => contactType) unless normalized_entry.nil? || 
+      ( !normalized_entry.nil? && Contact.exists?(:normalized_entry => normalized_entry, :type => contactType) ) || 
       Contact.exists?(:entry => params[:contact][:entry], :type => contactType)
     if contactExists
-      Rails.logger.info "###### The contact does exist #{contactType}"
+
       ActiveRecord::Base.transaction do
+
+
         @contact = Contact.find(params[:id]) unless params[:id].nil?
         @contact ||= Contact.find_by(:normalized_entry => normalized_entry, :type => contactType) unless normalized_entry.nil?
         @contact ||= Contact.find_by(:entry => params[:contact][:entry], :type => contactType) unless params[:contact][:entry].empty?
 
-        Rails.logger.debug "###### Contact is #{@contact.inspect}"
         if @contact.type != contactType 
           @contact.type = contactType 
           @contact.save

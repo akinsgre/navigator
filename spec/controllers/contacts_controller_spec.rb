@@ -51,7 +51,7 @@ describe ContactsController do
       end
       it "should be updated if the contact exists" do
         params = ActionController::Parameters.new(
-                                                  { "contact"=>{"user_id"=>"", 
+                                                  { id:@c.id, "contact"=>{"user_id"=>"", 
                                                       "group"=>{"id"=>@group.id}, 
                                                       "name"=>"Ralphie", 
                                                       "type"=>"Phone", 
@@ -71,20 +71,19 @@ describe ContactsController do
         expect{ post :create, params }.to change(Contact,:count).by(1)
  
       end
-      it "should be not add to Group if already exists on group" do
-        Rails.logger.info "START ##################################"
-        Rails.logger.info "#######################################"
+      it "should not add a contact if matching contact already exists" do
+
         Contact.find(@c.id).groups.size.should eq(1)
         params = ActionController::Parameters.new(
                                                   { "contact"=>{"user_id"=>"", 
                                                       "group"=>{"id"=>@group.id}, 
-                                                      "name"=>"Ralphie", 
+                                                      "name"=>"Frederick", 
                                                       "type"=>"Phone", 
                                                       "entry"=>"724 454 7790"}, 
                                                     "group_id"=>@group.id})
+
         expect{ post :create, params }.to change(Contact,:count).by(0)
-        Rails.logger.info "#######################################"
-        Rails.logger.info "END #################################"
+
         Contact.find(@c.id).groups.size.should eq(1)
 
       end
