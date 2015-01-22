@@ -13,6 +13,38 @@ class Sms < Contact
   def self.long_description
     "Phone number (that receives text messages)"
   end
+  def build_message(message, advertisement)
+    message_text = message.message
+    template = "#{message.group.name}: \r\n\r\n#{advertisement.message}\r\n\r\nReply \"STOP#{message.group.id}\" to cancel"
+    msg = []
+    allowable_msg_length = 160 - template.length
+    chunks = (message_text.length/allowable_msg_length)+1
+    messageCount = 0
+    chunks.times  do |b| 
+      short_message = message_text[b*(allowable_msg_length),allowable_msg_length]
+      body = "#{message.group.name}: #{short_message}\r\n\r\n#{advertisement.message}\r\n\r\nReply \"STOP#{message.group.id}\" to cancel"
+      msg << body
+
+    end
+    return msg
+  end
+  def deliver(contact, message, advertisement, options = {})
+    client = options[:client]
+    group = options[:group]
+    Rails.logger.info "##### Sending Twilio... 160 character message limit so long message is split into several message"
+    message_text = ''
+    build_message(message, advertisement).each do |msg|
+      @twilioMessage = client.account.sms.messages.create({
+                                                            :from => group.twilio_number, 
+                                                            :to => contact.entry, 
+                                                            :body => msg
+                                                          })
+    end
+    sent_message = advertisement.message
+  rescue => e
+    Rails.logger.error "###### An error occurred in Sms.deliver #{e.message}"
+    Rails.logger.info e.backtrace.join("\n")
+  end
 
 end
 

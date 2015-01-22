@@ -15,9 +15,18 @@ class FbGroup < Contact
 
   def self.hide?(user,group)
     Rails.logger.debug "###### User #{user.id unless user.nil?} Group #{group.id unless group.nil?}" 
-
     user != group.user || !Feature.active?(:facebook, user)
 
+  end
+  def deliver(c,message,a,o={})
+    if Feature.active?(:facebook, current_user)
+      Rails.logger.debug "##### Sending a FB message"
+      graph = Koala::Facebook::API.new(current_user.fb_token)
+      message_text = "#{message.message}"
+      result = graph.put_object("#{c.entry}", "feed", message: message_text)
+      return message_text
+    end
+    retun nil
   end
 end
 

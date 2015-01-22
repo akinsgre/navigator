@@ -51,41 +51,57 @@ describe ContactsController do
       end
       it "should be updated if the contact exists" do
         params = ActionController::Parameters.new(
-                                                  { id:@c.id, "contact"=>{"user_id"=>"", 
+                                                  { :id => @c.id, "contact"=>{"user_id"=>"", 
                                                       "group"=>{"id"=>@group.id}, 
-                                                      "name"=>"Ralphie", 
-                                                      "type"=>"Phone", 
-                                                      "entry"=>"724 454 7790"}, 
+                                                      "name"=>@c.name, 
+                                                      "type"=>@c.type, 
+                                                      "entry"=>@c.entry}, 
                                                     "group_id"=>@group.id})
         expect{ post :create, params }.to change(Contact,:count).by(0)
- 
+        
       end
-      it "should be added if the contact/type doesn't exists" do
+    end
+    describe "POST 'create'" do
+      before :each do
+        @c = FactoryGirl.create(:phone)
+        @group = FactoryGirl.create(:group)
+        @group.contacts << @c 
+        @group.save
+      end
+      it "should be added if the contact/type doesn't exist" do
+
         params = ActionController::Parameters.new(
                                                   { "contact"=>{"user_id"=>"", 
                                                       "group"=>{"id"=>@group.id}, 
-                                                      "name"=>"Ralphie", 
-                                                      "type"=>"Sms", 
-                                                      "entry"=>"724 454 7790"}, 
+                                                      "name"=>'Ralphie', 
+                                                      "type"=>'Sms', 
+                                                      "entry"=>'4197341414'}, 
                                                     "group_id"=>@group.id})
         expect{ post :create, params }.to change(Contact,:count).by(1)
- 
+        
+      end
+    end
+    describe "POST 'create'" do
+      before :each do
+        @c = FactoryGirl.create(:phone)
+        @group = FactoryGirl.create(:group)
+        @group.contacts << @c 
+        @group.save
       end
       it "should not add a contact if matching contact already exists" do
-
-        Contact.find(@c.id).groups.size.should eq(1)
+        Rails.logger.info "START   ##############################"
+        Rails.logger.info "##################################"
         params = ActionController::Parameters.new(
                                                   { "contact"=>{"user_id"=>"", 
                                                       "group"=>{"id"=>@group.id}, 
-                                                      "name"=>"Frederick", 
-                                                      "type"=>"Phone", 
-                                                      "entry"=>"724 454 7790"}, 
+                                                      "name"=>@c.name, 
+                                                      "type"=>@c.type, 
+                                                      "entry"=>@c.entry}, 
                                                     "group_id"=>@group.id})
-
         expect{ post :create, params }.to change(Contact,:count).by(0)
 
-        Contact.find(@c.id).groups.size.should eq(1)
-
+        Rails.logger.info "###################################"
+        Rails.logger.info "################################### FINISH"
       end
     end
 

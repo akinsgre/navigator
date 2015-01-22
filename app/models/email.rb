@@ -11,6 +11,13 @@ class Email < Contact
   def self.long_description
     "Valid email address"
   end
+  def deliver(contact, message, advertisement, options = {})
+    MessageMailer.send_message(contact,message, advertisement).deliver
+    sent_message = advertisement.html_message
+  rescue => e
+    Rails.logger.error "####### There was a problem #{e.message} "
+    raise e
+  end
 end
 
 

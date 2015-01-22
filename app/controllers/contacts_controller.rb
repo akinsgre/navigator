@@ -69,13 +69,11 @@ class ContactsController < ApplicationController
   end
 
   def create
-    Rails.logger.info("############## Starting create... contact is #{@contact}")
+    Rails.logger.info("############## Starting create... contact is #{@contact.inspect} and ID is #{params[:id]}")
     @contact = Contact.determine_type(params)
-    Rails.logger.info "####### Contact now has #{@contact.groups.size} groups"
     unless params[:contact][:group].nil?  && params[:contact][:group][:id].nil?
       group_id = params[:contact][:group][:id]
       @group = Group.find(group_id)
-      Rails.logger.info "##### Contact has groups #{@contact.groups.inspect}"
       @contact.groups.push(@group) unless @contact.groups.include?(@group)
     end
     
@@ -92,7 +90,6 @@ class ContactsController < ApplicationController
       render "new"
 
     end
-
   end
 
   def edit
