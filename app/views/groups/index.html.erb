@@ -11,7 +11,6 @@
 	    <% if current_user && current_user.admin? %>
 	  <td><%= group.user.email unless group.user.nil? %></td>
 	  <td>
-
 	    |<%= link_to "Edit", edit_group_path(group) %>
 	    |<%= link_to "Destroy", group, :confirm => 'Are you sure?', :method => :delete %>
 	    <% end %>
