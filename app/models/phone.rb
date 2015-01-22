@@ -46,8 +46,10 @@ class Phone < Contact
     group_name = Rack::Utils.escape(group.name)
     url = "#{options[:app_url]}/twiml/say.xml?secret=#{ ENV['NMC_API_KEY'] }&IfMachine=Continue&message=#{message}&sponsor_msg=#{sponsor_msg}&group=#{group_name}"
     @call = client.account.calls.create(  :from => group.twilio_number,  :to => contact.entry, :url => url, :method => 'GET' )
+    return 
   rescue  => e
-    Rails.logger.info "####### An error occurred #{e.message}"
+    Rails.logger.error "####### An error occurred #{e.message}"
+    Rails.logger.info e.backtrace.join("\n")
   end
 end
 

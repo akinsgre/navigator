@@ -53,6 +53,7 @@ class MessagesController < ApplicationController
     end
   rescue => e
     Rails.logger.warn "##### There was a problem sending this message. #{e.message}"
+    e.backtrace.each { |line| Rails.logger.error line }
     flash.now[:alert] = "There was a problem sending this message. #{e.message}"
     render "groups/show", id: @group.id
   end

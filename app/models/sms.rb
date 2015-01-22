@@ -40,7 +40,7 @@ class Sms < Contact
                                                             :body => msg
                                                           })
     end
-    sent_message = advertisement.message
+    return advertisement.message
   rescue => e
     Rails.logger.error "###### An error occurred in Sms.deliver #{e.message}"
     Rails.logger.info e.backtrace.join("\n")
