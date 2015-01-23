@@ -64,14 +64,14 @@ class MessagesController < ApplicationController
     @group = Group.find(params[:group_id])
 
     if message.phone_message.blank?
-      @msg = Rack::Utils.escape(message.message)
+      @msg = message.message
     else
-      @msg = Rack::Utils.escape(message.phone_message)
+      @msg = message.phone_message
     end
 
     advertisement = Sponsor.getAd
     @sponsor_msg = advertisement.phone_message
-    sent_message = Rack::Utils.escape(advertisement.phone_message)
+    sent_message = advertisement.phone_message
     record_message(sent_message, @group, contact, advertisement ) unless sent_message.nil?
     Rails.logger.info "##### TwiML response = #{@message} and #{params[:AnsweredBy]}"
     render :say,  :layout => false
