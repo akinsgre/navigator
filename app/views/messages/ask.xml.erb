@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Response>
-  <Gather action="/groups/<%= @group.id %>/messages/<%= @message.id%>.xml?contact_id=<%=@contact.id%>&amp;say=true" method="get">
-    <Say>Press any key to hear an important message from <%= @group.name %></Say>
+  <Gather numDigits="100" action="/groups/<%= @group.id %>/messages/<%= @message.id%>.xml?contact_id=<%=@contact.id%>&amp;say=true" method="get" timeout="3" >
+    <Say>Message from <%= @group.name %></Say>
   </Gather>
+  <Say ><%= @msg %></Say>
+  <Pause/>
+  <Say><%= @sponsor_msg %></Say>
 </Response>
+
 
