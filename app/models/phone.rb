@@ -37,9 +37,9 @@ class Phone < Contact
     client = options[:client]
     group = options[:group]
     
-    url = "#{options[:app_url]}/groups/#{group.id}/messages/#{message.id}.xml"
+    url = "#{options[:app_url]}/groups/#{group.id}/messages/#{message.id}.xml?contact_id=#{contact.id}"
     Rails.logger.debug "####### Calling #{url} ###"
-    @call = client.account.calls.create( :from => group.twilio_number, :to => contact.entry, :url => url, :method => 'POST', :contact_id => 3 )
+    @call = client.account.calls.create( :from => group.twilio_number, :to => contact.entry, :url => url, :method => 'GET' )
     return nil
   rescue  => e
     Rails.logger.error "####### An error occurred #{e.message}"
