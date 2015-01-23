@@ -59,6 +59,7 @@ class MessagesController < ApplicationController
   end
 
   def show
+    contact = Contact.find(params[:contact_id])
     message = Message.find(params[:id])
     @group = Group.find(params[:group_id])
 
@@ -71,7 +72,7 @@ class MessagesController < ApplicationController
     advertisement = Sponsor.getAd
     @sponsor_msg = advertisement.phone_message
     sent_message = Rack::Utils.escape(advertisement.phone_message)
-    record_message(sent_message, @group, nil, advertisement ) unless sent_message.nil?
+    record_message(sent_message, @group, contact, advertisement ) unless sent_message.nil?
     Rails.logger.info "##### TwiML response = #{@message} and #{params[:AnsweredBy]}"
     render :say,  :layout => false
   end
