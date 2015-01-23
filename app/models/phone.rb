@@ -36,17 +36,11 @@ class Phone < Contact
   def deliver(contact, message, advertisement, options = {})
     client = options[:client]
     group = options[:group]
-    sponsor_msg = Rack::Utils.escape(advertisement.phone_message)
-    if message.phone_message.blank?
-      message = Rack::Utils.escape(message.message)
-    else
-      message = Rack::Utils.escape(message.phone_message)
-    end
-    sent_message = sponsor_msg
-    group_name = Rack::Utils.escape(group.name)
-    url = "#{options[:app_url]}/twiml/say.xml?secret=#{ ENV['NMC_API_KEY'] }&IfMachine=Continue&message=#{message}&sponsor_msg=#{sponsor_msg}&group=#{group_name}"
-    @call = client.account.calls.create(  :from => group.twilio_number,  :to => contact.entry, :url => url, :method => 'GET' )
-    return 
+    
+    url = "#{options[:app_url]}/groups/#{group.id}/messages/#{message.id}.xml"
+    Rails.logger.debug "####### Calling #{url} ###"
+    @call = client.account.calls.create( :from => group.twilio_number, :to => contact.entry, :url => url, :method => 'POST', :contact_id => 3 )
+    return nil
   rescue  => e
     Rails.logger.error "####### An error occurred #{e.message}"
     Rails.logger.info e.backtrace.join("\n")

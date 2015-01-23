@@ -69,6 +69,24 @@ describe MessagesController do
 #      expect(assigns(:call)).to eq("Phone Test Passed")
     end
   end
+  describe 'show' do
+    before :each do
+      @user = FactoryGirl.create(:user)
+      sign_in @user
+      @group = FactoryGirl.create(:group)
+      contacts = FactoryGirl.create_list(:email, 2)
+      contacts << FactoryGirl.create(:phone)
+      @group.contacts << contacts
+      @sponsor = FactoryGirl.create(:sponsor_with_advertisement)
+      @message = FactoryGirl.create(:message)
+    end
+    it 'should respond to show with say.xml' do
+      Rails.logger.info "START ##########################"
+       get 'show', group_id: @group.id, id: @message.id
+      response.should be_success
+      Rails.logger.info "########################## FINISH"
+    end
+  end
 end
 
 

@@ -12,8 +12,6 @@ Navigator::Application.routes.draw do
 
   devise_for :admins
   get "incoming_message/receive"
-  get "twiml/say"
-
 
   post "email/create"
   get "email/show"
@@ -56,6 +54,7 @@ Navigator::Application.routes.draw do
     get "contact/edit", as: "sm"
     get "contact/edit", as: "phone"
     get "messages/new"
+    get "messages/:id", to: "messages#show"
     post "messages/deliver"
     resources :contacts
   end

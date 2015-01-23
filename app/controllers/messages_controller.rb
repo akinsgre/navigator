@@ -46,7 +46,7 @@ class MessagesController < ApplicationController
       @contacts.each do |c|
         advertisement = Sponsor.getAd
         sent_message = c.deliver(c, @message, advertisement, {:client => @client, :group => @group, :app_url => app_url})
-        record_message(sent_message, @group, c, advertisement ) unless c.type == "FbGroup"
+        record_message(sent_message, @group, c, advertisement ) unless c.type == "FbGroup" || sent_message.nil?
       end
       flash.now[:notice] = "Message sent successfully to #{@contacts.size - errors } contacts."
       render "groups/show", id: @group.id      
@@ -56,6 +56,24 @@ class MessagesController < ApplicationController
     e.backtrace.each { |line| Rails.logger.error line }
     flash.now[:alert] = "There was a problem sending this message. #{e.message}"
     render "groups/show", id: @group.id
+  end
+
+  def show
+    message = Message.find(params[:id])
+    @group = Group.find(params[:group_id])
+
+    if message.phone_message.blank?
+      @msg = Rack::Utils.escape(message.message)
+    else
+      @msg = Rack::Utils.escape(message.phone_message)
+    end
+
+    advertisement = Sponsor.getAd
+    @sponsor_msg = advertisement.phone_message
+    sent_message = Rack::Utils.escape(advertisement.phone_message)
+    record_message(sent_message, @group, nil, advertisement ) unless sent_message.nil?
+    Rails.logger.info "##### TwiML response = #{@message} and #{params[:AnsweredBy]}"
+    render :say,  :layout => false
   end
 
 

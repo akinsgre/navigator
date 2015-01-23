@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Response >
   <Pause/>
-  <Say>Message from <%= @group %></Say>
+  <Say>Message from <%= @group.name %></Say>
   <Pause/>
-  <Say loop="2" ><%= @message %></Say>
+  <Say loop="2" ><%= @msg %></Say>
   <Pause/>
   <Say><%= @sponsor_msg %></Say>
 </Response>
