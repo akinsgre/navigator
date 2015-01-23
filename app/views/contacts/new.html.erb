@@ -4,4 +4,4 @@
 <% end %>
 <%= render 'form' %>
 
-<p><%= link_to "Back to List", group_contacts_path(@group) if current_user && current_user.groups.include?(@group)%></p>
+<p><%= link_to "Back to List", group_path(@group) if current_user && current_user.groups.include?(@group)%></p>
