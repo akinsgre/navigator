@@ -59,22 +59,26 @@ class MessagesController < ApplicationController
   end
 
   def show
-    contact = Contact.find(params[:contact_id])
-    message = Message.find(params[:id])
+    @contact = Contact.find(params[:contact_id])
+    @message = Message.find(params[:id])
     @group = Group.find(params[:group_id])
 
-    if message.phone_message.blank?
-      @msg = message.message
+    if @message.phone_message.blank?
+      @msg = @message.message
     else
-      @msg = message.phone_message
+      @msg = @message.phone_message
     end
 
     advertisement = Sponsor.getAd
     @sponsor_msg = advertisement.phone_message
     sent_message = advertisement.phone_message
-    record_message(sent_message, @group, contact, advertisement ) unless sent_message.nil?
+    record_message(sent_message, @group, @contact, advertisement ) unless sent_message.nil?
     Rails.logger.info "##### TwiML response = #{@message} and #{params[:AnsweredBy]}"
-    render :say,  :layout => false
+    if params[:AnsweredBy] == "human"
+      render :ask,  :layout => false
+    else
+      render :say,  :layout => false
+    end
   end
 
 

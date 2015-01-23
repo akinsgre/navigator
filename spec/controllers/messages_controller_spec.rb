@@ -75,14 +75,15 @@ describe MessagesController do
       sign_in @user
       @group = FactoryGirl.create(:group)
       contacts = FactoryGirl.create_list(:email, 2)
-      contacts << FactoryGirl.create(:phone)
+      @phone = FactoryGirl.create(:phone)
+      contacts << @phone
       @group.contacts << contacts
       @sponsor = FactoryGirl.create(:sponsor_with_advertisement)
       @message = FactoryGirl.create(:message)
     end
     it 'should respond to show with say.xml' do
       Rails.logger.info "START ##########################"
-       get 'show', group_id: @group.id, id: @message.id
+       get 'show', group_id: @group.id, id: @message.id, contact_id: @phone.id
       response.should be_success
       Rails.logger.info "########################## FINISH"
     end
