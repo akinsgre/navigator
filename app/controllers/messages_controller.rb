@@ -74,7 +74,7 @@ class MessagesController < ApplicationController
     sent_message = advertisement.phone_message
     record_message(sent_message, @group, @contact, advertisement ) unless sent_message.nil?
     Rails.logger.info "##### TwiML response = #{@message} and #{params[:AnsweredBy]}"
-    if params[:AnsweredBy] == "human"
+    if params[:AnsweredBy] == "human" && params[:say].blank?
       render :ask,  :layout => false
     else
       render :say,  :layout => false
