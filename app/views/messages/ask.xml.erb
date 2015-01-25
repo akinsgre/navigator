@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Response>
   <Gather numDigits="100" action="/groups/<%= @group.id %>/messages/<%= @message.id%>.xml?contact_id=<%=@contact.id%>&amp;say=true" method="get" timeout="3" >
-    <Say>Message from <%= @group.name %></Say>
+    <Say>Please wait for a message from <%= @group.name %></Say>
   </Gather>
+  <Say>Message from <%= @group.name %></Say>
   <Say ><%= @msg %></Say>
   <Pause/>
   <Say><%= @sponsor_msg %></Say>
