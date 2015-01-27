@@ -6,3 +6,5 @@ $redis = Redis.new(:host => uri.host, :port => uri.port, :password => uri.passwo
 $rollout = Rollout.new($redis)
 $rollout.deactivate(:facebook)
 
+
+

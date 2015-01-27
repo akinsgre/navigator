@@ -33,19 +33,20 @@ class Phone < Contact
 
     number # If all goes wrong .. we still return the original input.
   end
-  def deliver(contact, message, advertisement, options = {})
+  def deliver(message, advertisement, options = {})
     client = options[:client]
     group = options[:group]
     
-    url = "#{options[:app_url]}/groups/#{group.id}/messages/#{message.id}.xml?contact_id=#{contact.id}"
+    url = "#{options[:app_url]}/groups/#{group.id}/messages/#{message.id}.xml?contact_id=#{self.id}"
     Rails.logger.debug "####### Calling #{url} ###"
-    @call = client.account.calls.create( :from => group.twilio_number, :to => contact.entry, :url => url, :method => 'GET', :IfMachine => "Continue" )
+    @call = client.account.calls.create( :from => group.twilio_number, :to => self.entry, :url => url, :method => 'GET', :IfMachine => "Continue" )
     return nil
   rescue  => e
     Rails.logger.error "####### An error occurred #{e.message}"
     Rails.logger.info e.backtrace.join("\n")
   end
 end
+
 
 
 
@@ -62,5 +63,6 @@ end
 #  entry            :string(255)
 #  identifier       :string(255)
 #  normalized_entry :text
+#  verified         :boolean
 #
 

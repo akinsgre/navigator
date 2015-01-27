@@ -31,6 +31,7 @@ class FbGroup < Contact
 end
 
 
+
 # == Schema Information
 #
 # Table name: contacts
@@ -44,5 +45,6 @@ end
 #  entry            :string(255)
 #  identifier       :string(255)
 #  normalized_entry :text
+#  verified         :boolean
 #
 

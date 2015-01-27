@@ -12,6 +12,17 @@ describe ContactsController do
       @contact = FactoryGirl.create(:phone)
 
     end
+    describe "GET 'send_verification'" do
+      before :each do
+        @email = FactoryGirl.create(:email)
+      end
+      it "should be successful" do
+        get :send_verification, entry:  @email.entry
+        expect(response.status).to eq(302)
+        expect(response).to redirect_to root_path
+      end
+    end
+
     describe "GET 'new'" do
       it "should be successful with user specified" do
         get :new, :user => true, :group_id => @group.id
@@ -142,6 +153,19 @@ describe ContactsController do
       it "should be successful" do
         get :opt_out, contact_id:  @email
         expect(response.status).to eq(200)
+      end
+
+    end
+
+    describe "GET 'verify'" do
+      before :each do
+        @token = SecureRandom.urlsafe_base64(nil, false)
+        $redis.set(@token, @email.id)
+      end
+      it "should be successful" do
+        get :verify, token:  @token
+        expect(response.status).to eq(302)
+        expect(Contact.find(@email.id)).to be_verified
       end
 
     end

@@ -28,7 +28,8 @@ class Sms < Contact
     end
     return msg
   end
-  def deliver(contact, message, advertisement, options = {})
+  def deliver(message, advertisement, options = {})
+    Rails.logger.info "######## OK.. let's call SMS deliver"
     client = options[:client]
     group = options[:group]
     Rails.logger.info "##### Sending Twilio... 160 character message limit so long message is split into several message"
@@ -36,7 +37,7 @@ class Sms < Contact
     build_message(message, advertisement).each do |msg|
       @twilioMessage = client.account.sms.messages.create({
                                                             :from => group.twilio_number, 
-                                                            :to => contact.entry, 
+                                                            :to => self.entry, 
                                                             :body => msg
                                                           })
     end
@@ -47,6 +48,7 @@ class Sms < Contact
   end
 
 end
+
 
 
 
@@ -64,5 +66,6 @@ end
 #  entry            :string(255)
 #  identifier       :string(255)
 #  normalized_entry :text
+#  verified         :boolean
 #
 

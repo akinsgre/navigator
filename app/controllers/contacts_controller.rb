@@ -1,5 +1,5 @@
 class ContactsController < ApplicationController
-  before_filter :authenticate_user!, :except => [:new, :create, :opt_out]
+  before_filter :authenticate_user!, :except => [:new, :create, :opt_out, :verify]
   respond_to :html, :json
 
   def index
@@ -121,6 +121,18 @@ class ContactsController < ApplicationController
   def opt_out
     contact = Contact.find(params[:contact_id])
     contact.destroy
+  end
+  def verify
+    contact = Contact.find($redis.get(params[:token]))
+    contact.verified = true
+    contact.save
+    redirect_to root_path, :notice => "The contat has been verified."
+  end
+  def send_verification
+    Rails.logger.info "##### Starting #{params}"
+    contact = Contact.find_by_entry(params[:entry])
+    contact.request_verification
+    redirect_to root_path, :notice => "Please check your email for a verification link."
   end
 
 end

@@ -20,7 +20,7 @@ describe MessagesController do
 
     end
     it "can send a message" do
-
+      Rails.logger.info "START ##########################"
       client = mock()
       account = mock()
       messages = mock()
@@ -37,7 +37,7 @@ describe MessagesController do
       
       expect(assigns(:contacts)).to eq(@group.contacts)
       Rails.logger.info "twilioMessage"
-      
+      Rails.logger.info "########################## FINISH"      
     end
 
   end
@@ -82,10 +82,10 @@ describe MessagesController do
       @message = FactoryGirl.create(:message)
     end
     it 'should respond to show with say.xml' do
-      Rails.logger.info "START ##########################"
+
        get 'show', group_id: @group.id, id: @message.id, contact_id: @phone.id
       response.should be_success
-      Rails.logger.info "########################## FINISH"
+
     end
   end
 end

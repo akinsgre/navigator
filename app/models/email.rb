@@ -11,14 +11,18 @@ class Email < Contact
   def self.long_description
     "Valid email address"
   end
-  def deliver(contact, message, advertisement, options = {})
-    MessageMailer.send_message(contact,message, advertisement).deliver
+  def deliver(message, advertisement, options = {})
+    MessageMailer.send_message(self, message, advertisement).deliver
     sent_message = advertisement.html_message
   rescue => e
     Rails.logger.error "####### There was a problem #{e.message} "
     raise e
   end
+  def request_verification
+    MessageMailer.send_verification(self).deliver
+  end
 end
+
 
 
 # == Schema Information
@@ -34,5 +38,6 @@ end
 #  entry            :string(255)
 #  identifier       :string(255)
 #  normalized_entry :text
+#  verified         :boolean
 #
 

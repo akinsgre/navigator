@@ -105,6 +105,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: groups

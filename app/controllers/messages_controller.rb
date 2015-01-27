@@ -45,7 +45,7 @@ class MessagesController < ApplicationController
       end
       @contacts.each do |c|
         advertisement = Sponsor.getAd
-        sent_message = c.deliver(c, @message, advertisement, {:client => @client, :group => @group, :app_url => app_url})
+        sent_message = c.deliver( @message, advertisement, {:client => @client, :group => @group, :app_url => app_url})
         record_message(sent_message, @group, c, advertisement ) unless c.type == "FbGroup" || sent_message.nil?
       end
       flash.now[:notice] = "Message sent successfully to #{@contacts.size - errors } contacts."

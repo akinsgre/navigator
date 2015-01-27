@@ -1,7 +1,4 @@
 Navigator::Application.routes.draw do
-
-
-
   resources :help
 
   get 'auth/facebook/callback', :to => 'facebook#callback'
@@ -20,6 +17,8 @@ Navigator::Application.routes.draw do
 
   get "groups/remove_contact", :to =>  "groups#remove_contact"
   get "contacts/opt_out/:contact_id", :to =>  "contacts#opt_out", as: "contact_opt_out"
+  get "contacts/verify/:token", :to =>  "contacts#verify", as: "contact_verify"
+  get "contacts/send_verification", :to =>  "contacts#send_verification", as: "contact_send_verification"
   get "incoming_message", :to => "incoming_message#index"
   get "contacts/search", :to => "contacts#search"
   post "contacts/assign", :to => "contacts#assign"

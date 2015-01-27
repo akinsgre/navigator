@@ -37,8 +37,11 @@
   <h4>The contact methods I have registered<a class="openwindow" href="/add_registered.html#top" title="Registered Contacts" ><span class="glyphicon glyphicon-info-sign"></span></a></h4>
   <div id="list">
   <ul class="list-group">
+  <% @verified_contacts.each do |c| %>
+  <li class="list-group-item" ><%= c %>Verified</li>
+  <% end %>
   <% @contacts.each do |c| %>
-  <li class="list-group-item" ><%= c %></li>
+  <li class="list-group-item" ><%= c %><%= contact_send_verification(c) %></li>
   <% end %>
   </ul>
   </div>
