@@ -54,7 +54,7 @@ class Phone < Contact
     else
       app_url = "#{request.protocol + request.host_with_port}"
     end
-    url = "#{app_url}/contacts/find_for_verification"
+    url = "#{app_url}/contacts/find_for_verification.xml"
     @call = client.account.calls.create( :from => '7242160266', :to => self.entry, :url => url, :method => 'GET' )
     return nil
   rescue  => e
