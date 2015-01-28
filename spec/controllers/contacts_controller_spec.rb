@@ -100,8 +100,7 @@ describe ContactsController do
         @group.save
       end
       it "should not add a contact if matching contact already exists" do
-        Rails.logger.info "START   ##############################"
-        Rails.logger.info "##################################"
+
         params = ActionController::Parameters.new(
                                                   { "contact"=>{"user_id"=>"", 
                                                       "group"=>{"id"=>@group.id}, 
@@ -111,8 +110,7 @@ describe ContactsController do
                                                     "group_id"=>@group.id})
         expect{ post :create, params }.to change(Contact,:count).by(0)
 
-        Rails.logger.info "###################################"
-        Rails.logger.info "################################### FINISH"
+
       end
     end
 
@@ -163,7 +161,7 @@ describe ContactsController do
         $redis.set(@token, @email.id)
       end
       it "should be successful" do
-        get :verify, token:  @token
+        get :verify_email,  :token => @token
         expect(response.status).to eq(302)
         expect(Contact.find(@email.id)).to be_verified
       end

@@ -7,19 +7,17 @@ class MessagesController < ApplicationController
     @group = Group.find(params[:group_id])
     @message.group = @group
   end
-
+  
   def deliver
     @message = Message.new(params[:message].permit(:message, :group_id, :phone_message))
     @contacts =  Group.find(@message.group_id).contacts
-
     @group = Group.find(@message.group_id)
 
+    render(:file => File.join(Rails.root, 'public/404'), :status => 404, :layout => false, content_type: "text/html" ) and return if @group.nil?
     if @contacts.size == 0 
       flash[:alert] = "The message was not sent because the group doesn't have any contacts."
       redirect_to @group and return
     end
-
-    render(:file => File.join(Rails.root, 'public/404'), :status => 404, :layout => false, content_type: "text/html" ) and return if @group.nil?
 
     @account_sid = ENV['TW_SID']
     @auth_token = ENV['TW_TOKEN']
@@ -28,10 +26,12 @@ class MessagesController < ApplicationController
     @client = Twilio::REST::Client.new(@account_sid, @auth_token)
 
     @message.group = @group
+
     if @group.exceed_messages?
       flash[:alert] = "The message cannot be sent because you have already sent #{@group.membership_level.allowed_messages} this month.  You must upgrade to a 'Premium' or 'Sponsored' level to be able to send additional messages."
       redirect_to @group and return
     end
+
     if @message.save
       Rails.logger.info "##### Sending #{@message.inspect} to each contact"
       # Check membership, on Group model (ie., Group.messages_exceeded?) level before sending message

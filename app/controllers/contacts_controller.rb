@@ -1,5 +1,5 @@
 class ContactsController < ApplicationController
-  before_filter :authenticate_user!, :except => [:new, :create, :opt_out, :verify]
+  before_filter :authenticate_user!, :except => [:new, :create, :opt_out, :verify_email, :verify_phone]
   respond_to :html, :json
 
   def index
@@ -125,14 +125,34 @@ class ContactsController < ApplicationController
   def verify
     contact = Contact.find($redis.get(params[:token]))
     contact.verified = true
-    contact.save
-    redirect_to root_path, :notice => "The contat has been verified."
+    return contact.save
+
   end
+  def verify_email
+    if self.verify
+      redirect_to root_path, :notice => "The contact has been verified."
+    end
+  end
+  def verify_phone
+    if self.verify
+      @sponsor_msg = Sponsor.getAd.phone_message
+      render :confirm
+    end
+  end
+
   def send_verification
-    Rails.logger.info "##### Starting #{params}"
+    Rails.logger.info "##### Starting #{params} "
     contact = Contact.find_by_entry(params[:entry])
     contact.request_verification
-    redirect_to root_path, :notice => "Please check your email for a verification link."
+    redirect_to root_path, :notice => contact.verification_text
+  end
+  def find_for_verification
+    normalized_entry = Phone.normalize_number(params[:entry], :default_country_number => '01')
+    contact = Contact.find_by_normalized_entry(normalized_entry)
+    @token = SecureRandom.urlsafe_base64(nil, false)
+    $redis.set(@token,contact.id)
+    #find a contact that matches the incoming phone number
+    render :verify,  :layout => false
   end
 
 end

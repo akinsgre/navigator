@@ -45,10 +45,28 @@ class Phone < Contact
     Rails.logger.error "####### An error occurred #{e.message}"
     Rails.logger.info e.backtrace.join("\n")
   end
+
+  def request_verification
+    client = Twilio::REST::Client.new(ENV['TW_SID'],ENV['TW_TOKEN'] )
+    
+    if Rails.env.development?
+      app_url = "http://nmc-demo.herokuapp.com" 
+    else
+      app_url = "#{request.protocol + request.host_with_port}"
+    end
+    url = "#{app_url}/contacts/find_for_verification"
+    @call = client.account.calls.create( :from => '7242160266', :to => self.entry, :url => url, :method => 'GET' )
+    return nil
+  rescue  => e
+    Rails.logger.error "####### An error occurred #{e.message}"
+    Rails.logger.info e.backtrace.join("\n")
+  end
+
+  def verification_text
+    "You will receive a phone call instructing you to confirm your phone number."
+  end
+  
 end
-
-
-
 
 # == Schema Information
 #

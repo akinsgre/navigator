@@ -44,6 +44,18 @@ describe Phone do
 
     end
   end
+  describe 'verify' do
+    before :each do
+      @phone = FactoryGirl.create(:phone)
+    end
+
+    it 'an email should cause a verification email to be sent ' do
+      # message = mock()
+      # MessageMailer.expects('send_verification').returns(message)
+      # message.expects(:deliver)
+      @phone.request_verification
+    end
+  end
 end
 
 

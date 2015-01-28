@@ -7,8 +7,8 @@ module ContactsHelper
     link_to text, edit_contact_path(@contact) unless @group
     link_to text, edit_group_contact_path(@group, @contact) if @group
   end
-  def contact_send_verification(text)
-    link_to "Verify", "#{contact_send_verification_path}?entry=#{text}"
+  def contact_send_verification(text, contact)
+    link_to text, "#{contact_send_verification_path}?entry=#{contact}"
   end
 
 end

@@ -21,6 +21,9 @@ class Email < Contact
   def request_verification
     MessageMailer.send_verification(self).deliver
   end
+  def self.verification_text
+    "Please check your email for a verification link."
+  end
 end
 
 
