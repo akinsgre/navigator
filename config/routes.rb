@@ -18,7 +18,7 @@ Navigator::Application.routes.draw do
   get "groups/remove_contact", :to =>  "groups#remove_contact"
   get "contacts/opt_out/:contact_id", :to =>  "contacts#opt_out", as: "contact_opt_out"
   get "contacts/verify_email/:token", :to =>  "contacts#verify_email", as: "contact_verify"
-  get "contacts/verify_phone/:token", :to =>  "contacts#verify_phone", as: "contact_verify_phone"
+  post "contacts/verify_phone/:token", :to =>  "contacts#verify_phone", as: "contact_verify_phone"
   get "contacts/send_verification", :to =>  "contacts#send_verification", as: "contact_send_verification"
   get "contacts/find_for_verification", :to =>  "contacts#find_for_verification", as: "contact_find_for_verification"
   get "incoming_message", :to => "incoming_message#index"
