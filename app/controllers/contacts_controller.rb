@@ -1,5 +1,5 @@
 class ContactsController < ApplicationController
-  before_filter :authenticate_user!, :except => [:new, :create, :opt_out, :verify_email, :verify_phone]
+  before_filter :authenticate_user!, :except => [:new, :create, :opt_out, :verify_email, :verify_phone, :find_for_verification]
   respond_to :html, :json
 
   def index
