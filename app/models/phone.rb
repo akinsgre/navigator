@@ -51,7 +51,7 @@ class Phone < Contact
 
     app_url = Navigator::Application.config.app_url
     url = "#{app_url}/contacts/find_for_verification.xml"
-    @call = client.account.calls.create( :from => '7242160266', :to => self.entry, :url => url, :method => 'GET' )
+    @call = client.account.calls.create( :from => '7242160266', :to => self.entry, :url => url, :method => 'GET', :contact_id => self.id )
     return nil
   rescue  => e
     Rails.logger.error "####### An error occurred #{e.message}"

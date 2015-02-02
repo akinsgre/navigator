@@ -148,10 +148,10 @@ class ContactsController < ApplicationController
     redirect_to root_path, :notice => contact.verification_text
   end
   def find_for_verification
-    normalized_entry = Phone.normalize_number(params[:Called], :default_country_number => '01')
-    contact = current_user.contacts.where(:normalized_entry => normalized_entry, :type => 'Phone').first
+
+    contact = Contact.find(params[:contact_id])
     @token = SecureRandom.urlsafe_base64(nil, false)
-    Rails.logger.debug "######## Setting Token = #{@token} for contact #{contact.inspect} ; normalized_entry = #{normalized_entry}"
+    Rails.logger.debug "######## Setting Token = #{@token} for contact #{contact.inspect} ; contact_id =#{params[:contact_id]}"
     $redis.set(@token,contact.id)
     #find a contact that matches the incoming phone number
     render :verify,  :layout => false
