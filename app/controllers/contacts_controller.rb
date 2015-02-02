@@ -142,7 +142,7 @@ class ContactsController < ApplicationController
 
   def send_verification
     Rails.logger.info "##### Starting #{params} "
-    contact = Contact.find_by_entry(params[:entry])
+    contact = Contact.find_by_entry_and_type(params[:entry], params[:type])
     contact.request_verification
     redirect_to root_path, :notice => contact.verification_text
   end

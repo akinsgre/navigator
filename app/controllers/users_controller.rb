@@ -28,8 +28,8 @@ class UsersController < AdminController
 
   def show
     Rails.logger.debug "##### Starting UsersController.show"
-    @verified_contacts = current_user.contacts.where(verified: true).select(:entry).uniq {|c| c }.map { |c| c.entry }
-    @contacts = current_user.contacts.where('verified = ? or verified is null', false).select(:entry).uniq {|c| c }.map { |c| c.entry }
+    @verified_contacts = current_user.contacts.where(verified: true).select(:entry, :type).select(:entry, :type).uniq.map{|c| {:entry => c.entry, :type => c.type } }
+    @contacts = current_user.contacts.where('verified = ? or verified is null', false).select(:entry, :type).select(:entry, :type).uniq.map{|c| {:entry => c.entry, :type => c.type } }
   end
 
   def destroy

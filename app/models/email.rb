@@ -1,7 +1,7 @@
 class Email < Contact
   include ActiveModel::Naming
   validates :entry, :email => { :message => I18n.t('validations.errors.models.email.invalid_email')}
-
+  before_save do self.entry.downcase! end
   def self.identify
     "Email"
   end
@@ -21,8 +21,12 @@ class Email < Contact
   def request_verification
     MessageMailer.send_verification(self).deliver
   end
-  def self.verification_text
+  def verification_text
     "Please check your email for a verification link."
+  end
+  def verify
+    Email.delete_all(["lower(entry) =? and id <> ?", self.entry.downcase, self.id])
+    self.verified = true
   end
 end
 

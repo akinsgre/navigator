@@ -10,6 +10,7 @@ Navigator::Application.configure do
   # Code is not reloaded between requests
   config.cache_classes = true
   config.eager_load = true
+  config.app_url = "http://www.notifymyclub.com"
   # Don't care if the mailer can't send
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp

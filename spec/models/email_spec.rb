@@ -44,14 +44,26 @@ describe Email do
   end
   describe 'verify' do
     before :each do
-      @email = FactoryGirl.create(:email)
+      @email1 = FactoryGirl.create(:email, entry: 'test1@insomnia-consulting.org')
+      @email2 = FactoryGirl.create(:email, entry: 'test1@insomnia-consulting.org')
     end
 
     it 'an email should cause a verification email to be sent ' do
       message = mock()
       MessageMailer.expects('send_verification').returns(message)
       message.expects(:deliver)
-      @email.request_verification
+      @email1.request_verification
+    end
+
+    it 'should aggregate all like emails' do
+      emails = Email.where(entry: @email1.entry)
+      puts @email1.entry
+      puts @email2.entry
+      puts emails.inspect
+      expect(emails.size).to eq(2)
+      @email1.verify
+      emails = Email.where(entry: @email1.entry)
+      expect(emails.size).to eq(1)
     end
   end
 

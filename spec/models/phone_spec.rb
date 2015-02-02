@@ -46,14 +46,30 @@ describe Phone do
   end
   describe 'verify' do
     before :each do
-      @phone = FactoryGirl.create(:phone)
+      @phone1 = FactoryGirl.create(:phone)
+      @phone2 = FactoryGirl.create(:phone)
     end
 
-    it 'an email should cause a verification email to be sent ' do
-      # message = mock()
-      # MessageMailer.expects('send_verification').returns(message)
-      # message.expects(:deliver)
-      @phone.request_verification
+    it 'an phone should cause a verification call to be made ' do
+      client = mock()
+      account = mock()
+      calls = mock()
+      Twilio::REST::Client.expects('new').returns(client)
+      client.expects(:account).returns(account)
+      account.expects(:calls).returns(calls)
+      calls.expects(:create)
+      @phone1.request_verification
+    end
+
+    it 'should aggregate all like emails' do
+      phone_nums = Phone.where(entry: @phone1.entry)
+      puts @phone1.entry
+      puts @phone2.entry
+      puts phone_nums.inspect
+      expect(phone_nums.size).to eq(2)
+      @phone1.verify
+      phone_nums = Phone.where(entry: @phone1.entry)
+      expect(phone_nums.size).to eq(1)
     end
   end
 end

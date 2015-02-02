@@ -14,6 +14,7 @@ class MessagesController < ApplicationController
     @group = Group.find(@message.group_id)
 
     render(:file => File.join(Rails.root, 'public/404'), :status => 404, :layout => false, content_type: "text/html" ) and return if @group.nil?
+
     if @contacts.size == 0 
       flash[:alert] = "The message was not sent because the group doesn't have any contacts."
       redirect_to @group and return
@@ -28,7 +29,7 @@ class MessagesController < ApplicationController
     @message.group = @group
 
     if @group.exceed_messages?
-      flash[:alert] = "The message cannot be sent because you have already sent #{@group.membership_level.allowed_messages} this month.  You must upgrade to a 'Premium' or 'Sponsored' level to be able to send additional messages."
+      flash[:alert] = "The message cannot be sent because you have already sent #{@group.membership_level.allowed_messages} this month.  You must upgrade to a 'Premium' or 'Sponsored' level to be able to send additional messages." 
       redirect_to @group and return
     end
 
@@ -38,11 +39,7 @@ class MessagesController < ApplicationController
       # abort if number of messages exceeds threshhold
       errors = 0
       # because localhost can't host the Twilio services
-      if Rails.env.development?
-        app_url = "http://nmc-demo.herokuapp.com" 
-      else
-        app_url = "#{request.protocol + request.host_with_port}"
-      end
+      app_url = Navigator::Application.config.app_url
       @contacts.each do |c|
         advertisement = Sponsor.getAd
         sent_message = c.deliver( @message, advertisement, {:client => @client, :group => @group, :app_url => app_url})

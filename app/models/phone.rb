@@ -48,12 +48,8 @@ class Phone < Contact
 
   def request_verification
     client = Twilio::REST::Client.new(ENV['TW_SID'],ENV['TW_TOKEN'] )
-    
-    if Rails.env.development?
-      app_url = "http://nmc-demo.herokuapp.com" 
-    else
-      app_url = "#{request.protocol + request.host_with_port}"
-    end
+
+    app_url = Navigator::Application.config.app_url
     url = "#{app_url}/contacts/find_for_verification.xml"
     @call = client.account.calls.create( :from => '7242160266', :to => self.entry, :url => url, :method => 'GET' )
     return nil
@@ -65,7 +61,10 @@ class Phone < Contact
   def verification_text
     "You will receive a phone call instructing you to confirm your phone number."
   end
-  
+  def verify
+    Phone.delete_all(["normalized_entry = ? and id <> ?", self.normalized_entry, self.id])
+    self.verified = true
+  end  
 end
 
 # == Schema Information

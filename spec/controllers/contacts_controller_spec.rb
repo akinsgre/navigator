@@ -17,7 +17,7 @@ describe ContactsController do
         @email = FactoryGirl.create(:email)
       end
       it "should be successful" do
-        get :send_verification, entry:  @email.entry
+        get :send_verification, entry:  @email.entry, type: @email.type
         expect(response.status).to eq(302)
         expect(response).to redirect_to root_path
       end
