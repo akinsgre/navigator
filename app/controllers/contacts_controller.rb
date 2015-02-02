@@ -150,6 +150,7 @@ class ContactsController < ApplicationController
     normalized_entry = Phone.normalize_number(params[:entry], :default_country_number => '01')
     contact = Contact.find_by_normalized_entry(normalized_entry)
     @token = SecureRandom.urlsafe_base64(nil, false)
+    Rails.logger.debug "######## Setting Token = #{@token} for contact #{contact.inspect}"
     $redis.set(@token,contact.id)
     #find a contact that matches the incoming phone number
     render :verify,  :layout => false
