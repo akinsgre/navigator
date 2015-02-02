@@ -50,8 +50,8 @@ class Phone < Contact
     client = Twilio::REST::Client.new(ENV['TW_SID'],ENV['TW_TOKEN'] )
 
     app_url = Navigator::Application.config.app_url
-    url = "#{app_url}/contacts/find_for_verification.xml"
-    @call = client.account.calls.create( :from => '7242160266', :to => self.entry, :url => url, :method => 'GET', :contact_id => self.id )
+    url = "#{app_url}/contacts/find_for_verification.xml?contact_id=#{self.id}"
+    @call = client.account.calls.create( :from => '7242160266', :to => self.entry, :url => url, :method => 'GET')
     return nil
   rescue  => e
     Rails.logger.error "####### An error occurred #{e.message}"

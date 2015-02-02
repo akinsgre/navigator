@@ -148,7 +148,6 @@ class ContactsController < ApplicationController
     redirect_to root_path, :notice => contact.verification_text
   end
   def find_for_verification
-
     contact = Contact.find(params[:contact_id])
     @token = SecureRandom.urlsafe_base64(nil, false)
     Rails.logger.debug "######## Setting Token = #{@token} for contact #{contact.inspect} ; contact_id =#{params[:contact_id]}"
