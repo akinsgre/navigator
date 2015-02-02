@@ -149,7 +149,7 @@ class ContactsController < ApplicationController
   end
   def find_for_verification
     normalized_entry = Phone.normalize_number(params[:Called], :default_country_number => '01')
-    contact = Contact.find_by_normalized_entry(normalized_entry)
+    contact = Contact.find_by_normalized_entry_and_type(normalized_entry, 'Phone')
     @token = SecureRandom.urlsafe_base64(nil, false)
     Rails.logger.debug "######## Setting Token = #{@token} for contact #{contact.inspect} ; normalized_entry = #{normalized_entry}"
     $redis.set(@token,contact.id)
