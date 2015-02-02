@@ -143,6 +143,7 @@ class ContactsController < ApplicationController
   def send_verification
     Rails.logger.info "##### Starting #{params} "
     contact = Contact.find_by_entry_and_type(params[:entry], params[:type])
+    Rails.logger.info "##### Found contact #{contact.inspect}"
     contact.request_verification
     redirect_to root_path, :notice => contact.verification_text
   end
@@ -150,7 +151,7 @@ class ContactsController < ApplicationController
     normalized_entry = Phone.normalize_number(params[:entry], :default_country_number => '01')
     contact = Contact.find_by_normalized_entry(normalized_entry)
     @token = SecureRandom.urlsafe_base64(nil, false)
-    Rails.logger.debug "######## Setting Token = #{@token} for contact #{contact.inspect}"
+    Rails.logger.debug "######## Setting Token = #{@token} for contact #{contact.inspect} ; normalized_entry = #{normalized_entry}"
     $redis.set(@token,contact.id)
     #find a contact that matches the incoming phone number
     render :verify,  :layout => false
