@@ -124,7 +124,7 @@ class ContactsController < ApplicationController
   end
   def verify
     contact = Contact.find($redis.get(params[:token]))
-    contact.verified = true
+    contact.verify
     return contact.save
 
   end
