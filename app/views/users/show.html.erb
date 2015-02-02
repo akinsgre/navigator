@@ -38,10 +38,10 @@
   <div id="list">
   <ul class="list-group">
   <% @verified_contacts.each do |c| %>
-  <li class="list-group-item" ><%= "#{c[:entry]} #{c[:type]}" %><span class="glyphicon glyphicon-check"></span></li>
+  <li class="list-group-item" ><%= "#{c[:entry]} #{c[:type]}" %><span class="glyphicon glyphicon-check adtext" title="This contact has been verified."></span></li>
   <% end %>
   <% @contacts.each do |c| %>
-  <li class="list-group-item" ><%= "#{c[:entry]} #{c[:type]}" %><%= contact_send_verification(raw("<span class=\"glyphicon glyphicon-unchecked\"></span>"), c) %></li>
+  <li class="list-group-item" ><%= "#{c[:entry]} #{c[:type]}" %><%= contact_send_verification(raw("<span class=\"glyphicon glyphicon-unchecked adtext\" title=\"Click to verify this contact belongs to you.\"></span>"), c) %></li>
   <% end %>
   </ul>
   </div>
