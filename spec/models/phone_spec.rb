@@ -61,7 +61,7 @@ describe Phone do
       @phone1.request_verification
     end
 
-    it 'should aggregate all like emails' do
+    it 'should aggregate all like phone numbers' do
       phone_nums = Phone.where(entry: @phone1.entry)
       puts @phone1.entry
       puts @phone2.entry

@@ -42,6 +42,34 @@ describe Sms do
     contact.type.should eq('Phone')
     contact.entry.should eq('7244547790')
   end
+  describe 'verify' do
+    before :each do
+      @sms1 = FactoryGirl.create(:sms)
+      @sms2 = FactoryGirl.create(:sms)
+    end
+
+    it 'should cause a verification text to be sent ' do
+      client = mock()
+      account = mock()
+      sms = mock()
+      messages = mock()
+
+      Twilio::REST::Client.expects('new').returns(client)
+      client.expects(:account).returns(account)
+      account.expects(:sms).returns(sms)
+      sms.expects(:messages).returns(messages)
+      messages.expects(:create)
+      @sms1.request_verification
+    end
+
+    it 'should aggregate all like text numbers' do
+      phone_nums = Sms.where(entry: @sms1.entry)
+      expect(phone_nums.size).to eq(2)
+      @sms1.verify
+      phone_nums = Sms.where(entry: @sms1.entry)
+      expect(phone_nums.size).to eq(1)
+    end
+  end
 end
 
 

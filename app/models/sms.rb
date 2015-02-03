@@ -29,10 +29,8 @@ class Sms < Contact
     return msg
   end
   def deliver(message, advertisement, options = {})
-    Rails.logger.info "######## OK.. let's call SMS deliver"
     client = options[:client]
     group = options[:group]
-    Rails.logger.info "##### Sending Twilio... 160 character message limit so long message is split into several message"
     message_text = ''
     build_message(message, advertisement).each do |msg|
       @twilioMessage = client.account.sms.messages.create({
@@ -44,9 +42,29 @@ class Sms < Contact
     return advertisement.message
   rescue => e
     Rails.logger.error "###### An error occurred in Sms.deliver #{e.message}"
-    Rails.logger.info e.backtrace.join("\n")
+    Rails.logger.debug e.backtrace.join("\n")
+  end
+  def request_verification
+    client = Twilio::REST::Client.new(ENV['TW_SID'],ENV['TW_TOKEN'] )
+    @twilioMessage = client.account.sms.messages.create({
+                                                            :from => '7242160266',
+                                                            :to => self.entry, 
+                                                            :body => "NotifyMyClub would like to verify that you own this phone number.  Reply \"VERIFY#{self.id}\" to confirm."
+                                                          })
+    return nil
+  rescue  => e
+    Rails.logger.error "####### An error occurred #{e.message}"
+    Rails.logger.debug e.backtrace.join("\n")
   end
 
+  def verification_text
+    "You will receive a text message instructing you to confirm your phone number."
+  end
+  def verify
+    Rails.logger.info "####### Model is #{self.inspect}"
+    Sms.delete_all(["normalized_entry = ? and id <> ?", self.normalized_entry, self.id])
+    self.verified = true
+  end 
 end
 
 

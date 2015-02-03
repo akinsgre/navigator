@@ -22,12 +22,24 @@ describe IncomingMessageController do
       response.status.should eq(404)
     end
     it "returns http success destroying Sms" do
-      data = {  :secret => ENV['NMC_API_KEY'], "From" => '+17244547790', "SmsSid" => "asdfasdf", "Body" => "STOP#{@group.id}" }
+      data = { :secret => ENV['NMC_API_KEY'], "From" => '+17244547790', "SmsSid" => "asdfasdf", "Body" => "STOP#{@group.id}" }
       get :receive, data
       response.status.should eq(200)
       c = Contact.exists?(@sms.id)
       expect(c).to be_true
       GroupContact.find_by_contact_id_and_group_id(@sms.id, @group.id).should be_nil
+    end
+    it "returns http success destroying Sms" do
+      data = { :secret => ENV['NMC_API_KEY'], "From" => '+17244547790', "SmsSid" => "asdfasdf", "Body" => "VERIFY#{@sms.id}" }
+      get :receive, data
+      response.status.should eq(200)
+      contacts = Sms.where(:normalized_entry => '17244547790')
+      expect(contacts.size).to eq(1)
+
+      c = Contact.find(@sms.id)
+      expect(c).to be_verified
+
+
     end
 
   end

@@ -64,7 +64,7 @@ class Phone < Contact
   def verify
     Phone.delete_all(["normalized_entry = ? and id <> ?", self.normalized_entry, self.id])
     self.verified = true
-  end  
+  end 
 end
 
 # == Schema Information
