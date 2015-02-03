@@ -13,6 +13,7 @@ class IncomingMessageController < ApplicationController
         group_contact = GroupContact.find_by_contact_id_and_group_id( c.id, group_id)
         unless group_contact.nil?
           group_contact.destroy 
+          @message = "You have been unsubscribed"
           opt_out_success = true
         end
       end
@@ -23,7 +24,8 @@ class IncomingMessageController < ApplicationController
       contacts = Sms.all.where(:normalized_entry => normalized_entry)
       contacts.each do |c|
         c.verify
-        opt_out_success = true         if c.save
+        @message = "This contact has been confirmed."
+        opt_out_success = true if c.save
       end
     end
 
