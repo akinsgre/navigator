@@ -43,7 +43,27 @@
     border-radius:20px;
     font-family: Verdana,Helvetica,Arial;
 }
+@mixin col-def {
+
+    float: left ; 
+    min-height:150px; 
+    min-width:250px; 
+
+    border: 2px solid #ccc; 
+    overflow:visible; 
+    background-color:#ffe; 
+    border-radius:20px; 
+    font-family: Verdana,Helvetica,Arial; 
+
+}
+.col-md-4,
+.col-12-inner,
 .col-md-6 {
+    @include col-def;
+}
+
+.col-md-6,
+.col-12-inner {
     @include col;
 }
 .col-md-12 {
@@ -67,22 +87,5 @@
     clear:both;
     float:left;
 }
-@mixin col-def {
 
-    float: left ; 
-    min-height:150px; 
-    min-width:250px; 
 
-    border: 2px solid #ccc; 
-    overflow:visible; 
-    background-color:#ffe; 
-    border-radius:20px; 
-    font-family: Verdana,Helvetica,Arial; 
-
-}
-.col-md-4 {
-    @include col-def;
-}
-.col-md-6 {
-    @include col-def;
-}

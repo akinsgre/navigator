@@ -3,6 +3,7 @@ require 'twilio-ruby'
 class MessagesController < ApplicationController
   include MessageHelper
   def new
+    @advertisement = Sponsor.getAd
     @message = Message.new
     @group = Group.find(params[:group_id])
     @message.group = @group

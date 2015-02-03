@@ -1,4 +1,14 @@
 $( function() {
+       $('#message_message').keyup(function() {
+				       var maxMessageLength = 160;
+				       var groupTextLength = $("#groupmessage").val().length;
+				       var adTextLegnth = $("#admessage").val().length;
+				       var firstMessageLength = maxMessageLength - groupTextLength ; 
+				       var message = $(this).val() ; 
+				       var messageChunk = message.substring(0, firstMessageLength) ; 
+
+					$("#message-render").html(messageChunk) ;
+				    });
 
        $('#contactsubmit').editable({
 					type: 'checklist',    
