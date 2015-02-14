@@ -2,6 +2,10 @@ $error-red: #FE1F0D;
 $site-blue: #0c93cb;
 $site-orange: #f7941d;
 $site-green: #a5cd39;
+#groupmessage,
+#admessage {
+    display:none;
+}
 #appid {
     display:none;
 }

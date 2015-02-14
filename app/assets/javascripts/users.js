@@ -1,14 +1,56 @@
-$( function() {
-       $('#message_message').keyup(function() {
-				       var maxMessageLength = 160;
-				       var groupTextLength = $("#groupmessage").val().length;
-				       var adTextLegnth = $("#admessage").val().length;
-				       var firstMessageLength = maxMessageLength - groupTextLength ; 
-				       var message = $(this).val() ; 
-				       var messageChunk = message.substring(0, firstMessageLength) ; 
+var createMessageChunks = function() {
+    var maxMessageLength = 160;
+    var groupMessage = $("#groupmessage").text();
+    var adMessage = $("#admessage").text();
+    var adTextLength = adMessage.length;
+    var groupTextLength =  groupMessage.length;
+    var firstMessageLength = maxMessageLength - groupTextLength - adTextLength ; 
+    
+    var message = $("#message_message").val() ; 
+    var messageChunk = '';
+    var messageChunkOne = '';
+    messageChunk = groupMessage + "<br/>" + message.substring(0, firstMessageLength) + "<br/>" + adMessage ; 	   
+    if (messageChunk > 160) {
+	messageChunkOne = groupMessage + "<br/>" + message.substring(0, maxMessageLength - groupMessage);
+	messageChunk = 'Splitting...';
+    }
 
-					$("#message-render").html(messageChunk) ;
-				    });
+
+
+    var chunkSize = 160;
+    var messageLength = message.length;
+    var chunks = messageLength / chunkSize;
+    
+
+    chunks = Math.ceil(chunks);
+    console.log("Num of chunks.. " + chunks);
+    var messageResult = [];
+    messageResult[0] = groupMessage + "<br/>";
+    for (var i=0; i<chunks;i++) {
+	console.log("message_array_" + i +" --- " + message.substring(i*chunkSize,i*chunkSize + chunkSize));
+	if (typeof messageResult[i] === "undefined") {
+	    messageResult[i] = '';
+	}
+	messageResult[i] = messageResult[i] + message.substring(i*chunkSize,i*chunkSize+chunkSize) ; 
+	
+	if (i == chunks-1) {
+
+	    messageResult[i] = messageResult[i] + "<br/>" + adMessage ; 
+	}
+    }
+    for (var i=0; i<messageResult.length; i++) {
+	if($("#message_text_" + i).length == 0) {
+	    //it doesn't exist
+	    $("#message-render").append("<p id=\"message_text_"+ i +"\"></p>");
+	}
+	$("#message_text_"+i).html(messageResult[i]+"<br/>");
+    }
+    
+//    $("#message-render").html(messageChunk) ;
+} ; 
+$( function() {
+       createMessageChunks();
+       $('#message_message').keyup(createMessageChunks);
 
        $('#contactsubmit').editable({
 					type: 'checklist',    
