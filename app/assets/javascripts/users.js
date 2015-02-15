@@ -1,21 +1,14 @@
 var createMessageChunks = function() {
+    $("#message-render").empty();
     var maxMessageLength = 160;
     var groupMessage = $("#groupmessage").text();
     var adMessage = $("#admessage").text();
     var adTextLength = adMessage.length;
     var groupTextLength =  groupMessage.length;
+    //need to figure out how to set messages sizes for first, middle and last messages.. since they'll vary based on group name and advertisement text
     var firstMessageLength = maxMessageLength - groupTextLength - adTextLength ; 
     
     var message = $("#message_message").val() ; 
-    var messageChunk = '';
-    var messageChunkOne = '';
-    messageChunk = groupMessage + "<br/>" + message.substring(0, firstMessageLength) + "<br/>" + adMessage ; 	   
-    if (messageChunk > 160) {
-	messageChunkOne = groupMessage + "<br/>" + message.substring(0, maxMessageLength - groupMessage);
-	messageChunk = 'Splitting...';
-    }
-
-
 
     var chunkSize = 160;
     var messageLength = message.length;
@@ -41,12 +34,12 @@ var createMessageChunks = function() {
     for (var i=0; i<messageResult.length; i++) {
 	if($("#message_text_" + i).length == 0) {
 	    //it doesn't exist
-	    $("#message-render").append("<p id=\"message_text_"+ i +"\"></p>");
+	    $("#message-render").append("<p class=\"message_text\" id=\"message_text_"+ i +"\"></p>");
 	}
 	$("#message_text_"+i).html(messageResult[i]+"<br/>");
     }
     
-//    $("#message-render").html(messageChunk) ;
+
 } ; 
 $( function() {
        createMessageChunks();

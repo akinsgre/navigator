@@ -44,17 +44,24 @@
     font-family: Verdana,Helvetica,Arial;
 }
 @mixin col-def {
-
     float: left ; 
     min-height:150px; 
     min-width:250px; 
-
     border: 2px solid #ccc; 
     overflow:visible; 
     background-color:#ffe; 
     border-radius:20px; 
     font-family: Verdana,Helvetica,Arial; 
 
+}
+.message_text {
+        border: 2px solid #ccc; 
+    overflow:visible; 
+    background-color:#ffe; 
+    border-radius:20px; 
+    font-family: Verdana,Helvetica,Arial; 
+    padding: 10px;
+    margin-top: 10px;
 }
 .col-md-4,
 .col-md-11,
