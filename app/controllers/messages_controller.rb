@@ -11,6 +11,7 @@ class MessagesController < ApplicationController
   
   def deliver
     @message = Message.new(params[:message].permit(:message, :group_id, :phone_message))
+#messages is an app of text message segments
     @contacts =  Group.find(@message.group_id).contacts
     @group = Group.find(@message.group_id)
 
@@ -33,7 +34,8 @@ class MessagesController < ApplicationController
       flash[:alert] = "The message cannot be sent because you have already sent #{@group.membership_level.allowed_messages} this month.  You must upgrade to a 'Premium' or 'Sponsored' level to be able to send additional messages." 
       redirect_to @group and return
     end
-
+    messages = params[:messages]
+    Rails.logger.debug "##### Messages are #{messages}"
     if @message.save
       Rails.logger.info "##### Sending #{@message.inspect} to each contact"
       # Check membership, on Group model (ie., Group.messages_exceeded?) level before sending message
@@ -41,7 +43,9 @@ class MessagesController < ApplicationController
       errors = 0
       # because localhost can't host the Twilio services
       app_url = Navigator::Application.config.app_url
+      
       @contacts.each do |c|
+        @message = messages if c.is_a? Sms
         advertisement = Sponsor.getAd
         sent_message = c.deliver( @message, advertisement, {:client => @client, :group => @group, :app_url => app_url})
         record_message(sent_message, @group, c, advertisement ) unless c.type == "FbGroup" || sent_message.nil?

@@ -13,33 +13,19 @@ class Sms < Contact
   def self.long_description
     "Phone number (that receives text messages)"
   end
-  def build_message(message, advertisement)
-    message_text = message.message
-    template = "#{message.group.name}: \r\n\r\n#{advertisement.message}\r\n\r\nReply \"STOP#{message.group.id}\" to cancel"
-    msg = []
-    allowable_msg_length = 160 - template.length
-    chunks = (message_text.length/allowable_msg_length)+1
-    messageCount = 0
-    chunks.times  do |b| 
-      short_message = message_text[b*(allowable_msg_length),allowable_msg_length]
-      body = "#{message.group.name}: #{short_message}\r\n\r\n#{advertisement.message}\r\n\r\nReply \"STOP#{message.group.id}\" to cancel"
-      msg << body
 
-    end
-    return msg
-  end
-  def deliver(message, advertisement, options = {})
+  def deliver(messages, advertisement, options = {})
     client = options[:client]
     group = options[:group]
-    message_text = ''
-    build_message(message, advertisement).each do |msg|
+    messages.each do |msg|
+      Rails.logger.debug "##### Messages are #{messages}"
       @twilioMessage = client.account.sms.messages.create({
                                                             :from => group.twilio_number, 
                                                             :to => self.entry, 
-                                                            :body => msg
+                                                            :body => msg[1]
                                                           })
     end
-    return advertisement.message
+    return messages.to_a.join('\n')
   rescue => e
     Rails.logger.error "###### An error occurred in Sms.deliver #{e.message}"
     Rails.logger.debug e.backtrace.join("\n")

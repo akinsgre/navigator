@@ -1,46 +1,30 @@
 var createMessageChunks = function() {
     $("#message-render").empty();
     var maxMessageLength = 160;
-    var groupMessage = $("#groupmessage").text();
-    var adMessage = $("#admessage").text();
-    var adTextLength = adMessage.length;
-    var groupTextLength =  groupMessage.length;
-    //need to figure out how to set messages sizes for first, middle and last messages.. since they'll vary based on group name and advertisement text
-    var firstMessageLength = maxMessageLength - groupTextLength - adTextLength ; 
-    
-    var message = $("#message_message").val() ; 
-
-    var chunkSize = 160;
-    var messageLength = message.length;
-    var chunks = messageLength / chunkSize;
-    
-
-    chunks = Math.ceil(chunks);
-    console.log("Num of chunks.. " + chunks);
+    var groupId = window.location.pathname.substring(window.location.pathname.indexOf("groups/")+7,9 ) ;
+//,window.location.pathname.indexOf("groups/") + 9)  ;
+    console.log("GroupId = " + groupId);
+    var groupMessage = $("#groupmessage").text()+": ";
+    var adMessage = "--" + $("#admessage").text() + " Respond with STOP"+groupId+" to stop receiving messages";
+    var message = groupMessage + "" + $("#message_message").val() + "" + adMessage ; 
     var messageResult = [];
-    messageResult[0] = groupMessage + "<br/>";
-    for (var i=0; i<chunks;i++) {
-	console.log("message_array_" + i +" --- " + message.substring(i*chunkSize,i*chunkSize + chunkSize));
-	if (typeof messageResult[i] === "undefined") {
-	    messageResult[i] = '';
-	}
-	messageResult[i] = messageResult[i] + message.substring(i*chunkSize,i*chunkSize+chunkSize) ; 
-	
-	if (i == chunks-1) {
-
-	    messageResult[i] = messageResult[i] + "<br/>" + adMessage ; 
-	}
+    var i= 0;
+    while (message.length > 1) {
+	messageResult[i] = message.substring(0,maxMessageLength);
+	message = message.substring(maxMessageLength);
+	i++ ; 
     }
+
     for (var i=0; i<messageResult.length; i++) {
+
 	if($("#message_text_" + i).length == 0) {
 	    //it doesn't exist
 	    $("#message-render").append("<p class=\"message_text\" id=\"message_text_"+ i +"\"></p>");
 	}
 	$("#message_text_"+i).html(messageResult[i]+"<br/>");
     }
-    
-
 } ; 
+
 $( function() {
        createMessageChunks();
        $('#message_message').keyup(createMessageChunks);
@@ -73,8 +57,8 @@ $( function() {
 					display: function(value, sourceData, response) {
 					    checked = $.fn.editableutils.itemsByValue(value, sourceData);
 
-					    console.log("Source is " + JSON.stringify(sourceData) ) ; 
-					    console.log("Response is " + JSON.stringify(response) ) ; 
+
+
 					    var $el = $('#list'),
 					    checked, html = '';
 					    if(!value) {
@@ -86,7 +70,7 @@ $( function() {
 										   return v == o.value; 
 									       }).length;
 							     });
-					    console.log("Checked is " + JSON.stringify(checked) ) ; 
+
 					    $.each(checked, function(i, v) { 
 						       html+= '<li class="list-group-item">'+$.fn.editableutils.escape(v.text)+'</li>';
 						   });
