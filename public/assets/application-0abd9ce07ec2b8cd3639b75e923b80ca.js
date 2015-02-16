@@ -41344,6 +41344,25 @@ $( function(){
             d.getElementsByTagName('head')[0].appendChild(js);
         }(document));
 
+       $("#invite_btn").click(function(e) {
+				  e.preventDefault();
+				  $('#invite_form').modal('show') ;
+			      });
+       $('#new_invite').submit(function(e){
+				e.preventDefault();
+				$.ajax({
+					   url: "invites/create",
+					   type: "POST",
+					   data:$("#new_invite").serialize()
+				       }).done(function() {
+						   $('#alerts').html("<div id=\"flash_notice\"><p>Thank you for requesting an invite.  An email will be sent to confirm your request.</p></div>");
+						   $('#invite_form').modal('hide') ;
+
+					       });
+				   return false ; 
+			    });
+       
+
        
        $( "#popups" ).scrollTop(0);
        $("#popups").dialog({autoOpen:false, 
@@ -41354,7 +41373,6 @@ $( function(){
        
        
        $("body").on("click",".openwindow", function(e) {
-			console.log("Clicked link " );
        			e.preventDefault();
 			var link = $(this).attr("href");
 			var title = $(this).attr("title");
@@ -41450,7 +41468,35 @@ $( function(){
 	   });  
 
    }) ; 
+var createMessageChunks = function() {
+    $("#message-render").empty();
+    var maxMessageLength = 160;
+    var groupId = window.location.pathname.split('/')[1] ; 
+    console.log("GroupId = " + groupId);
+    var groupMessage = $("#groupmessage").text()+": ";
+    var adMessage = "--" + $("#admessage").text() + " Respond with STOP"+groupId+" to stop receiving messages";
+    var message = groupMessage + "" + $("#message_message").val() + "" + adMessage ; 
+    var messageResult = [];
+    var i= 0;
+    while (message.length > 1) {
+	messageResult[i] = message.substring(0,maxMessageLength);
+	message = message.substring(maxMessageLength);
+	i++ ; 
+    }
+
+    for (var i=0; i<messageResult.length; i++) {
+
+	if($("#message_text_" + i).length == 0) {
+	    //it doesn't exist
+	    $("#message-render").append("<p class=\"message_text\" id=\"message_text_"+ i +"\"></p>");
+	}
+	$("#message_text_"+i).html(messageResult[i]+"<br/>");
+    }
+} ; 
+
 $( function() {
+       createMessageChunks();
+       $('#message_message').keyup(createMessageChunks);
 
        $('#contactsubmit').editable({
 					type: 'checklist',    
@@ -41480,8 +41526,8 @@ $( function() {
 					display: function(value, sourceData, response) {
 					    checked = $.fn.editableutils.itemsByValue(value, sourceData);
 
-					    console.log("Source is " + JSON.stringify(sourceData) ) ; 
-					    console.log("Response is " + JSON.stringify(response) ) ; 
+
+
 					    var $el = $('#list'),
 					    checked, html = '';
 					    if(!value) {
@@ -41493,7 +41539,7 @@ $( function() {
 										   return v == o.value; 
 									       }).length;
 							     });
-					    console.log("Checked is " + JSON.stringify(checked) ) ; 
+
 					    $.each(checked, function(i, v) { 
 						       html+= '<li class="list-group-item">'+$.fn.editableutils.escape(v.text)+'</li>';
 						   });
@@ -41537,7 +41583,19 @@ $( function() {
 	   });  
    });
 $( function(){
+       $("#new_message").submit(function(event) {
+				    var messages =  {"messages":{} } ; 
 
+				    $("[id^=message_text_]").each(function(index) {
+
+								      $('#new_message').append(
+									  $('<input />').attr('type', 'hidden')
+									      .attr('name', "messages["+index+"]")
+									      .attr('value', $(this).text())
+								      );
+								  });
+				    return true ; 
+				}) ;
    }) ; 
 $(function() {
     $(".adtext").tooltip();

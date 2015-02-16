@@ -1,8 +1,7 @@
 var createMessageChunks = function() {
     $("#message-render").empty();
     var maxMessageLength = 160;
-    var groupId = window.location.pathname.substring(window.location.pathname.indexOf("groups/")+7,9 ) ;
-//,window.location.pathname.indexOf("groups/") + 9)  ;
+    var groupId = window.location.pathname.split('/')[1] ; 
     console.log("GroupId = " + groupId);
     var groupMessage = $("#groupmessage").text()+": ";
     var adMessage = "--" + $("#admessage").text() + " Respond with STOP"+groupId+" to stop receiving messages";
