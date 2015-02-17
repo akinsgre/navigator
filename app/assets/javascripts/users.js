@@ -1,7 +1,7 @@
 var createMessageChunks = function() {
     $("#message-render").empty();
     var maxMessageLength = 160;
-    var groupId = window.location.pathname.split('/')[1] ; 
+    var groupId = window.location.pathname.split('/')[2] ; 
 
     console.log("Path " +  window.location.pathname +  " GroupId = " + groupId);    
     var groupMessage = $("#groupmessage").text()+": ";
