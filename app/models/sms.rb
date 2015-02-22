@@ -14,15 +14,39 @@ class Sms < Contact
     "Phone number (that receives text messages)"
   end
 
-  def deliver(messages, advertisement, options = {})
-    client = options[:client]
-    group = options[:group]
+  def split(message)
+
+    messages = []
+    i = 0
+    while ( !message.nil? && message.length > 1) do
+      splitposition = 159
+      while message[splitposition] != ' ' && splitposition < message.length do
+        splitposition -= 1 
+      end
+      Rails.logger.info "%%%%% next message = #{message[splitposition + 1..message.length-1]} "
+      messages[i] = message[0..splitposition]
+      Rails.logger.info "##### saved messages[#{i}] = #{messages[i]} "
+      message = message[splitposition +1,message.length+1] unless message.nil?
+      Rails.logger.info "##### Remaining message = #{message} "
+      i += 1
+    end
+    return messages
+  end
+
+  def deliver(message_id, advertisement, options = {})
+    client = Twilio::REST::Client.new(ENV['TW_SID'], ENV['TW_TOKEN'])
+    group = Group.find(options[:group_id])
+    message = Message.find(message_id)
+
+    message_text = "#{group.name} : #{message.message} -- #{advertisement.message} -- Respond with STOP#{group.id} to stop notifications."
+    messages = split(message_text)
+    Rails.logger.debug "##### Messages are #{messages.inspect}"
     messages.each do |msg|
-      Rails.logger.debug "##### Messages are #{messages}"
+      Rails.logger.debug "##### Message is #{msg}"
       @twilioMessage = client.account.sms.messages.create({
                                                             :from => group.twilio_number, 
                                                             :to => self.entry, 
-                                                            :body => msg[1]
+                                                            :body => msg
                                                           })
     end
     return messages.to_a.join('\n')

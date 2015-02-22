@@ -20,17 +20,8 @@ describe MessagesController do
 
     end
     it "can send a message" do
-      Rails.logger.info "START ##########################"
-      client = mock()
-      account = mock()
-      messages = mock()
-      sms = mock()
+      DeliverWorker.expects('perform_async').at_least(1)
 
-      Twilio::REST::Client.expects('new').returns(client)
-      client.expects(:account).times(2).returns(account)
-      account.expects(:sms).times(2).returns(sms)
-      sms.expects(:messages).times(2).returns(messages)
-      messages.expects(:create).times(2).returns("Test Passed")
       post :deliver, {:message => {"message"=> "I've been building enterprise Java web apps since servlets were created.  In that time the java ecosystem has changed a lot but sadly many enterprise Java developers are stuck", :group_id => @group.id}, "messages"=>{"0"=>"Test Group One: The Text message is required. This will be used for text messages and email. If the Phone message isn't specified, then the text message will be", "1"=>" used for Text, Phone and Email.--Insomnia-Consulting.org: Software development services."}, :group_id => @group.id }
 
       response.should be_success
@@ -57,10 +48,7 @@ describe MessagesController do
       calls = mock()
       account = mock()
 
-      Twilio::REST::Client.expects('new').returns(client)
-      client.expects(:account).returns(account)
-      account.expects(:calls).returns(calls)
-      calls.expects(:create).returns("Phone Test Passed")
+      DeliverWorker.expects('perform_async').at_least(1)
 
       post :deliver, {:message => {"message"=> "This is a message", :group_id => @group.id}, :group_id => @group.id }
       response.should be_success
@@ -82,7 +70,6 @@ describe MessagesController do
       @message = FactoryGirl.create(:message)
     end
     it 'should respond to show with say.xml' do
-
        get 'show', group_id: @group.id, id: @message.id, contact_id: @phone.id
       response.should be_success
 

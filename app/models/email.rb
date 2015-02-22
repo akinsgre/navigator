@@ -11,7 +11,9 @@ class Email < Contact
   def self.long_description
     "Valid email address"
   end
-  def deliver(message, advertisement, options = {})
+  def deliver(message_id, advertisement, options = {})
+    message = Message.find(message_id)
+
     MessageMailer.send_message(self, message, advertisement).deliver
     sent_message = advertisement.html_message
   rescue => e

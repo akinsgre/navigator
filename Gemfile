@@ -17,6 +17,7 @@ gem 'omniauth-facebook', '1.4.0'
 gem 'koala'
 gem 'redis'
 gem 'rollout'
+gem 'sidekiq', '~> 3.3.2'
 
 gem 'twitter-typeahead-rails', '0.10.2'
 gem 'seedbank'

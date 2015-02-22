@@ -33,9 +33,12 @@ class Phone < Contact
 
     number # If all goes wrong .. we still return the original input.
   end
-  def deliver(message, advertisement, options = {})
-    client = options[:client]
-    group = options[:group]
+  def deliver(message_id, advertisement, options = {})
+    client = Twilio::REST::Client.new(ENV['TW_SID'], ENV['TW_TOKEN'])
+    message = Message.find(message_id)
+
+    # need a client factory
+    group = Group.find(options[:group_id])
     
     url = "#{options[:app_url]}/groups/#{group.id}/messages/#{message.id}.xml?contact_id=#{self.id}"
     Rails.logger.debug "####### Calling #{url} ###"

@@ -70,6 +70,15 @@ describe Sms do
       expect(phone_nums.size).to eq(1)
     end
   end
+  it "should split message into multiple messages" do
+    Rails.logger.info "######################### SDFSDSDFFSFD"
+    sms = Sms.new
+    message = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam pellentesque luctus auctor. Sed eu dignissim ipsum. Donec suscipit in libero ut pretium. Aenean posuere libero in mi sagittis aliquam. Nulla commodo, lorem vel euismod tincidunt, enim lectus dictum tellus, non elementum lectus massa id quam. Integer volutpat laoreet felis. Maecenas ut commodo tellus. Vivamus eget libero neque. Vivamus molestie tellus rhoncus magna varius, vitae mattis ipsum vulputate. Vivamus tempus mi ac arcu faucibus vulputate ac aliquam sapien."
+    messages = sms.split(message)
+    expect(messages.size).to eq(4)
+    expect(messages[0]).to eq("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam pellentesque luctus auctor. Sed eu dignissim ipsum. Donec suscipit in libero ut pretium. Aenean ")
+    expect(messages[0] + messages[1] + messages[2] + messages[3]).to eq(message)
+  end
 end
 
 
