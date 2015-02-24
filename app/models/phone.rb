@@ -40,7 +40,7 @@ class Phone < Contact
     # need a client factory
     group = Group.find(options[:group_id])
     
-    url = "#{options[:app_url]}/groups/#{group.id}/messages/#{message.id}.xml?contact_id=#{self.id}"
+    url = "#{options["app_url"]}/groups/#{group.id}/messages/#{message.id}.xml?contact_id=#{self.id}"
     Rails.logger.debug "####### Calling #{url} ###"
     @call = client.account.calls.create( :from => group.twilio_number, :to => self.entry, :url => url, :method => 'GET', :IfMachine => "Continue" )
     return nil
