@@ -31,7 +31,7 @@ class MessagesController < ApplicationController
 
 
 app_url = Navigator::Application.config.app_url
-    Rails.logger.debug ("##################### URL #{app_url})
+    Rails.logger.debug ("##################### URL #{app_url}")
     if @message.save
       Rails.logger.info "##### Sending #{@message.inspect} to each contact"
       errors = 0
