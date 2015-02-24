@@ -28,9 +28,10 @@ class MessagesController < ApplicationController
     #   flash[:alert] = "The message cannot be sent because you have already sent #{@group.membership_level.allowed_messages} this month.  You must upgrade to a 'Premium' or 'Sponsored' level to be able to send additional messages." 
     #   redirect_to @group and return
     # end
-    Rails.logger.debug ("##################### four")
 
 
+app_url = Navigator::Application.config.app_url
+    Rails.logger.debug ("##################### URL #{app_url})
     if @message.save
       Rails.logger.info "##### Sending #{@message.inspect} to each contact"
       errors = 0
@@ -39,7 +40,7 @@ class MessagesController < ApplicationController
                                     @message.id, 
                                     Sponsor.getAd.id, 
                                     @group.id,
-                                    {:app_url => Navigator::Application.config.app_url}
+                                    {:app_url => app_url}
                                     )
       end
       flash.now[:notice] = "Message sent successfully to #{@contacts.size - errors } contacts."
