@@ -4,6 +4,7 @@ class DeliverWorker
     contact = Contact.find(contact_id)
     group = Group.find(group_id)
     options = options.merge({:group_id => group.id})
+    Rails.logger.debug "######### OPTIONS Sent to Sidekiq : #{options.inspect}"
     advertisement = Advertisement.find(advertisement_id)
     sent_message = contact.deliver(message_id, advertisement, options)
     record_message(sent_message, group.id, contact, advertisement ) unless contact.type == "FbGroup" || sent_message.nil?
