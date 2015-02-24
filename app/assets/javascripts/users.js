@@ -5,7 +5,7 @@ var createMessageChunks = function() {
 
     console.log("Path " +  window.location.pathname +  " GroupId = " + groupId);    
     var groupMessage = $("#groupmessage").text()+": ";
-    var adMessage = "--" + $("#admessage").text() + " Respond with STOP"+groupId+" to stop receiving messages";
+    var adMessage = "--" + $("#admessage").text() + " Respond with STOP "+groupId+"to stop receiving messages";
     var message = groupMessage + "" + $("#message_message").val() + "" + adMessage ; 
     var messageResult = [];
     var i= 0;
