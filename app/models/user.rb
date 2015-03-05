@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
 
     
   def mygroups 
-    fix_group(g)
+    fix_groups
     result = []
     self.groups.each {|g| 
 
