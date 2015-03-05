@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150127160855) do
+ActiveRecord::Schema.define(version: 20150305120712) do
 
   create_table "ad_histories", force: true do |t|
     t.integer  "sponsor_id"
@@ -75,6 +75,13 @@ ActiveRecord::Schema.define(version: 20150127160855) do
     t.integer  "group_id"
     t.integer  "sponsor_id"
     t.decimal  "amount",     precision: 10, scale: 2
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "group_admins", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "group_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

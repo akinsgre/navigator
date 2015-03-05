@@ -11,7 +11,7 @@ puts "Default Membership level #{MembershipLevel.DEFAULT.inspect}"
 (1..8).each do |g|
   name = (0...5).map { (65 + rand(26)).chr }.join
   puts "##### Adding the #{name}"
-  Group.create!(name: name , description: "Test #{g} ", user: user)
+  Group.create!(name: name , description: "Test #{g} ", users: [user])
 end
 
 (1..8).each do |i|

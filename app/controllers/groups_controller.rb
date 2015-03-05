@@ -20,13 +20,14 @@ class GroupsController < ApplicationController
 
   def show
     @thisgroup = Group.find(params[:id])
-    Rails.logger.debug "####### this group is #{@thisgroup.inspect}"
+    Rails.logger.info "####### this group is #{@thisgroup.inspect}"
     begin
-      Rails.logger.debug "##### GroupsController.show - params = #{params.inspect}"
-      Rails.logger.debug "##### current_user has groups #{current_user.groups.inspect}"
+      Rails.logger.info "##### GroupsController.show - params = #{params.inspect}"
+      Rails.logger.info "##### current_user has groups #{current_user.groups.inspect}"
       @group = current_user.groups.find(params[:id])
+      Rails.logger.info "##### current_user has group #{@group.inspect}"
     rescue => e
-      Rails.logger.debug "##### You don't have access to group #{e}"
+      Rails.logger.info "##### You don't have access to group #{e}"
       flash[:alert] = "You don't have access to this group."
       redirect_to root_path and return
     end
@@ -42,11 +43,12 @@ class GroupsController < ApplicationController
   def new
     logger.debug "Current User = " + current_user.email
     @group = Group.new
-    @group.user = current_user
+    @group.users << current_user
   end
 
   def create
     @group = Group.new(group_params)
+    @group.users << User.find(params[:group][:user_id])
     if @group.save
       redirect_to @group, :notice => "Successfully created group."
     else
@@ -103,7 +105,7 @@ class GroupsController < ApplicationController
   
 private
 def group_params
-  params.require(:group).permit(:name, :description, :user_id, :sponsor_email)
+  params.require(:group).permit(:name, :description, :sponsor_email)
 end  
 
 end

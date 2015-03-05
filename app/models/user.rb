@@ -1,13 +1,14 @@
 class User < ActiveRecord::Base
   has_many :subscription
+  
   has_many :assignments
   has_many :role, :through => :assignments
   has_many :contacts
-  has_many :groups
+  has_many :groups, :through => :group_admins
+  has_many :group_admins
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
-  
 
 #  validates :email, :email => { :message => I18n.t('validations.errors.models.email.invalid_email')}
   validates :email, :length => {    :minimum   => 3  }
@@ -15,13 +16,24 @@ class User < ActiveRecord::Base
     
   def mygroups 
     result = []
-    self.groups.each {|g| result << g }
+    self.groups.each {|g| 
+      fix_group(g)
+      result << g 
+    }
     self.contacts.each do |c|
       c.groups.each do |g|
+
         result << g unless result.include? g
       end
     end
     result
+  end
+  def fix_group(g)
+    unless g.user_id.nil?
+      g.users << User.find(g.user_id)
+      g.user_id = nil
+      g.save
+    end
   end
   #strong_parameters :email, :password, :password_confirmation, :remember_me
   

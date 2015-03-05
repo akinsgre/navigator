@@ -5,13 +5,20 @@ describe GroupsController do
   describe "Get 'show' " do
     before :each do
       @user2 = FactoryGirl.create(:user)
+      @user = FactoryGirl.create(:user)
       sign_in @user2
-      @group1 = FactoryGirl.create(:group, user: @user)
-      @group2 = FactoryGirl.create(:group, user: @user2)      
+      @group1 = FactoryGirl.create(:group, users: [@user])
+      @group2 = FactoryGirl.create(:group, users: [@user2])      
     end
     it "should show the group" do
       get 'show', {:id => @group1.id }
+      Rails.logger.info "######### #{response.body}"
       response.should redirect_to root_path
+    end
+    it "should create a new group" do
+      get 'new'
+      expect(response.status).to eq(200)
+
     end
   end
 
@@ -19,7 +26,7 @@ describe GroupsController do
   describe "GET 'create'" do
     before :each do
       @user = FactoryGirl.create(:user)
-      @group1 = FactoryGirl.create(:group, user: @user)
+      @group1 = FactoryGirl.create(:group, users: [@user])
 
       sign_in @user
     end
@@ -54,7 +61,7 @@ describe GroupsController do
       post :create, {
         :group => {"name"=>"Test", 
           "description"=>"Test Group", 
-          "user_id"=>"1", 
+          "user_id"=>@user.id, 
           "sponsor_email"=>"", 
           "bulk_upload" => @file
         }

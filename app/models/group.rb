@@ -1,6 +1,8 @@
 class Group < ActiveRecord::Base
   has_many :contacts, :through => :group_contacts
   has_many :group_contacts
+  has_many :users, :through => :group_admins
+  has_many :group_admins
   has_many :fb_group_details, :through => :fb_groups
   has_many :fb_groups
   belongs_to :membership_level

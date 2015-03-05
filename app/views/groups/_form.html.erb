@@ -14,7 +14,7 @@
       </div>
       <div class="row-fluid">
 	<%= f.text_field :description %>
-	<%= f.hidden_field :user_id %>
+	<%= hidden_field :user_id %>
       </div>
       <% if current_user.admin? %>
       <p>
