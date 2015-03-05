@@ -15,9 +15,10 @@ class User < ActiveRecord::Base
 
     
   def mygroups 
+    fix_group(g)
     result = []
     self.groups.each {|g| 
-      fix_group(g)
+
       result << g 
     }
     self.contacts.each do |c|
@@ -28,8 +29,9 @@ class User < ActiveRecord::Base
     end
     result
   end
-  def fix_group(g)
-    unless g.user_id.nil?
+  def fix_groups
+    groups = Group.where(:user_id => self.id)
+    groups.each do |g|
       g.users << User.find(g.user_id)
       g.user_id = nil
       g.save
