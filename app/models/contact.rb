@@ -22,13 +22,11 @@ class Contact < ActiveRecord::Base
   def email=(email)
     @email = email
   end
-  def self.hide?(user,group)
+  def self.hide?
     false
   end
-
-  def self.select_options(user, group)
-    Rails.logger.debug "##### User owns group (#{user.id} == #{group.user.id}) #{user == group.user}" unless user.nil?
-    descendants.reject { |d| d.hide?(user, group ) }.collect { |d| [d.identify,d.to_s] }
+  def self.select_options
+    descendants.reject { |d| d.hide? }.collect { |d| [d.identify,d.to_s] }
   end
 
   def to_s
@@ -43,10 +41,16 @@ class Contact < ActiveRecord::Base
       ( !normalized_entry.nil? && Contact.exists?(:normalized_entry => normalized_entry, :type => contactType) ) || 
       Contact.exists?(:entry => params[:contact][:entry], :type => contactType)
     if contactExists
+      Rails.logger.debug "####### This contact exists"
       ActiveRecord::Base.transaction do
         contact = Contact.find(params[:id]) unless params[:id].nil?
-        contact ||= Contact.find_by(:normalized_entry => normalized_entry, :type => contactType) unless normalized_entry.nil?
-        contact ||= Contact.find_by(:entry => params[:contact][:entry], :type => contactType) unless params[:contact][:entry].empty?
+        if contact.nil?
+          contact ||= Contact.find_by(:normalized_entry => normalized_entry, :type => contactType) unless normalized_entry.nil?
+          contact ||= Contact.find_by(:entry => params[:contact][:entry], :type => contactType) unless params[:contact][:entry].empty?
+        else
+          Rails.logger.debug "###### This contact is being updated "
+        end
+        Rails.logger.debug "####### This contact has been found #{contact.inspect}"
         if contact.type != contactType 
           contact.type = contactType 
           contact.save

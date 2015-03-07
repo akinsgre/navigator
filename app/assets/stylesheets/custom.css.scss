@@ -2,6 +2,13 @@ $error-red: #FE1F0D;
 $site-blue: #0c93cb;
 $site-orange: #f7941d;
 $site-green: #a5cd39;
+
+#new_contact, #new_contact_save {
+    display:none;
+}
+#new_contact {
+    width: 70%
+}
 #groupmessage,
 #admessage {
     display:none;
@@ -136,7 +143,21 @@ input[type='file'] {
 input[type='email'],
 input[type='text'] {
     width:100%;
+    border: 2px solid white; 
+    -webkit-box-shadow: 
+      inset 0 0 8px  rgba(0,0,0,0.1),
+            0 0 8px rgba(0,0,0,0.1); 
+    -moz-box-shadow: 
+      inset 0 0 8px  rgba(0,0,0,0.1),
+            0 0 8px rgba(0,0,0,0.1); 
+    box-shadow: 
+      inset 0 0 8px  rgba(0,0,0,0.1),
+            0 0 8px rgba(0,0,0,0.1); 
+    padding: 8px;
+    background: rgba(255,255,255,0.5);
+    margin: 0 0 5px 0;
 }
+
 #contactsearch_user {
     width: 80%
 }
@@ -492,7 +513,7 @@ ul li .footer{
 }
 
 a {
-    color: $site_green ;
+    color: $site-green ;
     cursor: pointer;
 }
 

@@ -1,9 +1,10 @@
 
 <div id="addTypes" >
 <div class="resetLayout" >
-  <%= form_for [@group, @contact],  :validate => true do |f| %>
+  <%= form_for :contact, :url => group_contacts_path, :method => :post, :validate => true do |f| %>
   <%= f.error_messages %>
     <%= f.hidden_field :user_id %>
+    <%= f.hidden_field :id %>
     <% unless @group.nil? %>
        <%= f.fields_for @group do |fd| %>
        <%= fd.hidden_field :id %>
@@ -18,7 +19,7 @@
      Preferred method of contact
    </div>
     <div class="span4" float="left">
-      <%= f.select :type, options_for_select(Contact.select_options(current_user, @group), f.object.type) %>
+      <%= f.select :type, options_for_select(Contact.select_options, @contact.type) %>
       </p>
      </div>
   </div>

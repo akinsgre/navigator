@@ -1,9 +1,28 @@
 $( function(){
        var groupId = window.location.href.split('/')[window.location.href.split('/').length-1];
        var url = '/';
-
 				
        $("#new_group").formToWizard() ;
+       $("#add_contact").on("click", function() {
+				$("#add_contact").hide();
+				$("#new_contact").show();
+				$("#new_contact_save").show();
+			    });
+       $("#new_contact_save").on("click", function() {
+				     //post email to groups.add_admin
+
+				     var billy = { "email" : $("#new_contact").val() };
+				     console.log("This is being submitted " + JSON.stringify(billy));
+
+				     $.post('/groups/'+groupId+'/add_admin', billy)
+					 .done( function(data) {
+						//display response in a status popup.
+						$("#admin_label").after("<p class=\"error\">"+data.message+"</p>"); 
+//						alert(data.message);
+					    });
+
+				 });
+
 
        //retrieve long description from contact_type
        if ($('#contact_type').length) {
@@ -13,6 +32,7 @@ $( function(){
 			 $("#entryLabel").html("Please enter a valid " + response);		     
 		     });
        }
+
        $("#contact_type").change( function () {
 				      selectedType = $('#contact_type :selected').val() ;
 				      $.ajax( "/contact_type/" + selectedType + ".json" )

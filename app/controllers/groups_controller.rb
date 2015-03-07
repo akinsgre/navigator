@@ -3,6 +3,29 @@ class GroupsController < ApplicationController
 
   before_filter :authenticate_user!, :except => [:index, :add_contact, :save_contact]
   respond_to :html, :json
+  #POST
+
+  def add_admin
+    Rails.logger.debug "############## We started"
+    user = User.find_by_email(params[:email])
+    group = current_user.groups.find(params[:group_id])
+    group.users << user
+    Rails.logger.debug "We got here"
+    if group.save
+    Rails.logger.debug "We got here 2"
+      render :json => {'status' => 'success', 'message' => "#{user.email} was successfully added as an administrator."}
+    else
+      render :json => {'status' => 'failure', 'message' => "#{user.email} was not added as an administrator."}
+    end
+    Rails.logger.debug "We got here 3"
+  rescue ActiveRecord::RecordNotFound => e1
+    e1.backtrace.each { |line| Rails.logger.error line }
+    Rails.logger.error "####### An error occurred #{e1.inspect}"
+    render :json => {'status' => 'failure', 'message' => "#{params[:email]} is not a current user."}
+  rescue Exception => e2
+    e2.backtrace.each { |line| Rails.logger.error line }
+    render :json => {'status' => 'failure', 'message' => "An error occurred. The site administrator has been notified.  Please try again. #{e2.inspect} "}
+  end
 
   def index
     Rails.logger.debug "###### let's find some groups "
@@ -48,7 +71,7 @@ class GroupsController < ApplicationController
 
   def create
     @group = Group.new(group_params)
-    @group.users << User.find(params[:group][:user_id])
+    @group.users << User.find(params[:user_id])
     if @group.save
       redirect_to @group, :notice => "Successfully created group."
     else

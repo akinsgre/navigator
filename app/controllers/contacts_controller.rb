@@ -45,12 +45,11 @@ class ContactsController < ApplicationController
 
   def new
     @contact = Contact.new
-
     if params[:user] && current_user
       Rails.logger.debug "##### Setting a user ID on this contact"
       @contact.user_id = current_user.id
     end
-    Rails.logger.info "##### Group id will be #{ params[:group_id]}.. and Contact is #{@contact}"
+    Rails.logger.info "##### @Group id will be #{ params[:group_id]}.. and Contact is #{@contact.inspect}"
 
     if !params[:group_id].nil? && Group.exists?(params[:group_id]) 
       @group = Group.find(params[:group_id]) 
@@ -65,7 +64,8 @@ class ContactsController < ApplicationController
       @contact = nil
       render(:file => File.join(Rails.root, 'public/404'), :status => 404, :layout => false, content_type: "text/html" ) and return
     end
-    Rails.logger.debug "##### Group is #{@group} and Contact is #{@contact}"
+    @contact.groups << @group
+    Rails.logger.debug "##### Group is #{@group} and Contact is #{@contact.inspect}"
   end
 
   def create

@@ -14,6 +14,7 @@ Navigator::Application.routes.draw do
   get "email/show"
   get "profile/edit"
   get "groups/:id/add_contact", :to => 'groups#add_contact'
+  post "/groups/:group_id/add_admin", :to => 'groups#add_admin'
 
   get "groups/remove_contact", :to =>  "groups#remove_contact"
   get "contacts/opt_out/:contact_id", :to =>  "contacts#opt_out", as: "contact_opt_out"
@@ -49,7 +50,7 @@ Navigator::Application.routes.draw do
   resources :sponsors do
     resources :advertisements
   end
-  
+  post 'contacts/create', :to => "contacts#create", as: "contacts"
   resources :groups do
     post 'facebook/post', :to => 'facebook#post'
     get "contact/edit", as: "sm"

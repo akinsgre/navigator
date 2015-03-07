@@ -20,8 +20,24 @@ describe GroupsController do
       expect(response.status).to eq(200)
 
     end
-  end
 
+  end
+  describe "POST 'add_admin'" do
+    before :each do
+      @user2 = FactoryGirl.create(:user)
+      @user = FactoryGirl.create(:user)
+      sign_in @user2
+      @group1 = FactoryGirl.create(:group, users: [@user])
+    end
+    it "should create a new group" do
+      post 'add_admin', {:id => @group1.id, :email => @user.email },  :format => :json
+      expect(response.status).to eq(200)
+      # group = Group.find(@group1.id)
+      # group.users.includes
+
+
+    end
+  end
 
   describe "GET 'create'" do
     before :each do
