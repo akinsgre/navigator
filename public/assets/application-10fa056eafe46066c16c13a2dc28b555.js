@@ -41421,9 +41421,28 @@ $( function(){
 $( function(){
        var groupId = window.location.href.split('/')[window.location.href.split('/').length-1];
        var url = '/';
-
 				
        $("#new_group").formToWizard() ;
+       $("#add_contact").on("click", function() {
+				$("#add_contact").hide();
+				$("#new_contact").show();
+				$("#new_contact_save").show();
+			    });
+       $("#new_contact_save").on("click", function() {
+				     //post email to groups.add_admin
+
+				     var billy = { "email" : $("#new_contact").val() };
+				     console.log("This is being submitted " + JSON.stringify(billy));
+
+				     $.post('/groups/'+groupId+'/add_admin', billy)
+					 .done( function(data) {
+						//display response in a status popup.
+						$("#admin_label").after("<p class=\"error\">"+data.message+"</p>"); 
+//						alert(data.message);
+					    });
+
+				 });
+
 
        //retrieve long description from contact_type
        if ($('#contact_type').length) {
@@ -41433,6 +41452,7 @@ $( function(){
 			 $("#entryLabel").html("Please enter a valid " + response);		     
 		     });
        }
+
        $("#contact_type").change( function () {
 				      selectedType = $('#contact_type :selected').val() ;
 				      $.ajax( "/contact_type/" + selectedType + ".json" )
@@ -41471,10 +41491,11 @@ $( function(){
 var createMessageChunks = function() {
     $("#message-render").empty();
     var maxMessageLength = 160;
-    var groupId = window.location.pathname.split('/')[1] ; 
-    console.log("GroupId = " + groupId);
+    var groupId = window.location.pathname.split('/')[2] ; 
+
+    console.log("Path " +  window.location.pathname +  " GroupId = " + groupId);    
     var groupMessage = $("#groupmessage").text()+": ";
-    var adMessage = "--" + $("#admessage").text() + " Respond with STOP"+groupId+" to stop receiving messages";
+    var adMessage = "--" + $("#admessage").text() + " Respond with STOP "+groupId+"to stop receiving messages";
     var message = groupMessage + "" + $("#message_message").val() + "" + adMessage ; 
     var messageResult = [];
     var i= 0;
