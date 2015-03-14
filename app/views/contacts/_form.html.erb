@@ -1,16 +1,17 @@
 
 <div id="addTypes" >
 <div class="resetLayout" >
-  <%= form_for :contact, :url => group_contacts_path, :method => :post, :validate => true do |f| %>
+  <%= form_for @contact, :url => group_contacts_path, :method => :post, :validate => true do |f| %>
+
   <%= f.error_messages %>
-    <%= f.hidden_field :user_id %>
-    <%= f.hidden_field :id %>
-    <% unless @group.nil? %>
+     <%= f.hidden_field :user_id %>
+     <%= f.hidden_field :id %>
+     <% unless @group.nil? %>
        <%= f.fields_for @group do |fd| %>
        <%= fd.hidden_field :id %>
-       <% end %>
-    <% end %>
- <div class="row-fluid">
+     <% end %>
+  <% end %>
+  <div class="row-fluid">
    <%= f.label :name %> <%= f.text_field :name %> 
    
 </div>
